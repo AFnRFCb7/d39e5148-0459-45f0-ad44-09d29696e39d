@@ -29,7 +29,7 @@
                                                         {
                                                             VISA_FETCH_NODE_SERVER = config.visa.backend.server.fetch ;
                                                         } ;
-                                                    systemd =
+                                                    systemd.services =
                                                         {
                                                             visa-server =
                                                                 lib.mkIf
