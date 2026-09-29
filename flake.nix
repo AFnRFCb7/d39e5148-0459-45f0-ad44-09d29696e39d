@@ -27,10 +27,34 @@
                                                         ] ;
                                                     environment.variables =
                                                         {
-                                                            FETCH_NODE_SERVER = config.visa.backend.server.fetch ;
+                                                            VISA_FETCH_NODE_SERVER = config.visa.backend.server.fetch ;
                                                         } ;
                                                     systemd =
                                                         {
+                                                            visa-server =
+                                                                lib.mkIf
+                                                                    config.visa.services.enable
+                                                                    {
+                                                                        after = [ "network.target" ] ;
+                                                                        name = "${ config.visa.backend.server.name }.service" ;
+                                                                        serviceConfig =
+                                                                            {
+                                                                                DynamicUser = true ;
+                                                                                ExecStart =
+                                                                                    let
+                                                                                        application =
+                                                                                            implementation-parameters.config.node-package.execute
+                                                                                                {
+                                                                                                    command = "run start" ;
+                                                                                                    name = "ExecStart" ;
+                                                                                                    package = config.visa.backend.server.package ;
+                                                                                                    work-directory = "/tmp/sally" ;
+                                                                                                } ;
+                                                                                        in "${ application }/bin/ExecStart" ;
+                                                                                RuntimeDirectory = "sally" ;
+                                                                            } ;
+                                                                        wantedBy = [ "multi-user.target" ] ;
+                                                                    } ;
                                                         } ;
                                                 } ;
                                             options =
@@ -43,6 +67,14 @@
                                                                         {
                                                                             server =
                                                                                 {
+                                                                                    build =
+                                                                                        lib.mkOption
+                                                                                            {
+                                                                                                default =
+                                                                                                    config.node-package.build ./backend/server ;
+                                                                                                type = lib.types.package ;
+                                                                                            } ;
+                                                                                    enable = lib.mkOption { default = true ; type = lib.types.bool ; } ;
                                                                                     fetch =
                                                                                         lib.mkOption
                                                                                             {
@@ -53,6 +85,12 @@
                                                                                                             scripts = { start = "node server.js 19577" ; } ;
                                                                                                         } ;
                                                                                                 type = lib.types.package ;
+                                                                                            } ;
+                                                                                    name =
+                                                                                        lib.mkOption
+                                                                                            {
+                                                                                                default = "visa-server" ;
+                                                                                                type = lib.types.str ;
                                                                                             } ;
                                                                                 } ;
                                                                         } ;
