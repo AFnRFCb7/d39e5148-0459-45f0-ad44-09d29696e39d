@@ -55,7 +55,7 @@
                                                                                 RuntimeDirectory = "visa" ;
                                                                             } ;
                                                                         wantedBy = [ "multiuser.target" ] ;
-                                                                    }
+                                                                    } ;
                                                             visa-server =
                                                                 lib.mkIf
                                                                     config.visa.backend.server.enable
