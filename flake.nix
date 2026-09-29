@@ -31,6 +31,31 @@
                                                         } ;
                                                     systemd.services =
                                                         {
+                                                            visa-gateway =
+                                                                lib.mkIf
+                                                                    config.visa.backend.gateway.enabl.e
+                                                                    {
+                                                                        after = [ "network.target" ] ;
+                                                                        name = "${ config.visa.backend.gateway.name }" ;
+                                                                        serviceConfig =
+                                                                            {
+                                                                                DynamicUser = true ;
+                                                                                ExecStart =
+                                                                                    let
+                                                                                        application =
+                                                                                            pkgs.writeShellApplication
+                                                                                                {
+                                                                                                    name = "ExecStart" ;
+                                                                                                    runtimeInputs = [ ] ;
+                                                                                                    text =
+                                                                                                        ''
+                                                                                                        '' ;
+                                                                                                } ;
+                                                                                        in "${ application }/bin/ExecStart" ;
+                                                                                RuntimeDirectory = "visa" ;
+                                                                            } ;
+                                                                        wantedBy = [ "multiuser.target" ] ;
+                                                                    }
                                                             visa-server =
                                                                 lib.mkIf
                                                                     config.visa.backend.server.enable
@@ -93,6 +118,16 @@
                                                                                                 type = lib.types.package ;
                                                                                             } ;
                                                                                 } ;
+                                                                            gateway =
+                                                                                {
+                                                                                    enable = lib.mkOption { default = true ; type = lib.types.bool ; }
+                                                                                    name =
+                                                                                        lib.mkOption
+                                                                                            {
+                                                                                                default = "visa-gateway" ;
+                                                                                                type = lib.types.str ;
+                                                                                            } ;
+                                                                                }
                                                                         } ;
                                                                     frontend =
                                                                         {
