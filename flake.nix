@@ -33,7 +33,7 @@
                                                         {
                                                             visa-server =
                                                                 lib.mkIf
-                                                                    config.visa.services.enable
+                                                                    config.visa.backend.server.enable
                                                                     {
                                                                         after = [ "network.target" ] ;
                                                                         name = "${ config.visa.backend.server.name }.service" ;
@@ -43,7 +43,7 @@
                                                                                 ExecStart =
                                                                                     let
                                                                                         application =
-                                                                                            implementation-parameters.config.node-package.execute
+                                                                                            config.node-package.execute
                                                                                                 {
                                                                                                     command = "run start" ;
                                                                                                     name = "ExecStart" ;
