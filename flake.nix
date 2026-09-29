@@ -120,7 +120,7 @@
                                                                                 } ;
                                                                             gateway =
                                                                                 {
-                                                                                    enable = lib.mkOption { default = true ; type = lib.types.bool ; }
+                                                                                    enable = lib.mkOption { default = true ; type = lib.types.bool ; } ;
                                                                                     name =
                                                                                         lib.mkOption
                                                                                             {
