@@ -31,31 +31,31 @@
                                                         } ;
                                                     systemd.services =
                                                         {
-                                                            visa-gateway =
-                                                                lib.mkIf
-                                                                    config.visa.backend.gateway.enable
-                                                                    {
-                                                                        after = [ "network.target" ] ;
-                                                                        name = "${ config.visa.backend.gateway.name }" ;
-                                                                        serviceConfig =
-                                                                            {
-                                                                                DynamicUser = true ;
-                                                                                ExecStart =
-                                                                                    let
-                                                                                        application =
-                                                                                            pkgs.writeShellApplication
-                                                                                                {
-                                                                                                    name = "ExecStart" ;
-                                                                                                    runtimeInputs = [ ] ;
-                                                                                                    text =
-                                                                                                        ''
-                                                                                                        '' ;
-                                                                                                } ;
-                                                                                        in "${ application }/bin/ExecStart" ;
-                                                                                RuntimeDirectory = "visa" ;
-                                                                            } ;
-                                                                        wantedBy = [ "multiuser.target" ] ;
-                                                                    } ;
+#                                                            visa-gateway =
+#                                                                lib.mkIf
+#                                                                    config.visa.backend.gateway.enable
+#                                                                    {
+#                                                                        after = [ "network.target" ] ;
+#                                                                        name = "${ config.visa.backend.gateway.name }" ;
+#                                                                        serviceConfig =
+#                                                                            {
+#                                                                                DynamicUser = true ;
+#                                                                                ExecStart =
+#                                                                                    let
+#                                                                                        application =
+#                                                                                            pkgs.writeShellApplication
+#                                                                                                {
+#                                                                                                    name = "ExecStart" ;
+#                                                                                                    runtimeInputs = [ ] ;
+#                                                                                                    text =
+#                                                                                                        ''
+#                                                                                                        '' ;
+#                                                                                                } ;
+#                                                                                        in "${ application }/bin/ExecStart" ;
+#                                                                                RuntimeDirectory = "visa" ;
+#                                                                            } ;
+#                                                                        wantedBy = [ "multiuser.target" ] ;
+#                                                                    } ;
                                                             visa-server =
                                                                 lib.mkIf
                                                                     config.visa.backend.server.enable
