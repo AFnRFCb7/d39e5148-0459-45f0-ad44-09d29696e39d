@@ -82,7 +82,7 @@
                                                     androidSdk = androidComposition.androidsdk ;
                                                     in
                                                         {
-                                                            sally =
+                                                            visa =
                                                                 {
                                                                     download-dependencies =
                                                                         {
