@@ -127,7 +127,7 @@
                                                                                                 default = "visa-gateway" ;
                                                                                                 type = lib.types.str ;
                                                                                             } ;
-                                                                                }
+                                                                                } ;
                                                                         } ;
                                                                     frontend =
                                                                         {
