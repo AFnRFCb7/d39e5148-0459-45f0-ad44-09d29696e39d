@@ -33,7 +33,7 @@
                                                         {
 #                                                            visa-gateway =
 #                                                                lib.mkIf
-#                                                                    config.visa.backend.gateway.enable
+#                                                                    ( config.visa.backend.enable && config.visa.backend.gateway.enable )
 #                                                                    {
 #                                                                        after = [ "network.target" ] ;
 #                                                                        name = "${ config.visa.backend.gateway.name }" ;
@@ -58,7 +58,7 @@
 #                                                                    } ;
                                                             visa-server =
                                                                 lib.mkIf
-                                                                    config.visa.backend.server.enable
+                                                                    ( config.visa.backend.enable && config.visa.backend.server.enable )
                                                                     {
                                                                         after = [ "network.target" ] ;
                                                                         name = "${ config.visa.backend.server.name }.service" ;
@@ -90,6 +90,17 @@
                                                                 {
                                                                     backend =
                                                                         {
+                                                                            database =
+                                                                                {
+                                                                                    enable = lib.mkOption { default = true ; type = lib.types.bool ; } ;
+                                                                                    name =
+                                                                                        lib.mkOption
+                                                                                            {
+                                                                                                default = "visa-database" ;
+                                                                                                type = lib.types.str ;
+                                                                                            } ;
+                                                                                } ;
+                                                                            enable = lib.mkOption { default = true ; type = lib.types.bool ; } ;
                                                                             gateway =
                                                                                 {
                                                                                     enable = lib.mkOption { default = true ; type = lib.types.bool ; } ;
@@ -132,6 +143,7 @@
                                                                     frontend =
                                                                         {
                                                                             admin = null ;
+                                                                            android = null ;
                                                                             web = null ;
                                                                         } ;
                                                                 } ;
