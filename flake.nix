@@ -67,13 +67,6 @@
                                                                         {
                                                                             server =
                                                                                 {
-                                                                                    build =
-                                                                                        lib.mkOption
-                                                                                            {
-                                                                                                default =
-                                                                                                    config.node-package.build ./backend/server ;
-                                                                                                type = lib.types.package ;
-                                                                                            } ;
                                                                                     enable = lib.mkOption { default = true ; type = lib.types.bool ; } ;
                                                                                     fetch =
                                                                                         lib.mkOption
@@ -91,6 +84,13 @@
                                                                                             {
                                                                                                 default = "visa-server" ;
                                                                                                 type = lib.types.str ;
+                                                                                            } ;
+                                                                                    package =
+                                                                                        lib.mkOption
+                                                                                            {
+                                                                                                default =
+                                                                                                    config.node-package.build ./backend/server ;
+                                                                                                type = lib.types.package ;
                                                                                             } ;
                                                                                 } ;
                                                                         } ;
