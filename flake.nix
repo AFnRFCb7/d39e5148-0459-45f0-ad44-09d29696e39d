@@ -28,7 +28,6 @@
                                                     environment.variables =
                                                         {
                                                             FETCH_NODE_SERVER = config.visa.backend.server.fetch ;
-                                                        }
                                                         } ;
                                                     systemd =
                                                         {
