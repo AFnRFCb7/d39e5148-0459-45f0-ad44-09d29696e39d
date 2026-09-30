@@ -158,7 +158,6 @@
                                                                                                             version = "0.0.0" ;
                                                                                                             private = true ;
                                                                                                             type = "module" ;
-
                                                                                                             scripts =
                                                                                                                 {
                                                                                                                     dev = "vite" ;
@@ -183,7 +182,6 @@
                                                                                                                     "vite-plugin-vue-devtools" = "^8.2.1" ;
                                                                                                                     "vue-tsc" = "^3.3.11" ;
                                                                                                                 } ;
-
                                                                                                             engines =
                                                                                                                 {
                                                                                                                     node = "^22.18.0 || >=24.12.0" ;
@@ -191,6 +189,7 @@
                                                                                                         } ;
                                                                                                 type = lib.types.package ;
                                                                                             } ;
+                                                                                    package = config.node-package.build ./frontend/web ;
                                                                                 } ;
                                                                         } ;
                                                                 } ;
