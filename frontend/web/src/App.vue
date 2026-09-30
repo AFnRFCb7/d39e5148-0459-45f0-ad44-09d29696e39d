@@ -2,6 +2,14 @@
 import { ref } from 'vue' ;
 const selectedJourney = ref<string | null>(null)
 
+async function requestConsultation() {
+  const response = await fetch('http://localhost:14636/consultation', {
+    method: 'POST',
+  })
+
+  const message = await response.text()
+  console.log(message)
+}
 function selectJourney(title: string) {
   selectedJourney.value = title
 }
@@ -82,9 +90,9 @@ const journeys = [
                     Explore {{ journey.title }} →
                   </button>
 
-                  <button class="consultation-button">
-                    Request Consultation
-                  </button>
+                <button class="consultation-button" @click="requestConsultation">
+                  Request Consultation
+                </button>
                 </div>
             </div>
           </article>

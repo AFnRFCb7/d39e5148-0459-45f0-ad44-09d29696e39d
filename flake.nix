@@ -122,8 +122,8 @@
                                                                                                 default =
                                                                                                     config.node-package.fetch
                                                                                                         {
-                                                                                                            dependencies = { express = "^5.1.0" ; } ;
-                                                                                                            scripts = { start = "node server.js 19577" ; } ;
+                                                                                                            dependencies = { express = "^5.1.0" ; cors = "^2.8.6" ; } ;
+                                                                                                            scripts = { start = "node server.js 14636" ; } ;
                                                                                                         } ;
                                                                                                 type = lib.types.package ;
                                                                                             } ;
