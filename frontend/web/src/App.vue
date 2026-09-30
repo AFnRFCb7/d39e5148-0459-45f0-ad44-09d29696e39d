@@ -3,8 +3,28 @@ import { ref } from 'vue' ;
 const selectedJourney = ref<string | null>(null)
 const showConsultation = ref(false)
 
+const name = ref('')
+const email = ref('')
+const phone = ref('')
+
 function requestConsultation() {
   showConsultation.value = true
+}
+async function submitConsultation() {
+  const response = await fetch('http://localhost:14636/consultation', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: name.value,
+      email: email.value,
+      phone: phone.value,
+    }),
+  })
+
+  const message = await response.text()
+  console.log(message)
 }
 
 function selectJourney(title: string) {
@@ -38,15 +58,16 @@ const journeys = [
       <h1>Request a Consultation</h1>
       <p>Tell us how we can help you.</p>
 
-      <form>
+      <form @submit.prevent="submitConsultation">
         <label>
           Name
-          <input type="text" placeholder="Your name" />
+          <input type="text" v-model="name" placeholder="Your name" />
         </label>
 
         <label>
           Email
           <input
+            v-model="email"
             type="email"
             placeholder="you@example.com"
             required
@@ -57,6 +78,7 @@ const journeys = [
         <label>
           Phone Number
           <input
+            v-model="phone"
             type="tel"
             placeholder="(555) 555-5555"
             required
