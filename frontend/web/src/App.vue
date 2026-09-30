@@ -6,6 +6,7 @@ const showConsultation = ref(false)
 const name = ref('')
 const email = ref('')
 const phone = ref('')
+const showToast = ref(false)
 
 function requestConsultation() {
   showConsultation.value = true
@@ -23,8 +24,14 @@ async function submitConsultation() {
     }),
   })
 
-  const message = await response.text()
-  console.log(message)
+    if (response.ok) {
+      showConsultation.value = false ;
+      showToast.value = true
+
+      setTimeout(() => {
+        showToast.value = false
+      }, 3000)
+    }
 }
 
 function selectJourney(title: string) {
@@ -53,7 +60,10 @@ const journeys = [
 </script>
 
 <template>
-  <div class="app">
+  <div class="app">'
+    <div v-if="showToast" class="toast">
+      ✓ Consultation request sent successfully
+    </div>
     <div v-if="showConsultation" class="consultation-form">
       <h1>Request a Consultation</h1>
       <p>Tell us how we can help you.</p>
@@ -467,5 +477,20 @@ footer {
 
 .consultation-form button:hover {
   opacity: 0.9;
+}
+
+.toast {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 16px 28px;
+  background: #172033;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  font-size: 16px;
+  font-weight: 600;
+  z-index: 9999;
 }
 </style>
