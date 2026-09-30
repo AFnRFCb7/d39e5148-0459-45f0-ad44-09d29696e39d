@@ -1,4 +1,14 @@
 <script setup lang="ts">
+async function callSecret() {
+  const response = await fetch('http://localhost:14636/secret?name=web')
+
+  if (response.ok) {
+    const message = await response.text()
+    console.log(message)
+  } else {
+    console.log(`secret failed: ${response.status}`)
+  }
+}
 import { ref } from 'vue' ;
 const selectedJourney = ref<string | null>(null)
 const showConsultation = ref(false)
@@ -111,7 +121,8 @@ const journeys = [
             <a href="#">Move</a>
           </nav>
 
-          <button class="sign-in">Sign In</button>
+          <button class="sign-in">Sign In</button>'
+          <button @click="callSecret">Test Secret</button>
         </header>
 
         <section class="hero">
