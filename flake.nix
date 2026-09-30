@@ -31,7 +31,7 @@
                                                         {
                                                             VISA_FETCH_NODE_SERVER = config.visa.backend.server.fetch ;
                                                             VISA_FETCH_WEB = config.visa.frontend.web.fetch ;
-                                                            VISA_FETCH_DEMO = config.visa.frontend.web.demo ;
+                                                            VISA_FETCH_DEMO = config.visa.frontend.demo.fetch ;
                                                         } ;
                                                     systemd.services =
                                                         {
@@ -162,7 +162,7 @@
                                                                                                             type = "module" ;
                                                                                                             scripts =
                                                                                                                 {
-                                                                                                                    dev = "vite" ;
+                                                                                                                    dev = "vite 12950" ;
                                                                                                                     build = "run-p type-check \"build-only {@}\" --" ;
                                                                                                                     preview = "vite preview" ;
                                                                                                                     "build-only" = "vite build" ;
