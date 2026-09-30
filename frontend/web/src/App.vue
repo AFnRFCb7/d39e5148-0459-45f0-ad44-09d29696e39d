@@ -323,4 +323,25 @@ footer {
     gap: 10px;
   }
 }
+.card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.consultation-button {
+  padding: 11px 18px;
+  border: 0;
+  border-radius: 7px;
+  background: #172033;
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.consultation-button:hover {
+  opacity: 0.9;
+}
 </style>
