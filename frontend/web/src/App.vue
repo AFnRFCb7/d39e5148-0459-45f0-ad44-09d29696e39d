@@ -47,7 +47,7 @@ const journeys = [
   {
     title: 'Study',
     subtitle: 'Build your future',
-    description: 'Discover opportunities to study at universities abroad.',
+    description: 'Discover opportunities in the United States, Canada, Austrailia to study at universities abroad.',
     image: '/images/study.jpeg',
   },
   {

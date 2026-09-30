@@ -25,13 +25,13 @@
                                                         [
                                                             config.visa.backend.server.fetch
                                                             config.visa.frontend.web.fetch
-                                                            config.visa.frontend.demo.fetch
+                                                            config.visa.frontend.admin.fetch
                                                         ] ;
                                                     environment.variables =
                                                         {
                                                             VISA_FETCH_NODE_SERVER = config.visa.backend.server.fetch ;
                                                             VISA_FETCH_WEB = config.visa.frontend.web.fetch ;
-                                                            VISA_FETCH_DEMO = config.visa.frontend.demo.fetch ;
+                                                            VISA_FETCH_ADMIN = config.visa.frontend.admin.fetch ;
                                                         } ;
                                                     systemd.services =
                                                         {
@@ -146,9 +146,7 @@
                                                                         } ;
                                                                     frontend =
                                                                         {
-                                                                            admin = null ;
-                                                                            android = null ;
-                                                                            demo =
+                                                                            admin =
                                                                                 {
                                                                                     fetch =
                                                                                         lib.mkOption
@@ -156,13 +154,13 @@
                                                                                                 default =
                                                                                                     config.node-package.fetch
                                                                                                         {
-                                                                                                            name = "demo" ;
+                                                                                                            name = "visa" ;
                                                                                                             version = "0.0.0" ;
                                                                                                             private = true ;
                                                                                                             type = "module" ;
                                                                                                             scripts =
                                                                                                                 {
-                                                                                                                    dev = "vite 12950" ;
+                                                                                                                    dev = "vite" ;
                                                                                                                     build = "run-p type-check \"build-only {@}\" --" ;
                                                                                                                     preview = "vite preview" ;
                                                                                                                     "build-only" = "vite build" ;
@@ -191,8 +189,9 @@
                                                                                                         } ;
                                                                                                 type = lib.types.package ;
                                                                                             } ;
-                                                                                    package = config.node-package.build ./frontend/demo ;
+                                                                                    package = config.node-package.build ./frontend/web ;
                                                                                 } ;
+                                                                            android = null ;
                                                                             web =
                                                                                 {
                                                                                     fetch =
