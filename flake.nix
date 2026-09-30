@@ -160,7 +160,7 @@
                                                                                                             type = "module" ;
                                                                                                             scripts =
                                                                                                                 {
-                                                                                                                    dev = "vite" ;
+                                                                                                                    dev = "vite 11141" ;
                                                                                                                     build = "run-p type-check \"build-only {@}\" --" ;
                                                                                                                     preview = "vite preview" ;
                                                                                                                     "build-only" = "vite build" ;
@@ -169,6 +169,7 @@
                                                                                                             dependencies =
                                                                                                                 {
                                                                                                                     vue = "^3.5.42" ;
+                                                                                                                    vue-router = "^5.3.1" ;
                                                                                                                 } ;
                                                                                                             devDependencies =
                                                                                                                 {
