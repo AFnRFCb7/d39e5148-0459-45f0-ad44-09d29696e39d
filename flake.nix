@@ -24,10 +24,12 @@
                                                     environment.systemPackages =
                                                         [
                                                             config.visa.backend.server.fetch
+                                                            config.visa.frontend.web.fetch
                                                         ] ;
                                                     environment.variables =
                                                         {
                                                             VISA_FETCH_NODE_SERVER = config.visa.backend.server.fetch ;
+                                                            VISA_FETCH_WEB = config.visa.frontend.web.fetch ;
                                                         } ;
                                                     systemd.services =
                                                         {
@@ -144,7 +146,54 @@
                                                                         {
                                                                             admin = null ;
                                                                             android = null ;
-                                                                            web = null ;
+                                                                            web =
+                                                                                {
+                                                                                    fetch =
+                                                                                        lib.mkOption
+                                                                                            {
+                                                                                                default =
+                                                                                                    config.node-package.fetch
+                                                                                                        {
+                                                                                                            name = "visa" ;
+                                                                                                            version = "0.0.0" ;
+                                                                                                            private = true ;
+                                                                                                            type = "module" ;
+
+                                                                                                            scripts =
+                                                                                                                {
+                                                                                                                    dev = "vite" ;
+                                                                                                                    build = "run-p type-check \"build-only {@}\" --" ;
+                                                                                                                    preview = "vite preview" ;
+                                                                                                                    "build-only" = "vite build" ;
+                                                                                                                    "type-check" = "vue-tsc --build" ;
+                                                                                                                } ;
+
+                                                                                                            dependencies =
+                                                                                                                {
+                                                                                                                    vue = "^3.5.42" ;
+                                                                                                                } ;
+
+                                                                                                            devDependencies =
+                                                                                                                {
+                                                                                                                    "@tsconfig/node24" = "^24.0.5" ;
+                                                                                                                    "@types/node" = "^24.13.4" ;
+                                                                                                                    "@vitejs/plugin-vue" = "^6.0.8" ;
+                                                                                                                    "@vue/tsconfig" = "^0.9.1" ;
+                                                                                                                    "npm-run-all2" = "^9.0.3" ;
+                                                                                                                    typescript = "~6.0.0" ;
+                                                                                                                    vite = "^8.2.2" ;
+                                                                                                                    "vite-plugin-vue-devtools" = "^8.2.1" ;
+                                                                                                                    "vue-tsc" = "^3.3.11" ;
+                                                                                                                } ;
+
+                                                                                                            engines =
+                                                                                                                {
+                                                                                                                    node = "^22.18.0 || >=24.12.0" ;
+                                                                                                                } ;
+                                                                                                        }
+                                                                                                type = lib.types.package ;
+                                                                                            } ;
+                                                                                } ;
                                                                         } ;
                                                                 } ;
                                                         } ;
