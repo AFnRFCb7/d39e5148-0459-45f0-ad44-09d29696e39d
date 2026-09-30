@@ -167,12 +167,10 @@
                                                                                                                     "build-only" = "vite build" ;
                                                                                                                     "type-check" = "vue-tsc --build" ;
                                                                                                                 } ;
-
                                                                                                             dependencies =
                                                                                                                 {
                                                                                                                     vue = "^3.5.42" ;
                                                                                                                 } ;
-
                                                                                                             devDependencies =
                                                                                                                 {
                                                                                                                     "@tsconfig/node24" = "^24.0.5" ;
