@@ -1,35 +1,26 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
-const status = ref('Ready')
-
-function testConnection() {
-  status.value = 'Connection tested'
-}
+const applications = [
+  { name: 'Application 1', status: 'Draft' },
+  { name: 'Application 2', status: 'Ready' },
+]
 </script>
 
 <template>
   <main>
     <h1>Visa</h1>
-    <p>Application dashboard</p>
+    <p>Welcome to Visa</p>
 
     <section>
-      <h2>Frontend</h2>
-      <p>Development mode</p>
-      <p>Hot reload enabled</p>
-    </section>
+      <h2>Applications</h2>
 
-    <section>
-      <h2>System Status</h2>
-      <p>Frontend: <strong>Running</strong></p>
-      <p>Backend: <strong>Not connected</strong></p>
-      <p>Data: <strong>Not connected</strong></p>
-    </section>
+      <ul>
+        <li v-for="application in applications" :key="application.name">
+          <strong>{{ application.name }}</strong>
+          — {{ application.status }}
+        </li>
+      </ul>
 
-    <section>
-      <h2>Connection</h2>
-      <p>{{ status }}</p>
-      <button @click="testConnection">Test Connection</button>
+      <button>New Application</button>
     </section>
   </main>
 </template>
@@ -49,7 +40,12 @@ section {
   border-radius: 8px;
 }
 
+li {
+  margin: 12px 0;
+}
+
 button {
+  margin-top: 15px;
   padding: 8px 16px;
   cursor: pointer;
 }
