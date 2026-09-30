@@ -1,15 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue' ;
 const selectedJourney = ref<string | null>(null)
+const showConsultation = ref(false)
 
-async function requestConsultation() {
-  const response = await fetch('http://localhost:14636/consultation', {
-    method: 'POST',
-  })
-
-  const message = await response.text()
-  console.log(message)
+function requestConsultation() {
+  showConsultation.value = true
 }
+
 function selectJourney(title: string) {
   selectedJourney.value = title
 }
@@ -37,73 +34,110 @@ const journeys = [
 
 <template>
   <div class="app">
-    <header class="header">
-      <div class="logo">Visa</div>
+    <div v-if="showConsultation" class="consultation-form">
+      <h1>Request a Consultation</h1>
+      <p>Tell us how we can help you.</p>
 
-      <nav>
-        <a href="#">Travel</a>
-        <a href="#">Study</a>
-        <a href="#">Move</a>
-      </nav>
+      <form>
+        <label>
+          Name
+          <input type="text" placeholder="Your name" />
+        </label>
 
-      <button class="sign-in">Sign In</button>
-    </header>
+        <label>
+          Email
+          <input
+            type="email"
+            placeholder="you@example.com"
+            required
+          />
 
-    <section class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">YOUR JOURNEY STARTS HERE</p>
-        <h1>Go farther.<br />Build your future.</h1>
-        <p class="hero-description">
-          Whether you're traveling, studying, or starting a new life abroad,
-          we're here to help you navigate the journey.
-        </p>
-        <button class="hero-button">Get Started</button>
-      </div>
-    </section>
+        </label>
 
-    <main>
-      <section class="journeys">
-        <div class="section-heading">
-          <p class="eyebrow">EXPLORE YOUR OPTIONS</p>
-          <h2>What's your journey?</h2>
-          <p>Choose the path that fits where you are going next.</p>
-        </div>
+        <label>
+          Phone Number
+          <input
+            type="tel"
+            placeholder="(555) 555-5555"
+            required
+            pattern="[0-9]{10}"
+          />
+        </label>
 
-        <div class="journey-grid">
-          <article
-            v-for="journey in journeys"
-            :key="journey.title"
-            class="journey-card"
-          >
-            <img
-              class="journey-image"
-              :src="journey.image"
-              :alt="journey.title"
-            />
+        <button type="submit">
+          Submit Consultation
+        </button>
+      </form>
+    </div>
+    <div v-else>
+        <header class="header">
+          <div class="logo">Visa</div>
 
-            <div class="card-content">
-              <p class="card-subtitle">{{ journey.subtitle }}</p>
-              <h3>{{ journey.title }}</h3>
-              <p class="card-description">{{ journey.description }}</p>
-                <div class="card-actions">
-                  <button class="card-button" @click="selectJourney(journey.title)">
-                    Explore {{ journey.title }} →
-                  </button>
+          <nav>
+            <a href="#">Travel</a>
+            <a href="#">Study</a>
+            <a href="#">Move</a>
+          </nav>
 
-                <button class="consultation-button" @click="requestConsultation">
-                  Request Consultation
-                </button>
-                </div>
+          <button class="sign-in">Sign In</button>
+        </header>
+
+        <section class="hero">
+          <div class="hero-content">
+            <p class="eyebrow">YOUR JOURNEY STARTS HERE</p>
+            <h1>Go farther.<br />Build your future.</h1>
+            <p class="hero-description">
+              Whether you're traveling, studying, or starting a new life abroad,
+              we're here to help you navigate the journey.
+            </p>
+            <button class="hero-button">Get Started</button>
+          </div>
+        </section>
+
+        <main>
+          <section class="journeys">
+            <div class="section-heading">
+              <p class="eyebrow">EXPLORE YOUR OPTIONS</p>
+              <h2>What's your journey?</h2>
+              <p>Choose the path that fits where you are going next.</p>
             </div>
-          </article>
-        </div>
-      </section>
-    </main>
 
-    <footer>
-      <strong>Visa</strong>
-      <span>Travel · Study · Move</span>
-    </footer>
+            <div class="journey-grid">
+              <article
+                v-for="journey in journeys"
+                :key="journey.title"
+                class="journey-card"
+              >
+                <img
+                  class="journey-image"
+                  :src="journey.image"
+                  :alt="journey.title"
+                />
+
+                <div class="card-content">
+                  <p class="card-subtitle">{{ journey.subtitle }}</p>
+                  <h3>{{ journey.title }}</h3>
+                  <p class="card-description">{{ journey.description }}</p>
+                    <div class="card-actions">
+                      <button class="card-button" @click="selectJourney(journey.title)">
+                        Explore {{ journey.title }} →
+                      </button>
+
+                    <button class="consultation-button" @click="requestConsultation">
+                      Request Consultation
+                    </button>
+                    </div>
+                </div>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <footer>
+          <strong>Visa</strong>
+          <span>Travel · Study · Move</span>
+        </footer>
+      </div>
   </div>
 </template>
 
@@ -350,6 +384,66 @@ footer {
 }
 
 .consultation-button:hover {
+  opacity: 0.9;
+}
+
+.consultation-form {
+  max-width: 560px;
+  margin: 80px auto;
+  padding: 40px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.consultation-form h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+}
+
+.consultation-form > p {
+  margin: 0 0 30px;
+  color: #667085;
+}
+
+.consultation-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.consultation-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.consultation-form input {
+  padding: 13px 14px;
+  border: 1px solid #d0d5dd;
+  border-radius: 7px;
+  font-size: 16px;
+}
+
+.consultation-form input:focus {
+  outline: none;
+  border-color: #172033;
+}
+
+.consultation-form button {
+  margin-top: 8px;
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 7px;
+  background: #172033;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.consultation-form button:hover {
   opacity: 0.9;
 }
 </style>
