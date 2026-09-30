@@ -77,9 +77,15 @@ const journeys = [
               <p class="card-subtitle">{{ journey.subtitle }}</p>
               <h3>{{ journey.title }}</h3>
               <p class="card-description">{{ journey.description }}</p>
-                <button class="card-button" @click="selectJourney(journey.title)">
-                  Explore {{ journey.title }} →
-                </button>
+                <div class="card-actions">
+                  <button class="card-button" @click="selectJourney(journey.title)">
+                    Explore {{ journey.title }} →
+                  </button>
+
+                  <button class="consultation-button">
+                    Request Consultation
+                  </button>
+                </div>
             </div>
           </article>
         </div>
