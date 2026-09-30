@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { ref } from 'vue' ;
+const selectedJourney = ref<string | null>(null)
+
 function selectJourney(title: string) {
-  alert(`You selected ${title}`)
+  selectedJourney.value = title
 }
 const journeys = [
   {
