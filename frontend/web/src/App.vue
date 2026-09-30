@@ -10,19 +10,19 @@ const journeys = [
     title: 'Travel',
     subtitle: 'Explore the world',
     description: 'Plan your next international trip with confidence.',
-    image: '/images/travel.jpg',
+    image: '/images/travel.jpeg',
   },
   {
     title: 'Study',
     subtitle: 'Build your future',
     description: 'Discover opportunities to study at universities abroad.',
-    image: '/images/study.jpg',
+    image: '/images/study.jpeg',
   },
   {
     title: 'Move',
     subtitle: 'Start a new chapter',
     description: 'Navigate the journey of building a life in another country.',
-    image: '/images/move.jpg',
+    image: '/images/move.jpeg',
   },
 ]
 </script>
