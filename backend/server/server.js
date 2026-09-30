@@ -22,13 +22,13 @@ app.get
                 response.send( `hi ${ name }`) ;
             }
     ) ;
-app.post
-    (
-        "/login" , ( request , response ) =>
-            {
-                response.send("login") ;
-            }
-    ) ;
+app.post("/login", (request, response) => {
+    response.send("login") ;
+}) ;
+
+app.post("/consultation", (request, response) => {
+    response.send("consultation") ;
+}) ;
 app.listen
     (
         port ,

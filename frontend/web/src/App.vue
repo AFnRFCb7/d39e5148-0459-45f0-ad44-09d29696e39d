@@ -1,6 +1,7 @@
 <script setup lang="ts">
+const API_URL = import.meta.env.VITE_API_URL
 async function callSecret() {
-  const response = await fetch('http://localhost:14636/secret?name=web')
+  const response = await fetch(`${API_URL}/secret?name=web`)
 
   if (response.ok) {
     const message = await response.text()
@@ -22,7 +23,7 @@ function requestConsultation() {
   showConsultation.value = true
 }
 async function submitConsultation() {
-  const response = await fetch('http://localhost:14636/consultation', {
+  const response = await fetch(`${API_URL}/consultation`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
