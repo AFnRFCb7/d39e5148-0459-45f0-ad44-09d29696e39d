@@ -244,24 +244,25 @@
                                                                     playwright =
                                                                         {
                                                                             fetch =
-                                                                                {
-                                                                                    default =
-                                                                                        config.node-package.fetch
-                                                                                            {
-                                                                                                name = "visa-playwright" ;
-                                                                                                version = "0.0.0" ;
-                                                                                                private = true ;
-                                                                                                scripts =
-                                                                                                    {
-                                                                                                        test = "playwright test" ;
-                                                                                                    } ;
-                                                                                                devDependencies =
-                                                                                                    {
-                                                                                                        "@playwright/test" = "^1.50.1" ;
-                                                                                                    } ;
-                                                                                            };
-                                                                                    type = lib.types.package ;
-                                                                                } ;
+                                                                                lib.mkOption
+                                                                                    {
+                                                                                        default =
+                                                                                            config.node-package.fetch
+                                                                                                {
+                                                                                                    name = "visa-playwright" ;
+                                                                                                    version = "0.0.0" ;
+                                                                                                    private = true ;
+                                                                                                    scripts =
+                                                                                                        {
+                                                                                                            test = "playwright test" ;
+                                                                                                        } ;
+                                                                                                    devDependencies =
+                                                                                                        {
+                                                                                                            "@playwright/test" = "^1.50.1" ;
+                                                                                                        } ;
+                                                                                                };
+                                                                                        type = lib.types.package ;
+                                                                                    } ;
                                                                         } ;
                                                                 } ;
                                                         } ;
