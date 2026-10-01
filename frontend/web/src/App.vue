@@ -1,5 +1,39 @@
 <script setup lang="ts">
 const API_URL = import.meta.env.VITE_API_URL
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
+
+console.log('Google client ID:', GOOGLE_CLIENT_ID)
+
+function handleGoogleCredential(response: { credential: string }) {
+  console.log('Google credential:', response.credential)
+}
+
+const googleButton = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  if (!googleButton.value) return
+
+  window.google.accounts.id.initialize({
+    client_id: GOOGLE_CLIENT_ID,
+    callback: handleGoogleCredential,
+  })
+
+  window.google.accounts.id.renderButton(
+    googleButton.value,
+    {
+      theme: 'outline',
+      size: 'large',
+    },
+  )
+})
+
+declare global {
+  interface Window {
+    handleGoogleCredential: (response: { credential: string }) => void
+  }
+}
+
+window.handleGoogleCredential = handleGoogleCredential
 async function callSecret() {
   const response = await fetch(`${API_URL}/secret?name=web`)
 
@@ -10,7 +44,7 @@ async function callSecret() {
     console.log(`secret failed: ${response.status}`)
   }
 }
-import { ref } from 'vue' ;
+import { onMounted, ref } from 'vue'
 const selectedJourney = ref<string | null>(null)
 const showConsultation = ref(false)
 
@@ -122,6 +156,7 @@ const journeys = [
             <a href="#">Move</a>
           </nav>
 
+            <div ref="googleButton"></div>
           <button class="sign-in">Sign In</button>'
           <button @click="callSecret">Test Secret</button>
         </header>

@@ -26,12 +26,14 @@
                                                             config.visa.backend.server.fetch
                                                             config.visa.frontend.web.fetch
                                                             config.visa.frontend.admin.fetch
+                                                            config.visa.playwright.fetch
                                                         ] ;
                                                     environment.variables =
                                                         {
                                                             VISA_FETCH_NODE_SERVER = config.visa.backend.server.fetch ;
                                                             VISA_FETCH_WEB = config.visa.frontend.web.fetch ;
                                                             VISA_FETCH_ADMIN = config.visa.frontend.admin.fetch ;
+                                                            VISA_FETCH_PLAYWRIGHT = config.visa.playwright.fetch ;
                                                         } ;
                                                     systemd.services =
                                                         {
@@ -160,7 +162,7 @@
                                                                                                             type = "module" ;
                                                                                                             scripts =
                                                                                                                 {
-                                                                                                                    dev = "vite 11141" ;
+                                                                                                                    dev = "vite --port 11141" ;
                                                                                                                     build = "run-p type-check \"build-only {@}\" --" ;
                                                                                                                     preview = "vite preview" ;
                                                                                                                     "build-only" = "vite build" ;
@@ -237,6 +239,28 @@
                                                                                                 type = lib.types.package ;
                                                                                             } ;
                                                                                     package = config.node-package.build ./frontend/web ;
+                                                                                } ;
+                                                                        } ;
+                                                                    playwright =
+                                                                        {
+                                                                            fetch =
+                                                                                {
+                                                                                    default =
+                                                                                        config.node-package.fetch
+                                                                                            {
+                                                                                                name = "visa-playwright" ;
+                                                                                                version = "0.0.0" ;
+                                                                                                private = true ;
+                                                                                                scripts =
+                                                                                                    {
+                                                                                                        test = "playwright test" ;
+                                                                                                    } ;
+                                                                                                devDependencies =
+                                                                                                    {
+                                                                                                        "@playwright/test" = "^1.50.1" ;
+                                                                                                    } ;
+                                                                                            };
+                                                                                    type = lib.types.package ;
                                                                                 } ;
                                                                         } ;
                                                                 } ;
