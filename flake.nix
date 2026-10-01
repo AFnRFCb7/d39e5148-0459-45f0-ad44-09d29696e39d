@@ -4,7 +4,6 @@
 	    {
 	        lib =
 	            {
-	                failure ,
 	                lazy-shell-application
                 } :
                     let
