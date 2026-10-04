@@ -193,7 +193,12 @@
                                                                                                             } ;
                                                                                                     type = lib.types.package ;
                                                                                                 } ;
-                                                                                        package = config.node-package.build ./frontend/web ;
+                                                                                        package =
+                                                                                            _lib.mkOption
+                                                                                                {
+                                                                                                    default = config.node-package.build ./frontend/web ;
+                                                                                                    type = _lib.types.package ;
+                                                                                                } ;
                                                                                     } ;
                                                                                 android = null ;
                                                                                 web =
