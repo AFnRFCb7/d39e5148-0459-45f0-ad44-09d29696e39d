@@ -191,7 +191,7 @@
                                                                                                                         node = "^22.18.0 || >=24.12.0" ;
                                                                                                                     } ;
                                                                                                             } ;
-                                                                                                    type = lib.types.package ;
+                                                                                                    type = _lib.types.package ;
                                                                                                 } ;
                                                                                         package =
                                                                                             _lib.mkOption
@@ -269,7 +269,11 @@
                                                                                                     };
                                                                                             type = _lib.types.package ;
                                                                                         } ;
-                                                                                package = _config.node-package.build ./playwright ;
+                                                                                package =
+                                                                                    {
+                                                                                        default = _config.node-package.build ./playwright ;
+                                                                                        type = _lib.types.package ;
+                                                                                    } ;
                                                                             } ;
                                                                     } ;
                                                             } ;
