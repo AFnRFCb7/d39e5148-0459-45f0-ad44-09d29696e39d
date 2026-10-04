@@ -249,22 +249,22 @@
                                                                             } ;
                                                                         playwright =
                                                                             {
-                                                                                execute =
-                                                                                    _lib.mkOption
-                                                                                        {
-                                                                                            default =
-                                                                                                _config.lazy-shell-application
-                                                                                                    {
-                                                                                                        name = "execute" ;
-                                                                                                        runtime-inputs = pkgs [ pkgs.nodejs ] ;
-                                                                                                        text =
-                                                                                                            ''
-                                                                                                                cd ${ _config.visa.playwright.package }
-                                                                                                                node tests.js
-                                                                                                            '' ;
-                                                                                                    } ;
-                                                                                            type = _lib.types.package ;
-                                                                                        } ;
+#                                                                                execute =
+#                                                                                    _lib.mkOption
+#                                                                                        {
+#                                                                                            default =
+#                                                                                                _config.lazy-shell-application
+#                                                                                                    {
+#                                                                                                        name = "execute" ;
+#                                                                                                        runtime-inputs = pkgs [ pkgs.nodejs ] ;
+#                                                                                                        text =
+#                                                                                                            ''
+#                                                                                                                cd ${ _config.visa.playwright.package }
+#                                                                                                                node tests.js
+#                                                                                                            '' ;
+#                                                                                                    } ;
+#                                                                                            type = _lib.types.package ;
+#                                                                                        } ;
                                                                                 fetch =
                                                                                     _lib.mkOption
                                                                                         {
