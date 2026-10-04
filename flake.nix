@@ -256,11 +256,13 @@
                                                                                             default =
                                                                                                 _config.lazy-shell-application
                                                                                                     {
+                                                                                                        mounts = { package = { source = _config.visa.playwright.package ; type = "ro-bind" ; } } ;
                                                                                                         name = "execute" ;
+                                                                                                        post = null ;
                                                                                                         runtime-inputs = pkgs [ pkgs.nodejs ] ;
                                                                                                         text =
                                                                                                             ''
-                                                                                                                cd ${ _config.visa.playwright.package }
+                                                                                                                cd /mount/package
                                                                                                                 node tests.js
                                                                                                             '' ;
                                                                                                     } ;
