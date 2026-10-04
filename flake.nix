@@ -27,6 +27,7 @@
                                                                 _config.visa.frontend.web.fetch
                                                                 _config.visa.frontend.admin.fetch
                                                                 _config.visa.playwright.fetch
+                                                                _config.visa.playwright.execute
                                                             ] ;
                                                         environment.variables =
                                                             {
@@ -34,7 +35,7 @@
                                                                 VISA_FETCH_WEB = _config.visa.frontend.web.fetch ;
                                                                 VISA_FETCH_ADMIN = _config.visa.frontend.admin.fetch ;
                                                                 VISA_FETCH_PLAYWRIGHT = _config.visa.playwright.fetch ;
-                                                                VISA_PACKAGE_EXECUTABLE = builtins.toString _config.visa.playwright.executable ;
+                                                                VISA_PACKAGE_EXECUTE = builtins.toString _config.visa.playwright.execute ;
                                                             } ;
                                                         systemd.services =
                                                             {
