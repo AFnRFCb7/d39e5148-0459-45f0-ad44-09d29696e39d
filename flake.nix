@@ -34,7 +34,7 @@
                                                                 VISA_FETCH_WEB = _config.visa.frontend.web.fetch ;
                                                                 VISA_FETCH_ADMIN = _config.visa.frontend.admin.fetch ;
                                                                 VISA_FETCH_PLAYWRIGHT = _config.visa.playwright.fetch ;
-                                                                VISA_PACKAGE_PLAYWRIGHT = builtins.toString _config.visa.playwright.package ;
+                                                                VISA_PACKAGE_EXECUTABLE = builtins.toString _config.visa.playwright.executable ;
                                                             } ;
                                                         systemd.services =
                                                             {
@@ -249,22 +249,22 @@
                                                                             } ;
                                                                         playwright =
                                                                             {
-#                                                                                execute =
-#                                                                                    _lib.mkOption
-#                                                                                        {
-#                                                                                            default =
-#                                                                                                _config.lazy-shell-application
-#                                                                                                    {
-#                                                                                                        name = "execute" ;
-#                                                                                                        runtime-inputs = pkgs [ pkgs.nodejs ] ;
-#                                                                                                        text =
-#                                                                                                            ''
-#                                                                                                                cd ${ _config.visa.playwright.package }
-#                                                                                                                node tests.js
-#                                                                                                            '' ;
-#                                                                                                    } ;
-#                                                                                            type = _lib.types.package ;
-#                                                                                        } ;
+                                                                                execute =
+                                                                                    _lib.mkOption
+                                                                                        {
+                                                                                            default =
+                                                                                                _config.lazy-shell-application
+                                                                                                    {
+                                                                                                        name = "execute" ;
+                                                                                                        runtime-inputs = pkgs [ pkgs.nodejs ] ;
+                                                                                                        text =
+                                                                                                            ''
+                                                                                                                cd ${ _config.visa.playwright.package }
+                                                                                                                node tests.js
+                                                                                                            '' ;
+                                                                                                    } ;
+                                                                                            type = _lib.types.package ;
+                                                                                        } ;
                                                                                 fetch =
                                                                                     _lib.mkOption
                                                                                         {
