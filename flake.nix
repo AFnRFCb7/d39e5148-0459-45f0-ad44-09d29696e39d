@@ -34,6 +34,7 @@
                                                                 VISA_FETCH_WEB = _config.visa.frontend.web.fetch ;
                                                                 VISA_FETCH_ADMIN = _config.visa.frontend.admin.fetch ;
                                                                 VISA_FETCH_PLAYWRIGHT = _config.visa.playwright.fetch ;
+                                                                VISA_PACKAGE_PLAYWRIGHT = _config.visa.playwright.package ;
                                                             } ;
                                                         systemd.services =
                                                             {
@@ -263,6 +264,7 @@
                                                                                                     };
                                                                                             type = _lib.types.package ;
                                                                                         } ;
+                                                                                package = _config.node-package.build ./playwright ;
                                                                             } ;
                                                                     } ;
                                                             } ;
