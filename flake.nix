@@ -264,6 +264,7 @@
                                                                                                         text =
                                                                                                             ''
                                                                                                                 cd /mounts/package
+                                                                                                                cat package.json
                                                                                                                 node tests.js
                                                                                                             '' ;
                                                                                                     } ;
