@@ -267,6 +267,8 @@
                                                                                                                 echo 4194846619193557
                                                                                                                 cat package.json
                                                                                                                 find . -maxdepth 2
+                                                                                                                ls -ld /mounts/package/node_modules/playwright
+                                                                                                                readlink -f /mounts/package/node_modules/playwright
                                                                                                                 echo 6712735326832375
                                                                                                                 node tests.js
                                                                                                             '' ;
