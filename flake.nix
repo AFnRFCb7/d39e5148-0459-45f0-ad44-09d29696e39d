@@ -262,7 +262,7 @@
                                                                                                         runtime-inputs = pkgs : [ pkgs.nodejs ] ;
                                                                                                         text =
                                                                                                             ''
-                                                                                                                echo ${ _config.visa.playwright.package }
+                                                                                                                echo PACKAGE = ${ _config.visa.playwright.package }
                                                                                                                 cd /mounts/package
                                                                                                                 node tests.js
                                                                                                             '' ;
