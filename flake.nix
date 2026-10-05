@@ -267,6 +267,7 @@
                                                                                                                 echo
                                                                                                                 echo
                                                                                                                 echo 4194846619193557
+                                                                                                                npm -v
                                                                                                                 ls -la node_modules/playwright
                                                                                                                 find node_modules/playwright -maxdepth 2 -type f -print
                                                                                                                 echo 6712735326832375
