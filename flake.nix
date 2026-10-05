@@ -40,31 +40,6 @@
                                                             } ;
                                                         systemd.services =
                                                             {
-    #                                                            visa-gateway =
-    #                                                                lib.mkIf
-    #                                                                    ( config.visa.backend.enable && config.visa.backend.gateway.enable )
-    #                                                                    {
-    #                                                                        after = [ "network.target" ] ;
-    #                                                                        name = "${ config.visa.backend.gateway.name }" ;
-    #                                                                        serviceConfig =
-    #                                                                            {
-    #                                                                                DynamicUser = true ;
-    #                                                                                ExecStart =
-    #                                                                                    let
-    #                                                                                        application =
-    #                                                                                            pkgs.writeShellApplication
-    #                                                                                                {
-    #                                                                                                    name = "ExecStart" ;
-    #                                                                                                    runtimeInputs = [ ] ;
-    #                                                                                                    text =
-    #                                                                                                        ''
-    #                                                                                                        '' ;
-    #                                                                                                } ;
-    #                                                                                        in "${ application }/bin/ExecStart" ;
-    #                                                                                RuntimeDirectory = "visa" ;
-    #                                                                            } ;
-    #                                                                        wantedBy = [ "multiuser.target" ] ;
-    #                                                                    } ;
                                                                 visa-server =
                                                                     _lib.mkIf
                                                                         ( _config.visa.backend.enable && config.visa.backend.server.enable )
