@@ -262,7 +262,7 @@
                                                                                                         runtime-inputs = pkgs : [ pkgs.nodejs ] ;
                                                                                                         text =
                                                                                                             ''
-                                                                                                                cd /mount/package
+                                                                                                                cd /mounts/package
                                                                                                                 node tests.js
                                                                                                             '' ;
                                                                                                     } ;
