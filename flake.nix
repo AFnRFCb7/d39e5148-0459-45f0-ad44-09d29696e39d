@@ -35,7 +35,7 @@
                                                                 VISA_FETCH_WEB = _config.visa.frontend.web.fetch ;
                                                                 VISA_FETCH_ADMIN = _config.visa.frontend.admin.fetch ;
                                                                 VISA_FETCH_PLAYWRIGHT = _config.visa.playwright.fetch ;
-                                                                # VISA_PACKAGE_EXECUTE = builtins.toString _config.visa.playwright.execute ;
+                                                                VISA_PACKAGE_EXECUTE = builtins.toString _config.visa.playwright.execute ;
                                                             } ;
                                                         systemd.services =
                                                             {
@@ -259,7 +259,7 @@
                                                                                                         mounts = { package = { source = _config.visa.playwright.package ; type = "ro-bind" ; } ; } ;
                                                                                                         name = "execute" ;
                                                                                                         post = null ;
-                                                                                                        runtime-inputs = pkgs [ pkgs.nodejs ] ;
+                                                                                                        runtime-inputs = pkgs : [ pkgs.nodejs ] ;
                                                                                                         text =
                                                                                                             ''
                                                                                                                 cd /mount/package
