@@ -271,6 +271,7 @@
                                                                                                         text =
                                                                                                             ''
                                                                                                                 cd /mounts/package
+                                                                                                                npx playwright install
                                                                                                                 node tests.js
                                                                                                             '' ;
                                                                                                     } ;
