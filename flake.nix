@@ -285,6 +285,7 @@
                                                                                                         devDependencies =
                                                                                                             {
                                                                                                                 "@playwright/test" = "^1.50.1" ;
+                                                                                                                "playwright" = "^1.50.1" ;
                                                                                                             } ;
                                                                                                     };
                                                                                             type = _lib.types.package ;
