@@ -245,6 +245,7 @@
                                                                                                                 [
                                                                                                                     pkgs.chromium
                                                                                                                     pkgs.coreutils
+                                                                                                                    pkgs.firefox
                                                                                                                     pkgs.nodejs_20
                                                                                                                     pkgs.glib
                                                                                                                 ] ;
