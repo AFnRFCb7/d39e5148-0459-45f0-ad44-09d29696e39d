@@ -35,6 +35,7 @@
                                                                 VISA_FETCH_WEB = _config.visa.frontend.web.fetch ;
                                                                 VISA_FETCH_ADMIN = _config.visa.frontend.admin.fetch ;
                                                                 VISA_FETCH_PLAYWRIGHT = _config.visa.playwright.fetch ;
+                                                                VISA_PACKAGE = _config.visa.playwright.package ;
                                                                 VISA_PACKAGE_EXECUTE = _config.visa.playwright.execute ;
                                                             } ;
                                                         systemd.services =
@@ -262,7 +263,6 @@
                                                                                                         runtime-inputs = pkgs : [ pkgs.nodejs ] ;
                                                                                                         text =
                                                                                                             ''
-                                                                                                                echo PACKAGE = ${ _config.visa.playwright.package }
                                                                                                                 cd /mounts/package
                                                                                                                 node tests.js
                                                                                                             '' ;
