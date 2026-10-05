@@ -253,6 +253,7 @@
                                                                                                                 export
                                                                                                                 cd /mounts/package
                                                                                                                 BROWSER=chromium HEADLESS=false node tests.js
+                                                                                                                BROWSER=firefox HEADLESS=false node tests.js
                                                                                                             '' ;
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
