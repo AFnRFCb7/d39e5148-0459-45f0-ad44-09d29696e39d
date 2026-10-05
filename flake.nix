@@ -260,7 +260,14 @@
                                                                                                         mounts = { package = { source = _config.visa.playwright.package ; type = "ro-bind" ; } ; } ;
                                                                                                         name = "execute" ;
                                                                                                         post = null ;
-                                                                                                        runtime-inputs = pkgs : [ pkgs.chromium pkgs.coreutils pkgs.nodejs_20 pkgs.glib ] ;
+                                                                                                        runtime-inputs =
+                                                                                                            pkgs :
+                                                                                                                [
+                                                                                                                    pkgs.chromium
+                                                                                                                    pkgs.coreutils
+                                                                                                                    pkgs.nodejs_20
+                                                                                                                    pkgs.glib
+                                                                                                                ] ;
                                                                                                         text =
                                                                                                             ''
                                                                                                                 cd /mounts/package
