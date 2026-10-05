@@ -2,7 +2,8 @@ const { chromium } = require("playwright");
 
 (async () => {
   const browser = await chromium.launch({
-    executablePath: "/mounts/chromium/bin/chromium"
+    executablePath: "/mounts/chromium/bin/chromium" ,
+    headless : false
   });
 
   const page = await browser.newPage();
