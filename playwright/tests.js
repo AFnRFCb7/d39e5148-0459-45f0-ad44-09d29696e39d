@@ -10,6 +10,6 @@ const { chromium } = require("playwright");
 
   await page.goto("http://localhost:14636/hello?name=me");
   console.log(await page.title());
-
+  await new Promise(resolve => setTimeout(resolve, 5000));
   await browser.close();
 })();
