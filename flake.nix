@@ -234,6 +234,7 @@
                                                                                                     {
                                                                                                         mounts =
                                                                                                             {
+                                                                                                                firefox = { source = _pkgs.firefox ; type = "ro-bind" ; } ;
                                                                                                                 chromium = { source = _pkgs.chromium ; type = "ro-bind" ; } ;
                                                                                                                 package = { source = _config.visa.playwright.package ; type = "ro-bind" ; } ;
                                                                                                             } ;
@@ -249,9 +250,9 @@
                                                                                                                 ] ;
                                                                                                         text =
                                                                                                             ''
+                                                                                                                export
                                                                                                                 cd /mounts/package
-                                                                                                                # npx playwright install
-                                                                                                                node tests.js
+                                                                                                                BROWSER=chromium HEADLESS=false node tests.js
                                                                                                             '' ;
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
