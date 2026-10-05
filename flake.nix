@@ -257,7 +257,11 @@
                                                                                             default =
                                                                                                 _config.lazy-shell-application
                                                                                                     {
-                                                                                                        mounts = { package = { source = _config.visa.playwright.package ; type = "ro-bind" ; } ; } ;
+                                                                                                        mounts =
+                                                                                                            {
+                                                                                                                chromium = { source = _pkgs.chromium ; type = "ro-bind" ; } ;
+                                                                                                                package = { source = _config.visa.playwright.package ; type = "ro-bind" ; } ;
+                                                                                                            } ;
                                                                                                         name = "execute" ;
                                                                                                         post = null ;
                                                                                                         runtime-inputs =
@@ -271,7 +275,7 @@
                                                                                                         text =
                                                                                                             ''
                                                                                                                 cd /mounts/package
-                                                                                                                npx playwright install
+                                                                                                                # npx playwright install
                                                                                                                 node tests.js
                                                                                                             '' ;
                                                                                                     } ;

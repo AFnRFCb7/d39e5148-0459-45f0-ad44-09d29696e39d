@@ -1,7 +1,10 @@
 const { chromium } = require("playwright");
 
 (async () => {
-  const browser = await chromium.launch();
+  const browser = await chromium.launch({
+    executablePath: "/mounts/chromium/bin/chromium"
+  });
+
   const page = await browser.newPage();
 
   await page.goto("http://localhost:5173");
