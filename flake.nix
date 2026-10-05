@@ -264,7 +264,10 @@
                                                                                                         text =
                                                                                                             ''
                                                                                                                 cd /mounts/package
+                                                                                                                echo 4194846619193557
                                                                                                                 cat package.json
+                                                                                                                find . -maxdepth 1
+                                                                                                                echo 6712735326832375
                                                                                                                 node tests.js
                                                                                                             '' ;
                                                                                                     } ;
