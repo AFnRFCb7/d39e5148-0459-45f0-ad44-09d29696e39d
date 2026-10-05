@@ -260,17 +260,10 @@
                                                                                                         mounts = { package = { source = _config.visa.playwright.package ; type = "ro-bind" ; } ; } ;
                                                                                                         name = "execute" ;
                                                                                                         post = null ;
-                                                                                                        runtime-inputs = pkgs : [ pkgs.coreutils pkgs.findutils pkgs.nodejs_20 ] ;
+                                                                                                        runtime-inputs = pkgs : [ pkgs.chromium pkgs.coreutils pkgs.nodejs_20 pkgs.glib ] ;
                                                                                                         text =
                                                                                                             ''
                                                                                                                 cd /mounts/package
-                                                                                                                echo
-                                                                                                                echo
-                                                                                                                echo 4194846619193557
-                                                                                                                npm -v
-                                                                                                                ls -la node_modules/playwright
-                                                                                                                find node_modules/playwright -maxdepth 2 -type f -print
-                                                                                                                echo 6712735326832375
                                                                                                                 node tests.js
                                                                                                             '' ;
                                                                                                     } ;
