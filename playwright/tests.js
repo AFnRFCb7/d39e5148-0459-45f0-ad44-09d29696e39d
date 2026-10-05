@@ -7,7 +7,7 @@ const { chromium } = require("playwright");
 
   const page = await browser.newPage();
 
-  await page.goto("http://localhost:5173");
+  await page.goto("http://localhost:14636/hello?name=me");
   console.log(await page.title());
 
   await browser.close();
