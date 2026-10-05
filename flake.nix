@@ -265,13 +265,8 @@
                                                                                                             ''
                                                                                                                 cd /mounts/package
                                                                                                                 echo 4194846619193557
-                                                                                                                cat package.json
-                                                                                                                ls -ld node_modules
-                                                                                                                ls -ld node_modules/playwright
-                                                                                                                ls -l node_modules/playwright/package.json
-                                                                                                                cat node_modules/playwright/package.json
-                                                                                                                node -p "module.paths"
-                                                                                                                node -p "require.resolve('playwright')"
+                                                                                                                ls -la node_modules/playwright
+                                                                                                                find node_modules/playwright -maxdepth 2 -type f -print
                                                                                                                 echo 6712735326832375
                                                                                                                 node tests.js
                                                                                                             '' ;
