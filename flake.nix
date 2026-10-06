@@ -23,6 +23,23 @@
                                                     {
                                                         environment.systemPackages =
                                                             [
+                                                                (
+                                                                    _config.lazy-shell-application
+                                                                        {
+                                                                            mounts =
+                                                                                {
+                                                                                    server = { read-only = true ; source = _config.visa.backend.server.fetch ; } ;
+                                                                                    web = { read-only = true ; source = _config.visa.frontend.web.fetch ; } ;
+                                                                                    migrate = { read-only = true ; source = _config.visa.backend.database.migrate.execute ; } ;
+                                                                                } ;
+                                                                            name = "visa" ;
+                                                                            post = null ;
+                                                                            runtime-inputs = pkgs : [ ] ;
+                                                                            text =
+                                                                                ''
+                                                                                '' ;
+                                                                        }
+                                                                )
                                                                 _config.visa.backend.server.fetch
                                                                 _config.visa.frontend.web.fetch
                                                                 _config.visa.frontend.admin.fetch
