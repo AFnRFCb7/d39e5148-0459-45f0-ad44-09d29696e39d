@@ -37,7 +37,6 @@
                                                                                         case "$1" in
                                                                                             --execute)
                                                                                                 cat <<EOF
-                                                                                                    FRONTEND=${ _config.visa.frontend.web.execute }
                                                                                                     MIGRATE=${ _config.visa.backend.database.migrate.execute }
                                                                                     EOF
                                                                                                 ;;
