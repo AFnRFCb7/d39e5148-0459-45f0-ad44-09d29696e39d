@@ -252,7 +252,7 @@
                                                                             } ;
                                                                         playwright =
                                                                             {
-                                                                                execute =
+                                                                                demo =
                                                                                     _lib.mkOption
                                                                                         {
                                                                                             default =
