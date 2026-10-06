@@ -1,0 +1,9 @@
+{
+  "dev": {
+    "driver": "pg" ,
+    "host": "localhost" ,
+    "port": 18516 ,
+    "database": "visa" ,
+    "user": "postgres"
+  }
+}

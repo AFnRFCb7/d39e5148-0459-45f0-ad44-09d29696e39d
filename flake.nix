@@ -30,6 +30,7 @@
                                                                 _config.visa.playwright.execute
                                                                 _config.visa.backend.database.init
                                                                 _config.visa.backend.database.migrate.fetch
+                                                                _config.visa.backend.database.migrate.execute
                                                             ] ;
                                                         environment.variables =
                                                             {
@@ -41,6 +42,7 @@
                                                                 VISA_PACKAGE_EXECUTE = _config.visa.playwright.execute ;
                                                                 VISA_DB_INIT= _config.visa.backend.database.init ;
                                                                 VISA_DB_MIGRATE_FETCH = _config.visa.backend.database.migrate.fetch ;
+                                                                VISA_DB_MIGRATE_EXEC = _config.visa.backend.database.migrate.execute ;
                                                             } ;
                                                         systemd.services =
                                                             {
@@ -127,7 +129,12 @@
                                                                                                 } ;
                                                                                         migrate =
                                                                                             {
-                                                                                                execute = null ;
+                                                                                                execute =
+                                                                                                    _lib.mkOption
+                                                                                                        {
+                                                                                                            default = _config.node-package.execute ( _config.node-package.package ./backend/database/migrate ) ;
+                                                                                                            type = _lib.type.package ;
+                                                                                                        };
                                                                                                 fetch =
                                                                                                     _lib.mkOption
                                                                                                         {
