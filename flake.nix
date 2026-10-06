@@ -29,6 +29,7 @@
                                                                 _config.visa.playwright.fetch
                                                                 _config.visa.playwright.execute
                                                                 _config.visa.backend.database.init
+                                                                # _config.visa.backend.database.migrate.fetch
                                                             ] ;
                                                         environment.variables =
                                                             {
@@ -39,6 +40,7 @@
                                                                 VISA_PACKAGE = _config.visa.playwright.package ;
                                                                 VISA_PACKAGE_EXECUTE = _config.visa.playwright.execute ;
                                                                 VISA_DB_INIT= _config.visa.backend.database.init ;
+                                                                # VISA_DB_MIGRATE_FETCH = _config.visa.backend.database.migrate.fetch ;
                                                             } ;
                                                         systemd.services =
                                                             {
@@ -110,7 +112,7 @@
                                                                                                     default =
                                                                                                         _config.lazy-shell-application
                                                                                                             {
-                                                                                                                mounts = { home = { read-only = false ; source = "/tmp" ; type = "bind" ; } ; } ;
+                                                                                                                mounts = { home = { source = "/tmp" ; type = "bind" ; } ; } ;
                                                                                                                 name = "init" ;
                                                                                                                 post = null ;
                                                                                                                 runtime-inputs = pkgs : [ pkgs.postgresql ] ;
@@ -123,6 +125,26 @@
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
                                                                                                 } ;
+                                                                                        migrate =
+                                                                                            {
+                                                                                                execute = null ;
+                                                                                                fetch =
+                                                                                                    _lib.mkOption
+                                                                                                        {
+                                                                                                            default =
+                                                                                                                _config.node-package.fetch
+                                                                                                                    {
+                                                                                                                        name = "visa-database-migration" ;
+                                                                                                                        private = true ;
+                                                                                                                        dependencies =
+                                                                                                                            {
+                                                                                                                                db-migrate = "^0.11.14" ;
+                                                                                                                                db-migrate-pg = "^1.5.2" ;
+                                                                                                                            } ;
+                                                                                                                    } ;
+                                                                                                            type = _lib.types.package ;
+                                                                                                        } ;
+                                                                                            } ;
                                                                                         server =
                                                                                             {
                                                                                                 enable = _lib.mkOption { default = true ; type = lib.types.bool ; } ;
