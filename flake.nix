@@ -47,7 +47,7 @@
                                                                 _config.visa.playwright.execute
                                                                 _config.visa.backend.database.init
                                                                 _config.visa.backend.database.migrate.fetch
-                                                                _config.visa.backend.database.migrate.execute
+#                                                                _config.visa.backend.database.migrate.execute
                                                             ] ;
                                                         environment.variables =
                                                             {
