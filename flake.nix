@@ -28,6 +28,7 @@
                                                                 _config.visa.frontend.admin.fetch
                                                                 _config.visa.playwright.fetch
                                                                 _config.visa.playwright.execute
+                                                                _config.visa.backend.dtabase.init
                                                             ] ;
                                                         environment.variables =
                                                             {
@@ -37,6 +38,7 @@
                                                                 VISA_FETCH_PLAYWRIGHT = _config.visa.playwright.fetch ;
                                                                 VISA_PACKAGE = _config.visa.playwright.package ;
                                                                 VISA_PACKAGE_EXECUTE = _config.visa.playwright.execute ;
+                                                                VISA_DB_INIT= _config.visa.backend.database.init ;
                                                             } ;
                                                         systemd.services =
                                                             {
@@ -102,7 +104,23 @@
                                                                             {
                                                                                 database =
                                                                                     {
-                                                                                        init = null ;
+                                                                                        init =
+                                                                                            _lib.mkOption
+                                                                                                {
+                                                                                                    default =
+                                                                                                        lazy-shell-application
+                                                                                                            {
+                                                                                                                mounts = { state = { source = "/tmp/state" ; type = "bind" ; } ; } ;
+                                                                                                                name = "init" ;
+                                                                                                                post = null ;
+                                                                                                                runtime-inputs = pkgs : [ pkgs.postgresql ] ;
+                                                                                                                text =
+                                                                                                                    ''
+                                                                                                                        initdb --pgdata=/mounts/state
+                                                                                                                    '' ;
+                                                                                                            } ;
+                                                                                                    type = _lib.types.package ;
+                                                                                                } ;
                                                                                         server =
                                                                                             {
                                                                                                 enable = _lib.mkOption { default = true ; type = lib.types.bool ; } ;
