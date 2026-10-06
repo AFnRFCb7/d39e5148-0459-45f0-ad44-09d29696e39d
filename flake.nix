@@ -27,7 +27,7 @@
                                                                     _config.lazy-shell-application
                                                                         {
                                                                             mounts = { } ;
-                                                                            name = "fetch" ;
+                                                                            name = "visa" ;
                                                                             post = null ;
                                                                             runtime-inputs = pkgs : [ ( _config.failure { } ) ] ;
                                                                             text =
