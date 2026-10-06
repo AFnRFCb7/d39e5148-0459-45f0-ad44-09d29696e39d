@@ -37,7 +37,6 @@
                                                                                         case "$1" in
                                                                                             --execute)
                                                                                                 cat <<EOF
-                                                                                                    BACKEND=${ _config.visa.backend.server.execute }
                                                                                                     FRONTEND=${ _config.visa.frontend.web.execute }
                                                                                                     MIGRATE=${ _config.visa.backend.database.migrate.execute }
                                                                                     EOF
@@ -45,6 +44,7 @@
                                                                                             --fetch)
                                                                                                 cat <<EOF
                                                                                                     ADMIN=${ _config.visa.frontend.admin.fetch }
+                                                                                                    BACKEND=${ _config.visa.backend.server.fetch }
                                                                                                     FRONTEND=${ _config.visa.frontend.web.fetch }
                                                                                                     MIGRATE=${ _config.visa.backend.database.migrate.fetch }
                                                                                     EOF
