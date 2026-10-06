@@ -30,9 +30,9 @@
                                                                                 {
                                                                                     server = { read-only = true ; source = _config.visa.backend.server.fetch ; type = "bind" ; } ;
                                                                                     web = { read-only = true ; source = _config.visa.frontend.web.fetch ; type = "bind" ; } ;
-                                                                                    migrate = { read-only = true ; source = _config.visa.backend.database.migrate.execute ; type = "bind" ; } ;
+                                                                                    migrate = { read-only = true ; source = _config.visa.backend.database.migrate.fetch ; type = "bind" ; } ;
                                                                                 } ;
-                                                                            name = "visa" ;
+                                                                            name = "fetch" ;
                                                                             post = null ;
                                                                             runtime-inputs = pkgs : [ ] ;
                                                                             text =
