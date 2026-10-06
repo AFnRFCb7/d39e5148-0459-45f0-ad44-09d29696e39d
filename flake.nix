@@ -23,30 +23,31 @@
                                                     {
                                                         environment.systemPackages =
                                                             [
-#                                                                (
-#                                                                    _config.lazy-shell-application
-#                                                                        {
-#                                                                            mounts =
-#                                                                                {
-##                                                                                    server = { read-only = true ; source = _config.visa.backend.server.fetch ; type = "bind" ; } ;
-##                                                                                    web = { read-only = true ; source = _config.visa.frontend.web.fetch ; type = "bind" ; } ;
-##                                                                                    migrate = { read-only = true ; source = _config.visa.backend.database.migrate.fetch ; type = "bind" ; } ;
-#                                                                                } ;
-#                                                                            name = "fetch" ;
-#                                                                            post = null ;
-#                                                                            runtime-inputs = pkgs : [ ] ;
-#                                                                            text =
-#                                                                                ''
-#                                                                                '' ;
-#                                                                        }
-#                                                                )
+                                                                (
+                                                                    _config.lazy-shell-application
+                                                                        {
+                                                                            mounts =
+                                                                                {
+                                                                                    server = { read-only = true ; source = _config.visa.backend.server.fetch ; type = "bind" ; } ;
+                                                                                    web = { read-only = true ; source = _config.visa.frontend.web.fetch ; type = "bind" ; } ;
+                                                                                    migrate = { read-only = true ; source = _config.visa.backend.database.migrate.fetch ; type = "bind" ; } ;
+                                                                                } ;
+                                                                            name = "fetch" ;
+                                                                            post = null ;
+                                                                            runtime-inputs = pkgs : [ pkgs.bash ] ;
+                                                                            text =
+                                                                                ''
+                                                                                    bash
+                                                                                '' ;
+                                                                        }
+                                                                )
                                                                 _config.visa.backend.server.fetch
                                                                 _config.visa.frontend.web.fetch
                                                                 _config.visa.frontend.admin.fetch
                                                                 _config.visa.playwright.fetch
                                                                 _config.visa.playwright.execute
                                                                 _config.visa.backend.database.init
-                                                                _config.visa.backend.database.migrate.fetch
+#                                                                _config.visa.backend.database.migrate.fetch
 #                                                                _config.visa.backend.database.migrate.execute
                                                             ] ;
                                                         environment.variables =
@@ -58,8 +59,8 @@
                                                                 VISA_PACKAGE = _config.visa.playwright.package ;
                                                                 VISA_PACKAGE_EXECUTE = _config.visa.playwright.execute ;
                                                                 VISA_DB_INIT= _config.visa.backend.database.init ;
-                                                                VISA_DB_MIGRATE_FETCH = _config.visa.backend.database.migrate.fetch ;
-                                                                VISA_DB_MIGRATE_EXEC = _config.visa.backend.database.migrate.execute ;
+#                                                                VISA_DB_MIGRATE_FETCH = _config.visa.backend.database.migrate.fetch ;
+#                                                                VISA_DB_MIGRATE_EXEC = _config.visa.backend.database.migrate.execute ;
                                                             } ;
                                                         systemd.services =
                                                             {
