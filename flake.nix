@@ -40,9 +40,35 @@
                                                             } ;
                                                         systemd.services =
                                                             {
+                                                                visa-database =
+                                                                    _lib.mkIf
+                                                                        ( _config.visa.backend.enable && _config.visa.backend.server.enable )
+                                                                        {
+                                                                            after = [ "network.target" ] ;
+                                                                            name = "${ _config.visa.backend.database.name }.service" ;
+                                                                            serviceConfig =
+                                                                                {
+                                                                                    DynamicUser = true ;
+                                                                                    ExecStart =
+                                                                                        let
+                                                                                            application =
+                                                                                                _config.lazy-shell-application
+                                                                                                    {
+                                                                                                        mounts = { state = { type = "temporary-directory" ; } ; } ;
+                                                                                                        name = "ExecStart" ;
+                                                                                                        runtime-inputs = pkgs : [ pkgs.postgresql ] ;
+                                                                                                        text =
+                                                                                                            ''
+                                                                                                                postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.port }
+                                                                                                            '' ;
+                                                                                                    } ;
+                                                                                            in "${ application }/bin/ExecStart" ;
+                                                                                } ;
+                                                                            wantedBy = [ "multi-user.target" ] ;
+                                                                        } ;
                                                                 visa-server =
                                                                     _lib.mkIf
-                                                                        ( _config.visa.backend.enable && config.visa.backend.server.enable )
+                                                                        ( _config.visa.backend.enable && _config.visa.backend.server.enable )
                                                                         {
                                                                             after = [ "network.target" ] ;
                                                                             name = "${ _config.visa.backend.server.name }.service" ;
@@ -60,7 +86,6 @@
                                                                                                         work-directory = "/tmp/sally" ;
                                                                                                     } ;
                                                                                             in "${ application }/bin/ExecStart" ;
-                                                                                    RuntimeDirectory = "sally" ;
                                                                                 } ;
                                                                             wantedBy = [ "multi-user.target" ] ;
                                                                         } ;
@@ -83,6 +108,7 @@
                                                                                                     default = "visa-database" ;
                                                                                                     type = _lib.types.str ;
                                                                                                 } ;
+                                                                                        port = _lib.mkOption { default = 18516 ; type = _lib.types.int ; } ;
                                                                                     } ;
                                                                                 enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
                                                                                 gateway =
@@ -254,7 +280,39 @@
                                                                                                                 export
                                                                                                                 cd /mounts/package
                                                                                                                 BROWSER=chromium HEADLESS=false node tests.js
-                                                                                                                BROWSER=firefox HEADLESS=false node tests.js
+                                                                                                            '' ;
+                                                                                                    } ;
+                                                                                            type = _lib.types.package ;
+                                                                                        } ;
+                                                                                execute =
+                                                                                    _lib.mkOption
+                                                                                        {
+                                                                                            default =
+                                                                                                _config.lazy-shell-application
+                                                                                                    {
+                                                                                                        mounts =
+                                                                                                            {
+                                                                                                                firefox = { source = _pkgs.firefox ; type = "ro-bind" ; } ;
+                                                                                                                chromium = { source = _pkgs.chromium ; type = "ro-bind" ; } ;
+                                                                                                                package = { source = _config.visa.playwright.package ; type = "ro-bind" ; } ;
+                                                                                                            } ;
+                                                                                                        name = "execute" ;
+                                                                                                        post = null ;
+                                                                                                        runtime-inputs =
+                                                                                                            pkgs :
+                                                                                                                [
+                                                                                                                    pkgs.chromium
+                                                                                                                    pkgs.coreutils
+                                                                                                                    pkgs.firefox
+                                                                                                                    pkgs.nodejs_20
+                                                                                                                    pkgs.glib
+                                                                                                                ] ;
+                                                                                                        text =
+                                                                                                            ''
+                                                                                                                export
+                                                                                                                cd /mounts/package
+                                                                                                                BROWSER=chromium HEADLESS=true node tests.js
+                                                                                                                BROWSER=firefox HEADLESS=true node tests.js
                                                                                                             '' ;
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
