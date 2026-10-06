@@ -28,7 +28,7 @@
                                                                 _config.visa.frontend.admin.fetch
                                                                 _config.visa.playwright.fetch
                                                                 _config.visa.playwright.execute
-                                                                _config.visa.backend.dtabase.init
+                                                                _config.visa.backend.database.init
                                                             ] ;
                                                         environment.variables =
                                                             {
