@@ -38,7 +38,7 @@
                                                                                             ;;
                                                                                         --fetch)
                                                                                             cat <<EOF
-                                                                                                ADMIN=${ _config.visa.frontend.admnt.fetch }
+                                                                                                ADMIN=${ _config.visa.frontend.admin.fetch }
                                                                                                 BACKEND=${ _config.visa.backend.server.fetch }
                                                                                                 FRONTEND=${ _config.visa.frontend.web.fetch }
                                                                                                 MIGRATE=${ _config.visa.backend.database.migrate.fetch }
