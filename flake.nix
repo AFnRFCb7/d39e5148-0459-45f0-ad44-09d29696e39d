@@ -110,7 +110,7 @@
                                                                                                     default =
                                                                                                         _config.lazy-shell-application
                                                                                                             {
-                                                                                                                mounts = { homr = { source = "~" ; type = "bind" ; } ; } ;
+                                                                                                                mounts = { home = { source = "~" ; type = "bind" ; } ; } ;
                                                                                                                 name = "init" ;
                                                                                                                 post = null ;
                                                                                                                 runtime-inputs = pkgs : [ pkgs.postgresql ] ;
