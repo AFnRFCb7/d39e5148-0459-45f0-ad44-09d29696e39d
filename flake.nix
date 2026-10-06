@@ -118,8 +118,7 @@
                                                                                                                     ''
                                                                                                                         cd /mounts/home
                                                                                                                         mkdir --parents visa
-                                                                                                                        cd visa
-                                                                                                                        initdb --pgdata=/mounts/state
+                                                                                                                        initdb --pgdata=/mounts/home/visa
                                                                                                                     '' ;
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
