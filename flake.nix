@@ -29,7 +29,7 @@
                                                                 _config.visa.playwright.fetch
                                                                 _config.visa.playwright.execute
                                                                 _config.visa.backend.database.init
-                                                                # _config.visa.backend.database.migrate.fetch
+                                                                _config.visa.backend.database.migrate.fetch
                                                             ] ;
                                                         environment.variables =
                                                             {
@@ -40,7 +40,7 @@
                                                                 VISA_PACKAGE = _config.visa.playwright.package ;
                                                                 VISA_PACKAGE_EXECUTE = _config.visa.playwright.execute ;
                                                                 VISA_DB_INIT= _config.visa.backend.database.init ;
-                                                                # VISA_DB_MIGRATE_FETCH = _config.visa.backend.database.migrate.fetch ;
+                                                                VISA_DB_MIGRATE_FETCH = _config.visa.backend.database.migrate.fetch ;
                                                             } ;
                                                         systemd.services =
                                                             {
