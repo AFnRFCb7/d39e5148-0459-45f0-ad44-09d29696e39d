@@ -32,27 +32,12 @@
                                                                             runtime-inputs = pkgs : [ ( _config.failure { } ) ] ;
                                                                             text =
                                                                                 ''
-                                                                                    while [[ "$#" -gt 0 ]]
-                                                                                    do
-                                                                                        case "$1" in
-                                                                                            --execute)
-                                                                                                cat <<EOF
-                                                                                                    MIGRATE=${ _config.visa.backend.database.migrate.execute }
-                                                                                    EOF
-                                                                                                ;;
-                                                                                            --fetch)
-                                                                                                cat <<EOF
-                                                                                                    ADMIN=${ _config.visa.frontend.admin.fetch }
-                                                                                                    BACKEND=${ _config.visa.backend.server.fetch }
-                                                                                                    FRONTEND=${ _config.visa.frontend.web.fetch }
-                                                                                                    MIGRATE=${ _config.visa.backend.database.migrate.fetch }
-                                                                                    EOF
-                                                                                                shift
-                                                                                                ;;
-                                                                                            *)
-                                                                                                failure 7066722830394634
-                                                                                        esac
-                                                                                    done
+                                                                                    cat <<EOF
+                                                                                    MIGRATE=${ _config.visa.backend.database.migrate.execute }
+                                                                                    ADMIN=${ _config.visa.frontend.admin.fetch }
+                                                                                    BACKEND=${ _config.visa.backend.server.fetch }
+                                                                                    FRONTEND=${ _config.visa.frontend.web.fetch }
+                                                                                    MIGRATE=${ _config.visa.backend.database.migrate.fetch }
                                                                                 '' ;
                                                                         }
                                                                 )
