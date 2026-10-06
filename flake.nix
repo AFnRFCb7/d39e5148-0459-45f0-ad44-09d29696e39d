@@ -40,33 +40,33 @@
                                                             } ;
                                                         systemd.services =
                                                             {
-#                                                                visa-database =
-#                                                                    _lib.mkIf
-#                                                                        ( _config.visa.backend.enable && _config.visa.backend.server.enable )
-#                                                                        {
-#                                                                            after = [ "network.target" ] ;
-#                                                                            name = "${ _config.visa.backend.database.name }.service" ;
-#                                                                            serviceConfig =
-#                                                                                {
-#                                                                                    DynamicUser = true ;
-#                                                                                    ExecStart =
-#                                                                                        let
-#                                                                                            application =
-#                                                                                                _config.lazy-shell-application
-#                                                                                                    {
-#                                                                                                        mounts = { state = { type = "temporary-directory" ; } ; } ;
-#                                                                                                        name = "ExecStart" ;
-#                                                                                                        post = null ;
-#                                                                                                        runtime-inputs = pkgs : [ pkgs.postgresql ] ;
-#                                                                                                        text =
-#                                                                                                            ''
-#                                                                                                                postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.port }
-#                                                                                                            '' ;
-#                                                                                                    } ;
-#                                                                                            in "${ application }/bin/ExecStart" ;
-#                                                                                } ;
-#                                                                            wantedBy = [ "multi-user.target" ] ;
-#                                                                        } ;
+                                                                visa-database =
+                                                                    _lib.mkIf
+                                                                        ( _config.visa.backend.enable && _config.visa.backend.server.enable )
+                                                                        {
+                                                                            after = [ "network.target" ] ;
+                                                                            name = "${ _config.visa.backend.database.name }.service" ;
+                                                                            serviceConfig =
+                                                                                {
+                                                                                    DynamicUser = true ;
+                                                                                    ExecStart =
+                                                                                        let
+                                                                                            application =
+                                                                                                _config.lazy-shell-application
+                                                                                                    {
+                                                                                                        mounts = { state = { type = "temporary-directory" ; } ; } ;
+                                                                                                        name = "ExecStart" ;
+                                                                                                        post = null ;
+                                                                                                        runtime-inputs = pkgs : [ pkgs.postgresql ] ;
+                                                                                                        text =
+                                                                                                            ''
+                                                                                                                postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.port }
+                                                                                                            '' ;
+                                                                                                    } ;
+                                                                                            in "${ application }/bin/ExecStart" ;
+                                                                                } ;
+                                                                            wantedBy = [ "multi-user.target" ] ;
+                                                                        } ;
                                                                 visa-server =
                                                                     _lib.mkIf
                                                                         ( _config.visa.backend.enable && _config.visa.backend.server.enable )
