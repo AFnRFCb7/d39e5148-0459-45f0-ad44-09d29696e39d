@@ -34,20 +34,21 @@
                                                                                 ''
                                                                                     while [[ "$#" -gt 0 ]]
                                                                                     do
-                                                                                        --execute)
-                                                                                            ;;
-                                                                                        --fetch)
-                                                                                            cat <<EOF
-                                                                                                ADMIN=${ _config.visa.frontend.admin.fetch }
-                                                                                                BACKEND=${ _config.visa.backend.server.fetch }
-                                                                                                FRONTEND=${ _config.visa.frontend.web.fetch }
-                                                                                                MIGRATE=${ _config.visa.backend.database.migrate.fetch }
+                                                                                        case "$1" in
+                                                                                            --execute)
+                                                                                                ;;
+                                                                                            --fetch)
+                                                                                                cat <<EOF
+                                                                                                    ADMIN=${ _config.visa.frontend.admin.fetch }
+                                                                                                    BACKEND=${ _config.visa.backend.server.fetch }
+                                                                                                    FRONTEND=${ _config.visa.frontend.web.fetch }
+                                                                                                    MIGRATE=${ _config.visa.backend.database.migrate.fetch }
                                                                                     EOF
-                                                                                            shift
-                                                                                            ;;
-                                                                                        *)
-                                                                                            failure 7066722830394634
-                                                                                    case
+                                                                                                shift
+                                                                                                ;;
+                                                                                            *)
+                                                                                                failure 7066722830394634
+                                                                                    esac
                                                                                 '' ;
                                                                         }
                                                                 )
