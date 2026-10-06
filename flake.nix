@@ -42,10 +42,10 @@
                                                             {
                                                                 visa-database =
                                                                     _lib.mkIf
-                                                                        ( _config.visa.backend.enable && _config.visa.backend.server.enable )
+                                                                        ( _config.visa.backend.enable && _config.visa.backend.database.server.enable )
                                                                         {
                                                                             after = [ "network.target" ] ;
-                                                                            name = "${ _config.visa.backend.database.name }.service" ;
+                                                                            name = "${ _config.visa.backend.database.server.name }.service" ;
                                                                             serviceConfig =
                                                                                 {
                                                                                     DynamicUser = true ;
@@ -60,7 +60,7 @@
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
-                                                                                                                postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.port }
+                                                                                                                postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.server.port }
                                                                                                             '' ;
                                                                                                     } ;
                                                                                             in "${ application }/bin/ExecStart" ;
@@ -102,14 +102,18 @@
                                                                             {
                                                                                 database =
                                                                                     {
-                                                                                        enable = _lib.mkOption { default = true ; type = lib.types.bool ; } ;
-                                                                                        name =
-                                                                                            _lib.mkOption
-                                                                                                {
-                                                                                                    default = "visa-database" ;
-                                                                                                    type = _lib.types.str ;
-                                                                                                } ;
-                                                                                        port = _lib.mkOption { default = 18516 ; type = _lib.types.int ; } ;
+                                                                                        init = null ;
+                                                                                        service =
+                                                                                            {
+                                                                                                enable = _lib.mkOption { default = true ; type = lib.types.bool ; } ;
+                                                                                                name =
+                                                                                                    _lib.mkOption
+                                                                                                        {
+                                                                                                            default = "visa-database" ;
+                                                                                                            type = _lib.types.str ;
+                                                                                                        } ;
+                                                                                                port = _lib.mkOption { default = 18516 ; type = _lib.types.int ; } ;
+                                                                                            } ;
                                                                                     } ;
                                                                                 enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
                                                                                 gateway =
