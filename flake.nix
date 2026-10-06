@@ -315,9 +315,9 @@
                                                                                                     {
                                                                                                         mounts =
                                                                                                             {
-                                                                                                                firefox = { source = _pkgs.firefox ; type = "ro-bind" ; } ;
-                                                                                                                chromium = { source = _pkgs.chromium ; type = "ro-bind" ; } ;
-                                                                                                                package = { source = _config.visa.playwright.package ; type = "ro-bind" ; } ;
+                                                                                                                firefox = { read-only = true ; source = _pkgs.firefox ; type = "bind" ; } ;
+                                                                                                                chromium = { read-only = true ; source = _pkgs.chromium ; type = "bind" ; } ;
+                                                                                                                package = { read-only = true ; source = _config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                             } ;
                                                                                                         name = "execute" ;
                                                                                                         post = null ;
