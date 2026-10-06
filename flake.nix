@@ -110,12 +110,15 @@
                                                                                                     default =
                                                                                                         _config.lazy-shell-application
                                                                                                             {
-                                                                                                                mounts = { state = { source = "/tmp/state" ; type = "bind" ; } ; } ;
+                                                                                                                mounts = { homr = { source = "~" ; type = "bind" ; } ; } ;
                                                                                                                 name = "init" ;
                                                                                                                 post = null ;
                                                                                                                 runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                                 text =
                                                                                                                     ''
+                                                                                                                        cd /mounts/home
+                                                                                                                        mkdir --parents visa
+                                                                                                                        cd visa
                                                                                                                         initdb --pgdata=/mounts/state
                                                                                                                     '' ;
                                                                                                             } ;
