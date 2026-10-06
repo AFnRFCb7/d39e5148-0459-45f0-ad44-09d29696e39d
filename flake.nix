@@ -103,7 +103,7 @@
                                                                                 database =
                                                                                     {
                                                                                         init = null ;
-                                                                                        service =
+                                                                                        server =
                                                                                             {
                                                                                                 enable = _lib.mkOption { default = true ; type = lib.types.bool ; } ;
                                                                                                 name =
