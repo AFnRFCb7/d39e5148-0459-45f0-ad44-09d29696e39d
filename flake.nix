@@ -56,7 +56,7 @@
                                                                                             application =
                                                                                                 _config.lazy-shell-application
                                                                                                     {
-                                                                                                        mounts = { state = { type = "temporary-directory" ; } ; } ;
+                                                                                                        mounts = { state = { type = "temporary" ; } ; } ;
                                                                                                         name = "ExecStart" ;
                                                                                                         post = null ;
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
