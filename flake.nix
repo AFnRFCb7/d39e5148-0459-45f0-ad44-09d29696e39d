@@ -29,7 +29,7 @@
                                                                             mounts = { } ;
                                                                             name = "visa" ;
                                                                             post = null ;
-                                                                            runtime-inputs = pkgs : [ ( _config.failure { } ) ] ;
+                                                                            runtime-inputs = pkgs : [ pkgs.coreutils ] ;
                                                                             text =
                                                                                 ''
                                                                                     cat <<EOF
@@ -38,6 +38,7 @@
                                                                                     BACKEND=${ _config.visa.backend.server.fetch }
                                                                                     FRONTEND=${ _config.visa.frontend.web.fetch }
                                                                                     MIGRATE=${ _config.visa.backend.database.migrate.fetch }
+                                                                                    EOF
                                                                                 '' ;
                                                                         }
                                                                 )
