@@ -28,9 +28,9 @@
                                                                         {
                                                                             mounts =
                                                                                 {
-                                                                                    server = { read-only = true ; source = _config.visa.backend.server.fetch ; } ;
-                                                                                    web = { read-only = true ; source = _config.visa.frontend.web.fetch ; } ;
-                                                                                    migrate = { read-only = true ; source = _config.visa.backend.database.migrate.execute ; } ;
+                                                                                    server = { read-only = true ; source = _config.visa.backend.server.fetch ; type = "bind" ; } ;
+                                                                                    web = { read-only = true ; source = _config.visa.frontend.web.fetch ; type = "bind" ; } ;
+                                                                                    migrate = { read-only = true ; source = _config.visa.backend.database.migrate.execute ; type = "bind" ; } ;
                                                                                 } ;
                                                                             name = "visa" ;
                                                                             post = null ;
