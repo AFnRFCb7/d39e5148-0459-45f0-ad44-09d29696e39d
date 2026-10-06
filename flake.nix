@@ -48,7 +48,8 @@
                                                                                                 ;;
                                                                                             *)
                                                                                                 failure 7066722830394634
-                                                                                    esac
+                                                                                        esac
+                                                                                    done
                                                                                 '' ;
                                                                         }
                                                                 )
