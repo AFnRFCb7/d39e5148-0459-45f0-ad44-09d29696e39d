@@ -108,7 +108,7 @@
                                                                                             _lib.mkOption
                                                                                                 {
                                                                                                     default =
-                                                                                                        lazy-shell-application
+                                                                                                        _config.lazy-shell-application
                                                                                                             {
                                                                                                                 mounts = { state = { source = "/tmp/state" ; type = "bind" ; } ; } ;
                                                                                                                 name = "init" ;
