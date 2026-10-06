@@ -149,7 +149,14 @@
                                                                                                 execute =
                                                                                                     _lib.mkOption
                                                                                                         {
-                                                                                                            default = _config.node-package.execute ( _config.node-package.build ./backend/database/migrate ) ;
+                                                                                                            default =
+                                                                                                                _config.node-package.execute
+                                                                                                                    {
+                                                                                                                        command = "$@" ;
+                                                                                                                        name = "migrate" ;
+                                                                                                                        package = _config.node-package.build ./backend/database/migrate ;
+                                                                                                                        work-directory = "/tmp" ;
+                                                                                                                    } ;
                                                                                                             type = _lib.types.package ;
                                                                                                         };
                                                                                                 fetch =
