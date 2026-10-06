@@ -56,6 +56,7 @@
                                                                                                     {
                                                                                                         mounts = { state = { type = "temporary-directory" ; } ; } ;
                                                                                                         name = "ExecStart" ;
+                                                                                                        post = null ;
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
