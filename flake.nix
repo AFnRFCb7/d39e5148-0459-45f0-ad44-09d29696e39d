@@ -72,7 +72,7 @@
                                                                                             application =
                                                                                                 _config.lazy-shell-application
                                                                                                     {
-                                                                                                        mounts = { state = { type = "/tmp/visa" ; } ; } ;
+                                                                                                        mounts = { state = { source = "/tmp/visa" ; type = "bind" ; } ; } ;
                                                                                                         name = "ExecStart" ;
                                                                                                         post = null ;
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
