@@ -213,6 +213,7 @@
                                                                                                                             } ;
                                                                                                                     type = _lib.types.package ;
                                                                                                                 } ;
+                                                                                                        name = _lib.mkOption { default = "visa-server-staging" ; type = _lib.types.str ; } ;
                                                                                                     } ;
                                                                                             } ;
                                                                             } ;
