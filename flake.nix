@@ -183,8 +183,8 @@
                                                                                                                                 } ;
                                                                                                                         in
                                                                                                                             {
-                                                                                                                                production-up = "ln --symbolic ${ builtins.toFile "database.json" ( builtins.toJSON ( database _config.visa.backend.environments.production.port ) ) } ./database.json && ./bin/db-migrate up --migrations-dir ./migrations/production" ;
-                                                                                                                                staging-up = "ln --symbolic ${ builtins.toFile "database.json" ( builtins.toJSON ( database _config.visa.backend.environments.staging.port ) ) } ./database.json && ./bin/db-migrate up --migrations-dir ./migrations/production && ./bin/db-migrate up --migrations-dir ./migrations/staging" ;
+                                                                                                                                production-up = "ln --symbolic ${ builtins.toFile "database.json" ( builtins.toJSON ( database _config.visa.backend.database.environments.production.port ) ) } ./database.json && ./bin/db-migrate up --migrations-dir ./migrations/production" ;
+                                                                                                                                staging-up = "ln --symbolic ${ builtins.toFile "database.json" ( builtins.toJSON ( database _config.visa.backend.database.environments.staging.port ) ) } ./database.json && ./bin/db-migrate up --migrations-dir ./migrations/production && ./bin/db-migrate up --migrations-dir ./migrations/staging" ;
                                                                                                                             } ;
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
@@ -194,25 +194,27 @@
                                                                         server =
                                                                             {
                                                                                 environments =
-                                                                                    {
-                                                                                        staging =
+                                                                                    let
+                                                                                        in
                                                                                             {
-                                                                                                enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
-                                                                                                execute =
-                                                                                                    _lib.mkOption
-                                                                                                        {
-                                                                                                            default =
-                                                                                                                _config.node-package.execute
-                                                                                                                    {
-                                                                                                                        command = "run start" ;
-                                                                                                                        name = "execute" ;
-                                                                                                                        package = _config.node-package.build ./backend/server ;
-                                                                                                                        work-directory = "/tmp" ;
-                                                                                                                    } ;
-                                                                                                            type = _lib.types.package ;
-                                                                                                        } ;
+                                                                                                staging =
+                                                                                                    {
+                                                                                                        enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
+                                                                                                        execute =
+                                                                                                            _lib.mkOption
+                                                                                                                {
+                                                                                                                    default =
+                                                                                                                        _config.node-package.execute
+                                                                                                                            {
+                                                                                                                                command = "run start" ;
+                                                                                                                                name = "execute" ;
+                                                                                                                                package = _config.node-package.build ./backend/server ;
+                                                                                                                                work-directory = "/tmp" ;
+                                                                                                                            } ;
+                                                                                                                    type = _lib.types.package ;
+                                                                                                                } ;
+                                                                                                    } ;
                                                                                             } ;
-                                                                                    } ;
                                                                             } ;
                                                                     } ;
                                                                 frontend =
