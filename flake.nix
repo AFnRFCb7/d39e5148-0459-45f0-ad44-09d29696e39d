@@ -74,14 +74,14 @@
                                                                                             application =
                                                                                                 _config.lazy-shell-application
                                                                                                     {
-                                                                                                        mounts = { socket = { type = "temporary" ; }state = { type = "temporary" ; } ; } ;
+                                                                                                        mounts = { socket = { type = "temporary" ; } ; state = { type = "temporary" ; } ; } ;
                                                                                                         name = "ExecStart" ;
                                                                                                         post = null ;
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
                                                                                                                 initdb --pgdata=/mounts/state
-                                                                                                                postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.environments.staging.port } --unix-socket-directories=directory
+                                                                                                                postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.environments.staging.port } --unix-socket-directories=/mounts/socket
                                                                                                             '' ;
                                                                                                     } ;
                                                                                             in "${ application }/bin/ExecStart" ;
