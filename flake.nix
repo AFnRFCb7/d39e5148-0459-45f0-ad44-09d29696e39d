@@ -36,7 +36,6 @@
                                                                                     EXECUTE_DB_MIGRATE=${ _config.visa.backend.database.migrate.execute }
                                                                                     EXECUTE_DB_INIT=${ _config.visa.backend.database.init }
                                                                                     EXECUTE_ADMIN=${ _config.visa.frontend.admin.fetch }
-                                                                                    FETCH_BACKEND=${ _config.visa.backend.server.fetch }
                                                                                     FETCH_FRONTEND=${ _config.visa.frontend.web.fetch }
                                                                                     FETCH_MIGRATE=${ _config.visa.backend.database.migrate.fetch }
                                                                                     PACKAGE_MIGRATE=${ _config.node-package.build ./backend/database/migrate }
