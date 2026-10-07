@@ -81,6 +81,7 @@
                                                                                                         text =
                                                                                                             ''
                                                                                                                 initdb --pgdata=/mounts/state
+                                                                                                                sleep 10
                                                                                                                 postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.environments.staging.port }
                                                                                                             '' ;
                                                                                                     } ;
