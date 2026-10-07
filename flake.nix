@@ -175,6 +175,10 @@
                                                                                                                                 db-migrate = "^0.11.14" ;
                                                                                                                                 db-migrate-pg = "^1.5.2" ;
                                                                                                                             } ;
+                                                                                                                        scripts =
+                                                                                                                            {
+                                                                                                                                up = "db-migrate up" ;
+                                                                                                                            } ;
                                                                                                                     } ;
                                                                                                             type = _lib.types.package ;
                                                                                                         } ;
