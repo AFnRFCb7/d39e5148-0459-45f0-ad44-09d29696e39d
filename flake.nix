@@ -47,12 +47,24 @@
                                                             ] ;
                                                         systemd.services =
                                                             {
+#                                                                visa-archive-staging =
+#                                                                    _lib.mkIf
+#                                                                        _config.visa.backend.database.environments.staging.server.enable
+#                                                                        {
+#                                                                            after = [ "network.target" ] ;
+#                                                                            name = "${ _config.visa.backend.database.environments.staging.name }.service" ;
+#                                                                            serviceConfig =
+#                                                                                {
+#                                                                                    DynamicUser = true ;
+#                                                                                } ;
+#                                                                            wantedBy = [ "multi-user.target" ] ;
+#                                                                        } ;
                                                                 visa-database-staging =
                                                                     _lib.mkIf
                                                                         _config.visa.backend.database.environments.staging.enable
                                                                         {
                                                                             after = [ "network.target" ] ;
-                                                                            name = "${ _config.visa.backend.database.server.name }-production.service" ;
+                                                                            name = "${ _config.visa.backend.database.environments.staging.name }.service" ;
                                                                             serviceConfig =
                                                                                 {
                                                                                     DynamicUser = true ;
@@ -61,13 +73,13 @@
                                                                                             application =
                                                                                                 _config.lazy-shell-application
                                                                                                     {
-                                                                                                        mounts = { state = { type = "temporary" ; } ; } ;
+                                                                                                        mounts = { state = { type = "/tmp/visa" ; } ; } ;
                                                                                                         name = "ExecStart" ;
                                                                                                         post = null ;
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
-                                                                                                                postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.server.port }
+                                                                                                                postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.environments.staging.port }
                                                                                                             '' ;
                                                                                                     } ;
                                                                                             in "${ application }/bin/ExecStart" ;
