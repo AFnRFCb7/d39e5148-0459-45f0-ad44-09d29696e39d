@@ -209,9 +209,9 @@
                                                                                         staging =
                                                                                             {
                                                                                                 enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
-                                                                                            }
-                                                                                    }
-                                                                            }
+                                                                                            } ;
+                                                                                    } ;
+                                                                            } ;
                                                                     } ;
                                                                 frontend =
                                                                     {
