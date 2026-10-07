@@ -33,7 +33,9 @@ const browsers = {
   console.log(await page.title());
 
   if (!headless) {
-    await page.waitForTimeout(60000);
+    console.log(`Waiting 30 seconds before closing ${browserName}...`);
+    await page.waitForTimeout(30000);
+    console.log("Closing browser...");
   }
 
   await browser.close();
