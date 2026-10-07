@@ -155,7 +155,7 @@
                                                                                                             default =
                                                                                                                 _config.node-package.execute
                                                                                                                     {
-                                                                                                                        command = ''"$@"'' ;
+                                                                                                                        command = ''db-migrate up'' ;
                                                                                                                         name = "migrate" ;
                                                                                                                         package = _config.node-package.build ./backend/database/migrate ;
                                                                                                                         work-directory = "/tmp" ;
