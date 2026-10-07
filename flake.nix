@@ -348,6 +348,7 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
+                                                                                                        ${ _config.visa.backend.database.migrate.execute }/bin/migrate run
                                                                                                         ${ _config.visa.backend.database.migrate.execute }/bin/migrate run staging-up
                                                                                                         cd /mounts/package
                                                                                                         BROWSER=chromium HEADLESS=false node tests.js
