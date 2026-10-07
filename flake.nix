@@ -206,7 +206,7 @@
                                                                                                                 {
                                                                                                                     commmand = "run start" ;
                                                                                                                     name = "execute" ;
-                                                                                                                    package = _config.node-package.execute ( _config.node-package ./backend/server ) ;
+                                                                                                                    package = _config.node-package ./backend/server ;
                                                                                                                     work-directory = "/tmp" ;
                                                                                                                 } ;
                                                                                                             type = _lib.types.package ;
