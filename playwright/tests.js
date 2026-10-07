@@ -29,13 +29,14 @@ const browsers = {
   const page = await browser.newPage();
 
   await page.goto("http://localhost:14636/hello?name=me");
+  console.log(await page.title());
 
+  await page.goto("http://localhost:14636/secret?name=me");
   console.log(await page.title());
 
   if (!headless) {
-    console.log(`Waiting 30 seconds before closing ${browserName}...`);
-    await page.waitForTimeout(30000);
-    console.log("Closing browser...");
+    console.log(`Waiting 10 seconds before closing ${browserName}...`);
+    await page.waitForTimeout(10000);
   }
 
   await browser.close();

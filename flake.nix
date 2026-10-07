@@ -60,7 +60,7 @@
 #                                                                                } ;
 #                                                                            wantedBy = [ "multi-user.target" ] ;
 #                                                                        } ;
-                                                                visa-database-staging =
+                                                                visa-database-staging =staging
                                                                     _lib.mkIf
                                                                         _config.visa.backend.database.environments.staging.enable
                                                                         {
@@ -74,12 +74,13 @@
                                                                                             application =
                                                                                                 _config.lazy-shell-application
                                                                                                     {
-                                                                                                        mounts = { state = { source = "/tmp/visa" ; type = "bind" ; } ; } ;
+                                                                                                        mounts = { state = { type = "temporary" ; } ; } ;
                                                                                                         name = "ExecStart" ;
                                                                                                         post = null ;
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
+                                                                                                                initdb --pgdata=/mounts/state
                                                                                                                 postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.environments.staging.port }
                                                                                                             '' ;
                                                                                                     } ;
@@ -152,7 +153,7 @@
                                                                                                     default =
                                                                                                         _config.node-package.execute
                                                                                                             {
-                                                                                                                command = "up" ;
+                                                                                                                command = ''"$@"'' ;
                                                                                                                 name = "migrate" ;
                                                                                                                 package = _config.node-package.build ./backend/database/migrate ;
                                                                                                             } ;
