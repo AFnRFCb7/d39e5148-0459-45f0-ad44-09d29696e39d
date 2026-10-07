@@ -211,28 +211,7 @@
                                                                                                         } ;
                                                                                             } ;
                                                                                     } ;
-                                                                                server =
-                                                                                    {
-                                                                                        enable = _lib.mkOption { default = true ; type = lib.types.bool ; } ;
-                                                                                        name =
-                                                                                            _lib.mkOption
-                                                                                                {
-                                                                                                    default = "visa-database" ;
-                                                                                                    type = _lib.types.str ;
-                                                                                                } ;
-                                                                                        port = _lib.mkOption { default = 18516 ; type = _lib.types.int ; } ;
-                                                                                    } ;
                                                                                 enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
-                                                                                gateway =
-                                                                                    {
-                                                                                        enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
-                                                                                        name =
-                                                                                            _lib.mkOption
-                                                                                                {
-                                                                                                    default = "visa-gateway" ;
-                                                                                                    type = _lib.types.str ;
-                                                                                                } ;
-                                                                                    } ;
                                                                             } ;
                                                                         frontend =
                                                                             {
