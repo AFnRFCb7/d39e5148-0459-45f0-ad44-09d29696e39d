@@ -80,9 +80,7 @@
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
-                                                                                                                echo initdb --pgdata=/mounts/state
                                                                                                                 initdb --pgdata=/mounts/state
-                                                                                                                echo postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.environments.staging.port }
                                                                                                                 postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.environments.staging.port }
                                                                                                             '' ;
                                                                                                     } ;
@@ -350,7 +348,7 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
-                                                                                                        export
+                                                                                                        ${ _config.visa.database.migrate.execute }/bin/execute "staging-up"
                                                                                                         cd /mounts/package
                                                                                                         BROWSER=chromium HEADLESS=false node tests.js
                                                                                                     '' ;
