@@ -118,7 +118,7 @@
                                                                                             } ;
                                                                                         staging =
                                                                                             {
-                                                                                                enable = _lib.mkOption { default = false ; type = _lib.types.bool ; } ;
+                                                                                                enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
                                                                                                 name = _lib.mkOption { default = "visa-database-staging" ; type = _lib.types.str ; } ;
                                                                                                 port = _lib.mkOption { default = 11187 ; type =_lib.types.ints.between 1024 65535 ; } ;
                                                                                             } ;
