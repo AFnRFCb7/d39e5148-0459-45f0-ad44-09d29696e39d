@@ -203,7 +203,7 @@
                                                                                                     _lib.mkOption
                                                                                                         {
                                                                                                             default =
-                                                                                                                _config.node-packages.execute
+                                                                                                                _config.node-package.execute
                                                                                                                     {
                                                                                                                         commmand = "run start" ;
                                                                                                                         name = "execute" ;
