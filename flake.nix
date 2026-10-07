@@ -91,21 +91,11 @@
                                                                         ( _config.visa.backend.server.environments.staging.enable )
                                                                         {
                                                                             after = [ "network.target" ] ;
-                                                                            name = "${ _config.visa.backend.server.name }.service" ;
+                                                                            name = "${ _config.visa.backend.server.environments.staging.name }.service" ;
                                                                             serviceConfig =
                                                                                 {
                                                                                     DynamicUser = true ;
-                                                                                    ExecStart =
-                                                                                        let
-                                                                                            application =
-                                                                                                config.node-package.execute
-                                                                                                    {
-                                                                                                        command = "run start" ;
-                                                                                                        name = "ExecStart" ;
-                                                                                                        package = _config.visa.backend.server.package ;
-                                                                                                        work-directory = "/tmp/sally" ;
-                                                                                                    } ;
-                                                                                            in "${ application }/bin/ExecStart" ;
+                                                                                    ExecStart = "${ _config.visa.backend.server.environments.staging.execute }/bin/execute" ;
                                                                                 } ;
                                                                             wantedBy = [ "multi-user.target" ] ;
                                                                         } ;
