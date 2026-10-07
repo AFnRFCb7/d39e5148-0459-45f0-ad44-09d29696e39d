@@ -216,7 +216,7 @@
                                                                                                                     type = _lib.types.package ;
                                                                                                                 } ;
                                                                                                         name = _lib.mkOption { default = "visa-server-staging" ; type = _lib.types.str ; } ;
-                                                                                                        package = _config.node-package.build ./backend/server ;
+                                                                                                        package = lib.mkOption { default = _config.node-package.build ./backend/server ; type = _lib.types.package ; } ;
                                                                                                     } ;
                                                                                             } ;
                                                                             } ;
