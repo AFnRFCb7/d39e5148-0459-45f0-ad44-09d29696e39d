@@ -40,6 +40,7 @@
                                                                                     FETCH_MIGRATE=${ _config.visa.backend.database.migrate.fetch }
                                                                                     PACKAGE_MIGRATE=${ _config.node-package.build ./backend/database/migrate }
                                                                                     DEMO_PLAYWRIGHT=${ _config.visa.playwright.demo }
+                                                                                    PACKAGE=${ _config.visa.backend.server.environments.package }
                                                                                     EOF
                                                                                 '' ;
                                                                         }
@@ -215,6 +216,7 @@
                                                                                                                     type = _lib.types.package ;
                                                                                                                 } ;
                                                                                                         name = _lib.mkOption { default = "visa-server-staging" ; type = _lib.types.str ; } ;
+                                                                                                        package = _config.node-package.build ./backend/server ;
                                                                                                     } ;
                                                                                             } ;
                                                                             } ;
