@@ -39,6 +39,7 @@
                                                                                     FETCH_FRONTEND=${ _config.visa.frontend.web.fetch }
                                                                                     FETCH_MIGRATE=${ _config.visa.backend.database.migrate.fetch }
                                                                                     PACKAGE_MIGRATE=${ _config.node-package.build ./backend/database/migrate }
+                                                                                    DEMO_PLAYWRIGHT=${ _config.visa.playwright.demo }
                                                                                     EOF
                                                                                 '' ;
                                                                         }
