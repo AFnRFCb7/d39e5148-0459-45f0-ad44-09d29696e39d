@@ -64,7 +64,7 @@
                                                                     _lib.mkIf
                                                                         _config.visa.backend.database.environments.staging.enable
                                                                         {
-                                                                            after = [ "network.target" ] ;
+                                                                            after = [ "network.target" "local-fs.target" ] ;
                                                                             name = "${ _config.visa.backend.database.environments.staging.name }.service" ;
                                                                             serviceConfig =
                                                                                 {
@@ -81,7 +81,6 @@
                                                                                                         text =
                                                                                                             ''
                                                                                                                 initdb --pgdata=/mounts/state
-                                                                                                                sleep 10
                                                                                                                 postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.environments.staging.port }
                                                                                                             '' ;
                                                                                                     } ;
