@@ -33,7 +33,7 @@ const browsers = {
   console.log(await page.title());
 
   if (!headless) {
-    await page.waitForTimeout(10000);
+    await page.waitForTimeout(60000);
   }
 
   await browser.close();
