@@ -28,10 +28,10 @@ const browsers = {
 
   const page = await browser.newPage();
 
-  await page.goto("http://localhost:14636/hello?name=me");
+  await page.goto("http://localhost:14636/hello?name=my name");
   console.log(await page.title());
 
-  await page.goto("http://localhost:14636/secret?name=me");
+  await page.goto("http://localhost:14636/secret?name=my secret");
   console.log(await page.title());
 
   if (!headless) {
