@@ -156,7 +156,7 @@
                                                                                                             default =
                                                                                                                 _config.node-package.execute
                                                                                                                     {
-                                                                                                                        command = "./bin/db-migrate up" ;
+                                                                                                                        command = "up" ;
                                                                                                                         name = "migrate" ;
                                                                                                                         package = _config.node-package.build ./backend/database/migrate ;
                                                                                                                         work-directory = "/tmp" ;
@@ -178,7 +178,7 @@
                                                                                                                             } ;
                                                                                                                         scripts =
                                                                                                                             {
-                                                                                                                                up = "db-migrate up" ;
+                                                                                                                                up = "./bin/db-migrate up" ;
                                                                                                                             } ;
                                                                                                                     } ;
                                                                                                             type = _lib.types.package ;
