@@ -155,7 +155,6 @@
                                                                                                                 command = "up" ;
                                                                                                                 name = "migrate" ;
                                                                                                                 package = _config.node-package.build ./backend/database/migrate ;
-                                                                                                                work-directory = "/tmp" ;
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
                                                                                                 };
@@ -211,7 +210,6 @@
                                                                                                                                 command = "run start" ;
                                                                                                                                 name = "execute" ;
                                                                                                                                 package = _config.node-package.build ./backend/server ;
-                                                                                                                                work-directory = "/tmp" ;
                                                                                                                             } ;
                                                                                                                     type = _lib.types.package ;
                                                                                                                 } ;
