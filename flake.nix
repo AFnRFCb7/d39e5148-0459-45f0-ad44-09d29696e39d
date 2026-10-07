@@ -39,6 +39,7 @@
                                                                                     FETCH_BACKEND=${ _config.visa.backend.server.fetch }
                                                                                     FETCH_FRONTEND=${ _config.visa.frontend.web.fetch }
                                                                                     FETCH_MIGRATE=${ _config.visa.backend.database.migrate.fetch }
+                                                                                    PACKAGE_MIGRATE=${ _config.node-package.build ./backend/database/migrate }
                                                                                     EOF
                                                                                 '' ;
                                                                         }
@@ -155,7 +156,7 @@
                                                                                                             default =
                                                                                                                 _config.node-package.execute
                                                                                                                     {
-                                                                                                                        command = ''./bin/db-migrate up'' ;
+                                                                                                                        command = "./bin/db-migrate up" ;
                                                                                                                         name = "migrate" ;
                                                                                                                         package = _config.node-package.build ./backend/database/migrate ;
                                                                                                                         work-directory = "/tmp" ;
