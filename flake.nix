@@ -205,7 +205,7 @@
                                                                                                             default =
                                                                                                                 _config.node-package.execute
                                                                                                                     {
-                                                                                                                        commmand = "run start" ;
+                                                                                                                        command = "run start" ;
                                                                                                                         name = "execute" ;
                                                                                                                         package = _config.node-package.build ./backend/server ;
                                                                                                                         work-directory = "/tmp" ;
