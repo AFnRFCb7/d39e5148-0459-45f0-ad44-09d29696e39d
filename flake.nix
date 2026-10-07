@@ -133,11 +133,13 @@
                                                                                                 production =
                                                                                                     {
                                                                                                         enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
+                                                                                                        name = _lib.mkOption { default = "visa-database-production" ; type = _lib.types.str ; } ;
                                                                                                         port = _lib.mkOption { default = 16204 ; type = _lib.types.ints.between 1024 65535 ; } ;
                                                                                                     } ;
                                                                                                 staging =
                                                                                                     {
                                                                                                         enable = _lib.mkOption { default = false ; type = _lib.types.bool ; } ;
+                                                                                                        name = _lib.mkOption { default = "visa-database-staging" ; type = _lib.types.str ; } ;
                                                                                                         port = _lib.mkOption { default = 11187 ; type =_lib.types.ints.between 1024 65535 ; } ;
                                                                                                     } ;
                                                                                             } ;
@@ -229,34 +231,6 @@
                                                                                                 {
                                                                                                     default = "visa-gateway" ;
                                                                                                     type = _lib.types.str ;
-                                                                                                } ;
-                                                                                    } ;
-                                                                                server =
-                                                                                    {
-                                                                                        enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
-                                                                                        fetch =
-                                                                                            _lib.mkOption
-                                                                                                {
-                                                                                                    default =
-                                                                                                        _config.node-package.fetch
-                                                                                                            {
-                                                                                                                dependencies = { express = "^5.1.0" ; cors = "^2.8.6" ; } ;
-                                                                                                                scripts = { start = "node server.js 14636" ; } ;
-                                                                                                            } ;
-                                                                                                    type = _lib.types.package ;
-                                                                                                } ;
-                                                                                        name =
-                                                                                            _lib.mkOption
-                                                                                                {
-                                                                                                    default = "visa-server" ;
-                                                                                                    type = _lib.types.str ;
-                                                                                                } ;
-                                                                                        package =
-                                                                                            _lib.mkOption
-                                                                                                {
-                                                                                                    default =
-                                                                                                        _config.node-package.build ./backend/server ;
-                                                                                                    type = _lib.types.package ;
                                                                                                 } ;
                                                                                     } ;
                                                                             } ;
