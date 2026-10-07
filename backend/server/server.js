@@ -6,6 +6,42 @@ app.use(express.json());
 const port = Number(process.argv[2]) ;
 app.get
     (
+        "/health-check/unauthenticated" ,
+        ( request , response ) =>
+            {
+                const name = request.query.name || "world" ;
+                response.send( ) ;
+            }
+    ) ;
+app.patch
+    (
+        "/health-check/unauthenticated" ,
+        ( request , response ) =>
+            {
+                const name = request.query.name || "world" ;
+                response.send( ) ;
+            }
+    ) ;
+app.get
+    (
+        "/health-check/authenticated" ,
+        ( request , response ) =>
+            {
+                const name = request.query.name || "world" ;
+                response.send( ) ;
+            }
+    ) ;
+app.patch
+    (
+        "/health-check/authenticated" ,
+        ( request , response ) =>
+            {
+                const name = request.query.name || "world" ;
+                response.send( ) ;
+            }
+    ) ;
+app.get
+    (
         "/hello" ,
         ( request , response ) =>
             {
