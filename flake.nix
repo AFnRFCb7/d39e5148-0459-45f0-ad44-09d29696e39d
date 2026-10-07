@@ -199,6 +199,18 @@
                                                                                         staging =
                                                                                             {
                                                                                                 enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
+                                                                                                execute =
+                                                                                                    _lib.mkOption
+                                                                                                        {
+                                                                                                            default =
+                                                                                                                {
+                                                                                                                    commmand = "run start" ;
+                                                                                                                    name = "execute" ;
+                                                                                                                    package = _config.node-package.execute ( _config.node-package ./backend/server ) ;
+                                                                                                                    work-directory = "/tmp" ;
+                                                                                                                } ;
+                                                                                                            type = _lib.types.package ;
+                                                                                                        } ;
                                                                                             } ;
                                                                                     } ;
                                                                             } ;
