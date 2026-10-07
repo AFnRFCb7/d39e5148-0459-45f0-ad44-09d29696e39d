@@ -141,73 +141,73 @@
                                                                                                         port = _lib.mkOption { default = 11187 ; type =_lib.types.ints.between 1024 65535 ; } ;
                                                                                                     } ;
                                                                                             } ;
-                                                                                    } ;
-                                                                                init =
-                                                                                    _lib.mkOption
-                                                                                        {
-                                                                                            default =
-                                                                                                _config.lazy-shell-application
-                                                                                                    {
-                                                                                                        mounts = { home = { source = "/tmp" ; type = "bind" ; } ; } ;
-                                                                                                        name = "init" ;
-                                                                                                        post = null ;
-                                                                                                        runtime-inputs = pkgs : [ pkgs.postgresql ] ;
-                                                                                                        text =
-                                                                                                            ''
-                                                                                                                cd /mounts/home
-                                                                                                                mkdir --parents visa
-                                                                                                                initdb --pgdata=/mounts/home/visa
-                                                                                                            '' ;
-                                                                                                    } ;
-                                                                                            type = _lib.types.package ;
-                                                                                        } ;
-                                                                                migrate =
-                                                                                    {
-                                                                                        execute =
+                                                                                        init =
                                                                                             _lib.mkOption
                                                                                                 {
                                                                                                     default =
-                                                                                                        _config.node-package.execute
+                                                                                                        _config.lazy-shell-application
                                                                                                             {
-                                                                                                                command = "up" ;
-                                                                                                                name = "migrate" ;
-                                                                                                                package = _config.node-package.build ./backend/database/migrate ;
-                                                                                                                work-directory = "/tmp" ;
-                                                                                                            } ;
-                                                                                                    type = _lib.types.package ;
-                                                                                                };
-                                                                                        fetch =
-                                                                                            _lib.mkOption
-                                                                                                {
-                                                                                                    default =
-                                                                                                        _config.node-package.fetch
-                                                                                                            {
-                                                                                                                name = "visa-database-migration" ;
-                                                                                                                private = true ;
-                                                                                                                dependencies =
-                                                                                                                    {
-                                                                                                                        db-migrate = "^0.11.14" ;
-                                                                                                                        db-migrate-pg = "^1.5.2" ;
-                                                                                                                    } ;
-                                                                                                                scripts =
-                                                                                                                    let
-                                                                                                                        database =
-                                                                                                                            port :
-                                                                                                                                {
-                                                                                                                                    driver = "pg" ;
-                                                                                                                                    host = "localhost" ;
-                                                                                                                                    port = builtins.toString port ;
-                                                                                                                                    database ="visa" ;
-                                                                                                                                    user = "postgres" ;
-                                                                                                                                } ;
-                                                                                                                        in
-                                                                                                                            {
-                                                                                                                                production-up = "ln --symbolic ${ builtins.toFile "database.json" ( builtins.toJSON ( database _config.visa.backend.environments.production.port ) ) } ./database.json && ./bin/db-migrate up --migrations-dir ./migrations/production" ;
-                                                                                                                                staging-up = "ln --symbolic ${ builtins.toFile "database.json" ( builtins.toJSON ( database _config.visa.backend.environments.staging.port ) ) } ./database.json && ./bin/db-migrate up --migrations-dir ./migrations/production && ./bin/db-migrate up --migrations-dir ./migrations/staging" ;
-                                                                                                                            } ;
+                                                                                                                mounts = { home = { source = "/tmp" ; type = "bind" ; } ; } ;
+                                                                                                                name = "init" ;
+                                                                                                                post = null ;
+                                                                                                                runtime-inputs = pkgs : [ pkgs.postgresql ] ;
+                                                                                                                text =
+                                                                                                                    ''
+                                                                                                                        cd /mounts/home
+                                                                                                                        mkdir --parents visa
+                                                                                                                        initdb --pgdata=/mounts/home/visa
+                                                                                                                    '' ;
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
                                                                                                 } ;
+                                                                                        migrate =
+                                                                                            {
+                                                                                                execute =
+                                                                                                    _lib.mkOption
+                                                                                                        {
+                                                                                                            default =
+                                                                                                                _config.node-package.execute
+                                                                                                                    {
+                                                                                                                        command = "up" ;
+                                                                                                                        name = "migrate" ;
+                                                                                                                        package = _config.node-package.build ./backend/database/migrate ;
+                                                                                                                        work-directory = "/tmp" ;
+                                                                                                                    } ;
+                                                                                                            type = _lib.types.package ;
+                                                                                                        };
+                                                                                                fetch =
+                                                                                                    _lib.mkOption
+                                                                                                        {
+                                                                                                            default =
+                                                                                                                _config.node-package.fetch
+                                                                                                                    {
+                                                                                                                        name = "visa-database-migration" ;
+                                                                                                                        private = true ;
+                                                                                                                        dependencies =
+                                                                                                                            {
+                                                                                                                                db-migrate = "^0.11.14" ;
+                                                                                                                                db-migrate-pg = "^1.5.2" ;
+                                                                                                                            } ;
+                                                                                                                        scripts =
+                                                                                                                            let
+                                                                                                                                database =
+                                                                                                                                    port :
+                                                                                                                                        {
+                                                                                                                                            driver = "pg" ;
+                                                                                                                                            host = "localhost" ;
+                                                                                                                                            port = builtins.toString port ;
+                                                                                                                                            database ="visa" ;
+                                                                                                                                            user = "postgres" ;
+                                                                                                                                        } ;
+                                                                                                                                in
+                                                                                                                                    {
+                                                                                                                                        production-up = "ln --symbolic ${ builtins.toFile "database.json" ( builtins.toJSON ( database _config.visa.backend.environments.production.port ) ) } ./database.json && ./bin/db-migrate up --migrations-dir ./migrations/production" ;
+                                                                                                                                        staging-up = "ln --symbolic ${ builtins.toFile "database.json" ( builtins.toJSON ( database _config.visa.backend.environments.staging.port ) ) } ./database.json && ./bin/db-migrate up --migrations-dir ./migrations/production && ./bin/db-migrate up --migrations-dir ./migrations/staging" ;
+                                                                                                                                    } ;
+                                                                                                                    } ;
+                                                                                                            type = _lib.types.package ;
+                                                                                                        } ;
+                                                                                            } ;
                                                                                     } ;
                                                                                 server =
                                                                                     {
