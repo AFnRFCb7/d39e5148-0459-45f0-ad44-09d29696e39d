@@ -74,9 +74,9 @@
                                                                                 } ;
                                                                             wantedBy = [ "multi-user.target" ] ;
                                                                         } ;
-                                                                visa-server =
+                                                                visa-server-staging =
                                                                     _lib.mkIf
-                                                                        ( _config.visa.backend.enable && _config.visa.backend.server.enable )
+                                                                        ( _config.visa.backend.server.environments.staging.enable )
                                                                         {
                                                                             after = [ "network.target" ] ;
                                                                             name = "${ _config.visa.backend.server.name }.service" ;
