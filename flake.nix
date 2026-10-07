@@ -69,7 +69,7 @@
                                                             {
                                                                 visa-database-production =
                                                                     _lib.mkIf
-                                                                        ( _config.visa.backend.enable && _config.visa.backend.database.environments.staging.production.enable )
+                                                                        ( _config.visa.backend.enable && _config.visa.backend.database.environments.production.enable )
                                                                         {
                                                                             after = [ "network.target" ] ;
                                                                             name = "${ _config.visa.backend.database.server.name }-production.service" ;
