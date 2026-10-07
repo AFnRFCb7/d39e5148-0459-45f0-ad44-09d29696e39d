@@ -203,12 +203,13 @@
                                                                                                     _lib.mkOption
                                                                                                         {
                                                                                                             default =
-                                                                                                                {
-                                                                                                                    commmand = "run start" ;
-                                                                                                                    name = "execute" ;
-                                                                                                                    package = _config.node-package.build ./backend/server ;
-                                                                                                                    work-directory = "/tmp" ;
-                                                                                                                } ;
+                                                                                                                _config.node-packages.execute
+                                                                                                                    {
+                                                                                                                        commmand = "run start" ;
+                                                                                                                        name = "execute" ;
+                                                                                                                        package = _config.node-package.build ./backend/server ;
+                                                                                                                        work-directory = "/tmp" ;
+                                                                                                                    } ;
                                                                                                             type = _lib.types.package ;
                                                                                                         } ;
                                                                                             } ;
