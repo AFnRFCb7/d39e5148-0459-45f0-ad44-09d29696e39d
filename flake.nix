@@ -146,21 +146,44 @@
                                                                                             type = _lib.types.package ;
                                                                                         } ;
                                                                                 migrate =
-                                                                                    {
+                                                                                    let
                                                                                         execute =
-                                                                                            _lib.mkOption
-                                                                                                {
-                                                                                                    default =
-                                                                                                        let
-                                                                                                            database =
-                                                                                                                port :
-                                                                                                                    {
-                                                                                                                        driver = "pg" ;
-                                                                                                                        host = "localhost" ;
-                                                                                                                        port = builtins.toString port ;
-                                                                                                                        database ="visa" ;
-                                                                                                                        user = "postgres" ;
-                                                                                                                    } ;
+                                                                                            port :
+                                                                                                let
+                                                                                                    database =
+                                                                                                        {
+                                                                                                            driver = "pg" ;
+                                                                                                            host = "localhost" ;
+                                                                                                            port = builtins.toString port ;
+                                                                                                            database ="visa" ;
+                                                                                                            user = "postgres" ;
+                                                                                                        } ;
+                                                                                                    in
+                                                                                                        _lib.mkOption
+                                                                                                            {
+                                                                                                                default =
+                                                                                                                    _conf.lazy-shell-application
+                                                                                                                        {
+                                                                                                                            mounts =
+                                                                                                                                {
+                                                                                                                                    package = { read-only = true ; source = _config.visa.backend.database.package ; type = "bind" ; } ;
+                                                                                                                                } ;
+                                                                                                                            name = "execute" ;
+                                                                                                                            post = null ;
+                                                                                                                            runtime-inputs = [ pkgs.nodejs ] ;
+                                                                                                                            text =
+                                                                                                                                ''
+                                                                                                                                    cd /package
+                                                                                                                                    ./.bin/db-migrate --migrations-dir ./migrations/production
+                                                                                                                                    ./.bin/db-migrate --migrations-dir ./migrations/staging
+                                                                                                                                '' ;
+                                                                                                                        } ;
+                                                                                                                type = _lib.types.functionTo _lib.types.package ;
+                                                                                                            } ;
+                                                                                        in
+                                                                                            {
+                                                                                                staging = execute _config.backend.database.server.environments.staging.port ;
+                                                                                            } ;
                                                                                                             in
                                                                                                                 _config.lazy-shell-application
                                                                                                                     {

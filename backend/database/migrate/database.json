@@ -1,0 +1,7 @@
+{
+  "driver": "pg",
+  "host": {"ENV": "DATABASE_HOST"},
+  "port": {"ENV": "DATABASE_PORT"},
+  "database": {"ENV": "DATABASE_DATABASE"},
+  "user": {"ENV": "DATABASE_USER"}
+}
