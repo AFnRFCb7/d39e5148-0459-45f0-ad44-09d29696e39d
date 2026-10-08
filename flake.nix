@@ -151,11 +151,19 @@
                                                                                             _lib.mkOption
                                                                                                 {
                                                                                                     default =
-                                                                                                        _config.node-package.execute
+                                                                                                        _config.lazy-shell-application
                                                                                                             {
-                                                                                                                command = ''"$@"'' ;
+                                                                                                                mounts = { package = _config.node-package.build ./backend/database/migrate ; }
                                                                                                                 name = "migrate" ;
-                                                                                                                package = _config.node-package.build ./backend/database/migrate ;
+                                                                                                                post = null ;
+                                                                                                                runtime-inputs = [ pkgs.nodejs ] ;
+                                                                                                                text =
+                                                                                                                    ''
+                                                                                                                        cd /mounts/package
+                                                                                                                        cat package.json
+                                                                                                                        npm run staging-up
+                                                                                                                    '' ;
+                                                                                                                command = ''"$@"'' ;
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
                                                                                                 };
