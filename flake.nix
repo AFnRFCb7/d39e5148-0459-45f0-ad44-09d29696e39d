@@ -177,7 +177,8 @@
                                                                                                                     export DATABASE_PORT=${ builtins.toString _config.visa.backend.database.environments.staging.port }
                                                                                                                     export DATABASE_DATABASE=visa
                                                                                                                     export DATABASE_USER=postgres
-                                                                                                                    ${ _pkgs.findutils }/bin/find .bin -mindepth 1 -maxdepth 1
+                                                                                                                    cat package.json
+                                                                                                                    ${ _pkgs.findutils }/bin/find . -mindepth 1 -maxdepth 1
                                                                                                                     .bin/db-migrate --migrations-dir ./migrations/production up
                                                                                                                     .bin/db-migrate --migrations-dir ./migrations/staging up
                                                                                                                 '' ;
