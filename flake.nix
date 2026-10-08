@@ -153,7 +153,7 @@
                                                                                                     default =
                                                                                                         _config.lazy-shell-application
                                                                                                             {
-                                                                                                                mounts = { package = _config.node-package.build ./backend/database/migrate ; } ;
+                                                                                                                mounts = { package = { read-only = true ; source = _config.node-package.build ./backend/database/migrate ; type = "bind" ; } ;
                                                                                                                 name = "migrate" ;
                                                                                                                 post = null ;
                                                                                                                 runtime-inputs = [ pkgs.nodejs ] ;
