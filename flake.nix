@@ -181,6 +181,7 @@
                                                                                                                     export DATABASE_DATABASE=postgres
                                                                                                                     export DATABASE_USER=postgres
                                                                                                                     ${ _pkgs.findutils }/bin/find migrations -mindepth 1
+                                                                                                                    ./node_modules/.bin/db-migrate --version
                                                                                                                     /mounts/package/node_modules/.bin/db-migrate --migrations-dir ./migrations/production up
                                                                                                                     /mounts/package/node_modules/.bin/db-migrate --migrations-dir ./migrations/staging up
                                                                                                                 '' ;
