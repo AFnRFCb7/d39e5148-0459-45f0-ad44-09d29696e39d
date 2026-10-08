@@ -33,7 +33,7 @@
                                                                             text =
                                                                                 ''
                                                                                     cat <<EOF
-                                                                                    EXECUTE_DB_MIGRATE=${ _config.visa.backend.database.migrate.execute _config.visa.database.migration.environments.staging.port  }
+                                                                                    EXECUTE_DB_MIGRATE=${ _config.visa.backend.database.migrate.environments.staging  }
                                                                                     EXECUTE_DB_INIT=${ _config.visa.backend.database.init }
                                                                                     EXECUTE_ADMIN=${ _config.visa.frontend.admin.fetch }
                                                                                     FETCH_FRONTEND=${ _config.visa.frontend.web.fetch }
@@ -148,45 +148,36 @@
                                                                                 migrate =
                                                                                     let
                                                                                         execute =
-                                                                                            port :
-                                                                                                let
-                                                                                                    database =
-                                                                                                        {
-                                                                                                            driver = "pg" ;
-                                                                                                            host = "localhost" ;
-                                                                                                            port = builtins.toString port ;
-                                                                                                            database ="visa" ;
-                                                                                                            user = "postgres" ;
-                                                                                                        } ;
-                                                                                                    in
-                                                                                                        _lib.mkOption
-                                                                                                            {
-                                                                                                                default =
-                                                                                                                    _conf.lazy-shell-application
+                                                                                            text :
+                                                                                                _lib.mkOption
+                                                                                                    {
+                                                                                                        default =
+                                                                                                            _conf.lazy-shell-application
+                                                                                                                {
+                                                                                                                    mounts =
                                                                                                                         {
-                                                                                                                            mounts =
-                                                                                                                                {
-                                                                                                                                    package = { read-only = true ; source = _config.visa.backend.database.package ; type = "bind" ; } ;
-                                                                                                                                } ;
-                                                                                                                            name = "execute" ;
-                                                                                                                            post = null ;
-                                                                                                                            runtime-inputs = [ pkgs.nodejs ] ;
-                                                                                                                            text =
-                                                                                                                                ''
-                                                                                                                                    cd /package
-                                                                                                                                    export DATABASE_HOST=localhost
-                                                                                                                                    export DATABASE_PORT=${ builtins.toString _config.visa.backend.database.environments.staging.port }
-                                                                                                                                    export DATABASE_DATABASE=visa
-                                                                                                                                    export DATABASE_USER=postgres
-                                                                                                                                    ./.bin/db-migrate --migrations-dir ./migrations/production
-                                                                                                                                    ./.bin/db-migrate --migrations-dir ./migrations/staging
-                                                                                                                                '' ;
+                                                                                                                            package = { read-only = true ; source = _config.visa.backend.database.package ; type = "bind" ; } ;
                                                                                                                         } ;
-                                                                                                                type = _lib.types.functionTo _lib.types.package ;
-                                                                                                            } ;
+                                                                                                                    name = "execute" ;
+                                                                                                                    post = null ;
+                                                                                                                    runtime-inputs = [ pkgs.nodejs ] ;
+                                                                                                                    text = text ;
+                                                                                                                } ;
+                                                                                                        type = _lib.types.package ;
+                                                                                                    } ;
                                                                                         in
                                                                                             {
-                                                                                                staging = execute _config.backend.database.server.environments.staging.port ;
+                                                                                                staging =
+                                                                                                    execute
+                                                                                                        ''
+                                                                                                            cd /package
+                                                                                                            export DATABASE_HOST=localhost
+                                                                                                            export DATABASE_PORT=${ builtins.toString _config.visa.backend.database.environments.staging.port }
+                                                                                                            export DATABASE_DATABASE=visa
+                                                                                                            export DATABASE_USER=postgres
+                                                                                                            ./.bin/db-migrate --migrations-dir ./migrations/production
+                                                                                                            ./.bin/db-migrate --migrations-dir ./migrations/staging
+                                                                                                        '' ;
                                                                                             } ;
                                                                                         fetch =
                                                                                             _lib.mkOption
@@ -365,7 +356,7 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
-                                                                                                        ${ _config.visa.backend.database.migrate.execute _config.visa.database.migration.environments.staging.port }/bin/migrate run staging-up
+                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging }
                                                                                                         cd /mounts/package
                                                                                                         BROWSER=chromium HEADLESS=false node tests.js
                                                                                                     '' ;
