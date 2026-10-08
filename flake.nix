@@ -169,7 +169,7 @@
                                                                                                 staging =
                                                                                                     execute
                                                                                                         ''
-                                                                                                            cd /package
+                                                                                                            cd /mounts/package
                                                                                                             export DATABASE_HOST=localhost
                                                                                                             export DATABASE_PORT=${ builtins.toString _config.visa.backend.database.environments.staging.port }
                                                                                                             export DATABASE_DATABASE=visa
@@ -339,6 +339,7 @@
                                                                                                     {
                                                                                                         firefox = { read-only = true ; source = _pkgs.firefox ; type = "bind" ; } ;
                                                                                                         chromium = { read-only = true ; source = _pkgs.chromium ; type = "bind" ; } ;
+                                                                                                        migrate = { read-only = true ; source = _config.node-package.build ./backend/database/migrate ; } ;
                                                                                                         package = { read-only = true ; source = _config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
