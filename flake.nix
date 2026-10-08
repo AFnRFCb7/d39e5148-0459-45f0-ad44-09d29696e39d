@@ -179,8 +179,8 @@
                                                                                                                     export DATABASE_USER=postgres.bin
                                                                                                                     cat package.json
                                                                                                                     ${ _pkgs.findutils }/bin/find . -mindepth 1 -maxdepth 1
-                                                                                                                    .bin/db-migrate --migrations-dir ./migrations/production up
-                                                                                                                    .bin/db-migrate --migrations-dir ./migrations/staging up
+                                                                                                                    node-modules/.bin/db-migrate --migrations-dir ./migrations/production up
+                                                                                                                    node-modules/.bin/db-migrate --migrations-dir ./migrations/staging up
                                                                                                                 '' ;
                                                                                                     } ;
                                                                                         fetch =
