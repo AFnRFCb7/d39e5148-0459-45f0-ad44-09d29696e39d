@@ -33,6 +33,7 @@
                                                                             text =
                                                                                 ''
                                                                                     cat <<EOF
+                                                                                    EXECUTE_MIGRATE=${ _config.visa.backend.database.migrate.environments.staging }
                                                                                     EXECUTE_DB_MIGRATE=${ _config.visa.backend.database.migrate.environments.staging  }
                                                                                     EXECUTE_DB_INIT=${ _config.visa.backend.database.init }
                                                                                     EXECUTE_ADMIN=${ _config.visa.frontend.admin.fetch }
