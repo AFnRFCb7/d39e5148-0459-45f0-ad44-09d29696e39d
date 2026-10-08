@@ -156,7 +156,7 @@
                                                                                                                 {
                                                                                                                     mounts =
                                                                                                                         {
-                                                                                                                            package = { read-only = true ; source = _config.visa.backend.database.package ; type = "bind" ; } ;
+                                                                                                                            package = { read-only = true ; source = _config.node-package.build ./backend/database ; type = "bind" ; } ;
                                                                                                                         } ;
                                                                                                                     name = "execute" ;
                                                                                                                     post = null ;
