@@ -12,7 +12,7 @@ const database = new Pool({
     host: "127.0.0.1",
     port: port,
     database: "postgres",
-    user: "visa-database-staging"
+    user: "postgres"
 });
 
 app.get
