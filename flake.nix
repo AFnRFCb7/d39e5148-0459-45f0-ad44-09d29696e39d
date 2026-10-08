@@ -339,7 +339,7 @@
                                                                                                     {
                                                                                                         firefox = { read-only = true ; source = _pkgs.firefox ; type = "bind" ; } ;
                                                                                                         chromium = { read-only = true ; source = _pkgs.chromium ; type = "bind" ; } ;
-                                                                                                        migrate = { read-only = true ; source = _config.node-package.build ./backend/database/migrate ; } ;
+                                                                                                        migrate = { read-only = true ; source = _config.node-package.build ./backend/database/migrate ; type = "bind" ; } ;
                                                                                                         package = { read-only = true ; source = _config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
