@@ -160,7 +160,7 @@
                                                                                                                         } ;
                                                                                                                     name = "execute" ;
                                                                                                                     post = null ;
-                                                                                                                    runtime-inputs = [ pkgs.nodejs ] ;
+                                                                                                                    runtime-inputs = pkgs : [ pkgs.nodejs ] ;
                                                                                                                     text = text ;
                                                                                                                 } ;
                                                                                                         type = _lib.types.package ;
