@@ -28,7 +28,7 @@ const browsers = {
 
   const page = await browser.newPage();
 
-  await page.goto("http://localhost:14636/health-check/unauthenticated");
+  await page.goto("http://localhost:14636/health-check/unauthenticated/marker");
   console.log(await page.title());
 
   if (!headless) {
