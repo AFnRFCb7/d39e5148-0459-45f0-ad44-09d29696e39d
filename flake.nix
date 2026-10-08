@@ -163,7 +163,6 @@
                                                                                                                         cat package.json
                                                                                                                         npm run staging-up
                                                                                                                     '' ;
-                                                                                                                command = ''"$@"'' ;
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
                                                                                                 } ;
