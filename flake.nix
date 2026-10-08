@@ -174,8 +174,8 @@
                                                                                                             export DATABASE_PORT=${ builtins.toString _config.visa.backend.database.environments.staging.port }
                                                                                                             export DATABASE_DATABASE=visa
                                                                                                             export DATABASE_USER=postgres
-                                                                                                            ./.bin/db-migrate --migrations-dir ./migrations/production
-                                                                                                            ./.bin/db-migrate --migrations-dir ./migrations/staging
+                                                                                                            .bin/db-migrate --migrations-dir ./migrations/production up
+                                                                                                            .bin/db-migrate --migrations-dir ./migrations/staging up
                                                                                                         '' ;
                                                                                             } ;
                                                                                         fetch =
