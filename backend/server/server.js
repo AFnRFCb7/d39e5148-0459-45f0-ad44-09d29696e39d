@@ -4,36 +4,31 @@ const app = express() ;
 app.use(cors()) ;
 app.use(express.json());
 const port = Number(process.argv[2]) ;
+const name = process.argv[3] ;
+
+const { Pool } = require("pg");
+
+const database = new Pool({
+    host: "127.0.0.1",
+    port: port,
+    database: "postgres",
+    user: "visa-database-staging"
+});
+
 app.get
     (
-        "/health-check/unauthenticated" ,
-        ( request , response ) =>
+        "/health-check/unauthenticated/marker" ,
+        async ( request , response ) =>
             {
-                const name = request.query.name || "world" ;
-                response.send( ) ;
+                const result = await database.query(
+                    "SELECT marker FROM healthcheck LIMIT 1"
+                );
+                response.send(marker) ;
             }
     ) ;
 app.patch
     (
-        "/health-check/unauthenticated" ,
-        ( request , response ) =>
-            {
-                const name = request.query.name || "world" ;
-                response.send( ) ;
-            }
-    ) ;
-app.get
-    (
-        "/health-check/authenticated" ,
-        ( request , response ) =>
-            {
-                const name = request.query.name || "world" ;
-                response.send( ) ;
-            }
-    ) ;
-app.patch
-    (
-        "/health-check/authenticated" ,
+        "/health-check/unauthenticated/marker" ,
         ( request , response ) =>
             {
                 const name = request.query.name || "world" ;

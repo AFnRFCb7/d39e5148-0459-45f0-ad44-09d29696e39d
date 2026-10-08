@@ -28,10 +28,7 @@ const browsers = {
 
   const page = await browser.newPage();
 
-  await page.goto("http://localhost:14636/hello?name=my name");
-  console.log(await page.title());
-
-  await page.goto("http://localhost:14636/secret?name=my secret");
+  await page.goto("http://localhost:14636/health-check/unauthenticated");
   console.log(await page.title());
 
   if (!headless) {

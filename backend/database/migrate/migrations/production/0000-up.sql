@@ -1,3 +1,7 @@
+CREATE TABLE healthcheck (
+    marker TEXT NOT NULL
+);
+INSERT INTO healthcheck (marker) VALUES ('4066203055180760') ;
 CREATE TABLE users (
     id BIGSERIAL PRIMARY KEY,
     email TEXT NOT NULL UNIQUE,
