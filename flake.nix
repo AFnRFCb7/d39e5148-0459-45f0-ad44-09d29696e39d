@@ -179,7 +179,7 @@
                                                                                                                     export DATABASE_PORT=${ builtins.toString _config.visa.backend.database.environments.staging.port }
                                                                                                                     export DATABASE_DATABASE=postgres
                                                                                                                     export DATABASE_USER=postgres
-                                                                                                                    ${ _pkgs.findutils }/bin/find node_modules -mindepth 1 -maxdepth 1
+                                                                                                                    ${ _pkgs.findutils }/bin/find migrations -mindepth 1 -maxdepth 1
                                                                                                                     /mounts/package/node_modules/.bin/db-migrate --migrations-dir ./migrations/production up
                                                                                                                     /mounts/package/node_modules/.bin/db-migrate --migrations-dir ./migrations/staging up
                                                                                                                 '' ;
