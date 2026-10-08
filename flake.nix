@@ -37,7 +37,6 @@
                                                                                     EXECUTE_DB_INIT=${ _config.visa.backend.database.init }
                                                                                     EXECUTE_ADMIN=${ _config.visa.frontend.admin.fetch }
                                                                                     FETCH_FRONTEND=${ _config.visa.frontend.web.fetch }
-                                                                                    FETCH_MIGRATE=${ _config.visa.backend.database.migrate.fetch }
                                                                                     PACKAGE_MIGRATE=${ _config.node-package.build ./backend/database/migrate }
                                                                                     DEMO_PLAYWRIGHT=${ _config.visa.playwright.demo }
                                                                                     PACKAGE=${ _config.visa.backend.server.environments.staging.package }
