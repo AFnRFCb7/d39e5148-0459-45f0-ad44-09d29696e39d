@@ -1,5 +1,5 @@
 {
-  "production" : {
+  "development" : {
     "driver": "pg",
     "host": {
       "ENV": "DATABASE_HOST"
