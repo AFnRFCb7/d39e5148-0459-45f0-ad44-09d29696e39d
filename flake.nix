@@ -158,7 +158,7 @@
                                                                                                                         {
                                                                                                                             mounts =
                                                                                                                                 {
-                                                                                                                                    package = { read-only = true ; source = _config.node-package.build ./backend/database ; type = "bind" ; } ;
+                                                                                                                                    package = { read-only = true ; source = _config.node-package.build ./backend/database/migrate ; type = "bind" ; } ;
                                                                                                                                 } ;
                                                                                                                             name = "execute" ;
                                                                                                                             post = null ;
@@ -176,7 +176,7 @@
                                                                                                                     export DATABASE_HOST=localhost
                                                                                                                     export DATABASE_PORT=${ builtins.toString _config.visa.backend.database.environments.staging.port }
                                                                                                                     export DATABASE_DATABASE=visa
-                                                                                                                    export DATABASE_USER=postgres
+                                                                                                                    export DATABASE_USER=postgres.bin
                                                                                                                     cat package.json
                                                                                                                     ${ _pkgs.findutils }/bin/find . -mindepth 1 -maxdepth 1
                                                                                                                     .bin/db-migrate --migrations-dir ./migrations/production up
