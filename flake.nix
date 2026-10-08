@@ -33,7 +33,7 @@
                                                                             text =
                                                                                 ''
                                                                                     cat <<EOF
-                                                                                    EXECUTE_DB_MIGRATE=${ _config.visa.backend.database.migrate.environments.staging  }
+                                                                                    EXECUTE_DB_MIGRATE=${ _config.visa.backend.database.migrate.staging  }
                                                                                     EXECUTE_DB_INIT=${ _config.visa.backend.database.init }
                                                                                     EXECUTE_ADMIN=${ _config.visa.frontend.admin.fetch }
                                                                                     FETCH_FRONTEND=${ _config.visa.frontend.web.fetch }
@@ -355,7 +355,7 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
-                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging }
+                                                                                                        ${ _config.visa.backend.database.migrate.staging }
                                                                                                         cd /mounts/package
                                                                                                         BROWSER=chromium HEADLESS=false node tests.js
                                                                                                     '' ;
