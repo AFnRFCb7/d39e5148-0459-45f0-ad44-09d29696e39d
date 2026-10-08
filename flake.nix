@@ -174,6 +174,10 @@
                                                                                                                             text =
                                                                                                                                 ''
                                                                                                                                     cd /package
+                                                                                                                                    export DATABASE_HOST=localhost
+                                                                                                                                    export DATABASE_PORT=${ builtins.toString _config.visa.backend.database.environments.staging.port }
+                                                                                                                                    export DATABASE_DATABASE=visa
+                                                                                                                                    export DATABASE_USER=postgres
                                                                                                                                     ./.bin/db-migrate --migrations-dir ./migrations/production
                                                                                                                                     ./.bin/db-migrate --migrations-dir ./migrations/staging
                                                                                                                                 '' ;
@@ -184,24 +188,6 @@
                                                                                             {
                                                                                                 staging = execute _config.backend.database.server.environments.staging.port ;
                                                                                             } ;
-                                                                                                            in
-                                                                                                                _config.lazy-shell-application
-                                                                                                                    {
-                                                                                                                        mounts = { package = { read-only = true ; source = _config.node-package.build ./backend/database/migrate ; type = "bind" ; } ; } ;
-                                                                                                                        name = "migrate" ;
-                                                                                                                        post = null ;
-                                                                                                                        runtime-inputs = pkgs : [ pkgs.nodejs ] ;
-                                                                                                                        text =
-                                                                                                                            ''
-                                                                                                                                cd /mounts/package
-                                                                                                                                echo ${ _config.node-package.build ./backend/database/migrate }
-                                                                                                                                cat package.json
-                                                                                                                                ln --symbolic ${ builtins.toFile "database.json" builtins.toJSON database } database.jsong
-                                                                                                                                npm run staging-up
-                                                                                                                            '' ;
-                                                                                                                    } ;
-                                                                                                    type = _lib.types.functionTo _lib.types.package ;
-                                                                                                } ;
                                                                                         fetch =
                                                                                             _lib.mkOption
                                                                                                 {
