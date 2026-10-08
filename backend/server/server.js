@@ -21,9 +21,12 @@ app.get
         async ( request , response ) =>
             {
                 const result = await database.query(
-                    "SELECT marker FROM \"health-check\" LIMIT 1"
+                    `SELECT schemaname, tablename
+                     FROM pg_tables
+                     ORDER BY schemaname, tablename`
+                    //  "SELECT marker FROM \"health-check\" LIMIT 1"
                 );
-                response.send(marker) ;
+                response.json( result.rows ) ; ;
             }
     ) ;
 app.patch
