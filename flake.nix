@@ -152,7 +152,7 @@
                                                                                                 _lib.mkOption
                                                                                                     {
                                                                                                         default =
-                                                                                                            _conf.lazy-shell-application
+                                                                                                            _config.lazy-shell-application
                                                                                                                 {
                                                                                                                     mounts =
                                                                                                                         {
