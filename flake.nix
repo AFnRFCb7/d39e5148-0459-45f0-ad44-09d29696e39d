@@ -177,7 +177,7 @@
                                                                                                                                 npm run staging-up
                                                                                                                             '' ;
                                                                                                                     } ;
-                                                                                                    type = _lib.types.package ;
+                                                                                                    type = _lib.types.functionTo _lib.types.package ;
                                                                                                 } ;
                                                                                         fetch =
                                                                                             _lib.mkOption
