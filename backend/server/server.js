@@ -21,7 +21,7 @@ app.get
         async ( request , response ) =>
             {
                 const result = await database.query(
-                    "SELECT marker FROM healthcheck LIMIT 1"
+                    "SELECT marker FROM health-check LIMIT 1"
                 );
                 response.send(marker) ;
             }
