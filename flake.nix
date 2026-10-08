@@ -200,7 +200,6 @@
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
                                                                                                 } ;
-                                                                                    } ;
                                                                             } ;
                                                                         server =
                                                                             {
