@@ -153,7 +153,7 @@
                                                                                                     default =
                                                                                                         _config.lazy-shell-application
                                                                                                             {
-                                                                                                                mounts = { package = _config.node-package.build ./backend/database/migrate ; }
+                                                                                                                mounts = { package = _config.node-package.build ./backend/database/migrate ; } ;
                                                                                                                 name = "migrate" ;
                                                                                                                 post = null ;
                                                                                                                 runtime-inputs = [ pkgs.nodejs ] ;
