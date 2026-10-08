@@ -151,20 +151,32 @@
                                                                                             _lib.mkOption
                                                                                                 {
                                                                                                     default =
-                                                                                                        _config.lazy-shell-application
-                                                                                                            {
-                                                                                                                mounts = { package = { read-only = true ; source = _config.node-package.build ./backend/database/migrate ; type = "bind" ; } ; } ;
-                                                                                                                name = "migrate" ;
-                                                                                                                post = null ;
-                                                                                                                runtime-inputs = pkgs : [ pkgs.nodejs ] ;
-                                                                                                                text =
-                                                                                                                    ''
-                                                                                                                        cd /mounts/package
-                                                                                                                        echo ${ _config.node-package.build ./backend/database/migrate }
-                                                                                                                        cat package.json
-                                                                                                                        npm run staging-up
-                                                                                                                    '' ;
-                                                                                                            } ;
+                                                                                                        let
+                                                                                                            database =
+                                                                                                                port :
+                                                                                                                    {
+                                                                                                                        driver = "pg" ;
+                                                                                                                        host = "localhost" ;
+                                                                                                                        port = builtins.toString port ;
+                                                                                                                        database ="visa" ;
+                                                                                                                        user = "postgres" ;
+                                                                                                                    } ;
+                                                                                                            in
+                                                                                                                _config.lazy-shell-application
+                                                                                                                    {
+                                                                                                                        mounts = { package = { read-only = true ; source = _config.node-package.build ./backend/database/migrate ; type = "bind" ; } ; } ;
+                                                                                                                        name = "migrate" ;
+                                                                                                                        post = null ;
+                                                                                                                        runtime-inputs = pkgs : [ pkgs.nodejs ] ;
+                                                                                                                        text =
+                                                                                                                            ''
+                                                                                                                                cd /mounts/package
+                                                                                                                                echo ${ _config.node-package.build ./backend/database/migrate }
+                                                                                                                                cat package.json
+                                                                                                                                ln --symbolic ${ builtins.toFile "database.json" builtins.toJSON database } database.jsong
+                                                                                                                                npm run staging-up
+                                                                                                                            '' ;
+                                                                                                                    } ;
                                                                                                     type = _lib.types.package ;
                                                                                                 } ;
                                                                                         fetch =
@@ -181,21 +193,10 @@
                                                                                                                         db-migrate-pg = "^1.5.2" ;
                                                                                                                     } ;
                                                                                                                 scripts =
-                                                                                                                    let
-                                                                                                                        database =
-                                                                                                                            port :
-                                                                                                                                {
-                                                                                                                                    driver = "pg" ;
-                                                                                                                                    host = "localhost" ;
-                                                                                                                                    port = builtins.toString port ;
-                                                                                                                                    database ="visa" ;
-                                                                                                                                    user = "postgres" ;
-                                                                                                                                } ;
-                                                                                                                        in
-                                                                                                                            {
-                                                                                                                                production-up = "ln --symbolic ${ builtins.toFile "database.json" ( builtins.toJSON ( database _config.visa.backend.database.environments.production.port ) ) } ./database.json && ./bin/db-migrate up --migrations-dir ./migrations/production" ;
-                                                                                                                                staging-up = "ln --symbolic ${ builtins.toFile "database.json" ( builtins.toJSON ( database _config.visa.backend.database.environments.staging.port ) ) } ./database.json && ./bin/db-migrate up --migrations-dir ./migrations/production && ./bin/db-migrate up --migrations-dir ./migrations/staging" ;
-                                                                                                                            } ;
+                                                                                                                    {
+                                                                                                                        production-up = "./bin/db-migrate up --migrations-dir ./migrations/production" ;
+                                                                                                                        staging-up = "./bin/db-migrate up --migrations-dir ./migrations/production && ./bin/db-migrate up --migrations-dir ./migrations/staging" ;
+                                                                                                                    } ;
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
                                                                                                 } ;
