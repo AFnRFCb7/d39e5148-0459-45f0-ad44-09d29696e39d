@@ -225,6 +225,19 @@
                                                                                                         package = lib.mkOption { default = _config.node-package.build ./backend/server ; type = _lib.types.package ; } ;
                                                                                                     } ;
                                                                                             } ;
+                                                                                fetch =
+                                                                                    _config.node-package.fetch
+                                                                                        {
+                                                                                            dependencies =
+                                                                                                {
+                                                                                                    cors = "^2.8.6" ;
+                                                                                                    express = "^5.1.0" ;
+                                                                                                } ;
+                                                                                            scripts =
+                                                                                                {
+                                                                                                    start = "node server.js 14636" ;
+                                                                                                } ;
+                                                                                        } ;
                                                                             } ;
                                                                     } ;
                                                                 frontend =
@@ -251,7 +264,6 @@
                                                                                                             } ;
                                                                                                         dependencies =
                                                                                                             {
-                                                                                                                pg = "^8.16.3" ;
                                                                                                                 vue = "^3.5.42" ;
                                                                                                                 vue-router = "^5.3.1" ;
                                                                                                             } ;
