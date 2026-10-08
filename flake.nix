@@ -348,6 +348,9 @@
                                                                                                 text =
                                                                                                     ''
                                                                                                         ${ _config.visa.backend.database.migrate.execute }/bin/migrate run
+                                                                                                        echo 8955469360341969
+                                                                                                        echo ${ _config.visa.backend.database.migrate.execute }
+                                                                                                        echo 6535715830056453
                                                                                                         ${ _config.visa.backend.database.migrate.execute }/bin/migrate run staging-up
                                                                                                         cd /mounts/package
                                                                                                         BROWSER=chromium HEADLESS=false node tests.js
