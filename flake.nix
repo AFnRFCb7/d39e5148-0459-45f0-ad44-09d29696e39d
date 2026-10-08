@@ -191,11 +191,6 @@
                                                                                                                         db-migrate = "^0.11.14" ;
                                                                                                                         db-migrate-pg = "^1.5.2" ;
                                                                                                                     } ;
-                                                                                                                scripts =
-                                                                                                                    {
-                                                                                                                        production-up = "./bin/db-migrate up --migrations-dir ./migrations/production" ;
-                                                                                                                        staging-up = "./bin/db-migrate up --migrations-dir ./migrations/production && ./bin/db-migrate up --migrations-dir ./migrations/staging" ;
-                                                                                                                    } ;
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
                                                                                                 } ;
