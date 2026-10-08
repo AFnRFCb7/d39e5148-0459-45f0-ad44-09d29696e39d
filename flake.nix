@@ -160,6 +160,7 @@
                                                                                                                 text =
                                                                                                                     ''
                                                                                                                         cd /mounts/package
+                                                                                                                        echo ${ _config.node-package.build ./backend/database/migrate }
                                                                                                                         cat package.json
                                                                                                                         npm run staging-up
                                                                                                                     '' ;
