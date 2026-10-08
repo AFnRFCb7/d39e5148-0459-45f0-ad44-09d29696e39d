@@ -42,6 +42,7 @@
                                                                                     PACKAGE_MIGRATE=${ _config.node-package.build ./backend/database/migrate }
                                                                                     DEMO_PLAYWRIGHT=${ _config.visa.playwright.demo }
                                                                                     PACKAGE=${ _config.visa.backend.server.environments.staging.package }
+                                                                                    PACKAGE_MIGRATE=${ _config.node-package.build ./backend/database/migrate }
                                                                                     FETCH_SERVER=${ _config.visa.backend.server.fetch }
                                                                                     EOF
                                                                                 '' ;
