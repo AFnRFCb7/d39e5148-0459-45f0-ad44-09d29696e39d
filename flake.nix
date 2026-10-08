@@ -424,7 +424,6 @@
                                                                                     type = _lib.types.package ;
                                                                                 } ;
                                                                     } ;
-                                                            } ;
                                                     } ;
                                             } ;
                         in
