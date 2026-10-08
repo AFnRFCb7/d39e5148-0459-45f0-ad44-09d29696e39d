@@ -250,6 +250,7 @@
                                                                                                             } ;
                                                                                                         dependencies =
                                                                                                             {
+                                                                                                                pg = "^8.16.3" ;
                                                                                                                 vue = "^3.5.42" ;
                                                                                                                 vue-router = "^5.3.1" ;
                                                                                                             } ;
