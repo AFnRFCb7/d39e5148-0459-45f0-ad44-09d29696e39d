@@ -33,7 +33,7 @@
                                                                             text =
                                                                                 ''
                                                                                     cat <<EOF
-                                                                                    EXECUTE_DB_MIGRATE=${ _config.visa.backend.database.migrate.execute }
+                                                                                    EXECUTE_DB_MIGRATE=${ _config.visa.backend.database.migrate.execute _config.visa.database.migration.environments.staging.port  }
                                                                                     EXECUTE_DB_INIT=${ _config.visa.backend.database.init }
                                                                                     EXECUTE_ADMIN=${ _config.visa.frontend.admin.fetch }
                                                                                     FETCH_FRONTEND=${ _config.visa.frontend.web.fetch }
@@ -356,11 +356,7 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
-                                                                                                        ${ _config.visa.backend.database.migrate.execute }/bin/migrate run
-                                                                                                        echo 8955469360341969
-                                                                                                        echo ${ _config.visa.backend.database.migrate.execute }
-                                                                                                        echo 6535715830056453
-                                                                                                        ${ _config.visa.backend.database.migrate.execute }/bin/migrate run staging-up
+                                                                                                        ${ _config.visa.backend.database.migrate.execute _config.visa.database.migration.environments.staging.port }/bin/migrate run staging-up
                                                                                                         cd /mounts/package
                                                                                                         BROWSER=chromium HEADLESS=false node tests.js
                                                                                                     '' ;
