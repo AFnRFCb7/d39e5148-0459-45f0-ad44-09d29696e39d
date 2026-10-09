@@ -453,7 +453,8 @@
                                         lazy-shell-application ,
                                         nixosTest ,
                                         node-package ,
-                                        obviated-by
+                                        obviated-by ,
+                                        visitor
                                     } :
                                         {
                                             obviated-by = obviated-by ;
@@ -469,7 +470,7 @@
                                                                     in
                                                                         {
                                                                             environment.systemPackages = [ _config.visa.playwright.execute ];
-                                                                            imports = [ failure implementation lazy-shell-application ] ;
+                                                                            imports = [ failure implementation lazy-shell-application visitor ] ;
                                                                         } ;
                                                         testScript =
                                                             ''
