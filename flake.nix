@@ -455,31 +455,30 @@
                                         node-package ,
                                         obviated-by
                                     } :
-                                        let
-                                            {
-                                                obviated-by = obviated-by ;
-                                                test =
-                                                    nixosTest
-                                                        {
-                                                            name = "visa" ;
-                                                            nodes.client =
-                                                                { config , pkgs } :
-                                                                    let
-                                                                        _config = config-identity config ;
-                                                                        _pkgs = pkgs-identity pkgs ;
-                                                                        in
-                                                                            {
-                                                                                environment.systemPackages = [ _config.visa.playwright.execute ];
-                                                                                imports = [ failure implementation lazy-shell-application ] ;
-                                                                            } ;
-                                                            testScript =
-                                                                ''
-                                                                    client.wait_for_unit("multi-user.target")
-                                                                    client.succeed("execute")
-                                                                '' ;
-                                                        } ;
-                                                type = "visa" ;
-                                            } ;
+                                        {
+                                            obviated-by = obviated-by ;
+                                            test =
+                                                nixosTest
+                                                    {
+                                                        name = "visa" ;
+                                                        nodes.client =
+                                                            { config , pkgs } :
+                                                                let
+                                                                    _config = config-identity config ;
+                                                                    _pkgs = pkgs-identity pkgs ;
+                                                                    in
+                                                                        {
+                                                                            environment.systemPackages = [ _config.visa.playwright.execute ];
+                                                                            imports = [ failure implementation lazy-shell-application ] ;
+                                                                        } ;
+                                                        testScript =
+                                                            ''
+                                                                client.wait_for_unit("multi-user.target")
+                                                                client.succeed("execute")
+                                                            '' ;
+                                                    } ;
+                                            type = "visa" ;
+                                        } ;
                             } ;
         } ;
 }
