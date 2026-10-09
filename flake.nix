@@ -451,8 +451,8 @@
                                     {
                                         failure ,
                                         lazy-shell-application ,
-                                        node-package ,
                                         nixosTest ,
+                                        node-package ,
                                         obviated-by
                                     } :
                                         let
