@@ -20,7 +20,7 @@ app.get
                 const result = await database.query(
                     "SELECT marker FROM \"health-check\" LIMIT 1"
                 ) ;
-                response.json( result.rows ) ; ;
+                response.json(response.json(result.rows[0].marker)) ; ;
             }
     ) ;
 app.get
