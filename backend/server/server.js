@@ -5,16 +5,13 @@ app.use(cors()) ;
 app.use(express.json());
 const port = Number(process.argv[2]) ;
 const name = process.argv[3] ;
-
 const { Pool } = require("pg");
-
 const database = new Pool({
     host: "127.0.0.1",
     port: 11187,
     database: "postgres",
     user: "postgres"
 });
-
 app.get
     (
         "/health-check/unauthenticated/marker" ,
@@ -24,15 +21,6 @@ app.get
                     "SELECT marker FROM \"health-check\" LIMIT 1"
                 ) ;
                 response.json( result.rows ) ; ;
-            }
-    ) ;
-app.patch
-    (
-        "/health-check/unauthenticated/marker" ,
-        ( request , response ) =>
-            {
-                const name = request.query.name || "world" ;
-                response.send( ) ;
             }
     ) ;
 app.get
@@ -56,7 +44,6 @@ app.get
 app.post("/login", (request, response) => {
     response.send("login") ;
 }) ;
-
 app.post("/consultation", (request, response) => {
     response.send("consultation") ;
 }) ;

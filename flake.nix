@@ -358,7 +358,6 @@
                                                                                             {
                                                                                                 mounts =
                                                                                                     {
-                                                                                                        firefox = { read-only = true ; source = _pkgs.firefox ; type = "bind" ; } ;
                                                                                                         chromium = { read-only = true ; source = _pkgs.chromium ; type = "bind" ; } ;
                                                                                                         migrate = { read-only = true ; source = _config.node-package.build ./backend/database/migrate ; type = "bind" ; } ;
                                                                                                         package = { read-only = true ; source = _config.visa.playwright.package ; type = "bind" ; } ;
@@ -370,7 +369,6 @@
                                                                                                         [
                                                                                                             pkgs.chromium
                                                                                                             pkgs.coreutils
-                                                                                                            pkgs.firefox
                                                                                                             pkgs.nodejs_20
                                                                                                             pkgs.glib
                                                                                                         ] ;
@@ -378,7 +376,7 @@
                                                                                                     ''
                                                                                                         ${ _config.visa.backend.database.migrate.environments.staging }/bin/execute
                                                                                                         cd /mounts/package
-                                                                                                        BROWSER=chromium HEADLESS=false node tests.js
+                                                                                                        BROWSER=chromium HEADLESS=false node demo.js
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
