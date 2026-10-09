@@ -7,10 +7,6 @@ const browsers = {
   chromium: {
     type: chromium,
     executablePath: "/mounts/chromium/bin/chromium"
-  },
-  firefox: {
-    type: firefox,
-    executablePath: "/mounts/firefox/bin/firefox"
   }
 };
 
