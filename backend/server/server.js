@@ -20,22 +20,22 @@ app.get
         "/health-check/unauthenticated/marker" ,
         async ( request , response ) =>
             {
-                const result = await database.query(
-                    `SELECT
-                        current_database() AS database,
-                        current_schema() AS schema,
-                        current_setting('search_path') AS search_path,
-                        (
-                            SELECT json_agg(
-                                json_build_object(
-                                    'schema', schemaname,
-                                    'table', tablename
-                                )
-                                ORDER BY schemaname, tablename
-                            )
-                            FROM pg_tables
-                        ) AS tables`
-                    //  "SELECT marker FROM \"health-check\" LIMIT 1"
+//                const result = await database.query(
+//                    `SELECT
+//                        current_database() AS database,
+//                        current_schema() AS schema,
+//                        current_setting('search_path') AS search_path,
+//                        (
+//                            SELECT json_agg(
+//                                json_build_object(
+//                                    'schema', schemaname,
+//                                    'table', tablename
+//                                )
+//                                ORDER BY schemaname, tablename
+//                            )
+//                            FROM pg_tables
+//                        ) AS tables`
+                    "SELECT marker FROM \"health-check\" LIMIT 1"
                 );
                 response.json( result.rows ) ; ;
             }
