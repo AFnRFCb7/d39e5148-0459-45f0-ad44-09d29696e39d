@@ -470,7 +470,7 @@
                                                                         in
                                                                             {
                                                                                 environment.systemPackages = [ _config.visa.playwright.execute ];
-                                                                                imports = [ failure implementation lazy-shell-application ] ;
+                                                                                imports = [ failure lazy-shell-application ] ;
                                                                             } ;
                                                             testScript =
                                                                 ''
