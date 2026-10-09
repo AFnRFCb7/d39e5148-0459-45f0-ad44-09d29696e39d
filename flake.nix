@@ -462,7 +462,7 @@
                                                     {
                                                         name = "visa" ;
                                                         nodes.client =
-                                                            { config , pkgs } :
+                                                            { config , pkgs , ... } :
                                                                 let
                                                                     _config = config-identity config ;
                                                                     _pkgs = pkgs-identity pkgs ;
