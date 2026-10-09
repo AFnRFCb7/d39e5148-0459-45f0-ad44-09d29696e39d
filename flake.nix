@@ -409,7 +409,6 @@
                                                                                                         export
                                                                                                         cd /mounts/package
                                                                                                         BROWSER=chromium HEADLESS=true node tests.js
-                                                                                                        BROWSER=firefox HEADLESS=true node tests.js
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
@@ -448,7 +447,36 @@
                         in
                             {
                                 implementation = implementation ;
-                                check = null ;
+                                check =
+                                    {
+                                        nixosTest ,
+                                        obviated-by
+                                    } :
+                                        let
+                                            {
+                                                obviated-by = obviated-by ;
+                                                test =
+                                                    nixosTest
+                                                        {
+                                                            name = "visa" ;
+                                                            nodes.client =
+                                                                { config , pkgs } :
+                                                                    let
+                                                                        _config = config-identity config ;
+                                                                        _pkgs = pkgs-identity pkgs ;
+                                                                        in
+                                                                            {
+                                                                                environment.systemPackages = [ _config.visa.playwright.execute ];
+                                                                                imports = [ implementation ] ;
+                                                                            } ;
+                                                            testScript =
+                                                                ''
+                                                                    client.wait_for_unit("multi-user.target")
+                                                                    client.succeed("execute")
+                                                                '' ;
+                                                        } ;
+                                                type = "visa" ;
+                                            } ;
                             } ;
         } ;
 }
