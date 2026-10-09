@@ -181,7 +181,7 @@
                                                                                                                     export DATABASE_DATABASE=postgres
                                                                                                                     export DATABASE_USER=postgres
                                                                                                                     /mounts/package/node_modules/.bin/db-migrate up --migrations-dir ./migrations/production --verbose
-                                                                                                                    # /mounts/package/node_modules/.bin/db-migrate up --migrations-dir ./migrations/staging
+                                                                                                                    /mounts/package/node_modules/.bin/db-migrate up --migrations-dir ./migrations/staging
                                                                                                                 '' ;
                                                                                                     } ;
                                                                                         fetch =
