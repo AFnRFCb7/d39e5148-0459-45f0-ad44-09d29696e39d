@@ -449,6 +449,9 @@
                                 implementation = implementation ;
                                 check =
                                     {
+                                        failure ,
+                                        lazy-shell-application ,
+                                        node-package ,
                                         nixosTest ,
                                         obviated-by
                                     } :
@@ -467,7 +470,7 @@
                                                                         in
                                                                             {
                                                                                 environment.systemPackages = [ _config.visa.playwright.execute ];
-                                                                                imports = [ implementation ] ;
+                                                                                imports = [ failure implementation lazy-shell-application ] ;
                                                                             } ;
                                                             testScript =
                                                                 ''
