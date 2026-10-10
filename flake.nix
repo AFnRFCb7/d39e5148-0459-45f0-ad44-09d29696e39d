@@ -407,10 +407,7 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
-                                                                                                        echo 9658398759087831
                                                                                                         cd /mounts/package
-                                                                                                        echo 9969977008943555
-                                                                                                        if true ; then exit 99 ; fi
                                                                                                         BROWSER=chromium HEADLESS=true node tests.js
                                                                                                     '' ;
                                                                                             } ;
