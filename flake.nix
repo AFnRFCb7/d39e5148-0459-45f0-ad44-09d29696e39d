@@ -41,6 +41,7 @@
                                                                                     FETCH_MIGRATE=${ _config.visa.backend.database.migrate.fetch }
                                                                                     PACKAGE_MIGRATE=${ _config.node-package.build ./backend/database/migrate }
                                                                                     DEMO_PLAYWRIGHT=${ _config.visa.playwright.demo }
+                                                                                    EXECUTE_PLAYWRIGHT=${ _config.visa.playwright.execute }
                                                                                     PACKAGE=${ _config.visa.backend.server.environments.staging.package }
                                                                                     PACKAGE_MIGRATE=${ _config.node-package.build ./backend/database/migrate }
                                                                                     FETCH_SERVER=${ _config.visa.backend.server.fetch }
@@ -406,7 +407,10 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
+                                                                                                        echo 9658398759087831
                                                                                                         cd /mounts/package
+                                                                                                        echo 9969977008943555
+                                                                                                        if true ; then exit 99 ; fi
                                                                                                         BROWSER=chromium HEADLESS=true node tests.js
                                                                                                     '' ;
                                                                                             } ;
@@ -468,7 +472,21 @@
                                                                     _pkgs = pkgs-identity pkgs ;
                                                                     in
                                                                         {
-                                                                            environment.systemPackages = [ _config.visa.playwright.execute ] ;
+                                                                            environment.systemPackages =
+                                                                                [
+                                                                                    (
+                                                                                        pkgs.writeShellApplication
+                                                                                            {
+                                                                                                name = "execute" ;
+                                                                                                runtimeInputs = [ pkgs.coreutils ] ;
+                                                                                                text =
+                                                                                                    ''
+                                                                                                        cat ${ _config.visa.playwright.execute }/bin/execute
+                                                                                                        exit 99
+                                                                                                    '' ;
+                                                                                            }
+                                                                                    )
+                                                                                ] ;# [ _config.visa.playwright.execute ];
                                                                             imports = [ failure implementation lazy-shell-application node-package visitor ] ;
                                                                         } ;
                                                         testScript =
