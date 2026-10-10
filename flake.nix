@@ -487,7 +487,8 @@
                                                                                             }
                                                                                     )
                                                                                 ] ;# [ _config.visa.playwright.execute ];
-                                                                            imports = [ failure implementation lazy-shell-application node-package visitor ] ;
+                                                                            imports = [ ] ;
+                                                                            # imports = [ failure implementation lazy-shell-application node-package visitor ] ;
                                                                         } ;
                                                         testScript =
                                                             ''
