@@ -481,8 +481,7 @@
                                                                                                 runtimeInputs = [ pkgs.coreutils ] ;
                                                                                                 text =
                                                                                                     ''
-                                                                                                        cat ${ _config.visa.playwright.execute }/bin/execute
-                                                                                                        exit 99
+                                                                                                        echo hi | ${ _config.visa.playwright.execute }/bin/execute
                                                                                                     '' ;
                                                                                             }
                                                                                     )
