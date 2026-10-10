@@ -469,7 +469,7 @@
                                                                     _pkgs = pkgs-identity pkgs ;
                                                                     in
                                                                         {
-                                                                            environment.systemPackages = [ _config.visa.playwright.execute ];
+                                                                            environment.systemPackages = [ ( pkgs.writeShellApplication { name = "execute" ; text = "" ; } ) ] ;# [ _config.visa.playwright.execute ];
                                                                             imports = [ failure implementation lazy-shell-application node-package visitor ] ;
                                                                         } ;
                                                         testScript =
