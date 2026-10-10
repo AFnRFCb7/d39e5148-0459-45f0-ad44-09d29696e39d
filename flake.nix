@@ -406,7 +406,6 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
-                                                                                                        export
                                                                                                         cd /mounts/package
                                                                                                         BROWSER=chromium HEADLESS=true node tests.js
                                                                                                     '' ;
@@ -469,21 +468,7 @@
                                                                     _pkgs = pkgs-identity pkgs ;
                                                                     in
                                                                         {
-                                                                            environment.systemPackages =
-                                                                                [
-                                                                                    (
-                                                                                        pkgs.writeShellApplication
-                                                                                            {
-                                                                                                name = "execute" ;
-                                                                                                runtimeInputs = [ pkgs.coreutils ] ;
-                                                                                                text =
-                                                                                                    ''
-                                                                                                        cat ${ _config.visa.playwright.execute }/bin/execute
-                                                                                                        exit 99
-                                                                                                    '' ;
-                                                                                            }
-                                                                                    )
-                                                                                ] ;# [ _config.visa.playwright.execute ];
+                                                                            environment.systemPackages = [ _config.visa.playwright.execute ] ;
                                                                             imports = [ failure implementation lazy-shell-application node-package visitor ] ;
                                                                         } ;
                                                         testScript =
