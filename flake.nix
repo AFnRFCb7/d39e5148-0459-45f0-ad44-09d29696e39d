@@ -203,6 +203,12 @@
                                                                                                                         '' ;
                                                                                                             } ;
                                                                                                     } ;
+                                                                                        package =
+                                                                                            _lib.mkOption
+                                                                                                {
+                                                                                                    default = false ;
+                                                                                                    type = _type.types.bool ;
+                                                                                                }
                                                                                         fetch =
                                                                                             _lib.mkOption
                                                                                                 {
