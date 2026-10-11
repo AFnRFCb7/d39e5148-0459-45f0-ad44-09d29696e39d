@@ -402,13 +402,13 @@
                                                                                                             pkgs.coreutils
                                                                                                             pkgs.nodejs_20
                                                                                                             pkgs.glib
-                                                                                                            pkgs.playwright
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
                                                                                                         ${ _config.visa.backend.database.migrate.environments.staging }/bin/execute
                                                                                                         cd /mounts/package
-                                                                                                        BROWSER=chromium HEADLESS=true playwright test tests.spec.js
+                                                                                                        export PATH="$PATH:./node_modules/.bin
+                                                                                                        BROWSER=chromium HEADLESS=true playwright play tests.spec.js
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
