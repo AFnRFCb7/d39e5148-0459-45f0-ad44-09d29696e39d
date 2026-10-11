@@ -408,7 +408,7 @@
                                                                                                     ''
                                                                                                         ${ _config.visa.backend.database.migrate.environments.staging }/bin/execute
                                                                                                         cd /mounts/package
-                                                                                                        BROWSER=chromium HEADLESS=true playwright test tests.js
+                                                                                                        BROWSER=chromium HEADLESS=true playwright test tests.spec.js
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
