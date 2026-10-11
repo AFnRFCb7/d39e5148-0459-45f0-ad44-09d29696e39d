@@ -206,8 +206,8 @@
                                                                                         package =
                                                                                             _lib.mkOption
                                                                                                 {
-                                                                                                    default = _config.tree-serialization.explode { } ;
-                                                                                                    type = _type.types.bool ;
+                                                                                                    default = _config.tree-serialization.explode { bytes = "1m" ; input = "" ; name = "" ; output = "" ; } ;
+                                                                                                    type = _type.types.package ;
                                                                                                 } ;
                                                                                         fetch =
                                                                                             _lib.mkOption
