@@ -423,6 +423,7 @@
                                                                                                         export HEADLESS=true
                                                                                                         ls -l /mounts/playwright
                                                                                                         ls -l /mounts/chromium/bin/chromium
+                                                                                                        playwright test --show-config
                                                                                                         playwright test tests.spec.js
                                                                                                     '' ;
                                                                                             } ;
