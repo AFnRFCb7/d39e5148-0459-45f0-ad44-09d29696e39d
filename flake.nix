@@ -425,7 +425,6 @@
                                                                                                         ls -l /mounts/chromium/bin/chromium
                                                                                                         ${ pkgs.findutils }/bin/find /mounts/playwright -maxdepth 2 \
                                                                                                           -type f \( -name 'playwright.config.*' -o -name 'package.json' \)
-                                                                                                        playwright test --show-config
                                                                                                         playwright test tests.spec.js
                                                                                                     '' ;
                                                                                             } ;
