@@ -11,6 +11,7 @@ module.exports = defineConfig({
         },
     },
 });
+console.log("PLAYWRIGHT CONFIG LOADED");
 test.describe("Admin Frontend" , () => {
 });
 test.describe("Backend Server", () => {
