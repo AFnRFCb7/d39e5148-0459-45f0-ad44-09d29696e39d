@@ -206,9 +206,9 @@
                                                                                         package =
                                                                                             _lib.mkOption
                                                                                                 {
-                                                                                                    default = false ;
+                                                                                                    default = _config.tree-serialization.explode { } ;
                                                                                                     type = _type.types.bool ;
-                                                                                                }
+                                                                                                } ;
                                                                                         fetch =
                                                                                             _lib.mkOption
                                                                                                 {
