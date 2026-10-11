@@ -392,6 +392,7 @@
                                                                                                     {
                                                                                                         chromium = { read-only = true ; source = _pkgs.chromium ; type = "bind" ; } ;
                                                                                                         package = { read-only = true ; source = _config.visa.playwright.package ; type = "bind" ; } ;
+                                                                                                        playwright = { type = "temporary" }
                                                                                                     } ;
                                                                                                 name = "execute" ;
                                                                                                 post = null ;
@@ -406,13 +407,9 @@
                                                                                                 text =
                                                                                                     ''
                                                                                                         ${ _config.visa.backend.database.migrate.environments.staging }/bin/execute
-                                                                                                        cd /mounts/package
+                                                                                                        cd /mounts/playwright
+                                                                                                        cp --recursive /mounts/package/. .
                                                                                                         export PATH="$PATH:./node_modules/.bin"
-                                                                                                        cd /mounts/package || exit 1
-                                                                                                        pwd
-                                                                                                        ls -la
-                                                                                                        ls -l tests.spec.js
-                                                                                                        playwright test tests.spec.js --output=/tmp/test-results
                                                                                                         BROWSER=chromium HEADLESS=true playwright test tests.spec.js
                                                                                                     '' ;
                                                                                             } ;
