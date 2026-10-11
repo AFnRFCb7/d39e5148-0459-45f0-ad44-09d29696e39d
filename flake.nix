@@ -413,7 +413,11 @@
                                                                                                         pwd
                                                                                                         find . -name 'tests.spec.js' -print
                                                                                                         ls -la
-                                                                                                        BROWSER=chromium HEADLESS=true playwright test tests.spec.js
+                                                                                                        export BACKEND_HOST=${ _config.visa.backend.environments.staging.host }
+                                                                                                        export BACKEND_PORT=${ builtins.toString _config.visa.backend.environments.staging.port }
+                                                                                                        export BROWSER=chromium
+                                                                                                        export HEADLESS=true
+                                                                                                        playwright test tests.spec.js
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
