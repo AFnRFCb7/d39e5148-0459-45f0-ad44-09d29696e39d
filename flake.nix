@@ -209,7 +209,7 @@
                                                                                                     default =
                                                                                                         _config.lazy-shell-application
                                                                                                             {
-                                                                                                                mounts = { input = { read-only = true ; source = "." ; type = "bind" ; }} ;
+                                                                                                                mounts = { input = { read-only = true ; source = "." ; type = "bind" ; } ;
                                                                                                                 name = "package" ;
                                                                                                                 post = null ;
                                                                                                                 runtime-inputs =
