@@ -227,7 +227,7 @@
                                                                                                         host = _lib.mkOption { default = "localhost" ; type = _lib.types.str ; } ;
                                                                                                         name = _lib.mkOption { default = "visa-server-staging" ; type = _lib.types.str ; } ;
                                                                                                         package = lib.mkOption { default = _config.node-package.build ./backend/server ; type = _lib.types.package ; } ;
-                                                                                                        port = lib.mkOption { default = ; type =_lib.types.ints.between 1024 65535 ; } ;
+                                                                                                        port = lib.mkOption { default = 14636 ; type =_lib.types.ints.between 1024 65535 ; } ;
                                                                                                     } ;
                                                                                             } ;
                                                                                 fetch =
