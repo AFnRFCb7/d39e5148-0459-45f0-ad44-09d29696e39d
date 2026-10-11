@@ -467,21 +467,7 @@
                                                                     _pkgs = pkgs-identity pkgs ;
                                                                     in
                                                                         {
-                                                                            environment.systemPackages =
-                                                                                [
-                                                                                    (
-                                                                                        pkgs.writeShellApplication
-                                                                                            {
-                                                                                                name = "execute" ;
-                                                                                                runtimeInputs = [ pkgs.coreutils ] ;
-                                                                                                text =
-                                                                                                    ''
-                                                                                                        exec 0<&-
-                                                                                                        ${ _config.visa.playwright.execute }/bin/execute
-                                                                                                    '' ;
-                                                                                            }
-                                                                                    )
-                                                                                ] ;# [ _config.visa.playwright.execute ];
+                                                                            environment.systemPackages = [ _config.visa.playwright.execute ];
                                                                             imports = [ failure implementation lazy-shell-application node-package visitor ] ;
                                                                         } ;
                                                         testScript =
