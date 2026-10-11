@@ -303,9 +303,20 @@
                                                                                 package =
                                                                                     _lib.mkOption
                                                                                         {
-                                                                                            default = false ;
-                                                                                            type = _lib.types.bool ;
-                                                                                        }
+                                                                                            default =
+                                                                                                _config.lazy-shell-application
+                                                                                                    {
+                                                                                                        mounts = { } ;
+                                                                                                        name = "package" ;
+                                                                                                        post = null ;
+                                                                                                        runtime-inputs = pkgs : [ ] ;
+                                                                                                        text =
+                                                                                                            ''
+
+                                                                                                            '' ;
+                                                                                                    } ;
+                                                                                            type = _lib.types.package ;
+                                                                                        } ;
                                                                             } ;
                                                                     } ;
                                                                 frontend =
