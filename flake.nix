@@ -203,7 +203,7 @@
                                                                                                                         '' ;
                                                                                                             } ;
                                                                                                     } ;
-                                                                                        fetch2 =
+                                                                                        fetch =
                                                                                             _lib.mkOption
                                                                                                 {
                                                                                                     default =
@@ -247,22 +247,6 @@
                                                                                                                                 explode
                                                                                                                                 git clean -fd
                                                                                                                             '' ;
-                                                                                                            } ;
-                                                                                                    type = _lib.types.package ;
-                                                                                                } ;
-                                                                                        fetch =
-                                                                                            _lib.mkOption
-                                                                                                {
-                                                                                                    default =
-                                                                                                        _config.node-fetch
-                                                                                                            {
-                                                                                                                name = "visa-database-migration" ;
-                                                                                                                private = true ;
-                                                                                                                dependencies =
-                                                                                                                    {
-                                                                                                                        db-migrate = "^0.11.14" ;
-                                                                                                                        db-migrate-pg = "^1.5.2" ;
-                                                                                                                    } ;
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
                                                                                                 } ;
@@ -316,6 +300,12 @@
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
+                                                                                package =
+                                                                                    _lib.mkOption
+                                                                                        {
+                                                                                            default = false ;
+                                                                                            type = _lib.types.bool ;
+                                                                                        }
                                                                             } ;
                                                                     } ;
                                                                 frontend =
