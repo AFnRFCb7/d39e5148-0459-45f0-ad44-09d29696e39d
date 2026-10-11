@@ -1,11 +1,17 @@
 const { test, expect } = require("@playwright/test");
-
+const backendHost = process.env.BACKEND_HOST ?? "localhost";
+const backendPort = process.env.BACKEND_PORT ?? "14636";
+const backendUrl = http://${ backendHost }:${ backendPort };
+test.describe("Admin Frontend" , () => {
+});
 test.describe("Backend Server", () => {
     test("unauthenticated marker health check", async ({ page }) => {
         const response = await page.goto(
-            "http://localhost:14636/health-check/unauthenticated/marker"
+            "${ backendUrl }/health-check/unauthenticated/marker"
         );
 
         expect(response?.status()).toBe(200);
     });
 });
+test.describe("Web Frontend", () => {
+}) ;
