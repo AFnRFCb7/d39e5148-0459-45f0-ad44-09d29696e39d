@@ -408,7 +408,7 @@
                                                                                                         ${ _config.visa.backend.database.migrate.environments.staging }/bin/execute
                                                                                                         cd /mounts/package
                                                                                                         export PATH="$PATH:./node_modules/.bin"
-                                                                                                        BROWSER=chromium HEADLESS=true playwright play tests.spec.js
+                                                                                                        BROWSER=chromium HEADLESS=true playwright tests tests.spec.js
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
