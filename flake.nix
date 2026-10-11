@@ -500,7 +500,7 @@
                                                                         } ;
                                                         testScript =
                                                             ''
-                                                                client.wait_for_unit("multi-user.target")
+                                                                client.wait_for_unit("visa-database-staging")
                                                                 client.succeed("execute")
                                                             '' ;
                                                     } ;
