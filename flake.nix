@@ -405,6 +405,7 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
+                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging }/bin/execute
                                                                                                         cd /mounts/package
                                                                                                         BROWSER=chromium HEADLESS=true node tests.js
                                                                                                     '' ;
