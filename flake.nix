@@ -226,7 +226,6 @@
                                                                                                                                         cd /mounts/package
                                                                                                                                         node server ${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                                                     '' ;
-                                                                                                                                name = "execute" ;
                                                                                                                             } ;
                                                                                                                     type = _lib.types.package ;
                                                                                                                 } ;
