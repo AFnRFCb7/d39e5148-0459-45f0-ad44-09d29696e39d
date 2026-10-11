@@ -24,7 +24,16 @@ const browsers = {
 
   const page = await browser.newPage();
 
-  await page.goto("http://localhost:14636/health-check/unauthenticated/marker");
+  const response = await page.goto(
+    "http://localhost:14636/health-check/unauthenticated/marker"
+  );
+
+  if (!response || response.status() !== 200) {
+    throw new Error(
+      `Expected HTTP 200, got ${response?.status() ?? "no response"}`
+    );
+  }
+
   console.log(await page.title());
 
   if (!headless) {
