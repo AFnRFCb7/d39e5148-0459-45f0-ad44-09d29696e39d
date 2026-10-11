@@ -209,7 +209,7 @@
                                                                                                     default =
                                                                                                         _config.lazy-shell-application
                                                                                                             {
-                                                                                                                mounts = { input = { read-only = true ; source = "." ; type = "bind" ; } ; } ;
+                                                                                                                mounts = { } ;
                                                                                                                 name = "package" ;
                                                                                                                 post = null ;
                                                                                                                 runtime-inputs =
@@ -228,11 +228,25 @@
                                                                                                                             pkgs.nodejs
                                                                                                                         ] ;
                                                                                                                 text =
-                                                                                                                    ''
-                                                                                                                        git clean -fd
-                                                                                                                        npm install
-                                                                                                                        git clean -fd
-                                                                                                                    '' ;
+                                                                                                                    let
+                                                                                                                        package =
+                                                                                                                            {
+                                                                                                                                name = "visa-database-migration" ;
+                                                                                                                                private = true ;
+                                                                                                                                dependencies =
+                                                                                                                                    {
+                                                                                                                                        db-migrate = "^0.11.14" ;
+                                                                                                                                        db-migrate-pg = "^1.5.2" ;
+                                                                                                                                    } ;
+                                                                                                                            } ;
+                                                                                                                        in
+                                                                                                                            ''
+                                                                                                                                git clean -fd
+                                                                                                                                cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
+                                                                                                                                npm install
+                                                                                                                                explode
+                                                                                                                                git clean -fd
+                                                                                                                            '' ;
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
                                                                                                 } ;
