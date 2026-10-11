@@ -220,6 +220,7 @@
                                                                                                                             {
                                                                                                                                 mounts = { package = { read-only = true ; source = _config.node-package.build ./backend/server ; type = "bind" ; } ; } ;
                                                                                                                                 name = "execute" ;
+                                                                                                                                post = null ;
                                                                                                                                 runtime-inputs = pkgs : [ pkgs.nodejs ] ;
                                                                                                                                 text =
                                                                                                                                     ''
