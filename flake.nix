@@ -206,8 +206,18 @@
                                                                                         package =
                                                                                             _lib.mkOption
                                                                                                 {
-                                                                                                    default = _config.tree-serialization.explode { bytes = "1m" ; input = "" ; name = "" ; output = "" ; } ;
-                                                                                                    type = _type.types.package ;
+                                                                                                    default =
+                                                                                                        _config.lazy-shell-application
+                                                                                                            {
+                                                                                                                mounts = { } ;
+                                                                                                                name = "package" ;
+                                                                                                                post = null ;
+                                                                                                                runtime-inputs = pkgs : [ ] ;
+                                                                                                                text =
+                                                                                                                    ''
+                                                                                                                    '' ;
+                                                                                                            } ;
+                                                                                                    type = _lib.types.package ;
                                                                                                 } ;
                                                                                         fetch =
                                                                                             _lib.mkOption
