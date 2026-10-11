@@ -390,7 +390,6 @@
                                                                                             {
                                                                                                 mounts =
                                                                                                     {
-                                                                                                        firefox = { read-only = true ; source = _pkgs.firefox ; type = "bind" ; } ;
                                                                                                         chromium = { read-only = true ; source = _pkgs.chromium ; type = "bind" ; } ;
                                                                                                         package = { read-only = true ; source = _config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                     } ;
@@ -401,7 +400,6 @@
                                                                                                         [
                                                                                                             pkgs.chromium
                                                                                                             pkgs.coreutils
-                                                                                                            pkgs.firefox
                                                                                                             pkgs.nodejs_20
                                                                                                             pkgs.glib
                                                                                                         ] ;

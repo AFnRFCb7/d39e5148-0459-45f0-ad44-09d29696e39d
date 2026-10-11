@@ -1,4 +1,4 @@
-const { chromium, firefox } = require("playwright");
+const { chromium } = require("playwright");
 
 const browserName = process.env.BROWSER ?? "chromium";
 const headless = process.env.HEADLESS !== "false";
@@ -7,10 +7,6 @@ const browsers = {
   chromium: {
     type: chromium,
     executablePath: "/mounts/chromium/bin/chromium"
-  },
-  firefox: {
-    type: firefox,
-    executablePath: "/mounts/firefox/bin/firefox"
   }
 };
 
