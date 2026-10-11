@@ -14,6 +14,28 @@ const database = new Pool({
 });
 app.get
     (
+        "/health-check/admin/marker" ,
+        async ( request , response ) =>
+            {
+                const result = await database.query(
+                    "SELECT marker FROM \"health-check\" LIMIT 1"
+                ) ;
+                response.json(response.json(result.rows[0].marker)) ; ;
+            }
+    ) ;
+app.get
+    (
+        "/health-check/regular/marker" ,
+        async ( request , response ) =>
+            {
+                const result = await database.query(
+                    "SELECT marker FROM \"health-check\" LIMIT 1"
+                ) ;
+                response.json(response.json(result.rows[0].marker)) ; ;
+            }
+    ) ;
+app.get
+    (
         "/health-check/unauthenticated/marker" ,
         async ( request , response ) =>
             {

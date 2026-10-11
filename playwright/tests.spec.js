@@ -14,9 +14,9 @@ module.exports = defineConfig({
 test.describe("Admin Frontend" , () => {
 });
 test.describe("Backend Server", () => {
-    test("authenticated marker health check", async ({ page }) => {
+    test("admin marker health check", async ({ page }) => {
         const response = await page.goto(
-            `${ backendUrl }/health-check/authenticated/marker`
+            `${ backendUrl }/health-check/admin/marker`
         );
 
         expect(response?.status()).toBe(200);
@@ -24,6 +24,13 @@ test.describe("Backend Server", () => {
     test("unauthenticated marker health check", async ({ page }) => {
         const response = await page.goto(
             `${ backendUrl }/health-check/unauthenticated/marker`
+        );
+
+        expect(response?.status()).toBe(200);
+    });
+    test("regular marker health check", async ({ page }) => {
+        const response = await page.goto(
+            `${ backendUrl }/health-check/regular/marker`
         );
 
         expect(response?.status()).toBe(200);
