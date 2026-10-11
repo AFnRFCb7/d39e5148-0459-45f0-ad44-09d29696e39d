@@ -427,6 +427,7 @@
                                                                                                         ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
                                                                                                         cd /mounts/playwright
                                                                                                         cp --recursive /mounts/package/. .
+                                                                                                        export PATH="$PATH:./node_modules/.bin"
                                                                                                         playwright test tests.spec.js
                                                                                                     '' ;
                                                                                             } ;
