@@ -413,18 +413,6 @@
                                                                                                         ${ _config.visa.backend.database.migrate.environments.staging }/bin/execute
                                                                                                         cd /mounts/playwright
                                                                                                         cp --recursive /mounts/package/. .
-                                                                                                        export PATH="$PATH:./node_modules/.bin"
-                                                                                                        pwd
-                                                                                                        find . -name 'tests.spec.js' -print
-                                                                                                        ls -la
-                                                                                                        export BACKEND_HOST=${ _config.visa.backend.server.environments.staging.host }
-                                                                                                        export BACKEND_PORT=${ builtins.toString _config.visa.backend.server.environments.staging.port }
-                                                                                                        export BROWSER=chromium
-                                                                                                        export HEADLESS=true
-                                                                                                        ls -l /mounts/playwright
-                                                                                                        ls -l /mounts/chromium/bin/chromium
-                                                                                                        ${ pkgs.findutils }/bin/find /mounts/playwright -maxdepth 2 \
-                                                                                                          -type f \( -name 'playwright.config.*' -o -name 'package.json' \)
                                                                                                         playwright test tests.spec.js
                                                                                                     '' ;
                                                                                             } ;
