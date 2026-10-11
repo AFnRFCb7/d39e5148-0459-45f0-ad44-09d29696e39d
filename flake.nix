@@ -203,18 +203,28 @@
                                                                                                                         '' ;
                                                                                                             } ;
                                                                                                     } ;
-                                                                                        package =
+                                                                                        fetch2 =
                                                                                             _lib.mkOption
                                                                                                 {
                                                                                                     default =
                                                                                                         _config.lazy-shell-application
                                                                                                             {
-                                                                                                                mounts = { } ;
+                                                                                                                mounts = { input = { read-only = true ; source = "." ; type = "bind" ; }} ;
                                                                                                                 name = "package" ;
                                                                                                                 post = null ;
-                                                                                                                runtime-inputs = pkgs : [ ] ;
+                                                                                                                runtime-inputs =
+                                                                                                                    pkgs :
+                                                                                                                        [
+                                                                                                                            ( _config.tree-serialization.explode { bytes = "1m" ; name = "explode" ; } )
+                                                                                                                            pkgs.git
+                                                                                                                            pkgs.nodejs
+                                                                                                                        ] ;
                                                                                                                 text =
                                                                                                                     ''
+                                                                                                                        git clean -fd
+                                                                                                                        npm install
+                                                                                                                        explode node_modules node_modules.exploded
+                                                                                                                        git clean -fd
                                                                                                                     '' ;
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
