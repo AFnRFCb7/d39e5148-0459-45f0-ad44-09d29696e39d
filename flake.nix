@@ -312,7 +312,7 @@
                                                                                                                 (
                                                                                                                     _config.tree-serialization
                                                                                                                         {
-                                                                                                                            input = { read-only = true ; input = ./node_modules.exploded ; type = "bind" ; } ;
+                                                                                                                            input = { read-only = true ; input = ./backend/server/node_modules.exploded ; type = "bind" ; } ;
                                                                                                                             name = "implode" ;
                                                                                                                             output = { source = "$out/node_modules" ; type = "bind" ; } ;
                                                                                                                         }
