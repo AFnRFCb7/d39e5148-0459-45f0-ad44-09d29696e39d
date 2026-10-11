@@ -421,6 +421,7 @@
                                                                                                         export BACKEND_PORT=${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                         export BROWSER=chromium
                                                                                                         export HEADLESS=true
+                                                                                                        ls -l /mounts/playwright
                                                                                                         ls -l /mounts/chromium/bin/chromium
                                                                                                         playwright test tests.spec.js
                                                                                                     '' ;
