@@ -397,6 +397,8 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
+                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
+                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
                                                                                                         cd /mounts/package
                                                                                                         BROWSER=chromium HEADLESS=false node demo.js
                                                                                                     '' ;
@@ -427,6 +429,8 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
+                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
+                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
                                                                                                         cd /mounts/playwright
                                                                                                         cp --recursive /mounts/package/. .
                                                                                                         export PATH="$PATH:./node_modules/.bin"
