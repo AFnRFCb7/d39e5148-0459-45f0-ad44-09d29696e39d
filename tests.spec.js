@@ -7,14 +7,14 @@ test.describe("Admin Frontend" , () => {
 test.describe("Backend Server", () => {
     test("authenticated marker health check", async ({ page }) => {
         const response = await page.goto(
-            "${ backendUrl }/health-check/authenticated/marker"
+            `${ backendUrl }/health-check/authenticated/marker`
         );
 
         expect(response?.status()).toBe(200);
     });
     test("unauthenticated marker health check", async ({ page }) => {
         const response = await page.goto(
-            "${ backendUrl }/health-check/unauthenticated/marker"
+            `${ backendUrl }/health-check/unauthenticated/marker`
         );
 
         expect(response?.status()).toBe(200);
