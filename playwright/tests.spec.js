@@ -1,7 +1,7 @@
 const { test, expect } = require("@playwright/test");
 const backendHost = process.env.BACKEND_HOST ?? "localhost";
 const backendPort = process.env.BACKEND_PORT ?? "14636";
-const backendUrl = http://${ backendHost }:${ backendPort };
+const backendUrl = `http://${ backendHost }:${ backendPort }` ;
 test.describe("Admin Frontend" , () => {
 });
 test.describe("Backend Server", () => {
