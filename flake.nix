@@ -408,6 +408,11 @@
                                                                                                         ${ _config.visa.backend.database.migrate.environments.staging }/bin/execute
                                                                                                         cd /mounts/package
                                                                                                         export PATH="$PATH:./node_modules/.bin"
+                                                                                                        cd /mounts/package || exit 1
+                                                                                                        pwd
+                                                                                                        ls -la
+                                                                                                        ls -l tests.spec.js
+                                                                                                        playwright test tests.spec.js --output=/tmp/test-results
                                                                                                         BROWSER=chromium HEADLESS=true playwright test tests.spec.js
                                                                                                     '' ;
                                                                                             } ;
