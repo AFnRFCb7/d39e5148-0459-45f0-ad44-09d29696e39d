@@ -407,7 +407,7 @@
                                                                                                     ''
                                                                                                         ${ _config.visa.backend.database.migrate.environments.staging }/bin/execute
                                                                                                         cd /mounts/package
-                                                                                                        export PATH="$PATH:./node_modules/.bin
+                                                                                                        export PATH="$PATH:./node_modules/.bin"
                                                                                                         BROWSER=chromium HEADLESS=true playwright play tests.spec.js
                                                                                                     '' ;
                                                                                             } ;
