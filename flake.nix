@@ -215,7 +215,6 @@
                                                                                                                 runtime-inputs =
                                                                                                                     pkgs :
                                                                                                                         [
-                                                                                                                            ( _config.tree-serialization.explode { bytes = "1m" ; name = "explode" ; } )
                                                                                                                             pkgs.git
                                                                                                                             pkgs.nodejs
                                                                                                                         ] ;
@@ -223,7 +222,7 @@
                                                                                                                     ''
                                                                                                                         git clean -fd
                                                                                                                         npm install
-                                                                                                                        explode node_modules node_modules.exploded
+                                                                                                                        ${ _config.tree-serialization.explode { bytes = "1m" ; input = { read-only = true ; source = "node_modules" ; type = "bind" ; } ; name = "explode" ; output = { source = "node_modules.exploded" ; type = "bind" ; } ; }/bin/explode node_modules node_modules.exploded
                                                                                                                         git clean -fd
                                                                                                                     '' ;
                                                                                                             } ;
