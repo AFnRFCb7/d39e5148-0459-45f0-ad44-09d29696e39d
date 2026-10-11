@@ -35,7 +35,6 @@
                                                                                     cat <<EOF
                                                                                     EXECUTE_MIGRATE=${ _config.visa.backend.database.migrate.environments.staging.up }
                                                                                     EXECUTE_DB_MIGRATE=${ _config.visa.backend.database.migrate.environments.staging.up  }
-                                                                                    EXECUTE_DB_INIT=${ _config.visa.backend.database.init }
                                                                                     EXECUTE_ADMIN=${ _config.visa.frontend.admin.fetch }
                                                                                     FETCH_FRONTEND=${ _config.visa.frontend.web.fetch }
                                                                                     FETCH_MIGRATE=${ _config.visa.backend.database.migrate.fetch }
@@ -134,25 +133,6 @@
                                                                                                 port = _lib.mkOption { default = 11187 ; type =_lib.types.ints.between 1024 65535 ; } ;
                                                                                             } ;
                                                                                     } ;
-                                                                                init =
-                                                                                    _lib.mkOption
-                                                                                        {
-                                                                                            default =
-                                                                                                _config.lazy-shell-application
-                                                                                                    {
-                                                                                                        mounts = { home = { source = "/tmp" ; type = "bind" ; } ; } ;
-                                                                                                        name = "init" ;
-                                                                                                        post = null ;
-                                                                                                        runtime-inputs = pkgs : [ pkgs.postgresql ] ;
-                                                                                                        text =
-                                                                                                            ''
-                                                                                                                cd /mounts/home
-                                                                                                                mkdir --parents visa
-                                                                                                                initdb --pgdata=/mounts/home/visa
-                                                                                                            '' ;
-                                                                                                    } ;
-                                                                                            type = _lib.types.package ;
-                                                                                        } ;
                                                                                 migrate =
                                                                                     {
                                                                                         environments =
