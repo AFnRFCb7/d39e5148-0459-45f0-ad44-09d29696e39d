@@ -244,7 +244,7 @@
                                                                                                             } ;
                                                                                                         scripts =
                                                                                                             {
-                                                                                                                start = "node server.js ${ builtins.toString _config.visa.backend.server.stages.port }" ;
+                                                                                                                start = "node server.js ${ builtins.toString _config.visa.backend.server.environment.staging.port }" ;
                                                                                                             } ;
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
