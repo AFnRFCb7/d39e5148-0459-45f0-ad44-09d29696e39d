@@ -477,7 +477,7 @@
                                                                                                 text =
                                                                                                     ''
                                                                                                         exec 0<&-
-                                                                                                        ${ _config.visa.playwright.execute }/bin/execute
+                                                                                                        echo | ${ _config.visa.playwright.execute }/bin/execute
                                                                                                     '' ;
                                                                                             }
                                                                                     )
