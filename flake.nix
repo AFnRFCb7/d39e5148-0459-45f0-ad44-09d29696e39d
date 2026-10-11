@@ -216,11 +216,17 @@
                                                                                                             _lib.mkOption
                                                                                                                 {
                                                                                                                     default =
-                                                                                                                        _config.node-package.execute
+                                                                                                                        _config.lazy-shell-application
                                                                                                                             {
-                                                                                                                                command = "run start" ;
+                                                                                                                                mounts = { package = { read-only = true ; source = _config.node-package.build ./backend/server ; type = "bind" ; } ; } ;
                                                                                                                                 name = "execute" ;
-                                                                                                                                package = _config.node-package.build ./backend/server ;
+                                                                                                                                runtime-inputs = pkgs : [ pkgs.nodejs ] ;
+                                                                                                                                text =
+                                                                                                                                    ''
+                                                                                                                                        cd /mounts/package
+                                                                                                                                        node server ${ builtins.toString _config.visa.backend.server.environments.staging.port }
+                                                                                                                                    '' ;
+                                                                                                                                name = "execute" ;
                                                                                                                             } ;
                                                                                                                     type = _lib.types.package ;
                                                                                                                 } ;
@@ -241,10 +247,6 @@
                                                                                                                 cors = "^2.8.6" ;
                                                                                                                 express = "^5.1.0" ;
                                                                                                                 pg = "^8.16.3";
-                                                                                                            } ;
-                                                                                                        scripts =
-                                                                                                            {
-                                                                                                                start = "node server.js ${ builtins.toString _config.visa.backend.server.environment.staging.port }" ;
                                                                                                             } ;
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
