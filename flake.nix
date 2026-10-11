@@ -224,8 +224,10 @@
                                                                                                                             } ;
                                                                                                                     type = _lib.types.package ;
                                                                                                                 } ;
+                                                                                                        host = _lib.mkOption { default = "localhost" ; type = _lib.types.str ; } ;
                                                                                                         name = _lib.mkOption { default = "visa-server-staging" ; type = _lib.types.str ; } ;
                                                                                                         package = lib.mkOption { default = _config.node-package.build ./backend/server ; type = _lib.types.package ; } ;
+                                                                                                        port = lib.mkOption { default = ; type =_lib.types.ints.between 1024 65535 ; } ;
                                                                                                     } ;
                                                                                             } ;
                                                                                 fetch =
@@ -242,7 +244,7 @@
                                                                                                             } ;
                                                                                                         scripts =
                                                                                                             {
-                                                                                                                start = "node server.js 14636" ;
+                                                                                                                start = "node server.js ${ builtins.toString _config.visa.backend.server.stages.port }" ;
                                                                                                             } ;
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
@@ -413,8 +415,8 @@
                                                                                                         pwd
                                                                                                         find . -name 'tests.spec.js' -print
                                                                                                         ls -la
-                                                                                                        export BACKEND_HOST=${ _config.visa.backend.environments.staging.host }
-                                                                                                        export BACKEND_PORT=${ builtins.toString _config.visa.backend.environments.staging.port }
+                                                                                                        export BACKEND_HOST=${ _config.visa.backend.server.environments.staging.host }
+                                                                                                        export BACKEND_PORT=${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                         export BROWSER=chromium
                                                                                                         export HEADLESS=true
                                                                                                         playwright test tests.spec.js
