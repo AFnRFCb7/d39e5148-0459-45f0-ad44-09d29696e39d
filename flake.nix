@@ -410,6 +410,9 @@
                                                                                                         cd /mounts/playwright
                                                                                                         cp --recursive /mounts/package/. .
                                                                                                         export PATH="$PATH:./node_modules/.bin"
+                                                                                                        pwd
+                                                                                                        find . -name 'tests.spec.js' -print
+                                                                                                        ls -la
                                                                                                         BROWSER=chromium HEADLESS=true playwright test tests.spec.js
                                                                                                     '' ;
                                                                                             } ;
