@@ -28,7 +28,7 @@ const browsers = {
     "http://localhost:14636/health-check/unauthenticated/marker"
   );
 
-  if (!response || response.status() !== 400) {
+  if (!response || response.status() !== 200) {
     throw new Error(
       `Expected HTTP 200, got ${response?.status() ?? "no response"}`
     );
