@@ -207,7 +207,7 @@
                                                                                             _lib.mkOption
                                                                                                 {
                                                                                                     default =
-                                                                                                        _config.node-package.fetch
+                                                                                                        _config.node-fetch
                                                                                                             {
                                                                                                                 name = "visa-database-migration" ;
                                                                                                                 private = true ;
@@ -258,7 +258,7 @@
                                                                                     _lib.mkOption
                                                                                         {
                                                                                             default =
-                                                                                                _config.node-package.fetch
+                                                                                                _config.node-fetch
                                                                                                     {
                                                                                                         dependencies =
                                                                                                             {
@@ -279,7 +279,7 @@
                                                                                     _lib.mkOption
                                                                                         {
                                                                                             default =
-                                                                                                _config.node-package.fetch
+                                                                                                _config.node-fetch
                                                                                                     {
                                                                                                         name = "visa" ;
                                                                                                         version = "0.0.0" ;
@@ -331,7 +331,7 @@
                                                                                     _lib.mkOption
                                                                                         {
                                                                                             default =
-                                                                                                _config.node-package.fetch
+                                                                                                _config.node-fetch
                                                                                                     {
                                                                                                         name = "visa" ;
                                                                                                         version = "0.0.0" ;
@@ -443,7 +443,7 @@
                                                                             _lib.mkOption
                                                                                 {
                                                                                     default =
-                                                                                        _config.node-package.fetch
+                                                                                        _config.node-fetch
                                                                                             {
                                                                                                 name = "visa-playwright" ;
                                                                                                 version = "0.0.0" ;
@@ -478,6 +478,7 @@
                                         failure ,
                                         lazy-shell-application ,
                                         nixosTest ,
+                                        node-fetch ,
                                         node-package ,
                                         obviated-by ,
                                         visitor
@@ -496,7 +497,7 @@
                                                                     in
                                                                         {
                                                                             environment.systemPackages = [ _config.visa.playwright.execute ];
-                                                                            imports = [ failure implementation lazy-shell-application node-package visitor ] ;
+                                                                            imports = [ failure implementation lazy-shell-application node-fetch node-package visitor ] ;
                                                                         } ;
                                                         testScript =
                                                             ''
