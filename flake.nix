@@ -304,17 +304,26 @@
                                                                                     _lib.mkOption
                                                                                         {
                                                                                             default =
-                                                                                                _config.lazy-shell-application
+                                                                                                _pkgs.runCommand
+                                                                                                    "package"
                                                                                                     {
-                                                                                                        mounts = { } ;
-                                                                                                        name = "package" ;
-                                                                                                        post = null ;
-                                                                                                        runtime-inputs = pkgs : [ ] ;
-                                                                                                        text =
-                                                                                                            ''
-
-                                                                                                            '' ;
-                                                                                                    } ;
+                                                                                                        nativeBuildInputs =
+                                                                                                            [
+                                                                                                                (
+                                                                                                                    _config.tree-serialization
+                                                                                                                        {
+                                                                                                                            input = { read-only = true ; input = ./node_modules.exploded ; type = "bind" ; } ;
+                                                                                                                            name = "implode" ;
+                                                                                                                            output = { source = "$out/node_modules" ; type = "bind" ; } ;
+                                                                                                                        }
+                                                                                                                )
+                                                                                                            ] ;
+                                                                                                    }
+                                                                                                    ''
+                                                                                                        mkdir --parents "$out"
+                                                                                                        cp --recursive ./. "$out"
+                                                                                                        implode
+                                                                                                    '' ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
                                                                             } ;
