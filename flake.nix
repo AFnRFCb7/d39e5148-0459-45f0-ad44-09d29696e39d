@@ -276,7 +276,7 @@
                                                                                                                                         ''
                                                                                                                                             OUT="$1"
                                                                                                                                             SRC="$2"
-                                                                                                                                            ln --symbolic "$SRC/backend/database/migrate/." "$OUT"
+                                                                                                                                            ln --symbolic "$SRC/backend/database/migrate/"* "$OUT"
                                                                                                                                             echo 3650587994516625
                                                                                                                                             rm "$OUT/node_modules.exploded"
                                                                                                                                             implode
