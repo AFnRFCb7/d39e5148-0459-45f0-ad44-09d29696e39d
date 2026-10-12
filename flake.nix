@@ -212,8 +212,8 @@
                                                                                                             {
                                                                                                                 mounts =
                                                                                                                     {
-                                                                                                                        imploded = { source = "node-modules.exploded" ; type = "bind" ; } ;
-                                                                                                                        exploded = { read-only = true ; source = "node-modules" ; type = "bind" ; } ;
+                                                                                                                        imploded = { source = "node_modules.exploded" ; type = "bind" ; } ;
+                                                                                                                        exploded = { read-only = true ; source = "node_modules" ; type = "bind" ; } ;
                                                                                                                     } ;
                                                                                                                 name = "fetch-9809839391755913" ;
                                                                                                                 post = null ;
