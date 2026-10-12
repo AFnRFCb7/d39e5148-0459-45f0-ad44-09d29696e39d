@@ -278,6 +278,12 @@
                                                                                                                                             SRC="$2"
                                                                                                                                             mkdir --parents "$OUT"
                                                                                                                                             ln --symbolic "$SRC/backend/database/migrate/"* "$OUT"
+                                                                                                                                            rm --recursive --force "$OUT/node_modules"
+                                                                                                                                            mkdir --parents "$OUT/node_modules"
+                                                                                                                                            if [[ ! -e "$OUT/node_modules.exploded" ]]
+                                                                                                                                            then
+                                                                                                                                                mkdir --parents "$OUT/node_modules.exploded"
+                                                                                                                                            fi
                                                                                                                                             implode
                                                                                                                                             rm "$OUT/node_modules.exploded"
                                                                                                                                         '' ;
