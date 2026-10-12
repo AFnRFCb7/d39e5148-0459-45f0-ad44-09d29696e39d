@@ -406,6 +406,7 @@
                                                                                                     ''
                                                                                                         mkdir --parents "$out"
                                                                                                         cp --recursive ./. "$out"
+                                                                                                        mkdir --parents "$out/node_modules.exploded"
                                                                                                         implode
                                                                                                     '' ;
                                                                                             type = _lib.types.package ;
