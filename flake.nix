@@ -288,7 +288,7 @@
                                                                                                                         )
                                                                                                                     ] ;
                                                                                                             }
-                                                                                                            ''install-it "$out" "$src"'' ;
+                                                                                                            ''install-it "$out" ${ ./. }'' ;
                                                                                                     type = _lib.types.package ;
                                                                                                 } ;
                                                                                     } ;
