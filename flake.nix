@@ -247,6 +247,8 @@
                                                                                                                                 npm install
                                                                                                                                 explode
                                                                                                                                 git clean -fd
+                                                                                                                                git commit -am "$MESSAGE" --allow-empty --allow-empty-message
+                                                                                                                                echo 3301380592222425
                                                                                                                             '' ;
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
