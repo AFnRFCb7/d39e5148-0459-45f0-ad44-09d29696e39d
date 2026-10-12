@@ -420,7 +420,7 @@
                                                                                                                                             OUT="$1"
                                                                                                                                             export OUT
                                                                                                                                             mkdir --parents "$OUT/node_modules"
-                                                                                                                                            ln --symbolic "${ code }/* "$OUT"
+                                                                                                                                            ln --symbolic ${ code }/* "$OUT"
                                                                                                                                             mkdir --parents "$OUT/node_modules"
                                                                                                                                             implode
                                                                                                                                             rm "$OUT/node_modules.exploded"
