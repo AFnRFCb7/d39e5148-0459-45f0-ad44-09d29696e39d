@@ -391,26 +391,31 @@
                                                                                     _lib.mkOption
                                                                                         {
                                                                                             default =
-                                                                                                _pkgs.runCommand
-                                                                                                    "package"
-                                                                                                    {
-                                                                                                        nativeBuildInputs =
-                                                                                                            [
-                                                                                                                (
-                                                                                                                    _config.tree-serialization
-                                                                                                                        {
-                                                                                                                            input = { read-only = true ; input = ./backend/server/node_modules.exploded ; type = "bind" ; } ;
-                                                                                                                            name = "implode" ;
-                                                                                                                            output = { source = "$out/node_modules" ; type = "bind" ; } ;
-                                                                                                                        }
-                                                                                                                )
-                                                                                                            ] ;
-                                                                                                    }
-                                                                                                    ''
-                                                                                                        mkdir --parents "$out"
-                                                                                                        cp --recursive ./. "$out"
-                                                                                                        implode
-                                                                                                    '' ;
+                                                                                                let
+                                                                                                    code = ./. ;
+                                                                                                    in
+                                                                                                        _pkgs.runCommand
+                                                                                                            "package"
+                                                                                                            {
+                                                                                                                nativeBuildInputs =
+                                                                                                                    [
+                                                                                                                        (
+                                                                                                                            _config.tree-serialization
+                                                                                                                                {
+                                                                                                                                    input = { read-only = true ; input = ./backend/server/node_modules.exploded ; type = "bind" ; } ;
+                                                                                                                                    name = "implode" ;
+                                                                                                                                    output = { source = "$out/node_modules" ; type = "bind" ; } ;
+                                                                                                                                }
+                                                                                                                        )
+                                                                                                                    ] ;
+                                                                                                            }
+                                                                                                            ''
+                                                                                                                mkdir --parents "$out/node_modules"
+                                                                                                                ln symbolic "${ code }/* "$out"
+                                                                                                                mkdir --parents "$out/node_modules"
+                                                                                                                implode
+                                                                                                                rm "$out/node_modules.exploded"
+                                                                                                            '' ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
                                                                             } ;
