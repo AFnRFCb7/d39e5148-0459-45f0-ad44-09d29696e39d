@@ -210,7 +210,7 @@
                                                                                                     default =
                                                                                                         _config.lazy-shell-application
                                                                                                             {
-                                                                                                                mounts = { pwd = { source = "." ; type = bind ; } ; } ;
+                                                                                                                mounts = { pwd = { source = "." ; type = "bind" ; } ; } ;
                                                                                                                 name = "fetch-9809839391755913" ;
                                                                                                                 post = null ;
                                                                                                                 runtime-inputs =
