@@ -397,7 +397,7 @@
                                                                                                         nativeBuildInputs =
                                                                                                             [
                                                                                                                 (
-                                                                                                                    _config.tree-serialization
+                                                                                                                    _config.tree-serialization.implode
                                                                                                                         {
                                                                                                                             input = { read-only = true ; input = ./backend/server/node_modules.exploded ; type = "bind" ; } ;
                                                                                                                             name = "implode" ;
