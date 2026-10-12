@@ -399,9 +399,9 @@
                                                                                                                 (
                                                                                                                     _config.tree-serialization.implode
                                                                                                                         {
-                                                                                                                            input = { read-only = true ; input = ./backend/server/node_modules.exploded ; type = "bind" ; } ;
+                                                                                                                            input = ./backend/server/node_modules.exploded ;
                                                                                                                             name = "implode" ;
-                                                                                                                            output = { source = "$out/node_modules" ; type = "bind" ; } ;
+                                                                                                                            output = "$out/node_modules" ;
                                                                                                                         }
                                                                                                                 )
                                                                                                             ] ;
