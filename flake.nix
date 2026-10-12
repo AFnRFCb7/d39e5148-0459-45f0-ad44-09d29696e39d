@@ -40,7 +40,7 @@
                                                                                     FETCH_BACKEND=${ _config.visa.backend.server.fetch }
                                                                                     FETCH_FRONTEND=${ _config.visa.frontend.web.fetch }
                                                                                     FETCH_MIGRATE=${ _config.visa.backend.database.migrate.fetch }
-                                                                                    PACKAGE_MIRATE=${ _config.visa.backend.migrate.database.package }
+                                                                                    PACKAGE_MIRATE=${ _config.visa.backend.database.migrate.package }
                                                                                     DEMO_PLAYWRIGHT=${ _config.visa.playwright.demo }
                                                                                     EXECUTE_PLAYWRIGHT=${ _config.visa.playwright.execute }
                                                                                     PACKAGE=${ _config.visa.backend.server.environments.staging.package }
