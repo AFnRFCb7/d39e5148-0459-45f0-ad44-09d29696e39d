@@ -40,6 +40,7 @@
                                                                                     FETCH_BACKEND=${ _config.visa.backend.server.fetch }
                                                                                     FETCH_FRONTEND=${ _config.visa.frontend.web.fetch }
                                                                                     FETCH_MIGRATE=${ _config.visa.backend.database.migrate.fetch }
+                                                                                    FETCH_MIGRATE_2=${ _config.visa.backend.database.migrate.fetch }
                                                                                     PACKAGE_MIGRATE=${ _config.node-package.build ./backend/database/migrate }
                                                                                     DEMO_PLAYWRIGHT=${ _config.visa.playwright.demo }
                                                                                     EXECUTE_PLAYWRIGHT=${ _config.visa.playwright.execute }
@@ -242,6 +243,7 @@
                                                                                                                             } ;
                                                                                                                         in
                                                                                                                             ''
+                                                                                                                                echo 4822678955193712
                                                                                                                                 MESSAGE="$1"
                                                                                                                                 git clean -fd
                                                                                                                                 cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
