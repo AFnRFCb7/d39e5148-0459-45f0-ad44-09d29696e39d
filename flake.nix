@@ -210,8 +210,8 @@
                                                                                                     default =
                                                                                                         _config.lazy-shell-application
                                                                                                             {
-                                                                                                                mounts = { } ;
-                                                                                                                name = "fetch" ;
+                                                                                                                mounts = { pwd = { source = "." ; type = bind ; } ; } ;
+                                                                                                                name = "fetch-9809839391755913" ;
                                                                                                                 post = null ;
                                                                                                                 runtime-inputs =
                                                                                                                     pkgs :
@@ -220,9 +220,9 @@
                                                                                                                                 _config.tree-serialization.explode
                                                                                                                                     {
                                                                                                                                         bytes = "1m" ;
-                                                                                                                                        input = "node_modules" ;
+                                                                                                                                        input = "/mounts/pwd/node_modules" ;
                                                                                                                                         name = "explode" ;
-                                                                                                                                        output = "node_modules.exploded" ;
+                                                                                                                                        output = "/mounts/pwd/node_modules.exploded" ;
                                                                                                                                     }
                                                                                                                             )
                                                                                                                             pkgs.git
@@ -246,7 +246,9 @@
                                                                                                                                 cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
                                                                                                                                 git rm -r node_modules.exploded
                                                                                                                                 npm install
+                                                                                                                                echo 0918887920111513
                                                                                                                                 explode
+                                                                                                                                echo 8963753075037643
                                                                                                                                 git add node_modules.exploded
                                                                                                                                 git clean -fd
                                                                                                                                 git commit -am "$MESSAGE" --allow-empty --allow-empty-message
