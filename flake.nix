@@ -391,26 +391,29 @@
                                                                                     _lib.mkOption
                                                                                         {
                                                                                             default =
-                                                                                                _pkgs.runCommand
-                                                                                                    "package"
-                                                                                                    {
-                                                                                                        nativeBuildInputs =
-                                                                                                            [
-                                                                                                                (
-                                                                                                                    _config.tree-serialization.implode
-                                                                                                                        {
-                                                                                                                            input = ./backend/server/node_modules.exploded ;
-                                                                                                                            name = "implode" ;
-                                                                                                                            output = "$out/node_modules" ;
-                                                                                                                        }
-                                                                                                                )
-                                                                                                            ] ;
-                                                                                                    }
-                                                                                                    ''
-                                                                                                        mkdir --parents "$out/node_modules"
-                                                                                                        cp --recursive ./. "$out"
-                                                                                                        implode
-                                                                                                    '' ;
+                                                                                                let
+                                                                                                    code = ./. ;
+                                                                                                    in
+                                                                                                        _pkgs.runCommand
+                                                                                                            "package"
+                                                                                                            {
+                                                                                                                nativeBuildInputs =
+                                                                                                                    [
+                                                                                                                        (
+                                                                                                                            _config.tree-serialization.implode
+                                                                                                                                {
+                                                                                                                                    input = ./backend/server/node_modules.exploded ;
+                                                                                                                                    name = "implode" ;
+                                                                                                                                    output = "$out/node_modules" ;
+                                                                                                                                }
+                                                                                                                        )
+                                                                                                                    ] ;
+                                                                                                            }
+                                                                                                            ''
+                                                                                                                mkdir --parents "$out/node_modules"
+                                                                                                                cp --recursive ${ code }/* "$out"
+                                                                                                                implode
+                                                                                                            '' ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
                                                                             } ;
