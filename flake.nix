@@ -420,41 +420,79 @@
                                                                                     _lib.mkOption
                                                                                         {
                                                                                             default =
-                                                                                                _config.node-fetch
+                                                                                                _config.lazy-shell-application
                                                                                                     {
-                                                                                                        name = "visa" ;
-                                                                                                        version = "0.0.0" ;
-                                                                                                        private = true ;
-                                                                                                        type = "module" ;
-                                                                                                        scripts =
+                                                                                                        mounts =
                                                                                                             {
-                                                                                                                dev = "vite --port 11141" ;
-                                                                                                                build = "run-p type-check \"build-only {@}\" --" ;
-                                                                                                                preview = "vite preview" ;
-                                                                                                                "build-only" = "vite build" ;
-                                                                                                                "type-check" = "vue-tsc --build" ;
+                                                                                                                pwd = { source = "." ; type = "bind" ; } ;
                                                                                                             } ;
-                                                                                                        dependencies =
-                                                                                                            {
-                                                                                                                vue = "^3.5.42" ;
-                                                                                                                vue-router = "^5.3.1" ;
-                                                                                                            } ;
-                                                                                                        devDependencies =
-                                                                                                            {
-                                                                                                                "@tsconfig/node24" = "^24.0.5" ;
-                                                                                                                "@types/node" = "^24.13.4" ;
-                                                                                                                "@vitejs/plugin-vue" = "^6.0.8" ;
-                                                                                                                "@vue/tsconfig" = "^0.9.1" ;
-                                                                                                                "npm-run-all2" = "^9.0.3" ;
-                                                                                                                typescript = "~6.0.0" ;
-                                                                                                                vite = "^8.2.2" ;
-                                                                                                                "vite-plugin-vue-devtools" = "^8.2.1" ;
-                                                                                                                "vue-tsc" = "^3.3.11" ;
-                                                                                                            } ;
-                                                                                                        engines =
-                                                                                                            {
-                                                                                                                node = "^22.18.0 || >=24.12.0" ;
-                                                                                                            } ;
+                                                                                                        name = "fetch-9809839391755913" ;
+                                                                                                        post = null ;
+                                                                                                        runtime-inputs =
+                                                                                                            pkgs :
+                                                                                                                [
+                                                                                                                    (
+                                                                                                                        _config.tree-serialization.explode
+                                                                                                                            {
+                                                                                                                                bytes = "1m" ;
+                                                                                                                                input = "/mounts/pwd/node_modules" ;
+                                                                                                                                name = "explode" ;
+                                                                                                                                output = "/mounts/pwd/node_modules.exploded" ;
+                                                                                                                            }
+                                                                                                                    )
+                                                                                                                    pkgs.git
+                                                                                                                    pkgs.nodejs
+                                                                                                                ] ;
+                                                                                                        text =
+                                                                                                            let
+                                                                                                                {
+                                                                                                                    name = "visa" ;
+                                                                                                                    version = "0.0.0" ;
+                                                                                                                    private = true ;
+                                                                                                                    type = "module" ;
+                                                                                                                    scripts =
+                                                                                                                        {
+                                                                                                                            dev = "vite --port 11141" ;
+                                                                                                                            build = "run-p type-check \"build-only {@}\" --" ;
+                                                                                                                            preview = "vite preview" ;
+                                                                                                                            "build-only" = "vite build" ;
+                                                                                                                            "type-check" = "vue-tsc --build" ;
+                                                                                                                        } ;
+                                                                                                                    dependencies =
+                                                                                                                        {
+                                                                                                                            vue = "^3.5.42" ;
+                                                                                                                            vue-router = "^5.3.1" ;
+                                                                                                                        } ;
+                                                                                                                    devDependencies =
+                                                                                                                        {
+                                                                                                                            "@tsconfig/node24" = "^24.0.5" ;
+                                                                                                                            "@types/node" = "^24.13.4" ;
+                                                                                                                            "@vitejs/plugin-vue" = "^6.0.8" ;
+                                                                                                                            "@vue/tsconfig" = "^0.9.1" ;
+                                                                                                                            "npm-run-all2" = "^9.0.3" ;
+                                                                                                                            typescript = "~6.0.0" ;
+                                                                                                                            vite = "^8.2.2" ;
+                                                                                                                            "vite-plugin-vue-devtools" = "^8.2.1" ;
+                                                                                                                            "vue-tsc" = "^3.3.11" ;
+                                                                                                                        } ;
+                                                                                                                    engines =
+                                                                                                                        {
+                                                                                                                            node = "^22.18.0 || >=24.12.0" ;
+                                                                                                                        } ;
+                                                                                                                } ;
+                                                                                                                in
+                                                                                                                    ''
+                                                                                                                        MESSAGE="$1"
+                                                                                                                        git clean -fd
+                                                                                                                        cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
+                                                                                                                        git rm -r --ignore-unmatch node_modules node_modules.exploded
+                                                                                                                        mkdir --parents node_modules.exploded
+                                                                                                                        npm install
+                                                                                                                        explode
+                                                                                                                        git add node_modules.exploded
+                                                                                                                        git clean -fd
+                                                                                                                        git commit -am "$MESSAGE" --allow-empty --allow-empty-message
+                                                                                                                    '' ;
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
