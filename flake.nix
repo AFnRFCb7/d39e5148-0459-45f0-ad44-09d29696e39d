@@ -40,11 +40,10 @@
                                                                                     FETCH_BACKEND=${ _config.visa.backend.server.fetch }
                                                                                     FETCH_FRONTEND=${ _config.visa.frontend.web.fetch }
                                                                                     FETCH_MIGRATE=${ _config.visa.backend.database.migrate.fetch }
-                                                                                    PACKAGE_MIGRATE=${ _config.node-package.build ./backend/database/migrate }
+                                                                                    PACKAGE_MIRATE=${ _config.visa.backend.migrate.database.package }
                                                                                     DEMO_PLAYWRIGHT=${ _config.visa.playwright.demo }
                                                                                     EXECUTE_PLAYWRIGHT=${ _config.visa.playwright.execute }
                                                                                     PACKAGE=${ _config.visa.backend.server.environments.staging.package }
-                                                                                    PACKAGE_MIGRATE=${ _config.node-package.build ./backend/database/migrate }
                                                                                     FETCH_SERVER=${ _config.visa.backend.server.fetch }
                                                                                     EOF
                                                                                 '' ;
@@ -167,7 +166,7 @@
                                                                                                                         {
                                                                                                                             mounts =
                                                                                                                                 {
-                                                                                                                                    package = { read-only = true ; source = _config.node-package.build ./backend/database/migrate ; type = "bind" ; } ;
+                                                                                                                                    package = { read-only = true ; source = _config.visa.backend.database.migrate.package ; type = "bind" ; } ;
                                                                                                                                 } ;
                                                                                                                             name = "execute" ;
                                                                                                                             post = null ;
@@ -252,11 +251,9 @@
                                                                                                                                 mkdir --parents node_modules.exploded
                                                                                                                                 npm install
                                                                                                                                 explode
-                                                                                                                                echo 8963753075037643
                                                                                                                                 git add node_modules.exploded
                                                                                                                                 git clean -fd
                                                                                                                                 git commit -am "$MESSAGE" --allow-empty --allow-empty-message
-                                                                                                                                echo 3301380592222425
                                                                                                                             '' ;
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
@@ -450,7 +447,7 @@
                                                                                                 mounts =
                                                                                                     {
                                                                                                         chromium = { read-only = true ; source = _pkgs.chromium ; type = "bind" ; } ;
-                                                                                                        migrate = { read-only = true ; source = _config.node-package.build ./backend/database/migrate ; type = "bind" ; } ;
+                                                                                                        migrate = { read-only = true ; source = _config.visa.backend.database.migrate.package ; type = "bind" ; } ;
                                                                                                         package = { read-only = true ; source = _config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
