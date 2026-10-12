@@ -244,8 +244,10 @@
                                                                                                                             ''
                                                                                                                                 git clean -fd
                                                                                                                                 cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
+                                                                                                                                git rm -r node_modules.exploded
                                                                                                                                 npm install
                                                                                                                                 explode
+                                                                                                                                git add node_modules.exploded
                                                                                                                                 git clean -fd
                                                                                                                                 git commit -am "$MESSAGE" --allow-empty --allow-empty-message
                                                                                                                                 echo 3301380592222425
