@@ -47,6 +47,7 @@
                                                                                     FETCH_SERVER=${ _config.visa.backend.server.fetch }
                                                                                     FETCH_ADMIN=${ _config.visa.frontend.admin.fetch }
                                                                                     PACKAGE_ADMIN=${ _config.visa.frontend.admin.package }
+                                                                                    PACKAGE_SERVER=${ _config.visa.backend.server.package }
                                                                                     EOF
                                                                                 '' ;
                                                                         }
@@ -401,7 +402,7 @@
                                                                                                                     [
                                                                                                                         (
                                                                                                                             _config.tree-serialization
-                                                                                                                                {
+                                                                                                                                 ; type = "bind" ; } {
                                                                                                                                     input = ./backend/server/node_modules.exploded ;
                                                                                                                                     name = "implode" ;
                                                                                                                                     output = "$out/node_modules" ;
@@ -411,7 +412,7 @@
                                                                                                             }
                                                                                                             ''
                                                                                                                 mkdir --parents "$out/node_modules"
-                                                                                                                ln symbolic "${ code }/* "$out"
+                                                                                                                ln --symbolic "${ code }/* "$out"
                                                                                                                 mkdir --parents "$out/node_modules"
                                                                                                                 implode
                                                                                                                 rm "$out/node_modules.exploded"
