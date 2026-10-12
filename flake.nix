@@ -277,8 +277,8 @@
                                                                                                                                             OUT="$1"
                                                                                                                                             SRC="$2"
                                                                                                                                             echo 3479456566473266 "$OUT" "$SRC"
-                                                                                                                                            cp --recursive "$SRC/backend/database/migrate" "$OUT"
                                                                                                                                             ln --symbolic "$SRC/backend/database/migrate/." "$OUT"
+                                                                                                                                            echo 3650587994516625
                                                                                                                                             if [[ ! -e "$OUT/node_modules" ]]
                                                                                                                                             then
                                                                                                                                                 mkdir --parents "$OUT/node_modules"
