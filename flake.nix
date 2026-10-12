@@ -245,6 +245,7 @@
                                                                                                                             } ;
                                                                                                                         in
                                                                                                                             ''
+                                                                                                                                MESSAGE="$1"
                                                                                                                                 git clean -fd
                                                                                                                                 cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
                                                                                                                                 git rm -r --ignore-unmatch node_modules node_modules.exploded
