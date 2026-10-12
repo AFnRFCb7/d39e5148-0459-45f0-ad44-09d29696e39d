@@ -409,7 +409,7 @@
                                                                                                                                             (
                                                                                                                                                 _config.tree-serialization.implode
                                                                                                                                                     {
-                                                                                                                                                        input = "${ code }./backend/server/node_modules.exploded" ;
+                                                                                                                                                        input = "${ code }/backend/server/node_modules.exploded" ;
                                                                                                                                                         name = "implode" ;
                                                                                                                                                         output = "$OUT/node_modules" ;
                                                                                                                                                     }
