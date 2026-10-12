@@ -275,6 +275,7 @@
                                                                                                                                     text =
                                                                                                                                         ''
                                                                                                                                             OUT="$1"
+                                                                                                                                            export OUT
                                                                                                                                             SRC="$2"
                                                                                                                                             mkdir --parents "$OUT"
                                                                                                                                             ln --symbolic "$SRC/backend/database/migrate/"* "$OUT"
