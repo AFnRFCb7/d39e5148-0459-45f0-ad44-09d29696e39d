@@ -226,7 +226,7 @@
                                                                                                                                     }
                                                                                                                             )
                                                                                                                             pkgs.git
-                                                                                                                            pkgs.nodejs
+                                                                                                                            pkgs.nodejs_20
                                                                                                                         ] ;
                                                                                                                 text =
                                                                                                                     let
@@ -247,7 +247,8 @@
                                                                                                                                 cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
                                                                                                                                 git rm -r node_modules.exploded
                                                                                                                                 npm install
-                                                                                                                                explode
+                                                                                                                                du -hd0 node_modules
+                                                                                                                                time explode
                                                                                                                                 git add node_modules.exploded
                                                                                                                                 git clean -fd
                                                                                                                                 git commit -am "$MESSAGE" --allow-empty --allow-empty-message
