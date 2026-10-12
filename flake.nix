@@ -212,8 +212,7 @@
                                                                                                             {
                                                                                                                 mounts =
                                                                                                                     {
-                                                                                                                        imploded = { source = "node_modules.exploded" ; type = "bind" ; } ;
-                                                                                                                        exploded = { read-only = true ; source = "node_modules" ; type = "bind" ; } ;
+                                                                                                                        pwd = { source = "." ; type = "bind" ; } ;
                                                                                                                     } ;
                                                                                                                 name = "fetch-9809839391755913" ;
                                                                                                                 post = null ;
@@ -224,9 +223,9 @@
                                                                                                                                 _config.tree-serialization.explode
                                                                                                                                     {
                                                                                                                                         bytes = "1m" ;
-                                                                                                                                        input = "/mounts/exploded" ;
+                                                                                                                                        input = "/mounts/pwd/node_modules" ;
                                                                                                                                         name = "explode" ;
-                                                                                                                                        output = "/mounts/imploded" ;
+                                                                                                                                        output = "/mounts/pwd/node_modules.exploded" ;
                                                                                                                                     }
                                                                                                                             )
                                                                                                                             pkgs.git
