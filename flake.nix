@@ -334,14 +334,53 @@
                                                                                     _lib.mkOption
                                                                                         {
                                                                                             default =
-                                                                                                _config.node-fetch
+                                                                                                _config.lazy-shell-application
                                                                                                     {
-                                                                                                        dependencies =
+                                                                                                        mounts =
                                                                                                             {
-                                                                                                                cors = "^2.8.6" ;
-                                                                                                                express = "^5.1.0" ;
-                                                                                                                pg = "^8.16.3";
+                                                                                                                pwd = { source = "." ; type = "bind" ; } ;
                                                                                                             } ;
+                                                                                                        name = "fetch" ;
+                                                                                                        post = null ;
+                                                                                                        runtime-inputs =
+                                                                                                            pkgs :
+                                                                                                                [
+                                                                                                                    (
+                                                                                                                        _config.tree-serialization.explode
+                                                                                                                            {
+                                                                                                                                bytes = "1m" ;
+                                                                                                                                input = "/mounts/pwd/node_modules" ;
+                                                                                                                                name = "explode" ;
+                                                                                                                                output = "/mounts/pwd/node_modules.exploded" ;
+                                                                                                                            }
+                                                                                                                    )
+                                                                                                                    pkgs.git
+                                                                                                                    pkgs.nodejs
+                                                                                                                ] ;
+                                                                                                        text =
+                                                                                                            let
+                                                                                                                package =
+                                                                                                                    {
+                                                                                                                        dependencies =
+                                                                                                                            {
+                                                                                                                                cors = "^2.8.6" ;
+                                                                                                                                express = "^5.1.0" ;
+                                                                                                                                pg = "^8.16.3";
+                                                                                                                            } ;
+                                                                                                                    } ;
+                                                                                                                in
+                                                                                                                    ''
+                                                                                                                        MESSAGE="$1"
+                                                                                                                        git clean -fd
+                                                                                                                        cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
+                                                                                                                        git rm -r --ignore-unmatch node_modules node_modules.exploded
+                                                                                                                        mkdir --parents node_modules.exploded
+                                                                                                                        npm install
+                                                                                                                        explode
+                                                                                                                        git add node_modules.exploded
+                                                                                                                        git clean -fd
+                                                                                                                        git commit -am "$MESSAGE" --allow-empty --allow-empty-message
+                                                                                                                    '' ;
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
