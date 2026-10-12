@@ -258,6 +258,36 @@
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
                                                                                                 } ;
+                                                                                        package =
+                                                                                            _lib.mkOption
+                                                                                                {
+                                                                                                    default =
+                                                                                                        _pkgs.runCommand
+                                                                                                            "package"
+                                                                                                            {
+                                                                                                                nativeBuildInputs =
+                                                                                                                    [
+                                                                                                                        (
+                                                                                                                            _pkgs.writeShellApplication'
+                                                                                                                                {
+                                                                                                                                    name = "install" ;
+                                                                                                                                    runtimeInputs = [ ( _config.tree-serialization { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) ] ;
+                                                                                                                                    text =
+                                                                                                                                        ''
+                                                                                                                                            OUT="$1"
+                                                                                                                                            cp --recursive ./backend/database/migrate "$OUT"
+                                                                                                                                            mkdir --parents "$OUT/node_modules"
+                                                                                                                                            mkdir --parents "$OUT/node_modules.exploded"
+                                                                                                                                            implode
+                                                                                                                                            rm --recursive "$OUT/node_modules.exploded"
+                                                                                                                                        '' ;
+                                                                                                                                }
+                                                                                                                        )
+                                                                                                                    ] ;
+                                                                                                            }
+                                                                                                            ''install "$out"'' ;
+                                                                                                    type = _lib.types.package ;
+                                                                                                } ;
                                                                                     } ;
                                                                             } ;
                                                                         server =
