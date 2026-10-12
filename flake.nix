@@ -279,6 +279,14 @@
                                                                                                                                             echo 3479456566473266 "$OUT" "$SRC"
                                                                                                                                             cp --recursive "$SRC/backend/database/migrate" "$OUT"
                                                                                                                                             ln --symbolic "$SRC/backend/database/migrate/." "$OUT"
+                                                                                                                                            if [[ ! -e "$OUT/node_modules" ]]
+                                                                                                                                            then
+                                                                                                                                                mkdir --parents "$OUT/node_modules"
+                                                                                                                                            fi
+                                                                                                                                            if [[ ! -e "$OUT/node_modules.exploded" ]]
+                                                                                                                                            then
+                                                                                                                                                mkdir --parents "$OUT/node_modules.exploded"
+                                                                                                                                            fi
                                                                                                                                             implode
                                                                                                                                             rm --recursive "$OUT/node_modules.exploded"
                                                                                                                                         '' ;
