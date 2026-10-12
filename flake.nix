@@ -276,6 +276,7 @@
                                                                                                                                         ''
                                                                                                                                             OUT="$1"
                                                                                                                                             SRC="$2"
+                                                                                                                                            echo 3479456566473266 "$OUT" "$SRC"
                                                                                                                                             ${ pkgs.findutils }/bin/find "$SRC"
                                                                                                                                             cp --recursive "$SRC/backend/database/migrate" "$OUT"
                                                                                                                                             mkdir --parents "$OUT/node_modules"
