@@ -47,6 +47,7 @@
                                                                                     FETCH_SERVER=${ _config.visa.backend.server.fetch }
                                                                                     FETCH_ADMIN=${ _config.visa.frontend.admin.fetch }
                                                                                     PACKAGE_ADMIN=${ _config.visa.frontend.admin.package }
+                                                                                    PACKAGE_BACKEND=${ _config.visa.backend.server.package }
                                                                                     EOF
                                                                                 '' ;
                                                                         }
