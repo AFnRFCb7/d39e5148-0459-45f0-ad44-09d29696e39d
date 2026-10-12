@@ -539,6 +539,7 @@
                                         node-fetch ,
                                         node-package ,
                                         obviated-by ,
+                                        tree-serialization ,
                                         visitor
                                     } :
                                         {
@@ -555,7 +556,7 @@
                                                                     in
                                                                         {
                                                                             environment.systemPackages = [ _config.visa.playwright.execute ];
-                                                                            imports = [ failure implementation lazy-shell-application node-fetch node-package visitor ] ;
+                                                                            imports = [ failure implementation lazy-shell-application node-fetch node-package visitor tree-serialization ] ;
                                                                         } ;
                                                         testScript =
                                                             ''
