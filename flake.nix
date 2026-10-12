@@ -210,7 +210,11 @@
                                                                                                     default =
                                                                                                         _config.lazy-shell-application
                                                                                                             {
-                                                                                                                mounts = { pwd = { source = "." ; type = "bind" ; } ; } ;
+                                                                                                                mounts =
+                                                                                                                    {
+                                                                                                                        imploded = { source = "node-modules.exploded" ; type = "bind" ; } ;
+                                                                                                                        exploded = { read-only = true ; source = "node-modules" ; type = "bind" ; } ;
+                                                                                                                    } ;
                                                                                                                 name = "fetch-9809839391755913" ;
                                                                                                                 post = null ;
                                                                                                                 runtime-inputs =
@@ -220,9 +224,9 @@
                                                                                                                                 _config.tree-serialization.explode
                                                                                                                                     {
                                                                                                                                         bytes = "1m" ;
-                                                                                                                                        input = "/mounts/pwd/node_modules" ;
+                                                                                                                                        input = "/mounts/exploded" ;
                                                                                                                                         name = "explode" ;
-                                                                                                                                        output = "/mounts/pwd/node_modules.exploded" ;
+                                                                                                                                        output = "/mounts/imploded" ;
                                                                                                                                     }
                                                                                                                             )
                                                                                                                             pkgs.git
