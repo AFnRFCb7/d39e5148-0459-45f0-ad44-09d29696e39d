@@ -407,7 +407,7 @@
                                                                                                             ] ;
                                                                                                     }
                                                                                                     ''
-                                                                                                        mkdir --parents "$out"
+                                                                                                        mkdir --parents "$out/node_modules"
                                                                                                         cp --recursive ./. "$out"
                                                                                                         implode
                                                                                                     '' ;
