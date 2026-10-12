@@ -270,7 +270,7 @@
                                                                                                                         (
                                                                                                                             _pkgs.writeShellApplication
                                                                                                                                 {
-                                                                                                                                    name = "install" ;
+                                                                                                                                    name = "install-it" ;
                                                                                                                                     runtimeInputs = [ ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) ] ;
                                                                                                                                     text =
                                                                                                                                         ''
@@ -288,7 +288,7 @@
                                                                                                                         )
                                                                                                                     ] ;
                                                                                                             }
-                                                                                                            ''install "$out" "$src"'' ;
+                                                                                                            ''install-it "$out" "$src"'' ;
                                                                                                     type = _lib.types.package ;
                                                                                                 } ;
                                                                                     } ;
