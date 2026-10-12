@@ -401,22 +401,35 @@
                                                                                                                 nativeBuildInputs =
                                                                                                                     [
                                                                                                                         (
-                                                                                                                            _config.tree-serialization.implode
+                                                                                                                            _pkgs.writeShellApplication
                                                                                                                                 {
-                                                                                                                                    input = ./backend/server/node_modules.exploded ;
-                                                                                                                                    name = "implode" ;
-                                                                                                                                    output = "$out/node_modules" ;
+                                                                                                                                    name = "install-it" ;
+                                                                                                                                    runtimeInputs =
+                                                                                                                                        [
+                                                                                                                                            (
+                                                                                                                                                _config.tree-serialization.implode
+                                                                                                                                                    {
+                                                                                                                                                        input = ""${ code }./backend/server/node_modules.exploded" ;
+                                                                                                                                                        name = "implode" ;
+                                                                                                                                                        output = "$OUT/node_modules" ;
+                                                                                                                                                    }
+                                                                                                                                            )
+                                                                                                                                        ] ;
+                                                                                                                                    text =
+                                                                                                                                        ''
+                                                                                                                                            OUT="$1"
+                                                                                                                                            export OUT
+                                                                                                                                            mkdir --parents "$OUT/node_modules"
+                                                                                                                                            ln --symbolic "${ code }/* "$OUT"
+                                                                                                                                            mkdir --parents "$OUT/node_modules"
+                                                                                                                                            implode
+                                                                                                                                            rm "$OUT/node_modules.exploded"
+                                                                                                                                        '' ;
                                                                                                                                 }
                                                                                                                         )
                                                                                                                     ] ;
                                                                                                             }
-                                                                                                            ''
-                                                                                                                mkdir --parents "$out/node_modules"
-                                                                                                                ln --symbolic "${ code }/* "$out"
-                                                                                                                mkdir --parents "$out/node_modules"
-                                                                                                                implode
-                                                                                                                rm "$out/node_modules.exploded"
-                                                                                                            '' ;
+                                                                                                            ''install-it "$out"'' ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
                                                                             } ;
