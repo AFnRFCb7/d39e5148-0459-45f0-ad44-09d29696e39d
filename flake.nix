@@ -220,7 +220,7 @@
                                                                                                                                 _config.tree-serialization.explode
                                                                                                                                     {
                                                                                                                                         bytes = "1m" ;
-                                                                                                                                        input = { read-only = true ; source = "node_modules" ; type = "bind" ; } ;
+                                                                                                                                        input = "node_modules" ;
                                                                                                                                         name = "explode" ;
                                                                                                                                         output = { source = "node_modules.exploded" ; type = "bind" ; } ;
                                                                                                                                     }
