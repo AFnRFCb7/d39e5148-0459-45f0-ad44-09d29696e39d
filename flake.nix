@@ -276,7 +276,7 @@
                                                                                                                                         ''
                                                                                                                                             OUT="$1"
                                                                                                                                             ${ pkgs.findutils }/bin/find ./.
-                                                                                                                                            cp --recursive ./backend/database/migrate "$OUT"
+                                                                                                                                            cp --recursive $src/backend/database/migrate "$OUT"
                                                                                                                                             mkdir --parents "$OUT/node_modules"
                                                                                                                                             mkdir --parents "$OUT/node_modules.exploded"
                                                                                                                                             implode
