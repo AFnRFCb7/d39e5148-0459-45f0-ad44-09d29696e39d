@@ -278,9 +278,7 @@
                                                                                                                                             SRC="$2"
                                                                                                                                             echo 3479456566473266 "$OUT" "$SRC"
                                                                                                                                             cp --recursive "$SRC/backend/database/migrate" "$OUT"
-                                                                                                                                            mkdir --parents "$OUT/node_modules"
-                                                                                                                                            mkdir --parents "$OUT/node_modules.exploded"
-                                                                                                                                            if true ; then exit 0 ; fi
+                                                                                                                                            ln --symbolic "$SRC/backend/database/migrate/." "$OUT"
                                                                                                                                             implode
                                                                                                                                             rm --recursive "$OUT/node_modules.exploded"
                                                                                                                                         '' ;
