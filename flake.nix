@@ -227,7 +227,7 @@
                                                                                                                                     }
                                                                                                                             )
                                                                                                                             pkgs.git
-                                                                                                                            pkgs.nodejs_20
+                                                                                                                            pkgs.nodejs
                                                                                                                         ] ;
                                                                                                                 text =
                                                                                                                     let
@@ -247,6 +247,7 @@
                                                                                                                                 MESSAGE="$1"
                                                                                                                                 git clean -fd
                                                                                                                                 cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
+                                                                                                                                git add package.json
                                                                                                                                 git rm -r node_modules.exploded
                                                                                                                                 npm install
                                                                                                                                 du -hd0 node_modules
