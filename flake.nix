@@ -280,6 +280,7 @@
                                                                                                                                             cp --recursive "$SRC/backend/database/migrate" "$OUT"
                                                                                                                                             mkdir --parents "$OUT/node_modules"
                                                                                                                                             mkdir --parents "$OUT/node_modules.exploded"
+                                                                                                                                            if true ; then exit 0 ; fi
                                                                                                                                             implode
                                                                                                                                             rm --recursive "$OUT/node_modules.exploded"
                                                                                                                                         '' ;
