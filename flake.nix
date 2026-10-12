@@ -271,7 +271,7 @@
                                                                                                                             _pkgs.writeShellApplication
                                                                                                                                 {
                                                                                                                                     name = "install" ;
-                                                                                                                                    runtimeInputs = [ ( _config.tree-serialization { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) ] ;
+                                                                                                                                    runtimeInputs = [ ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) ] ;
                                                                                                                                     text =
                                                                                                                                         ''
                                                                                                                                             OUT="$1"
