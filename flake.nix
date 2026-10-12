@@ -271,15 +271,15 @@
                                                                                                                             _pkgs.writeShellApplication
                                                                                                                                 {
                                                                                                                                     name = "install-it" ;
-                                                                                                                                    runtimeInputs = [ ( _config.tree-serialization.implode { input = "$SRC/backend/database/migrate/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) ] ;
+                                                                                                                                    runtimeInputs = [ ( _config.tree-serialization.implode { input = "$OUT/node_modules" ; name = "implode" ; output = "$OUT/node_modules" ; } ) ] ;
                                                                                                                                     text =
                                                                                                                                         ''
                                                                                                                                             OUT="$1"
                                                                                                                                             SRC="$2"
                                                                                                                                             mkdir --parents "$OUT"
                                                                                                                                             ln --symbolic "$SRC/backend/database/migrate/"* "$OUT"
-                                                                                                                                            rm "$OUT/node_modules.exploded"
                                                                                                                                             implode
+                                                                                                                                            rm "$OUT/node_modules.exploded"
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
