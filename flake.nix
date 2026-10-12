@@ -322,6 +322,7 @@
                                                                                                                                 text =
                                                                                                                                     ''
                                                                                                                                         cd /mounts/package
+                                                                                                                                        ${ pkgs.findutils }/bin/find .
                                                                                                                                         node server ${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                                                     '' ;
                                                                                                                             } ;
