@@ -242,6 +242,7 @@
                                                                                                                             } ;
                                                                                                                         in
                                                                                                                             ''
+                                                                                                                                MESSAGE="$1"
                                                                                                                                 git clean -fd
                                                                                                                                 cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
                                                                                                                                 git rm -r node_modules.exploded
