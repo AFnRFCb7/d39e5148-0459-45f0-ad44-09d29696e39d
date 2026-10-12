@@ -312,7 +312,7 @@
                                                                                                                     default =
                                                                                                                         _config.lazy-shell-application
                                                                                                                             {
-                                                                                                                                mounts = { package = { read-only = true ; source = _config.node-package.build ./backend/server ; type = "bind" ; } ; } ;
+                                                                                                                                mounts = { package = { read-only = true ; source = _config.visa.backend.server.package ; type = "bind" ; } ; } ;
                                                                                                                                 name = "execute" ;
                                                                                                                                 post = null ;
                                                                                                                                 runtime-inputs = pkgs : [ pkgs.nodejs ] ;
@@ -326,7 +326,7 @@
                                                                                                                 } ;
                                                                                                         host = _lib.mkOption { default = "localhost" ; type = _lib.types.str ; } ;
                                                                                                         name = _lib.mkOption { default = "visa-server-staging" ; type = _lib.types.str ; } ;
-                                                                                                        package = lib.mkOption { default = _config.node-package.build ./backend/server ; type = _lib.types.package ; } ;
+                                                                                                        package = lib.mkOption { default = _config.visa.backend.server.package ; type = _lib.types.package ; } ;
                                                                                                         port = lib.mkOption { default = 14636 ; type =_lib.types.ints.between 1024 65535 ; } ;
                                                                                                     } ;
                                                                                             } ;
