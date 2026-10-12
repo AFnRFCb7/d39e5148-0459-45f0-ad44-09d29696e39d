@@ -271,7 +271,7 @@
                                                                                                                             _pkgs.writeShellApplication
                                                                                                                                 {
                                                                                                                                     name = "install-it" ;
-                                                                                                                                    runtimeInputs = [ ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) ] ;
+                                                                                                                                    runtimeInputs = [ ( _config.tree-serialization.implode { input = "$SRC/backend/database/migrate/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) ] ;
                                                                                                                                     text =
                                                                                                                                         ''
                                                                                                                                             OUT="$1"
@@ -279,16 +279,8 @@
                                                                                                                                             echo 3479456566473266 "$OUT" "$SRC"
                                                                                                                                             ln --symbolic "$SRC/backend/database/migrate/." "$OUT"
                                                                                                                                             echo 3650587994516625
-                                                                                                                                            if [[ ! -e "$OUT/node_modules" ]]
-                                                                                                                                            then
-                                                                                                                                                mkdir --parents "$OUT/node_modules"
-                                                                                                                                            fi
-                                                                                                                                            if [[ ! -e "$OUT/node_modules.exploded" ]]
-                                                                                                                                            then
-                                                                                                                                                mkdir --parents "$OUT/node_modules.exploded"
-                                                                                                                                            fi
+                                                                                                                                            rm "$OUT/node_modules.exploded"
                                                                                                                                             implode
-                                                                                                                                            rm --recursive "$OUT/node_modules.exploded"
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
