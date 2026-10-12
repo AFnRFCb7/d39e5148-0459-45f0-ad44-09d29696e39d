@@ -43,7 +43,6 @@
                                                                                     PACKAGE_MIRATE=${ _config.visa.backend.database.migrate.package }
                                                                                     DEMO_PLAYWRIGHT=${ _config.visa.playwright.demo }
                                                                                     EXECUTE_PLAYWRIGHT=${ _config.visa.playwright.execute }
-                                                                                    PACKAGE=${ _config.visa.backend.server.environments.staging.package }
                                                                                     FETCH_SERVER=${ _config.visa.backend.server.fetch }
                                                                                     FETCH_ADMIN=${ _config.visa.frontend.admin.fetch }
                                                                                     PACKAGE_ADMIN=${ _config.visa.frontend.admin.package }
