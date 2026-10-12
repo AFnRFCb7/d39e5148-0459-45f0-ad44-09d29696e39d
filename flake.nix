@@ -211,7 +211,7 @@
                                                                                                         _config.lazy-shell-application
                                                                                                             {
                                                                                                                 mounts = { } ;
-                                                                                                                name = "package" ;
+                                                                                                                name = "fetch" ;
                                                                                                                 post = null ;
                                                                                                                 runtime-inputs =
                                                                                                                     pkgs :
