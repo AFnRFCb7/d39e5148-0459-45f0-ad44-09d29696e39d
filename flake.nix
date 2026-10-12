@@ -401,7 +401,7 @@
                                                                                                                 nativeBuildInputs =
                                                                                                                     [
                                                                                                                         (
-                                                                                                                            _config.tree-serialization.imple
+                                                                                                                            _config.tree-serialization.implode
                                                                                                                                 {
                                                                                                                                     input = ./backend/server/node_modules.exploded ;
                                                                                                                                     name = "implode" ;
