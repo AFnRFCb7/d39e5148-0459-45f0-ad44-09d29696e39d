@@ -285,7 +285,7 @@
                                                                                                                                                 mkdir --parents "$OUT/node_modules.exploded"
                                                                                                                                             fi
                                                                                                                                             implode
-                                                                                                                                            rm "$OUT/node_modules.exploded"
+                                                                                                                                            rm --recursive --force "$OUT/node_modules.exploded"
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
