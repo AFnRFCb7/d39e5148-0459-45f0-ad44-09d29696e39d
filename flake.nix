@@ -222,7 +222,7 @@
                                                                                                                                         bytes = "1m" ;
                                                                                                                                         input = "node_modules" ;
                                                                                                                                         name = "explode" ;
-                                                                                                                                        output = { source = "node_modules.exploded" ; type = "bind" ; } ;
+                                                                                                                                        output = "node_modules.exploded" ;
                                                                                                                                     }
                                                                                                                             )
                                                                                                                             pkgs.git
