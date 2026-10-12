@@ -46,6 +46,7 @@
                                                                                     PACKAGE=${ _config.visa.backend.server.environments.staging.package }
                                                                                     FETCH_SERVER=${ _config.visa.backend.server.fetch }
                                                                                     FETCH_ADMIN=${ _config.visa.frontend.admin.fetch }
+                                                                                    PACKAGE_ADMIN=${ _config.visa.frontend.admin.package }
                                                                                     EOF
                                                                                 '' ;
                                                                         }
@@ -501,7 +502,38 @@
                                                                                 package = ### FINDME
                                                                                     _lib.mkOption
                                                                                         {
-                                                                                            default = config.node-package.build ./frontend/admin ;
+                                                                                            default =
+                                                                                                _pkgs.runCommand
+                                                                                                    "package"
+                                                                                                    {
+                                                                                                        nativeBuildInputs =
+                                                                                                            [
+                                                                                                                (
+                                                                                                                    _pkgs.writeShellApplication
+                                                                                                                        {
+                                                                                                                            name = "install-it" ;
+                                                                                                                            runtimeInputs = [ ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) ] ;
+                                                                                                                            text =
+                                                                                                                                ''
+                                                                                                                                    OUT="$1"
+                                                                                                                                    export OUT
+                                                                                                                                    SRC="$2"
+                                                                                                                                    mkdir --parents "$OUT"
+                                                                                                                                    ln --symbolic "$SRC/frontend/admin/"* "$OUT"
+                                                                                                                                    rm --recursive --force "$OUT/node_modules"
+                                                                                                                                    mkdir --parents "$OUT/node_modules"
+                                                                                                                                    if [[ ! -e "$OUT/node_modules.exploded" ]]
+                                                                                                                                    then
+                                                                                                                                        mkdir --parents "$OUT/node_modules.exploded"
+                                                                                                                                    fi
+                                                                                                                                    implode
+                                                                                                                                    rm --recursive --force "$OUT/node_modules.exploded"
+                                                                                                                                '' ;
+                                                                                                                        }
+                                                                                                                )
+                                                                                                            ] ;
+                                                                                                    }
+                                                                                                    ''install-it "$out" ${ ./. }'' ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
                                                                             } ;
