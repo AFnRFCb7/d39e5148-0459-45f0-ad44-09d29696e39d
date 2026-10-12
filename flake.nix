@@ -275,8 +275,9 @@
                                                                                                                                     text =
                                                                                                                                         ''
                                                                                                                                             OUT="$1"
+                                                                                                                                            SRC="$2"
                                                                                                                                             ${ pkgs.findutils }/bin/find ./.
-                                                                                                                                            cp --recursive $src/backend/database/migrate "$OUT"
+                                                                                                                                            cp --recursive "$SRC/backend/database/migrate" "$OUT"
                                                                                                                                             mkdir --parents "$OUT/node_modules"
                                                                                                                                             mkdir --parents "$OUT/node_modules.exploded"
                                                                                                                                             implode
@@ -286,7 +287,7 @@
                                                                                                                         )
                                                                                                                     ] ;
                                                                                                             }
-                                                                                                            ''install "$out"'' ;
+                                                                                                            ''install "$out" "$src"'' ;
                                                                                                     type = _lib.types.package ;
                                                                                                 } ;
                                                                                     } ;
