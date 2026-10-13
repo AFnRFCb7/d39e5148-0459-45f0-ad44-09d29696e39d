@@ -527,7 +527,7 @@
                                                                                             default =
                                                                                                 let
                                                                                                     code = ./. ;
-                                                                                                    in
+                                                                                                    xxx =
                                                                                                         _pkgs.runCommand
                                                                                                             "package"
                                                                                                             {
@@ -552,6 +552,7 @@
                                                                                                                     ] ;
                                                                                                             }
                                                                                                             ''install-it "$out"'' ;
+                                                                                                    in _pkgs.coreutils ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
                                                                             } ;
