@@ -125,6 +125,14 @@
                                                                             wantedBy = [ "multi-user.target" ] ;
                                                                         } ;
                                                             } ;
+                                                        virtualisation.forwardPorts =
+                                                            [
+                                                                {
+                                                                    from = "host" ;
+                                                                    host.port = 8080 ;
+                                                                    guest.port = 80 ;
+                                                                }
+                                                            ] ;
                                                     } ;
                                                 options =
                                                     {
