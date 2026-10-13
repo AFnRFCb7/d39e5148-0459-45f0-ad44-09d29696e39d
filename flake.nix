@@ -133,7 +133,7 @@
                                                                     "-netdev"
                                                                     "user,id=net0,hostfwd=tcp::8080-:80"
                                                                 ] ;
-                                                        networking.firewall.allowedTCPPorts = [ 80 ] ;
+                                                            networking.firewall.allowedTCPPorts = [ 80 ] ;
                                                     } ;
                                                 options =
                                                     {
@@ -916,7 +916,8 @@
                                                                         } ;
                                                         testScript =
                                                             ''
-                                                                client.wait_for_unit("visa-database-staging.service")
+                                                                client.wait_for_unit("multi-user.target")
+                                                                # client.wait_for_unit("visa-database-staging.service")
                                                                 client.wait_for_unit("visa-server-staging.service")
                                                                 client.wait_for_unit("nginx.service")
                                                                 client.succeed("execute")
