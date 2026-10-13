@@ -133,7 +133,6 @@ virtualisation.vmVariant.virtualisation.qemu.networkingOptions = lib.mkForce [
 ];
 
     networking.firewall.allowedTCPPorts = [ 80 ];
-  };
                                                     } ;
                                                 options =
                                                     {
