@@ -24,6 +24,19 @@ const browsers = {
   });
 
   try {
+    const context = await browser.newContext({
+      extraHTTPHeaders: {
+        Host: "visa-staging.com"
+      }
+    });
+
+    const page = await context.newPage();
+
+    await page.goto(
+      "http://127.0.0.1/health-check/unauthenticated/marker"
+    );
+
+    console.log(await page.title());
     const page = await browser.newPage();
 
     const response = await page.goto(url);
