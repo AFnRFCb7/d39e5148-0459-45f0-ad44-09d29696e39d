@@ -527,7 +527,7 @@
                                                                                             default =
                                                                                                 let
                                                                                                     code = ./. ;
-                                                                                                    xxx =
+                                                                                                    in
                                                                                                         _pkgs.runCommand
                                                                                                             "package"
                                                                                                             {
@@ -552,7 +552,6 @@
                                                                                                                     ] ;
                                                                                                             }
                                                                                                             ''install-it "$out"'' ;
-                                                                                                    in _pkgs.coreutils ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
                                                                             } ;
@@ -639,7 +638,11 @@
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
-                                                                                package = _config.node-package.build ./frontend/web ;
+                                                                                package =
+                                                                                    {
+                                                                                        default = _pkgs.coreutils ;
+                                                                                        type = _lib.types.package ;
+                                                                                    } ;
                                                                             } ;
                                                                     } ;
                                                                 playwright =
