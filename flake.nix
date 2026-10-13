@@ -750,27 +750,103 @@
                                                                             _lib.mkOption
                                                                                 {
                                                                                     default =
-                                                                                        _config.node-fetch
+                                                                                        _lib.mkOption
                                                                                             {
-                                                                                                name = "visa-playwright" ;
-                                                                                                version = "0.0.0" ;
-                                                                                                private = true ;
-                                                                                                scripts =
-                                                                                                    {
-                                                                                                        test = "playwright test" ;
-                                                                                                    } ;
-                                                                                                devDependencies =
-                                                                                                    {
-                                                                                                        "@playwright/test" = "^1.50.1" ;
-                                                                                                        "playwright" = "^1.50.1" ;
-                                                                                                    } ;
-                                                                                            };
+                                                                                                default =
+                                                                                                    _config.lazy-shell-application
+                                                                                                        {
+                                                                                                            mounts =
+                                                                                                                {
+                                                                                                                    pwd = { source = "." ; type = "bind" ; } ;
+                                                                                                                } ;
+                                                                                                            name = "fetch" ;
+                                                                                                            post = null ;
+                                                                                                            runtime-inputs =
+                                                                                                                pkgs :
+                                                                                                                    [
+                                                                                                                        (
+                                                                                                                            _config.tree-serialization.explode
+                                                                                                                                {
+                                                                                                                                    bytes = "1m" ;
+                                                                                                                                    input = "/mounts/pwd/node_modules" ;
+                                                                                                                                    name = "explode" ;
+                                                                                                                                    output = "/mounts/pwd/node_modules.exploded" ;
+                                                                                                                                }
+                                                                                                                        )
+                                                                                                                        pkgs.git
+                                                                                                                        pkgs.nodejs
+                                                                                                                    ] ;
+                                                                                                            text =
+                                                                                                                let
+                                                                                                                    package =
+                                                                                                                        {
+                                                                                                                            name = "visa-playwright" ;
+                                                                                                                            version = "0.0.0" ;
+                                                                                                                            private = true ;
+                                                                                                                            scripts =
+                                                                                                                                {
+                                                                                                                                    test = "playwright test" ;
+                                                                                                                                } ;
+                                                                                                                            devDependencies =
+                                                                                                                                {
+                                                                                                                                    "@playwright/test" = "^1.50.1" ;
+                                                                                                                                    "playwright" = "^1.50.1" ;
+                                                                                                                                } ;
+                                                                                                                        } ;
+                                                                                                                    in
+                                                                                                                        ''
+                                                                                                                            MESSAGE="$1"
+                                                                                                                            git clean -fd
+                                                                                                                            cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
+                                                                                                                            git rm -r --ignore-unmatch node_modules node_modules.exploded
+                                                                                                                            mkdir --parents node_modules.exploded
+                                                                                                                            npm install
+                                                                                                                            explode
+                                                                                                                            git add node_modules.exploded
+                                                                                                                            git clean -fd
+                                                                                                                            git commit -am "$MESSAGE" --allow-empty --allow-empty-message
+                                                                                                                        '' ;
+                                                                                                        } ;
+                                                                                                type = _lib.types.package ;
+                                                                                            } ;
                                                                                     type = _lib.types.package ;
                                                                                 } ;
                                                                         package =
                                                                             _lib.mkOption
                                                                                 {
-                                                                                    default = _config.node-package.build ./playwright ;
+                                                                                    default =
+                                                                                        let
+                                                                                            code = ./. ;
+                                                                                            in
+                                                                                                _pkgs.runCommand
+                                                                                                    "package"
+                                                                                                    {
+                                                                                                        nativeBuildInputs =
+                                                                                                            [
+                                                                                                                (
+                                                                                                                    _pkgs.writeShellApplication
+                                                                                                                        {
+                                                                                                                            name = "install-it" ;
+                                                                                                                            runtimeInputs = [ ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) ] ;
+                                                                                                                            text =
+                                                                                                                                ''
+                                                                                                                                    OUT="$1"
+                                                                                                                                    export OUT
+                                                                                                                                    mkdir --parents "$OUT/node_modules"
+                                                                                                                                    ln --symbolic "${ code }/playwright/"* "$OUT"
+                                                                                                                                    mkdir --parents "$OUT/node_modules"
+                                                                                                                                    if [[ ! -e "$OUT/node_modules.exploded" ]]
+                                                                                                                                    then
+                                                                                                                                        mkdir --parents "$OUT/node_modules.exploded"
+                                                                                                                                    fi
+                                                                                                                                    implode
+                                                                                                                                    rm --recursive --force "$OUT/node_modules.exploded"
+                                                                                                                                '' ;
+                                                                                                                        }
+                                                                                                                )
+                                                                                                            ] ;
+                                                                                                    }
+                                                                                                    ''install-it "$out"'' ;
                                                                                     type = _lib.types.package ;
                                                                                 } ;
                                                                     } ;
