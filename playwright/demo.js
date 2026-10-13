@@ -26,29 +26,21 @@ const browsers = {
   });
 
   try {
-    const context = await browser.newContext({
-      extraHTTPHeaders: {
-        Host: "visa-staging.com"
-      }
-    });
+const context = await browser.newContext();
+const page = await context.newPage();
 
-    const page = await context.newPage();
-    const response = await page.goto(url);
-
-    console.log("URL:", url);
-    console.log("Status:", response?.status());
-    console.log("Title:", await page.title());
-
-    if (!response?.ok()) {
-      throw new Error(
-        `Request failed with status ${response?.status()}`
-      );
+const response = await page.goto(
+  "http://127.0.0.1/health-check/unauthenticated/marker",
+  {
+    headers: {
+      Host: "visa-staging.com"
     }
+  }
+);
 
-    if (!headless) {
-      console.log(`Waiting 10 seconds before closing ${browserName}...`);
-      await page.waitForTimeout(10000);
-    }
+console.log("Status:", response?.status());
+console.log("URL:", page.url());
+console.log("Body:", (await page.locator("body").innerText()).slice(0, 500));
   } finally {
     await browser.close();
   }
