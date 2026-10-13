@@ -96,11 +96,11 @@
                                                                                                     {
                                                                                                         mounts = { socket = { type = "temporary" ; } ; state = { type = "temporary" ; } ; } ;
                                                                                                         name = "ExecStart" ;
-                                                                                                        post =
-                                                                                                            ''
-                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
-                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
-                                                                                                            '' ;
+                                                                                                        post = null ;
+#                                                                                                            ''
+#                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
+#                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
+#                                                                                                            '' ;
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
@@ -917,9 +917,10 @@
                                                         testScript =
                                                             ''
                                                                 client.wait_for_unit("multi-user.target")
-                                                                # client.wait_for_unit("visa-database-staging.service")
+                                                                client.wait_for_unit("visa-database-staging.service")
                                                                 client.wait_for_unit("visa-server-staging.service")
                                                                 client.wait_for_unit("nginx.service")
+                                                                client.succeed("${ _config.visa.backend.database.environments.staging.execute.up }/bin/execute")
                                                                 client.succeed("execute")
                                                             '' ;
                                                     } ;
