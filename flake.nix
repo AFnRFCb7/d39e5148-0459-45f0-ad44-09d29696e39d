@@ -325,6 +325,7 @@
                                                                                                                                 text =
                                                                                                                                     ''
                                                                                                                                         cd /mounts/package
+                                                                                                                                        node -p 'require.resolve("express")'
                                                                                                                                         node server ${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                                                     '' ;
                                                                                                                             } ;
