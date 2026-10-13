@@ -22,7 +22,8 @@ test.describe("Gateway Server", ( ) => {
                 `http://127.0.0.1/health-check/admin/marker` ,
                   {
                     headers: {
-                      Host: "visa-staging.com"
+                      Host: `${ gatewayDomain }`
+
                     }
                   }
             )
@@ -34,7 +35,7 @@ test.describe("Gateway Server", ( ) => {
                 `http://127.0.0.1/health-check/unauthenticated/marker`,
                   {
                     headers: {
-                      Host: "visa-staging.com"
+                      Host: `${ gatewayDomain }`
                     }
                   }
             );
@@ -46,7 +47,7 @@ test.describe("Gateway Server", ( ) => {
                 `http://127.0.0.1/health-check/regular/marker` ,
                   {
                     headers: {
-                      Host: "visa-staging.com"
+                      Host: `${ gatewayDomain }`
                     }
                   }
             );
