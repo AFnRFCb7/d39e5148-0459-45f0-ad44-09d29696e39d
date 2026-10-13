@@ -315,16 +315,18 @@
                                                                                                                     default =
                                                                                                                         _config.lazy-shell-application
                                                                                                                             {
-                                                                                                                                mounts = { package = { read-only = true ; source = _config.visa.backend.server.package ; type = "bind" ; } ; } ;
+                                                                                                                                mounts =
+                                                                                                                                    {
+                                                                                                                                        package = { read-only = true ; source = _config.visa.backend.server.package ; type = "bind" ; } ;
+                                                                                                                                        temporary = { type = "temporary" ; } ;
+                                                                                                                                    } ;
                                                                                                                                 name = "execute" ;
                                                                                                                                 post = null ;
                                                                                                                                 runtime-inputs = pkgs : [ pkgs.nodejs ] ;
                                                                                                                                 text =
                                                                                                                                     ''
-                                                                                                                                        cd /mounts/package
-                                                                                                                                        echo ${ _config.visa.backend.server.package }
-                                                                                                                                        cat package.json
-                                                                                                                                        ${ pkgs.findutils }/bin/find .
+                                                                                                                                        cp -r /mounts/package/. /mounts/temporary
+                                                                                                                                        cd /mounts/temporary
                                                                                                                                         node server ${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                                                     '' ;
                                                                                                                             } ;
