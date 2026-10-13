@@ -20,18 +20,33 @@ test.describe("Gateway Server", ( ) => {
         test("admin marker health check", async ({ page }) => {
             const response = await page.goto(
                 `http://${ gatewayDomain }/api/health-check/admin/marker` ,
+                {
+                    headers: {
+                        Host: gatewayDomain,
+                    },
+                }
             )
             expect(response?.status()).toBe(200);
         });
         test("unauthenticated marker health check", async ({ page }) => {
             const response = await page.goto(
                 `http://${ gatewayDomain }/api/health-check/unauthenticated/marker`,
+                {
+                    headers: {
+                        Host: gatewayDomain,
+                    },
+                }
             );
             expect(response?.status()).toBe(200);
         });
         test("regular marker health check", async ({ page }) => {
             const response = await page.goto(
                 `http://${ gatewayDomain }/api/health-check/regular/marker` ,
+                {
+                    headers: {
+                        Host: gatewayDomain,
+                    },
+                }
             );
             expect(response?.status()).toBe(200);
         });
