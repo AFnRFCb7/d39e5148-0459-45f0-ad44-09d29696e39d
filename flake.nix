@@ -49,6 +49,8 @@
                                                                                     PACKAGE_SERVER=${ _config.visa.backend.server.package }
                                                                                     FETCH_WEB=${ _config.visa.frontend.web.fetch }
                                                                                     PACKAGE_WEB=${ _config.visa.frontend.web.package }
+                                                                                    FETCH_PLAYWRIGHT=${ _config.visa.playwright.fetch }
+                                                                                    PACKAGE_PLAYWRIGHT=${ _config.visa.playwright.package }
                                                                                     EOF
                                                                                 '' ;
                                                                         }
