@@ -14,7 +14,7 @@ const database = new Pool({
 });
 app.get
     (
-        "/health-check/admin/marker" ,
+        "/api/health-check/admin/marker" ,
         async ( request , response ) =>
             {
                 const result = await database.query(
@@ -25,7 +25,7 @@ app.get
     ) ;
 app.get
     (
-        "/health-check/regular/marker" ,
+        "/api/health-check/regular/marker" ,
         async ( request , response ) =>
             {
                 const result = await database.query(
@@ -36,7 +36,7 @@ app.get
     ) ;
 app.get
     (
-        "/health-check/unauthenticated/marker" ,
+        "/api/health-check/unauthenticated/marker" ,
         async ( request , response ) =>
             {
                 const result = await database.query(
@@ -45,28 +45,10 @@ app.get
                 response.json(response.json(result.rows[0].marker)) ; ;
             }
     ) ;
-app.get
-    (
-        "/hello" ,
-        ( request , response ) =>
-            {
-                const name = request.query.name || "world" ;
-                response.send( `hi ${ name }`) ;
-            }
-    ) ;
-app.get
-    (
-        "/secret" ,
-        ( request , response ) =>
-            {
-                const name = request.query.name || "world" ;
-                response.send( `hi ${ name }`) ;
-            }
-    ) ;
-app.post("/login", (request, response) => {
+app.post("/api/login", (request, response) => {
     response.send("login") ;
 }) ;
-app.post("/consultation", (request, response) => {
+app.post("/api/consultation", (request, response) => {
     response.send("consultation") ;
 }) ;
 app.listen

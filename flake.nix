@@ -125,14 +125,15 @@
                                                                             wantedBy = [ "multi-user.target" ] ;
                                                                         } ;
                                                             } ;
-virtualisation.vmVariant.virtualisation.qemu.networkingOptions = lib.mkForce [
-  "-device"
-  "e1000,netdev=net0"
-  "-netdev"
-  "user,id=net0,hostfwd=tcp::8080-:80"
-];
-
-    networking.firewall.allowedTCPPorts = [ 80 ];
+                                                        virtualisation.vmVariant.virtualisation.qemu.networkingOptions =
+                                                            _lib.mkForce
+                                                                [
+                                                                    "-device"
+                                                                    "e1000,netdev=net0"
+                                                                    "-netdev"
+                                                                    "user,id=net0,hostfwd=tcp::8080-:80"
+                                                                ] ;
+                                                        networking.firewall.allowedTCPPorts = [ 80 ] ;
                                                     } ;
                                                 options =
                                                     {

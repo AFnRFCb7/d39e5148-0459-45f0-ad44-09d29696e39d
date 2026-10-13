@@ -4,7 +4,7 @@ const browserName = process.env.BROWSER ?? "chromium";
 const headless = process.env.HEADLESS !== "false";
 
 const url = process.env.URL ??
-  "http://127.0.0.1/health-check/unauthenticated/marker";
+  "http://127.0.0.1/api/health-check/unauthenticated/marker";
 
 const browsers = {
   chromium: {
@@ -30,7 +30,7 @@ const context = await browser.newContext();
 const page = await context.newPage();
 
 const response = await page.goto(
-  "http://127.0.0.1/health-check/unauthenticated/marker",
+  "http://127.0.0.1/api/health-check/unauthenticated/marker",
   {
     headers: {
       Host: "visa-staging.com"
