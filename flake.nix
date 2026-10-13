@@ -321,10 +321,13 @@
                                                                                                                                     } ;
                                                                                                                                 name = "execute" ;
                                                                                                                                 post = null ;
-                                                                                                                                runtime-inputs = pkgs : [ pkgs.nodejs ] ;
+                                                                                                                                runtime-inputs = pkgs : [ pkgs.coreutils pkgs.nodejs ] ;
                                                                                                                                 text =
                                                                                                                                     ''
-                                                                                                                                        cd /mounts/package
+                                                                                                                                        TEMP="$( mktemp --dry-run )"
+                                                                                                                                        cp --recursive /mounts/package "$TEMP"
+                                                                                                                                        cd /mounts/package "$TEMP"
+                                                                                                                                        cd "$TEMP"
                                                                                                                                         npm install #KLUDGE
                                                                                                                                         node server ${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                                                     '' ;
