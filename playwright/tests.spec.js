@@ -19,38 +19,20 @@ test.describe("Gateway Server", ( ) => {
     test.describe("Backend Server", ( ) => {
         test("admin marker health check", async ({ page }) => {
             const response = await page.goto(
-                `http://${ gatewayDomain }:8080/api/health-check/admin/marker` ,
-                  {
-                    headers: {
-                      Host: `${ gatewayDomain }`
-                    }
-                  }
+                `http://${ gatewayDomain }/api/health-check/admin/marker` ,
             )
-
             expect(response?.status()).toBe(200);
         });
         test("unauthenticated marker health check", async ({ page }) => {
             const response = await page.goto(
-                `http://${ gatewayDomain }:8080/api/health-check/unauthenticated/marker`,
-                  {
-                    headers: {
-                      Host: `${ gatewayDomain }`
-                    }
-                  }
+                `http://${ gatewayDomain }/api/health-check/unauthenticated/marker`,
             );
-
             expect(response?.status()).toBe(200);
         });
         test("regular marker health check", async ({ page }) => {
             const response = await page.goto(
-                `http://${ gatewayDomain }:8080/api/health-check/regular/marker` ,
-                  {
-                    headers: {
-                      Host: `${ gatewayDomain }`
-                    }
-                  }
+                `http://${ gatewayDomain }/api/health-check/regular/marker` ,
             );
-
             expect(response?.status()).toBe(200);
         });
     });
