@@ -1,8 +1,10 @@
 const { chromium } = require("playwright");
+
 const browserName = process.env.BROWSER ?? "chromium";
 const headless = process.env.HEADLESS !== "false";
+
 const url = process.env.URL ??
-  "http://visa-staging.com/health-check/unauthenticated/marker";
+  "http://127.0.0.1/health-check/unauthenticated/marker";
 
 const browsers = {
   chromium: {
@@ -31,14 +33,6 @@ const browsers = {
     });
 
     const page = await context.newPage();
-
-    await page.goto(
-      "http://127.0.0.1/health-check/unauthenticated/marker"
-    );
-
-    console.log(await page.title());
-    const page = await browser.newPage();
-
     const response = await page.goto(url);
 
     console.log("URL:", url);
@@ -46,7 +40,9 @@ const browsers = {
     console.log("Title:", await page.title());
 
     if (!response?.ok()) {
-      throw new Error(`Request failed with status ${response?.status()}`);
+      throw new Error(
+        `Request failed with status ${response?.status()}`
+      );
     }
 
     if (!headless) {
