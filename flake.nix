@@ -639,10 +639,11 @@
                                                                                             type = _lib.types.package ;
                                                                                         } ;
                                                                                 package =
-                                                                                    {
-                                                                                        default = _pkgs.coreutils ;
-                                                                                        type = _lib.types.package ;
-                                                                                    } ;
+                                                                                    _lib.mkOption
+                                                                                        {
+                                                                                            default = _pkgs.coreutils ;
+                                                                                            type = _lib.types.package ;
+                                                                                        } ;
                                                                             } ;
                                                                     } ;
                                                                 playwright =
