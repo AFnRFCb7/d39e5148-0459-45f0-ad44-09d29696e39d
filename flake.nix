@@ -916,7 +916,9 @@
                                                                         } ;
                                                         testScript =
                                                             ''
-                                                                client.wait_for_unit("multi-user.target")
+                                                                client.wait_for_unit("visa-database-staging.service")
+                                                                client.wait_for_unit("visa-server-staging.service")
+                                                                client.wait_for_unit("nginx.service")
                                                                 client.succeed("execute")
                                                             '' ;
                                                     } ;
