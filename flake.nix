@@ -641,7 +641,39 @@
                                                                                 package =
                                                                                     _lib.mkOption
                                                                                         {
-                                                                                            default = _pkgs.coreutils ;
+                                                                                            default =
+                                                                                                let
+                                                                                                    code = ./. ;
+                                                                                                    in
+                                                                                                        _pkgs.runCommand
+                                                                                                            "package"
+                                                                                                            {
+                                                                                                                nativeBuildInputs =
+                                                                                                                    [
+                                                                                                                        (
+                                                                                                                            _pkgs.writeShellApplication
+                                                                                                                                {
+                                                                                                                                    name = "install-it" ;
+                                                                                                                                    runtimeInputs = [ ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) ] ;
+                                                                                                                                    text =
+                                                                                                                                        ''
+                                                                                                                                            OUT="$1"
+                                                                                                                                            export OUT
+                                                                                                                                            mkdir --parents "$OUT/node_modules"
+                                                                                                                                            ln --symbolic "${ code }/frontend/web/"* "$OUT"
+                                                                                                                                            mkdir --parents "$OUT/node_modules"
+                                                                                                                                            if [[ ! -e "$OUT/node_modules.exploded" ]]
+                                                                                                                                            then
+                                                                                                                                                mkdir --parents "$OUT/node_modules.exploded"
+                                                                                                                                            fi
+                                                                                                                                            implode
+                                                                                                                                            rm --recursive --force "$OUT/node_modules.exploded"
+                                                                                                                                        '' ;
+                                                                                                                                }
+                                                                                                                        )
+                                                                                                                    ] ;
+                                                                                                            }
+                                                                                                            ''install-it "$out"'' ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
                                                                             } ;
