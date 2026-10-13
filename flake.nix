@@ -911,7 +911,25 @@
                                                                     _pkgs = pkgs-identity pkgs ;
                                                                     in
                                                                         {
-                                                                            environment.systemPackages = [ _config.visa.playwright.execute ];
+                                                                            environment.systemPackages =
+                                                                                [
+                                                                                    (
+                                                                                        _pkgs.writeShellApplication
+                                                                                            {
+                                                                                                name = "migrate" ;
+                                                                                                runtimeInputs = [ _config.visa.backend.database.migrate.environments.staging.up ] ;
+                                                                                                text = "execute" ;
+                                                                                            }
+                                                                                    )
+                                                                                    (
+                                                                                        _pkgs.writeShellApplication
+                                                                                            {
+                                                                                                name = "playwright" ;
+                                                                                                runtimeInputs = [ _config.visa.playwright.execute ] ;
+                                                                                                text = "execute" ;
+                                                                                            }
+                                                                                    )
+                                                                                ] ;
                                                                             imports = [ failure implementation lazy-shell-application node-fetch node-package visitor tree-serialization ] ;
                                                                         } ;
                                                         testScript =
@@ -920,8 +938,8 @@
                                                                 client.wait_for_unit("visa-database-staging.service")
                                                                 client.wait_for_unit("visa-server-staging.service")
                                                                 client.wait_for_unit("nginx.service")
-                                                                client.succeed("${ _config.visa.backend.database.environments.staging.execute.up }/bin/execute")
-                                                                client.succeed("execute")
+                                                                client.succeed("migrate")
+                                                                client.succeed("test")
                                                             '' ;
                                                     } ;
                                             type = "visa" ;
