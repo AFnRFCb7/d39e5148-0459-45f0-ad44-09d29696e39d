@@ -752,64 +752,59 @@
                                                                             _lib.mkOption
                                                                                 {
                                                                                     default =
-                                                                                        _lib.mkOption
+                                                                                        _config.lazy-shell-application
                                                                                             {
-                                                                                                default =
-                                                                                                    _config.lazy-shell-application
-                                                                                                        {
-                                                                                                            mounts =
-                                                                                                                {
-                                                                                                                    pwd = { source = "." ; type = "bind" ; } ;
-                                                                                                                } ;
-                                                                                                            name = "fetch" ;
-                                                                                                            post = null ;
-                                                                                                            runtime-inputs =
-                                                                                                                pkgs :
-                                                                                                                    [
-                                                                                                                        (
-                                                                                                                            _config.tree-serialization.explode
-                                                                                                                                {
-                                                                                                                                    bytes = "1m" ;
-                                                                                                                                    input = "/mounts/pwd/node_modules" ;
-                                                                                                                                    name = "explode" ;
-                                                                                                                                    output = "/mounts/pwd/node_modules.exploded" ;
-                                                                                                                                }
-                                                                                                                        )
-                                                                                                                        pkgs.git
-                                                                                                                        pkgs.nodejs
-                                                                                                                    ] ;
-                                                                                                            text =
-                                                                                                                let
-                                                                                                                    package =
-                                                                                                                        {
-                                                                                                                            name = "visa-playwright" ;
-                                                                                                                            version = "0.0.0" ;
-                                                                                                                            private = true ;
-                                                                                                                            scripts =
-                                                                                                                                {
-                                                                                                                                    test = "playwright test" ;
-                                                                                                                                } ;
-                                                                                                                            devDependencies =
-                                                                                                                                {
-                                                                                                                                    "@playwright/test" = "^1.50.1" ;
-                                                                                                                                    "playwright" = "^1.50.1" ;
-                                                                                                                                } ;
-                                                                                                                        } ;
-                                                                                                                    in
-                                                                                                                        ''
-                                                                                                                            MESSAGE="$1"
-                                                                                                                            git clean -fd
-                                                                                                                            cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
-                                                                                                                            git rm -r --ignore-unmatch node_modules node_modules.exploded
-                                                                                                                            mkdir --parents node_modules.exploded
-                                                                                                                            npm install
-                                                                                                                            explode
-                                                                                                                            git add node_modules.exploded
-                                                                                                                            git clean -fd
-                                                                                                                            git commit -am "$MESSAGE" --allow-empty --allow-empty-message
-                                                                                                                        '' ;
-                                                                                                        } ;
-                                                                                                type = _lib.types.package ;
+                                                                                                mounts =
+                                                                                                    {
+                                                                                                        pwd = { source = "." ; type = "bind" ; } ;
+                                                                                                    } ;
+                                                                                                name = "fetch-2536891009445683" ;
+                                                                                                post = null ;
+                                                                                                runtime-inputs =
+                                                                                                    pkgs :
+                                                                                                        [
+                                                                                                            (
+                                                                                                                _config.tree-serialization.explode
+                                                                                                                    {
+                                                                                                                        bytes = "1m" ;
+                                                                                                                        input = "/mounts/pwd/node_modules" ;
+                                                                                                                        name = "explode" ;
+                                                                                                                        output = "/mounts/pwd/node_modules.exploded" ;
+                                                                                                                    }
+                                                                                                            )
+                                                                                                            pkgs.git
+                                                                                                            pkgs.nodejs
+                                                                                                        ] ;
+                                                                                                text =
+                                                                                                    let
+                                                                                                        package =
+                                                                                                            {
+                                                                                                                name = "visa-playwright" ;
+                                                                                                                version = "0.0.0" ;
+                                                                                                                private = true ;
+                                                                                                                scripts =
+                                                                                                                    {
+                                                                                                                        test = "playwright test" ;
+                                                                                                                    } ;
+                                                                                                                devDependencies =
+                                                                                                                    {
+                                                                                                                        "@playwright/test" = "^1.50.1" ;
+                                                                                                                        "playwright" = "^1.50.1" ;
+                                                                                                                    } ;
+                                                                                                            } ;
+                                                                                                        in
+                                                                                                            ''
+                                                                                                                MESSAGE="$1"
+                                                                                                                git clean -fd
+                                                                                                                cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
+                                                                                                                git rm -r --ignore-unmatch node_modules node_modules.exploded
+                                                                                                                mkdir --parents node_modules.exploded
+                                                                                                                npm install
+                                                                                                                explode
+                                                                                                                git add node_modules.exploded
+                                                                                                                git clean -fd
+                                                                                                                git commit -am "$MESSAGE" --allow-empty --allow-empty-message
+                                                                                                            '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
                                                                                 } ;
