@@ -939,7 +939,7 @@
                                                                 client.wait_for_unit("visa-server-staging.service")
                                                                 client.wait_for_unit("nginx.service")
                                                                 client.succeed("migrate")
-                                                                client.succeed("test")
+                                                                client.succeed("playwright")
                                                             '' ;
                                                     } ;
                                             type = "visa" ;
