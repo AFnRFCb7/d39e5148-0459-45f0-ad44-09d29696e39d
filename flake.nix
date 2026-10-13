@@ -318,15 +318,14 @@
                                                                                                                                 mounts =
                                                                                                                                     {
                                                                                                                                         package = { read-only = true ; source = _config.visa.backend.server.package ; type = "bind" ; } ;
-                                                                                                                                        temporary = { type = "temporary" ; } ;
                                                                                                                                     } ;
                                                                                                                                 name = "execute" ;
                                                                                                                                 post = null ;
                                                                                                                                 runtime-inputs = pkgs : [ pkgs.nodejs ] ;
                                                                                                                                 text =
                                                                                                                                     ''
-                                                                                                                                        cp -r /mounts/package/. /mounts/temporary
-                                                                                                                                        cd /mounts/temporary
+                                                                                                                                        cd /mounts/package
+                                                                                                                                        npm install #KLUDGE
                                                                                                                                         node server ${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                                                     '' ;
                                                                                                                             } ;
