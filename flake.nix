@@ -326,7 +326,7 @@
                                                                                                                                     ''
                                                                                                                                         cd /mounts/package
                                                                                                                                         node -p 'require.resolve("express")'
-                                                                                                                                        node server.js ${ builtins.toString _config.visa.backend.server.environments.staging.port }
+                                                                                                                                        node /mounts/package/server.js ${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                                                     '' ;
                                                                                                                             } ;
                                                                                                                     type = _lib.types.package ;
