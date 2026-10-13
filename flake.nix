@@ -424,7 +424,6 @@
                                                                                                                                             cp --recursive "${ code }/backend/server/"* "$OUT"
                                                                                                                                             mkdir --parents "$OUT/node_modules"
                                                                                                                                             implode
-                                                                                                                                            rm --recursive --force "$OUT/node_modules.exploded"
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
