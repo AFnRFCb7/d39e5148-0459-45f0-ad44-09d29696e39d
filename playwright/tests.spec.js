@@ -1,5 +1,5 @@
 const { defineConfig , test , expect } = require("@playwright/test");
-const gatewayDomain = process.env.GATEWAY_DOMAIN ;
+const gatewayDomain = process.env.GATEWAY_DOMAIN ?? "visa-staging.com" ;
 const backendHost = process.env.BACKEND_HOST ?? "localhost";
 const backendPort = process.env.BACKEND_PORT ?? "14636";
 const backendUrl = `http://${ backendHost }:${ backendPort }` ;
