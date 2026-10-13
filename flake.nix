@@ -63,7 +63,7 @@
                                                                         _lib.mkIf
                                                                             config.visa.backend.server.environments.staging.enable
                                                                             {
-                                                                                proxyPass = "http://${ _config.visa.backend.server.environments.staging.host }:${ builtins.toString _config.visa.backend.environments.staging.server.port }";
+                                                                                proxyPass = "http://${ _config.visa.backend.server.environments.staging.host }:${ builtins.toString _config.visa.backend.server.environments.staging.port }";
                                                                             } ;
                                                                 } ;
                                                         systemd.services =
