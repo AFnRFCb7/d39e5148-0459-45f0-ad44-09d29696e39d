@@ -4,7 +4,7 @@ const browserName = process.env.BROWSER ?? "chromium";
 const headless = process.env.HEADLESS !== "false";
 
 const url = process.env.URL ??
-  "http://127.0.0.1/api/health-check/unauthenticated/marker";
+  "http://visa-staging.com/api/health-check/unauthenticated/marker";
 
 const browsers = {
   chromium: {
