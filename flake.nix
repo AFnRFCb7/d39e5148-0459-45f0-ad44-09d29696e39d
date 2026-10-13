@@ -56,9 +56,9 @@
                                                                         }
                                                                 )
                                                             ] ;
-                                                            services.nginx.virtualHosts."visa-staging.com".locations."/api/" =
+                                                            services.nginx.virtualHosts."visa-staging.com".locations."/" =
                                                                 {
-                                                                    proxyPass = "http://${ config.visa.backend.server.host }:${ builtins.toString _config.visa.backend.server.port }/";
+                                                                    proxyPass = "http://${ config.visa.backend.server.host }:${ builtins.toString _config.visa.backend.server.port }";
                                                                 } ;
                                                         systemd.services =
                                                             {
@@ -103,18 +103,6 @@
                                                                                                             '' ;
                                                                                                     } ;
                                                                                             in "${ application }/bin/ExecStart" ;
-                                                                                } ;
-                                                                            wantedBy = [ "multi-user.target" ] ;
-                                                                        } ;
-                                                                visa-gateway-staging =
-                                                                    _lib.mkIf _config.visa.backend.gateway.environments.staging.enable
-                                                                        {
-                                                                            after = [ "network.target" ] ;
-                                                                            name = "${ _config.visa.backend.gateway.environments.staging.name }.service" ;
-                                                                            serviceConfig =
-                                                                                {
-                                                                                    DynamicUser = true ;
-                                                                                    ExecStart = "${ _config.visa.backend.gateway.environments.staging.execute }/bin/execute" ;
                                                                                 } ;
                                                                             wantedBy = [ "multi-user.target" ] ;
                                                                         } ;
