@@ -324,10 +324,7 @@
                                                                                                                                 runtime-inputs = pkgs : [ pkgs.coreutils pkgs.nodejs ] ;
                                                                                                                                 text =
                                                                                                                                     ''
-                                                                                                                                        TEMP="$( mktemp --dry-run )"
-                                                                                                                                        cp --recursive /mounts/package "$TEMP"
-                                                                                                                                        cd "$TEMP"
-                                                                                                                                        npm install #KLUDGE
+                                                                                                                                        cd /mounts/package
                                                                                                                                         node server ${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                                                     '' ;
                                                                                                                             } ;
