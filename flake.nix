@@ -56,6 +56,10 @@
                                                                         }
                                                                 )
                                                             ] ;
+                                                            services.nginx.virtualHosts."visa-staging.com".locations."/api/" =
+                                                                {
+                                                                    proxyPass = "http://${ config.visa.backend.server.host }:${ builtins.toString _config.visa.backend.server.port }/";
+                                                                } ;
                                                         systemd.services =
                                                             {
 #                                                                visa-archive-staging =
@@ -322,11 +326,6 @@
                                                                                         staging =
                                                                                             {
                                                                                                 enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
-                                                                                                execute =
-                                                                                                    _config.lazy-shell-application
-                                                                                                        {
-
-                                                                                                        } ;
                                                                                                 name = _lib.mkOption { default = "visa-gateway-staging" ; type = _lib.types.str ; } ;
                                                                                                 port = _lib.mkOption { default = 16204 ; type = _lib.types.ints.between 1024 65535 ; } ;
                                                                                             } ;
