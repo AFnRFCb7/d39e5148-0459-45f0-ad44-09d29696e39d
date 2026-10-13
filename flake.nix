@@ -60,9 +60,11 @@
                                                                 {
                                                                     enable = true ;
                                                                     virtualHosts."visa-staging.com".locations."/" =
-                                                                        {
-                                                                            proxyPass = "http://${ config.visa.backend.server.environments.staging.host }:${ builtins.toString _config.visa.backend.environments.staging.server.port }";
-                                                                        } ;
+                                                                        _lib.mkIf
+                                                                            config.visa.backend.server.environments.staging.enable
+                                                                            {
+                                                                                proxyPass = "http://${ _config.visa.backend.server.environments.staging.host }:${ builtins.toString _config.visa.backend.environments.staging.server.port }";
+                                                                            } ;
                                                                 } ;
                                                         systemd.services =
                                                             {
