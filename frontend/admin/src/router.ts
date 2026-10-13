@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import SecretView from './views/SecretView.vue'
+import HealthCheck from './views/HealthCheckView.vue'
+import HomePage from './views/HomePageView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', redirect: '/secret' },
-    { path: '/secret', component: SecretView },
+    { path: '/', component: HomePageView },
+    { path: '/health-check', component: Health-CheckView },
   ],
 })
 

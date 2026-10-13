@@ -102,9 +102,20 @@
                                                                                 } ;
                                                                             wantedBy = [ "multi-user.target" ] ;
                                                                         } ;
+                                                                visa-gateway-staging =
+                                                                    _lib.mkIf _config.visa.backend.gateway.environments.staging.enable
+                                                                        {
+                                                                            after = [ "network.target" ] ;
+                                                                            name = "${ _config.visa.backend.gateway.environments.staging.name }.service" ;
+                                                                            serviceConfig =
+                                                                                {
+                                                                                    DynamicUser = true ;
+                                                                                    ExecStart = "${ _config.visa.backend.gateway.environments.staging.execute }/bin/execute" ;
+                                                                                } ;
+                                                                            wantedBy = [ "multi-user.target" ] ;
+                                                                        } ;
                                                                 visa-server-staging =
-                                                                    _lib.mkIf
-                                                                        ( _config.visa.backend.server.environments.staging.enable )
+                                                                    _lib.mkIf _config.visa.backend.server.environments.staging.enable
                                                                         {
                                                                             after = [ "network.target" ] ;
                                                                             name = "${ _config.visa.backend.server.environments.staging.name }.service" ;
@@ -304,6 +315,23 @@
                                                                                                 } ;
                                                                                     } ;
                                                                             } ;
+                                                                        gateway =
+                                                                            {
+                                                                                environments =
+                                                                                    {
+                                                                                        staging =
+                                                                                            {
+                                                                                                enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
+                                                                                                execute =
+                                                                                                    _config.lazy-shell-application
+                                                                                                        {
+
+                                                                                                        } ;
+                                                                                                name = _lib.mkOption { default = "visa-gateway-staging" ; type = _lib.types.str ; } ;
+                                                                                                port = _lib.mkOption { default = 16204 ; type = _lib.types.ints.between 1024 65535 ; } ;
+                                                                                            } ;
+                                                                                    } ;
+                                                                            } ;
                                                                         server =
                                                                             {
                                                                                 environments =
@@ -442,6 +470,15 @@
                                                                     {
                                                                         admin =
                                                                             {
+                                                                                environments =
+                                                                                    {
+                                                                                        staging =
+                                                                                            {
+                                                                                                enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
+                                                                                                name = _lib.mkOption { default = "visa-database-production" ; type = _lib.types.str ; } ;
+                                                                                                port = _lib.mkOption { default = 16204 ; type = _lib.types.ints.between 1024 65535 ; } ;
+                                                                                            } ;
+                                                                                    } ;
                                                                                 fetch =
                                                                                     _lib.mkOption
                                                                                         {
