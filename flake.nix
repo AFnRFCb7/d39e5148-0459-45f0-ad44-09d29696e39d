@@ -758,7 +758,7 @@
                                                                                                     {
                                                                                                         pwd = { source = "." ; type = "bind" ; } ;
                                                                                                     } ;
-                                                                                                name = "fetch-2144422406324693" ;
+                                                                                                name = "fetch" ;
                                                                                                 post = null ;
                                                                                                 runtime-inputs =
                                                                                                     pkgs :
