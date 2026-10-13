@@ -56,9 +56,13 @@
                                                                         }
                                                                 )
                                                             ] ;
-                                                            services.nginx.virtualHosts."visa-staging.com".locations."/" =
+                                                            services.nginx =
                                                                 {
-                                                                    proxyPass = "http://${ config.visa.backend.server.host }:${ builtins.toString _config.visa.backend.server.port }";
+                                                                    enable = true ;
+                                                                    virtualHosts."visa-staging.com".locations."/" =
+                                                                        {
+                                                                            proxyPass = "http://${ config.visa.backend.server.host }:${ builtins.toString _config.visa.backend.server.port }";
+                                                                        } ;
                                                                 } ;
                                                         systemd.services =
                                                             {
