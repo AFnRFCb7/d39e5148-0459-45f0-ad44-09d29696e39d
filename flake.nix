@@ -322,6 +322,8 @@
                                                                                                                                 text =
                                                                                                                                     ''
                                                                                                                                         cd /mounts/package
+                                                                                                                                        echo ${ _config.visa.backend.server.package }
+                                                                                                                                        cat package.json
                                                                                                                                         ${ pkgs.findutils }/bin/find .
                                                                                                                                         node server ${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                                                     '' ;
