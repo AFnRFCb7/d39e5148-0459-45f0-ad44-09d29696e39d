@@ -1,7 +1,8 @@
 const { chromium } = require("playwright");
-
 const browserName = process.env.BROWSER ?? "chromium";
 const headless = process.env.HEADLESS !== "false";
+const url = process.env.URL ??
+  "http://visa-staging.com/health-check/unauthenticated/marker";
 
 const browsers = {
   chromium: {
@@ -22,15 +23,24 @@ const browsers = {
     headless
   });
 
-  const page = await browser.newPage();
+  try {
+    const page = await browser.newPage();
 
-  await page.goto("http://localhost:14636/health-check/unauthenticated/marker");
-  console.log(await page.title());
+    const response = await page.goto(url);
 
-  if (!headless) {
-    console.log(`Waiting 10 seconds before closing ${browserName}...`);
-    await page.waitForTimeout(10000);
+    console.log("URL:", url);
+    console.log("Status:", response?.status());
+    console.log("Title:", await page.title());
+
+    if (!response?.ok()) {
+      throw new Error(`Request failed with status ${response?.status()}`);
+    }
+
+    if (!headless) {
+      console.log(`Waiting 10 seconds before closing ${browserName}...`);
+      await page.waitForTimeout(10000);
+    }
+  } finally {
+    await browser.close();
   }
-
-  await browser.close();
 })();
