@@ -125,13 +125,12 @@
                                                                             wantedBy = [ "multi-user.target" ] ;
                                                                         } ;
                                                             } ;
-                                                        virtualisation.forwardPorts =
+                                                        virtualisation.qemu.networkingOptions =
                                                             [
-                                                                {
-                                                                    from = "host" ;
-                                                                    host.port = 8080 ;
-                                                                    guest.port = 80 ;
-                                                                }
+                                                                "-netdev"
+                                                                "user,id=net0,hostfwd=tcp::8080-:80"
+                                                                "-device"
+                                                                "virtio-net-pci,netdev=net0"
                                                             ] ;
                                                     } ;
                                                 options =
