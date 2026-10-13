@@ -830,14 +830,9 @@
                                                                                                                                     OUT="$1"
                                                                                                                                     export OUT
                                                                                                                                     mkdir --parents "$OUT/node_modules"
-                                                                                                                                    ln --symbolic "${ code }/playwright/"* "$OUT"
+                                                                                                                                    cp --recursive "${ code }/playwright/"* "$OUT"
                                                                                                                                     mkdir --parents "$OUT/node_modules"
-                                                                                                                                    if [[ ! -e "$OUT/node_modules.exploded" ]]
-                                                                                                                                    then
-                                                                                                                                        mkdir --parents "$OUT/node_modules.exploded"
-                                                                                                                                    fi
                                                                                                                                     implode
-                                                                                                                                    rm --recursive --force "$OUT/node_modules.exploded"
                                                                                                                                 '' ;
                                                                                                                         }
                                                                                                                 )
