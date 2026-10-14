@@ -931,7 +931,7 @@
                                                                                             (
                                                                                                 _pkgs.writeShellApplication
                                                                                                     {
-                                                                                                        name = "playwright" ;
+                                                                                                        name = "playwright-2791569257326470" ;
                                                                                                         runtimeInputs = [ _config.visa.playwright.execute ] ;
                                                                                                         text =
                                                                                                             ''
@@ -954,7 +954,7 @@
                                                                 client.wait_for_unit("nginx.service")
                                                                 client.succeed("migrate")
                                                                 client.succeed("echo 1097511073180206")
-                                                                client.succeed("playwright")
+                                                                client.succeed("playwright-2791569257326470")
                                                                 client.succeed("echo 5660218719281252")
                                                             '' ;
                                                     } ;
