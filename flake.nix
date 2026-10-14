@@ -94,7 +94,7 @@
                                                                         _config.visa.backend.database.environments.staging.enable
                                                                         {
                                                                             after = [ "network.target" "local-fs.target" "visa-database-staging.target" ] ;
-                                                                            name = "${ _config.visa.backend.database.environments.staging.name }WTF.service" ;
+                                                                            name = "${ _config.visa.backend.database.environments.staging.name }-post.service" ;
                                                                             serviceConfig =
                                                                                 {
                                                                                     DynamicUser = true ;
