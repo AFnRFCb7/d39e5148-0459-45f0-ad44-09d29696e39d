@@ -80,19 +80,6 @@
 #                                                                                } ;
 #                                                                            wantedBy = [ "multi-user.target" ] ;
 #                                                                        } ;
-                                                                visa-database-staging-post =
-                                                                    _lib.mkIf
-                                                                        _config.visa.backend.database.environments.staging.enable
-                                                                        {
-                                                                            after = [ "network.target" "local-fs.target" "visa-database-staging-post.service" ] ;
-                                                                            name = "${ _config.visa.backend.database.environments.staging.name }-post.service" ;
-                                                                            serviceConfig =
-                                                                                {
-                                                                                    DynamicUser = true ;
-                                                                                    ExecStart = "${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute" ;
-                                                                                } ;
-                                                                            wantedBy = [ "multi-user.target" ] ;
-                                                                        } ;
                                                                 visa-database-staging =
                                                                     _lib.mkIf
                                                                         _config.visa.backend.database.environments.staging.enable
@@ -102,6 +89,37 @@
                                                                             serviceConfig =
                                                                                 {
                                                                                     DynamicUser = true ;
+                                                                                    ExecStartPost =
+                                                                                        let
+                                                                                            application =
+                                                                                                _config.lazy-shell-application
+                                                                                                    {
+                                                                                                        mounts = { } ;
+                                                                                                        name = "ExecStartPost" ;
+                                                                                                        post = null ;
+                                                                                                        runtime-input = pkgs : [ pkgs.postgresql ] ;
+                                                                                                        text =
+                                                                                                            ''
+                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
+                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
+                                                                                                            '' ;
+                                                                                                    } ;
+                                                                                            in "${ application }/bin/ExecStartPost" ;
+                                                                                    ExecStartPre =
+                                                                                        let
+                                                                                            application =
+                                                                                                _config.lazy-shell-application
+                                                                                                    {
+                                                                                                        mounts = { } ;
+                                                                                                        name = "ExecStartPre" ;
+                                                                                                        post = null ;
+                                                                                                        runtime-input = pkgs : [ pkgs.postgresql ] ;
+                                                                                                        text =
+                                                                                                            ''
+                                                                                                                initdb --pgdata=/mounts/state --username postgres
+                                                                                                            '' ;
+                                                                                                    } ;
+                                                                                            in "${ application }/bin/ExecStartPre" ;
                                                                                     ExecStart =
                                                                                         let
                                                                                             application =
@@ -113,7 +131,6 @@
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
-                                                                                                                initdb --pgdata=/mounts/state --username postgres
                                                                                                                 postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.environments.staging.port } --unix-socket-directories=/mounts/socket
                                                                                                             '' ;
                                                                                                     } ;
