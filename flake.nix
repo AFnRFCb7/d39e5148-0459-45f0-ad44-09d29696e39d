@@ -56,16 +56,25 @@
                                                                         }
                                                                 )
                                                             ] ;
-                                                            services.nginx =
-                                                                {
-                                                                    enable = true ;
-                                                                    virtualHosts."visa-staging.com".locations."/" =
-                                                                        _lib.mkIf
-                                                                            config.visa.backend.server.environments.staging.enable
-                                                                            {
-                                                                                proxyPass = "http://${ _config.visa.backend.server.environments.staging.host }:${ builtins.toString _config.visa.backend.server.environments.staging.port }";
-                                                                            } ;
-                                                                } ;
+                                                        services.nginx =
+                                                            {
+                                                                enable = true ;
+                                                                virtualHosts."visa-staging.com".locations."/" =
+                                                                    _lib.mkIf
+                                                                        config.visa.backend.server.environments.staging.enable
+                                                                        {
+                                                                            proxyPass =
+                                                                                "http://${ _config.visa.backend.server.environments.staging.host }:${ builtins.toString _config.visa.backend.server.environments.staging.port }" ;
+                                                                        } ;
+
+                                                                virtualHosts."admin.visa-staging.com".locations."/" =
+                                                                    _lib.mkIf
+                                                                        config.visa.backend.server.environments.staging.enable
+                                                                        {
+                                                                            root = _config.visa.frontend.admin.package ;
+                                                                            tryFiles = "$uri $uri/ /index.html" ;
+                                                                        } ;
+                                                            } ;
                                                         systemd.services =
                                                             {
 #                                                                visa-archive-staging =
