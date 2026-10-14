@@ -89,6 +89,32 @@
 #                                                                                } ;
 #                                                                            wantedBy = [ "multi-user.target" ] ;
 #                                                                        } ;
+                                                                visa-database-staging-post =
+                                                                    _lib.mkIf
+                                                                        _config.visa.backend.database.environments.staging.enable
+                                                                        {
+                                                                            after = [ "network.target" "local-fs.target" "visa-database-staging.target" ] ;
+                                                                            name = "${ _config.visa.backend.database.environments.staging.name }WTF.service" ;
+                                                                            serviceConfig =
+                                                                                {
+                                                                                    DynamicUser = true ;
+                                                                                    ExecStart =
+                                                                                        let
+                                                                                            application =
+                                                                                                _pkgs.writeShellApplication
+                                                                                                    {
+                                                                                                        name = "ExecStart" ;
+                                                                                                        runtimeInputs = [ ] ;
+                                                                                                        text =
+                                                                                                            ''
+                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
+                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
+                                                                                                            '' ;
+                                                                                                    } ;
+                                                                                                in "${ application }/bin/ExecStart" ;
+                                                                                } ;
+                                                                            wantedBy = [ "multiuser.target" ] ;
+                                                                        } ;
                                                                 visa-database-staging =
                                                                     _lib.mkIf
                                                                         _config.visa.backend.database.environments.staging.enable
@@ -105,11 +131,7 @@
                                                                                                     {
                                                                                                         mounts = { socket = { type = "temporary" ; } ; state = { type = "temporary" ; } ; } ;
                                                                                                         name = "ExecStart" ;
-                                                                                                        post =
-                                                                                                            ''
-                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
-                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
-                                                                                                            '' ;
+                                                                                                        post = null ;
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
