@@ -783,6 +783,7 @@
                                                                                                         cp --recursive /mounts/package/. .
                                                                                                         export PATH="$PATH:./node_modules/.bin"
                                                                                                         playwright test tests.spec.js
+                                                                                                        echo FINISHED
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
