@@ -786,6 +786,13 @@
                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
                                                                                                         echo 7681470887522860
                                                                                                         df -h
+                                                                                                        cd /mounts/playwright
+                                                                                                        which playwright
+                                                                                                        readlink -f "$(which playwright)"
+                                                                                                        node -p "require.resolve('@playwright/test')"
+                                                                                                        node -p "require.resolve('playwright/package.json')"
+                                                                                                        node -p "require('@playwright/test/package.json').version"
+                                                                                                        node -p "require('playwright/package.json').version"
                                                                                                         playwright test tests.spec.js
                                                                                                         echo 3986606458407536
                                                                                                         echo FINISHED
