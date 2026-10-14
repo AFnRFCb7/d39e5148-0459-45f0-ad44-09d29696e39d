@@ -105,21 +105,6 @@
                                                                                                             '' ;
                                                                                                     } ;
                                                                                             in "${ application }/bin/ExecStartPost" ;
-                                                                                    ExecStartPre =
-                                                                                        let
-                                                                                            application =
-                                                                                                _config.lazy-shell-application
-                                                                                                    {
-                                                                                                        mounts = { } ;
-                                                                                                        name = "ExecStartPre" ;
-                                                                                                        post = null ;
-                                                                                                        runtime-inputs = pkgs : [ pkgs.postgresql ] ;
-                                                                                                        text =
-                                                                                                            ''
-                                                                                                                initdb --pgdata=/mounts/state --username postgres
-                                                                                                            '' ;
-                                                                                                    } ;
-                                                                                            in "${ application }/bin/ExecStartPre" ;
                                                                                     ExecStart =
                                                                                         let
                                                                                             application =
@@ -131,6 +116,7 @@
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
+                                                                                                                initdb --pgdata=/mounts/state --username postgres
                                                                                                                 postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.environments.staging.port } --unix-socket-directories=/mounts/socket
                                                                                                             '' ;
                                                                                                     } ;
