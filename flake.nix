@@ -89,21 +89,7 @@
                                                                             serviceConfig =
                                                                                 {
                                                                                     DynamicUser = true ;
-                                                                                    ExecStartPost =
-                                                                                        let
-                                                                                            application =
-                                                                                                _config.lazy-shell-application
-                                                                                                    {
-                                                                                                        mounts = { } ;
-                                                                                                        name = "ExecStartPost" ;
-                                                                                                        post = null ;
-                                                                                                        runtime-inputs = pkgs : [ ] ;
-                                                                                                        text =
-                                                                                                            ''
-                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
-                                                                                                            '' ;
-                                                                                                    } ;
-                                                                                            in "${ application }/bin/ExecStartPost" ;
+                                                                                    ExecStartPost = "${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute" ;
                                                                                     ExecStart =
                                                                                         let
                                                                                             application =
@@ -205,7 +191,7 @@
                                                                                                                                 } ;
                                                                                                                             name = "execute" ;
                                                                                                                             post = null ;
-                                                                                                                            runtime-inputs = pkgs : [ pkgs.nodejs ] ;
+                                                                                                                            runtime-inputs = pkgs : [ pkgs.postgresql pkgs.nodejs ] ;
                                                                                                                             text = text ;
                                                                                                                         } ;
                                                                                                                 type = _lib.types.package ;
@@ -233,6 +219,9 @@
                                                                                                                             export DATABASE_PORT=${ builtins.toString _config.visa.backend.database.environments.staging.port }
                                                                                                                             export DATABASE_DATABASE=postgres
                                                                                                                             export DATABASE_USER=postgres
+                                                                                                                            until pg_is_ready -h "$DATABASE_HOST" -p "$DATABASE_PORT |
+                                                                                                                                sleep 1
+                                                                                                                            done
                                                                                                                             /mounts/package/node_modules/.bin/db-migrate up --migrations-dir ./migrations/production --verbose
                                                                                                                             /mounts/package/node_modules/.bin/db-migrate up --migrations-dir ./migrations/staging
                                                                                                                         '' ;
