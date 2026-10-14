@@ -777,25 +777,11 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
-                                                                                                        # ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
-                                                                                                        # ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
-                                                                                                        echo 2420455039029798
                                                                                                         cd /mounts/playwright
                                                                                                         cp --recursive "/mounts/package/." .
-                                                                                                        echo 1588879359784461
                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
-                                                                                                        echo 7681470887522860
-                                                                                                        df -h
                                                                                                         cd /mounts/playwright
-                                                                                                        which playwright
-                                                                                                        readlink -f "$(which playwright)"
-                                                                                                        node -p "require.resolve('@playwright/test')"
-                                                                                                        node -p "require.resolve('playwright/package.json')"
-                                                                                                        node -p "require('@playwright/test/package.json').version"
-                                                                                                        node -p "require('playwright/package.json').version"
                                                                                                         ./node_modules/.bin/playwright test tests.spec.js
-                                                                                                        echo 3986606458407536
-                                                                                                        echo FINISHED
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
