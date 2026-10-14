@@ -793,7 +793,7 @@
                                                                                                         node -p "require.resolve('playwright/package.json')"
                                                                                                         node -p "require('@playwright/test/package.json').version"
                                                                                                         node -p "require('playwright/package.json').version"
-                                                                                                        playwright test tests.spec.js
+                                                                                                        ./node_modules/.bin/playwright test tests.spec.js
                                                                                                         echo 3986606458407536
                                                                                                         echo FINISHED
                                                                                                     '' ;
