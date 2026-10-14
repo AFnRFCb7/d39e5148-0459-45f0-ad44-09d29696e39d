@@ -3,16 +3,6 @@ const gatewayDomain = process.env.GATEWAY_DOMAIN ?? "visa-staging.com" ;
 const backendHost = process.env.BACKEND_HOST ?? "localhost";
 const backendPort = process.env.BACKEND_PORT ?? "14636";
 const backendUrl = `http://${ backendHost }:${ backendPort }/api` ;
-module.exports = defineConfig({
-    use: {
-        browserName: "chromium",
-        headless: true,
-        launchOptions: {
-            executablePath: "/mounts/chromium/bin/chromium",
-        },
-    },
-});
-console.log("PLAYWRIGHT CONFIG LOADED");
 test.describe("Admin Frontend" , () => {
 });
 test.describe("Gateway Server", ( ) => {
