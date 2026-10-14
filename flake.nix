@@ -933,7 +933,12 @@
                                                                                                     {
                                                                                                         name = "playwright" ;
                                                                                                         runtimeInputs = [ _config.visa.playwright.execute ] ;
-                                                                                                        text = "execute" ;
+                                                                                                        text =
+                                                                                                            ''
+                                                                                                                echo 3909558061550617
+                                                                                                                execute
+                                                                                                                echo 7460413289597571
+                                                                                                            " ;
                                                                                                     }
                                                                                             )
                                                                                         ] ;
@@ -948,7 +953,9 @@
                                                                 client.wait_for_unit("visa-server-staging.service")
                                                                 client.wait_for_unit("nginx.service")
                                                                 client.succeed("migrate")
+                                                                client.succeed("echo 1097511073180206")
                                                                 client.succeed("playwright")
+                                                                client.succeed("echo 5660218719281252")
                                                             '' ;
                                                     } ;
                                             type = "visa" ;
