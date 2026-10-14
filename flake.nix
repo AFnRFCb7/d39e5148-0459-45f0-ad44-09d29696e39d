@@ -84,7 +84,7 @@
                                                                     _lib.mkIf
                                                                         _config.visa.backend.database.environments.staging.enable
                                                                         {
-                                                                            after = [ "network.target" "local-fs.target" "visa-database-staging-post.target" ] ;
+                                                                            after = [ "network.target" "local-fs.target" "visa-database-staging-post.service" ] ;
                                                                             name = "${ _config.visa.backend.database.environments.staging.name }-post.service" ;
                                                                             serviceConfig =
                                                                                 {
