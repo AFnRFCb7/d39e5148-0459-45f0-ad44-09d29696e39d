@@ -779,7 +779,6 @@
                                                                                                     ''
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
-                                                                                                        sleep 10s
                                                                                                         echo 2420455039029798
                                                                                                         cd /mounts/playwright
                                                                                                         cp --recursive "/mounts/package/." .
