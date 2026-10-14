@@ -97,7 +97,7 @@
                                                                                                         mounts = { } ;
                                                                                                         name = "ExecStartPost" ;
                                                                                                         post = null ;
-                                                                                                        runtime-inputs = pkgs : [ pkgs.postgresql ] ;
+                                                                                                        runtime-inputs = pkgs : [ ] ;
                                                                                                         text =
                                                                                                             ''
                                                                                                                 ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
@@ -113,7 +113,7 @@
                                                                                                         mounts = { } ;
                                                                                                         name = "ExecStartPre" ;
                                                                                                         post = null ;
-                                                                                                        runtime-input = pkgs : [ pkgs.postgresql ] ;
+                                                                                                        runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
                                                                                                                 initdb --pgdata=/mounts/state --username postgres
