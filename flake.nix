@@ -96,11 +96,11 @@
                                                                                                     {
                                                                                                         mounts = { socket = { type = "temporary" ; } ; state = { type = "temporary" ; } ; } ;
                                                                                                         name = "ExecStart" ;
-                                                                                                        post = null ;
-#                                                                                                            ''
-#                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
-#                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
-#                                                                                                            '' ;
+                                                                                                        post =
+                                                                                                            ''
+                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
+                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
+                                                                                                            '' ;
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
@@ -917,7 +917,7 @@
                                                                                             (
                                                                                                 _pkgs.writeShellApplication
                                                                                                     {
-                                                                                                        name = "migrate" ;
+                                                                                                        name = "execute-migrate" ;
                                                                                                         runtimeInputs = [ _config.visa.backend.database.migrate.environments.staging.up ] ;
                                                                                                         text = "execute" ;
                                                                                                     }
@@ -925,7 +925,7 @@
                                                                                             (
                                                                                                 _pkgs.writeShellApplication
                                                                                                     {
-                                                                                                        name = "playwright-2791569257326470" ;
+                                                                                                        name = "execute-playwright" ;
                                                                                                         runtimeInputs = [ _config.visa.playwright.execute ] ;
                                                                                                         text =
                                                                                                             ''
@@ -943,8 +943,8 @@
                                                                 client.wait_for_unit("visa-database-staging.service")
                                                                 client.wait_for_unit("visa-server-staging.service")
                                                                 client.wait_for_unit("nginx.service")
-                                                                client.succeed("migrate")
-                                                                client.succeed("playwright-2791569257326470")
+                                                                client.succeed("execute-migrate")
+                                                                client.succeed("execute-playwright")
                                                             '' ;
                                                     } ;
                                             type = "visa" ;
