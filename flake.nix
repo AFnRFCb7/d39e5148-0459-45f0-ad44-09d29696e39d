@@ -781,7 +781,7 @@
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
                                                                                                         echo 2420455039029798
                                                                                                         cd /mounts/playwright
-                                                                                                        cp --recursive /mounts/package/. .
+                                                                                                        cp --recursive "/mounts/package/." .
                                                                                                         echo 1588879359784461
                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
                                                                                                         echo 7681470887522860
