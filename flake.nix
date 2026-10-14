@@ -89,21 +89,7 @@
                                                                             serviceConfig =
                                                                                 {
                                                                                     DynamicUser = true ;
-                                                                                    ExecStart =
-                                                                                        let
-                                                                                            application =
-                                                                                                _config.lazy-shell-application
-                                                                                                    {
-                                                                                                        mounts = { } ;
-                                                                                                        name = "ExecStart" ;
-                                                                                                        post = null ;
-                                                                                                        runtime-inputs = pkgs : [ pkgs.postgresql ] ;
-                                                                                                        text =
-                                                                                                            ''
-                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
-                                                                                                            '' ;
-                                                                                                    } ;
-                                                                                            in "${ application }/bin/ExecStart" ;
+                                                                                    ExecStart = "${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute" ;
                                                                                 } ;
                                                                             wantedBy = [ "multi-user.target" ] ;
                                                                         } ;
