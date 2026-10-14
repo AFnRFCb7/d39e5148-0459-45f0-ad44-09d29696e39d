@@ -782,10 +782,9 @@
                                                                                                         echo 2420455039029798
                                                                                                         cd /mounts/playwright
                                                                                                         echo 1588879359784461
-                                                                                                        cp --recursive /mounts/package/. .
-                                                                                                        echo 9718875905540071
-                                                                                                        export PATH="$PATH:./node_modules/.bin"
+                                                                                                        export PATH="$PATH:/mounts/package/node_modules/.bin"
                                                                                                         echo 7681470887522860
+                                                                                                        df -h
                                                                                                         playwright test tests.spec.js
                                                                                                         echo 3986606458407536
                                                                                                         echo FINISHED
@@ -938,7 +937,7 @@
                                                                                                     }
                                                                                             )
                                                                                         ] ;
-                                                                                        virtualisation.diskSize = 8 * 1024 ;
+                                                                                        virtualisation.diskSize = 80 * 1024 ;
                                                                                 } ;
                                                                             imports = [ failure implementation lazy-shell-application node-fetch node-package visitor tree-serialization ] ;
                                                                         } ;
