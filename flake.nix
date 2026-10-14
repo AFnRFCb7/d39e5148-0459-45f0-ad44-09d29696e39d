@@ -779,10 +779,15 @@
                                                                                                     ''
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
+                                                                                                        echo 2420455039029798
                                                                                                         cd /mounts/playwright
+                                                                                                        echo 1588879359784461
                                                                                                         cp --recursive /mounts/package/. .
+                                                                                                        echo 9718875905540071
                                                                                                         export PATH="$PATH:./node_modules/.bin"
+                                                                                                        echo 7681470887522860
                                                                                                         playwright test tests.spec.js
+                                                                                                        echo 3986606458407536
                                                                                                         echo FINISHED
                                                                                                     '' ;
                                                                                             } ;
