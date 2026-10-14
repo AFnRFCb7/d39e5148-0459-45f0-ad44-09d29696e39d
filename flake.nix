@@ -917,25 +917,29 @@
                                                                     _pkgs = pkgs-identity pkgs ;
                                                                     in
                                                                         {
-                                                                            environment.systemPackages =
-                                                                                [
-                                                                                    (
-                                                                                        _pkgs.writeShellApplication
-                                                                                            {
-                                                                                                name = "migrate" ;
-                                                                                                runtimeInputs = [ _config.visa.backend.database.migrate.environments.staging.up ] ;
-                                                                                                text = "execute" ;
-                                                                                            }
-                                                                                    )
-                                                                                    (
-                                                                                        _pkgs.writeShellApplication
-                                                                                            {
-                                                                                                name = "playwright" ;
-                                                                                                runtimeInputs = [ _config.visa.playwright.execute ] ;
-                                                                                                text = "execute" ;
-                                                                                            }
-                                                                                    )
-                                                                                ] ;
+                                                                            config =
+                                                                                {
+                                                                                    environment.systemPackages =
+                                                                                        [
+                                                                                            (
+                                                                                                _pkgs.writeShellApplication
+                                                                                                    {
+                                                                                                        name = "migrate" ;
+                                                                                                        runtimeInputs = [ _config.visa.backend.database.migrate.environments.staging.up ] ;
+                                                                                                        text = "execute" ;
+                                                                                                    }
+                                                                                            )
+                                                                                            (
+                                                                                                _pkgs.writeShellApplication
+                                                                                                    {
+                                                                                                        name = "playwright" ;
+                                                                                                        runtimeInputs = [ _config.visa.playwright.execute ] ;
+                                                                                                        text = "execute" ;
+                                                                                                    }
+                                                                                            )
+                                                                                        ] ;
+                                                                                        virtualisation.diskSize = 8 * 1024 ;
+                                                                                } ;
                                                                             imports = [ failure implementation lazy-shell-application node-fetch node-package visitor tree-serialization ] ;
                                                                         } ;
                                                         testScript =
