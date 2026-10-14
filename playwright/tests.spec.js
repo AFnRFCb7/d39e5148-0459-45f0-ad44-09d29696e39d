@@ -9,7 +9,7 @@ test.describe("Gateway Server", ( ) => {
     test.describe("Backend Server", ( ) => {
         test("admin marker health check", async ({ page }) => {
             const response = await page.goto(
-                `http://${ gatewayDomain }/api/health-check/admin/marker` ,
+                `http://127.0.0.1/api/health-check/admin/marker` ,
                 {
                     headers: {
                         Host: gatewayDomain,
@@ -20,7 +20,7 @@ test.describe("Gateway Server", ( ) => {
         });
         test("unauthenticated marker health check", async ({ page }) => {
             const response = await page.goto(
-                `http://${ gatewayDomain }/api/health-check/unauthenticated/marker`,
+                `http://127.0.0.1/api/health-check/unauthenticated/marker`,
                 {
                     headers: {
                         Host: gatewayDomain,
@@ -31,7 +31,7 @@ test.describe("Gateway Server", ( ) => {
         });
         test("regular marker health check", async ({ page }) => {
             const response = await page.goto(
-                `http://${ gatewayDomain }/api/health-check/regular/marker` ,
+                `http://127.0.0.1/api/health-check/regular/marker` ,
                 {
                     headers: {
                         Host: gatewayDomain,
