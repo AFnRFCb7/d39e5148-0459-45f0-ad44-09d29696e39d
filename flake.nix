@@ -208,6 +208,9 @@
                                                                                                                             export DATABASE_PORT=${ builtins.toString _config.visa.backend.database.environments.staging.port }
                                                                                                                             export DATABASE_DATABASE=postgres
                                                                                                                             export DATABASE_USER=postgres
+                                                                                                                            until pg_is_ready -h "$DATABASE_HOST" -p "$DATABASE_PORT" |
+                                                                                                                                sleep 1
+                                                                                                                            done
                                                                                                                             /mounts/package/node_modules/.bin/db-migrate down --migrations-dir ./migrations/staging
                                                                                                                             /mounts/package/node_modules/.bin/db-migrate down --migrations-dir ./migrations/production --verbose
                                                                                                                         '' ;
@@ -219,7 +222,7 @@
                                                                                                                             export DATABASE_PORT=${ builtins.toString _config.visa.backend.database.environments.staging.port }
                                                                                                                             export DATABASE_DATABASE=postgres
                                                                                                                             export DATABASE_USER=postgres
-                                                                                                                            until pg_is_ready -h "$DATABASE_HOST" -p "$DATABASE_PORT |
+                                                                                                                            until pg_is_ready -h "$DATABASE_HOST" -p "$DATABASE_PORT" |
                                                                                                                                 sleep 1
                                                                                                                             done
                                                                                                                             /mounts/package/node_modules/.bin/db-migrate up --migrations-dir ./migrations/production --verbose
