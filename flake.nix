@@ -100,8 +100,8 @@
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
-                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
-                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute                                                                                                            '' ;
+                                                                                                                ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
+                                                                                                            '' ;
                                                                                                     } ;
                                                                                             in "${ application }/bin/ExecStart" ;
                                                                                 } ;
