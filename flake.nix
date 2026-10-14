@@ -97,7 +97,7 @@
                                                                                                         mounts = { } ;
                                                                                                         name = "ExecStartPost" ;
                                                                                                         post = null ;
-                                                                                                        runtime-input = pkgs : [ pkgs.postgresql ] ;
+                                                                                                        runtime-inputs = pkgs : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
                                                                                                                 ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
