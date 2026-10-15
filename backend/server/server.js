@@ -20,7 +20,7 @@ app.get
                 const result = await database.query(
                     "SELECT marker FROM \"health-check\" LIMIT 1"
                 ) ;
-                response.json(response.json(result.rows[0].marker)) ; ;
+                response.json(result.rows[0].marker) ;
             }
     ) ;
 app.get
@@ -31,7 +31,7 @@ app.get
                 const result = await database.query(
                     "SELECT marker FROM \"health-check\" LIMIT 1"
                 ) ;
-                response.json(response.json(result.rows[0].marker)) ; ;
+                response.json(result.rows[0].marker) ;
             }
     ) ;
 app.get
@@ -39,10 +39,12 @@ app.get
         "/api/health-check/unauthenticated/marker" ,
         async ( request , response ) =>
             {
+                console.log("GET /api/health-check/unauthenticated/marker");
                 const result = await database.query(
                     "SELECT marker FROM \"health-check\" LIMIT 1"
                 ) ;
-                response.json(response.json(result.rows[0].marker)) ; ;
+                console.log("GET /api/health-check/unauthenticated/marker=>" );
+                response.json(result.rows[0].marker) ;
             }
     ) ;
 app.post("/api/login", (request, response) => {
