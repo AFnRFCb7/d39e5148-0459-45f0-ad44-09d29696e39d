@@ -1,5 +1,6 @@
 const express = require("express") ;
 const fs = require("fs") ;
+const util = require("util");
 const cors = require("cors") ;
 const app = express() ;
 app.use(cors()) ;
@@ -13,6 +14,9 @@ const database = new Pool({
     database: "postgres",
     user: "postgres"
 });
+const output = process.env.OUTPUT
+    ? fs.createWriteStream(process.env.OUTPUT)
+    : process.stdout;
 app.get
     (
         "/api/health-check/admin/marker" ,
@@ -40,11 +44,11 @@ app.get
         "/api/health-check/unauthenticated/marker" ,
         async ( request , response ) =>
             {
-                console.log("GET /api/health-check/unauthenticated/marker");
+                output.write("GET /api/health-check/unauthenticated/marker");
                 const result = await database.query(
                     "SELECT marker FROM \"health-check\" LIMIT 1"
                 ) ;
-                console.log("GET /api/health-check/unauthenticated/marker=>" );
+                output.write("GET /api/health-check/unauthenticated/marker=>" );
                 response.json(result.rows[0].marker) ;
             }
     ) ;
@@ -59,6 +63,6 @@ app.listen
         port ,
         () =>
             {
-                console.log(`listening on port ${ port }`) ;
+                output.write(`listening on port ${ port }`) ;
             }
     ) ;
