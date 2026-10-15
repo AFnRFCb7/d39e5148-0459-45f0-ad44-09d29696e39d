@@ -351,7 +351,7 @@
                                                                                                                                 mounts =
                                                                                                                                     {
                                                                                                                                         package = { read-only = true ; source = _config.visa.backend.server.package ; type = "bind" ; } ;
-                                                                                                                                        standard-output = { directory = false ; source = "/tmp/standard-output" ; type = "bind" ; } ;
+                                                                                                                                        standard-output = { is-directory = false ; source = "/tmp/standard-output" ; type = "bind" ; } ;
                                                                                                                                     } ;
                                                                                                                                 name = "execute" ;
                                                                                                                                 post = null ;
