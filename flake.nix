@@ -351,6 +351,7 @@
                                                                                                                                 mounts =
                                                                                                                                     {
                                                                                                                                         package = { read-only = true ; source = _config.visa.backend.server.package ; type = "bind" ; } ;
+                                                                                                                                        standard-output = { source = 1 ; type = "pipe" ; } ;
                                                                                                                                     } ;
                                                                                                                                 name = "execute" ;
                                                                                                                                 post = null ;
@@ -358,6 +359,7 @@
                                                                                                                                 text =
                                                                                                                                     ''
                                                                                                                                         cd /mounts/package
+                                                                                                                                        export OUTPUT=/mounts/standard-output
                                                                                                                                         node /mounts/package/server.js ${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                                                     '' ;
                                                                                                                             } ;
