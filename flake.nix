@@ -601,8 +601,9 @@
                                                                                                                                             implode
                                                                                                                                             echo 8621830033751774
                                                                                                                                             cd "$OUT"
-                                                                                                                                            ${ pkgs.findutils }/bin/find node_modules -mindepth 1 -maxdepth 1
-                                                                                                                                            ls -lah node_modules/.bin/run-p
+                                                                                                                                            ls -l node_modules/.bin/run-p
+                                                                                                                                            test -e node_modules/.bin/run-p && echo "target exists" || echo "BROKEN SYMLINK"
+                                                                                                                                            ls -l node_modules/npm-run-all2/bin/run-p/index.js
                                                                                                                                             npm run build
                                                                                                                                         '' ;
                                                                                                                                 }
