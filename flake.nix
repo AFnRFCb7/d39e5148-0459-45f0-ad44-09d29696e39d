@@ -602,33 +602,33 @@
                                                                                                                                             echo 8621830033751774
                                                                                                                                             cd "$OUT"
 
-find node_modules -type f -perm /111 \
-    -exec bash -c '
-        for file do
-            IFS= read -r first < "$file" || continue
-            if [ "$first" = "#!/usr/bin/env node" ]; then
-                {
-                    printf "#!%s/bin/env node\n" "$1"
-                    tail -n +2 "$file"
-                } > "$file.tmp"
-                cat "$file.tmp" > "$file"
-                rm "$file.tmp"
-            fi
-        done
-    ' _ "${pkgs.coreutils}" {} +
-                                                                                                                                            printf '%s\n' '--- run-p first line ---'
-                                                                                                                                            head -n 1 node_modules/npm-run-all2/bin/run-p/index.js
-                                                                                                                                            od -An -tx1 -N 100 node_modules/npm-run-all2/bin/run-p/index.js
-
-                                                                                                                                            printf '%s\n' '--- node ---'
-                                                                                                                                            command -v node || true
-                                                                                                                                            node --version || true
-
-                                                                                                                                            printf '%s\n' '--- run-p target ---'
-                                                                                                                                            readlink -f node_modules/.bin/run-p
-
-                                                                                                                                            ls -l /usr/bin/env || true
-                                                                                                                                            command -v env || true
+                                                                                                                                            find node_modules -type f -perm /111 \
+                                                                                                                                                -exec bash -c '
+                                                                                                                                                    for file do
+                                                                                                                                                        IFS= read -r first < "$file" || continue
+                                                                                                                                                        if [ "$first" = "#!/usr/bin/env node" ]; then
+                                                                                                                                                            {
+                                                                                                                                                                printf "#!%s/bin/env node\n" "$1"
+                                                                                                                                                                tail -n +2 "$file"
+                                                                                                                                                            } > "$file.tmp"
+                                                                                                                                                            cat "$file.tmp" > "$file"
+                                                                                                                                                            rm "$file.tmp"
+                                                                                                                                                        fi
+                                                                                                                                                    done
+                                                                                                                                                ' _ "${pkgs.coreutils}" {} +
+#                                                                                                                                            printf '%s\n' '--- run-p first line ---'
+#                                                                                                                                            head -n 1 node_modules/npm-run-all2/bin/run-p/index.js
+#                                                                                                                                            od -An -tx1 -N 100 node_modules/npm-run-all2/bin/run-p/index.js
+#
+#                                                                                                                                            printf '%s\n' '--- node ---'
+#                                                                                                                                            command -v node || true
+#                                                                                                                                            node --version || true
+#
+#                                                                                                                                            printf '%s\n' '--- run-p target ---'
+#                                                                                                                                            readlink -f node_modules/.bin/run-p
+#
+#                                                                                                                                            ls -l /usr/bin/env || true
+#                                                                                                                                            command -v env || true
 
                                                                                                                                             npm run build
                                                                                                                                         '' ;
