@@ -602,7 +602,7 @@
                                                                                                                                             echo 8621830033751774
                                                                                                                                             cd "$OUT"
                                                                                                                                             ${ pkgs.findutils }/bin/find node_modules -mindepth 1 -maxdepth 1
-                                                                                                                                            ls -lah node_modules/.bin/run-
+                                                                                                                                            ls -lah node_modules/.bin/run-p
                                                                                                                                             npm run build
                                                                                                                                         '' ;
                                                                                                                                 }
