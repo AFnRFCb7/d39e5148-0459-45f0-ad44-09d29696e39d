@@ -603,8 +603,19 @@
                                                                                                                                             cd "$OUT"
 
 find node_modules -type f -perm /111 \
-    -exec sed -i \
-        "1s#^#!/usr/bin/env node\$#!${pkgs.coreutils}/bin/env node#" {} +
+    -exec bash -c '
+        for file do
+            IFS= read -r first < "$file" || continue
+            if [ "$first" = "#!/usr/bin/env node" ]; then
+                {
+                    printf "#!%s/bin/env node\n" "$1"
+                    tail -n +2 "$file"
+                } > "$file.tmp"
+                cat "$file.tmp" > "$file"
+                rm "$file.tmp"
+            fi
+        done
+    ' _ "${pkgs.coreutils}" {} +
                                                                                                                                             printf '%s\n' '--- run-p first line ---'
                                                                                                                                             head -n 1 node_modules/npm-run-all2/bin/run-p/index.js
                                                                                                                                             od -An -tx1 -N 100 node_modules/npm-run-all2/bin/run-p/index.js
