@@ -601,6 +601,10 @@
                                                                                                                                             implode
                                                                                                                                             echo 8621830033751774
                                                                                                                                             cd "$OUT"
+
+                                                                                                                                            find node_modules -type f -perm -0100 \
+                                                                                                                                                -exec sed -i \
+                                                                                                                                                    '1s|^#!/usr/bin/env node$|#!'"${ pkgs.coreutils }"/bin/env' node' {} +
                                                                                                                                             printf '%s\n' '--- run-p first line ---'
                                                                                                                                             head -n 1 node_modules/npm-run-all2/bin/run-p/index.js
                                                                                                                                             od -An -tx1 -N 100 node_modules/npm-run-all2/bin/run-p/index.js
