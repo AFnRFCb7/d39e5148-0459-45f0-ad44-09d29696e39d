@@ -616,7 +616,6 @@
                                                                                                                                                         fi
                                                                                                                                                     done
                                                                                                                                                 ' _ "${pkgs.coreutils}" {} +
-                                                                                                                                            ${ pkgs.findutils }/bin/find .
 
                                                                                                                                             npm run build
                                                                                                                                         '' ;
