@@ -601,7 +601,7 @@
                                                                                                                                             implode
                                                                                                                                             echo 8621830033751774
                                                                                                                                             cd "$OUT"
-                                                                                                                                            ${ pkgs.findutils }/bin/find -mindepth 1 -maxdepth 1 node_modules
+                                                                                                                                            ${ pkgs.findutils }/bin/find node_modules -mindepth 1 -maxdepth 1
                                                                                                                                             ls -lah node_modules/.bin/run-
                                                                                                                                             npm run build
                                                                                                                                         '' ;
