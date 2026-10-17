@@ -616,15 +616,7 @@
                                                                                                                                                         fi
                                                                                                                                                     done
                                                                                                                                                 ' _ "${pkgs.coreutils}" {} +
-                                                                                                                                                printf '%s\n' '--- source views ---'
-                                                                                                                                                ls -la frontend/admin/src/views/
-
-                                                                                                                                                printf '%s\n' '--- source declarations ---'
-                                                                                                                                                find frontend/admin -maxdepth 3 -type f \
-                                                                                                                                                  \( -name '*.d.ts' -o -name 'tsconfig*.json' \) -print
-
-                                                                                                                                                printf '%s\n' '--- router imports ---'
-                                                                                                                                                sed -n '1,100p' frontend/admin/src/router.ts
+                                                                                                                                                find . -mindepth 1 -maxdepth 1
 
                                                                                                                                             npm run build
                                                                                                                                         '' ;
