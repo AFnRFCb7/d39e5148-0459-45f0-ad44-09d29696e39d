@@ -599,9 +599,8 @@
                                                                                                                                             cp --recursive "${ code }/frontend/admin/"* "$OUT"
                                                                                                                                             mkdir --parents "$OUT/node_modules"
                                                                                                                                             implode
-                                                                                                                                            echo 8621830033751774
                                                                                                                                             cd "$OUT"
-
+                                                                                                                                            echo 8621830033751774
                                                                                                                                             find node_modules -type f -perm /111 \
                                                                                                                                                 -exec bash -c '
                                                                                                                                                     for file do
@@ -616,8 +615,9 @@
                                                                                                                                                         fi
                                                                                                                                                     done
                                                                                                                                                 ' _ "${pkgs.coreutils}" {} +
-                                                                                                                                                find . -mindepth 1 -maxdepth 1
-
+                                                                                                                                            echo 3905059595908424
+                                                                                                                                            find . -mindepth 1 -maxdepth 1
+                                                                                                                                            echo 3417936482170843
                                                                                                                                             npm run build
                                                                                                                                         '' ;
                                                                                                                                 }
