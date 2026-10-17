@@ -616,7 +616,7 @@
                                                                                                                                                         fi
                                                                                                                                                     done
                                                                                                                                                 ' _ "${pkgs.coreutils}" {} +
-                                                                                                                                                find . -mindepth 1 -maxdepth 1
+                                                                                                                                                find frontend/admin -type f \( -name '*.d.ts' -o -name 'tsconfig*.json' \) -print
 
                                                                                                                                             npm run build
                                                                                                                                         '' ;
