@@ -6,7 +6,7 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', component: HomePageView },
-    { path: '/health-check', component: Health-CheckView },
+    { path: '/health-check', component: HealthCheckView },
   ],
 })
 
