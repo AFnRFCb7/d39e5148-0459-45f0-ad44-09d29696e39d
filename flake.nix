@@ -76,12 +76,6 @@
                                                                                         tryFiles = "$uri $uri/ /admin/index.html" ;
                                                                                     } ;
                                                                         } ;
-                                                                    virtualHosts."visa-staging.com".locations."/" =
-                                                                        _lib.mkIf
-                                                                            config.visa.backend.server.environments.staging.enable
-                                                                            {
-                                                                                proxyPass = "http://${ _config.visa.backend.server.environments.staging.host }:${ builtins.toString _config.visa.backend.server.environments.staging.port }";
-                                                                            } ;
                                                                 } ;
                                                         systemd.services =
                                                             {
