@@ -72,8 +72,9 @@
                                                                                 _lib.mkIf
                                                                                     config.visa.frontend.admin.environments.staging.enable
                                                                                     {
-                                                                                        root = _config.visa.frontend.admin.package ;
-                                                                                        tryFiles = "$uri $uri/ /admin/index.html" ;
+                                                                                        alias = "${ _config.visa.frontend.admin.package}/" ;
+                                                                                        index = "index.html" ;
+                                                                                        tryFiles = "$uri $uri/ /index.html" ;
                                                                                     } ;
                                                                         } ;
                                                                 } ;
