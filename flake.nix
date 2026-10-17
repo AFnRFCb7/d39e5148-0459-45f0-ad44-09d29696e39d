@@ -65,8 +65,7 @@
                                                                                 _lib.mkIf
                                                                                     config.visa.backend.server.environments.staging.enable
                                                                                     {
-                                                                                        proxyPass =
-                                                                                            "http://${ _config.visa.backend.server.environments.staging.host }:${ builtins.toString _config.visa.backend.server.environments.staging.port }" ;
+                                                                                        proxyPass = "http://${ _config.visa.backend.server.environments.staging.host }:${ builtins.toString _config.visa.backend.server.environments.staging.port }" ;
                                                                                     } ;
                                                                             "/admin/" =
                                                                                 _lib.mkIf
@@ -591,7 +590,7 @@
                                                                                                                             _pkgs.writeShellApplication
                                                                                                                                 {
                                                                                                                                     name = "install-it" ;
-                                                                                                                                    runtimeInputs = [ ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) ] ;
+                                                                                                                                    runtimeInputs = [ ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) _pkgs.coreutils _pkgs.nodejs ] ;
                                                                                                                                     text =
                                                                                                                                         ''
                                                                                                                                             OUT="$1"
@@ -600,6 +599,7 @@
                                                                                                                                             cp --recursive "${ code }/frontend/admin/"* "$OUT"
                                                                                                                                             mkdir --parents "$OUT/node_modules"
                                                                                                                                             implode
+                                                                                                                                            npm run build
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
