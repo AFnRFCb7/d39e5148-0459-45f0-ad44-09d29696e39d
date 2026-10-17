@@ -5,8 +5,8 @@ import HomePage from './views/HomePageView.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', component: HomePageView },
-    { path: '/health-check', component: HealthCheckView },
+    { path: '/', component: HomePage },
+    { path: '/health-check', component: HealthCheck },
   ],
 })
 
