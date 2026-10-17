@@ -599,6 +599,7 @@
                                                                                                                                             cp --recursive "${ code }/frontend/admin/"* "$OUT"
                                                                                                                                             mkdir --parents "$OUT/node_modules"
                                                                                                                                             implode
+                                                                                                                                            echo 8621830033751774
                                                                                                                                             cd "$OUT"
                                                                                                                                             npm run build
                                                                                                                                         '' ;
