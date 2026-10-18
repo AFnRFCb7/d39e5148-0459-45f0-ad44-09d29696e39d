@@ -2,9 +2,18 @@
   <main>
     <h1>Admin Home</h1>
     <p>Welcome to the administration application.</p>
-    <nav>
-      <RouterLink to="/health-check">Health Check</RouterLink>
-    </nav>
+    <ol>
+        <li>
+            <nav>
+              <RouterLink to="/login">Login</RouterLink>
+            </nav>
+        </li>
+        <li>
+            <nav>
+              <RouterLink to="/health-check">Health Check</RouterLink>
+            </nav>
+        </li>
+    </ol>
   </main>
 </template>
 
