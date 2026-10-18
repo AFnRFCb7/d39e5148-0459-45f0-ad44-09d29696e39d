@@ -612,8 +612,7 @@
                                                                                                                                             echo 3905059595908424
                                                                                                                                             find . -mindepth 1 -maxdepth 1
                                                                                                                                             echo 3417936482170843
-                                                                                                                                            vue-tsc --build
-                                                                                                                                            vite build
+                                                                                                                                            npm run build
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
