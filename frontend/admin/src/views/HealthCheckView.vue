@@ -4,6 +4,10 @@
     <h1>Health Check</h1>
     <p>Check the health of the admin backend.</p>
 
+    <label>
+        Marker:
+        <input v-model="marker" type="text"/>
+    </label>
     <table>
       <thead>
         <tr>
@@ -30,7 +34,8 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive , ref } from 'vue'
+const marker = ref('foo')
 
 const roles = ['unauthenticated', 'regular', 'admin'] as const
 type Role = typeof roles[number]
@@ -59,7 +64,7 @@ async function check(role: Role, operation: Operation) {
         : {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ marker: 'health-check' }),
+            body: JSON.stringify({ marker: marker.value }),
           },
     )
 
