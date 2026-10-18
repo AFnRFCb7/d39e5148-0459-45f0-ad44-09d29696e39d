@@ -584,7 +584,13 @@
                                                                                                                             _pkgs.writeShellApplication
                                                                                                                                 {
                                                                                                                                     name = "install-it" ;
-                                                                                                                                    runtimeInputs = [ ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) _pkgs.coreutils _pkgs.nodejs ] ;
+                                                                                                                                    runtimeInputs =
+                                                                                                                                        [
+                                                                                                                                            ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } )
+                                                                                                                                            _pkgs.coreutils
+                                                                                                                                            _pkgs.nodejs
+                                                                                                                                            "$OUT/node_modules/.bin"
+                                                                                                                                        ] ;
                                                                                                                                     text =
                                                                                                                                         ''
                                                                                                                                             OUT="$1"
