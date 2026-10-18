@@ -414,8 +414,10 @@
                                                                                                                     {
                                                                                                                         dependencies =
                                                                                                                             {
+                                                                                                                                bcrypt = "^5.1.1" ;
                                                                                                                                 cors = "^2.8.6" ;
                                                                                                                                 express = "^5.1.0" ;
+                                                                                                                                "express-session" = "^1.18.2" ;
                                                                                                                                 pg = "^8.16.3";
                                                                                                                             } ;
                                                                                                                     } ;
