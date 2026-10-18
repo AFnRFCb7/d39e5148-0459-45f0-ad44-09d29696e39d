@@ -28,6 +28,18 @@ app.get
                 response.json(result.rows[0].marker) ;
             }
     ) ;
+app.put
+    (
+        "/api/health-check/admin/marker",
+        async (request, response) =>
+            {
+                const result = await database.query(
+                    'UPDATE "health-check" SET marker = $1 RETURNING marker',
+                    [request.body.marker]
+                )
+                response.json(result.rows[0].marker)
+            }
+    ) ;
 app.get
     (
         "/api/health-check/regular/marker" ,
@@ -39,6 +51,18 @@ app.get
                 response.json(result.rows[0].marker) ;
             }
     ) ;
+app.put
+    (
+        "/api/health-check/regular/marker",
+        async (request, response) =>
+            {
+                const result = await database.query(
+                    'UPDATE "health-check" SET marker = $1 RETURNING marker',
+                    [request.body.marker]
+                )
+                response.json(result.rows[0].marker)
+            }
+    ) ;
 app.get
     (
         "/api/health-check/unauthenticated/marker" ,
@@ -48,6 +72,18 @@ app.get
                     "SELECT marker FROM \"health-check\" LIMIT 1"
                 ) ;
                 response.json(result.rows[0].marker) ;
+            }
+    ) ;
+app.put
+    (
+        "/api/health-check/unauthenticated/marker",
+        async (request, response) =>
+            {
+                const result = await database.query(
+                    'UPDATE "health-check" SET marker = $1 RETURNING marker',
+                    [request.body.marker]
+                )
+                response.json(result.rows[0].marker)
             }
     ) ;
 app.post("/api/login", (request, response) => {
