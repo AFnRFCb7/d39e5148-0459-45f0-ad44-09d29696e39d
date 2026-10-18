@@ -530,14 +530,6 @@
                                                                                                                         version = "0.0.0" ;
                                                                                                                         private = true ;
                                                                                                                         type = "module" ;
-                                                                                                                        scripts =
-                                                                                                                            {
-                                                                                                                                dev = "vite --port 11141" ;
-                                                                                                                                build = "run-p type-check \"build-only {@}\" --" ;
-                                                                                                                                preview = "vite preview" ;
-                                                                                                                                "build-only" = "vite build" ;
-                                                                                                                                "type-check" = "vue-tsc --build" ;
-                                                                                                                            } ;
                                                                                                                         dependencies =
                                                                                                                             {
                                                                                                                                 vue = "^3.5.42" ;
@@ -620,7 +612,8 @@
                                                                                                                                             echo 3905059595908424
                                                                                                                                             find . -mindepth 1 -maxdepth 1
                                                                                                                                             echo 3417936482170843
-                                                                                                                                            npm run build
+                                                                                                                                            vue-tsc --build
+                                                                                                                                            vite build
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
