@@ -589,7 +589,6 @@
                                                                                                                                             ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } )
                                                                                                                                             _pkgs.coreutils
                                                                                                                                             _pkgs.nodejs
-                                                                                                                                            "$1/node_modules/.bin"
                                                                                                                                         ] ;
                                                                                                                                     text =
                                                                                                                                         ''
@@ -600,8 +599,8 @@
                                                                                                                                             mkdir --parents "$OUT/node_modules"
                                                                                                                                             implode
                                                                                                                                             cd "$OUT"
-                                                                                                                                            vue-tsc --build
-                                                                                                                                            vite build
+                                                                                                                                            "$OUT/node_modules/.bin/vue-tsc" --build
+                                                                                                                                            "$OUT/node_modules/.bin/vite" build
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
