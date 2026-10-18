@@ -42,6 +42,7 @@ test.describe("Gateway Server", ( ) => {
                         await getButton.click();
                         await expect(row).toContainText(originalMarker);
                     });
+                });
             }) ;
         }) ;
     });
