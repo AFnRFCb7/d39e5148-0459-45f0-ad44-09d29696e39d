@@ -44,11 +44,9 @@ app.get
         "/api/health-check/unauthenticated/marker" ,
         async ( request , response ) =>
             {
-                output.write("GET /api/health-check/unauthenticated/marker");
                 const result = await database.query(
                     "SELECT marker FROM \"health-check\" LIMIT 1"
                 ) ;
-                output.write("GET /api/health-check/unauthenticated/marker=>" );
                 response.json(result.rows[0].marker) ;
             }
     ) ;

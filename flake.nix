@@ -73,7 +73,7 @@
                                                                                     {
                                                                                         alias = "${ _config.visa.frontend.admin.package }/dist/" ;
                                                                                         index = "index.html" ;
-                                                                                        tryFiles = "$uri $uri/ /index.html" ;
+                                                                                        tryFiles = "$uri $uri/ /admin/index.html" ;
                                                                                     } ;
                                                                         } ;
                                                                 } ;
