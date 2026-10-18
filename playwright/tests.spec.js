@@ -9,7 +9,7 @@ test.describe("Gateway Server", ( ) => {
     test.describe("Admin Server", ( ) => {
         test.describe("Health Check" , ( ) => {
             test.describe("Unautheticated User", ( ) => {
-                test.describe("Unauthenticated Buttons", ( ) => {'
+                test.describe("Unauthenticated Buttons", ( ) => {
                     test("GET, SET, GET, restore marker", async ({ page }) => {
                         await page.goto("http://127.0.0.1/admin");
                         await page.getByRole("link", {
