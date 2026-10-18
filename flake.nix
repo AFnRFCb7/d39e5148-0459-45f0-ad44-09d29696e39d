@@ -520,7 +520,7 @@
                                                                                                                             }
                                                                                                                     )
                                                                                                                     pkgs.git
-                                                                                                                    pkgs.nodejs
+                                                                                                                    pkgs.nodejs_22
                                                                                                                 ] ;
                                                                                                         text =
                                                                                                             let
