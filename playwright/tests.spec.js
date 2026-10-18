@@ -12,9 +12,6 @@ test.describe("Gateway Server", ( ) => {
                 test.describe("Unauthenticated Buttons", ( ) => {
                     test("GET, SET, GET, restore marker", async ({ page }) => {
                         await page.goto("http://127.0.0.1/admin/");
-                        console.log("URL:", page.url());
-                        console.log("TITLE:", await page.title());
-                        console.log("BODY:", (await page.locator("body").innerText()).slice(0, 2000));
                         await page.getByRole("link", {
                             name: "Health Check",
                         }).click();
