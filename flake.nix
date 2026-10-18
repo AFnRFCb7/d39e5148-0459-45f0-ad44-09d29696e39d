@@ -589,7 +589,7 @@
                                                                                                                                             ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } )
                                                                                                                                             _pkgs.coreutils
                                                                                                                                             _pkgs.nodejs
-                                                                                                                                            "$OUT/node_modules/.bin"
+                                                                                                                                            "$1/node_modules/.bin"
                                                                                                                                         ] ;
                                                                                                                                     text =
                                                                                                                                         ''
