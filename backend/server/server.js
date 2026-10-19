@@ -111,25 +111,20 @@ app.post("/api/login", async (request, response) => {
             "SELECT id, email, password_hash, admin FROM users WHERE email = $1",
             [email]
         );
-
+        output.write(`Login user count: ${result.rows.length}\n`);
         if (result.rows.length === 0) {
             return response.status(401).send("Invalid credentials");
         }
-
         const user = result.rows[0];
-
         const valid = await bcrypt.compare(password, user.password_hash);
-
         if (!valid) {
             return response.status(401).send("Invalid credentials");
         }
-
         request.session.user = {
             id: user.id,
             email: user.email,
             admin: user.admin
         };
-
         response.send("login");
     } catch (error) {
         output.write(util.inspect(error) + "\n");
