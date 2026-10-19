@@ -14,6 +14,17 @@ const database = new Pool({
     database: "postgres",
     user: "postgres"
 });
+app.use(session({
+    name: "visa.sid",
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production"
+    }
+}));
 const output = process.env.OUTPUT
     ? fs.createWriteStream(process.env.OUTPUT)
     : process.stdout;

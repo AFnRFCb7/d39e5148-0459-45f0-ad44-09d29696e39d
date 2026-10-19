@@ -371,6 +371,7 @@
                                                                                                                                     ''
                                                                                                                                         cd /mounts/package
                                                                                                                                         export OUTPUT=/mounts/standard-output
+                                                                                                                                        export SESSION_SECRET="${ builtins.toString _config.visa.backend.server.environments.staging.name }"
                                                                                                                                         node /mounts/package/server.js ${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                                                     '' ;
                                                                                                                             } ;
@@ -493,6 +494,7 @@
                                                                                                 enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
                                                                                                 name = _lib.mkOption { default = "visa-database-production" ; type = _lib.types.str ; } ;
                                                                                                 port = _lib.mkOption { default = 16204 ; type = _lib.types.ints.between 1024 65535 ; } ;
+                                                                                                secret = _lib.mkOption { default = 2894844631204373 ; type = _lib.types.int ; } ;
                                                                                             } ;
                                                                                     } ;
                                                                                 fetch =
@@ -961,6 +963,7 @@
                                                                                                     }
                                                                                             )
                                                                                         ] ;
+                                                                                    # visa.backend.server.environments.staging.secret = 4384081546961841 ;
                                                                                 } ;
                                                                             imports = [ failure implementation lazy-shell-application node-fetch node-package visitor tree-serialization ] ;
                                                                         } ;
