@@ -371,7 +371,7 @@
                                                                                                                                     ''
                                                                                                                                         cd /mounts/package
                                                                                                                                         export OUTPUT=/mounts/standard-output
-                                                                                                                                        export SESSION_SECRET "${ builtins.toString _config.visa.backend.server.environments.staging.secret }"
+                                                                                                                                        export SESSION_SECRET "${ builtins.toString _config.visa.backend.server.environments.staging.name }"
                                                                                                                                         node /mounts/package/server.js ${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                                                     '' ;
                                                                                                                             } ;
