@@ -2,6 +2,7 @@ const express = require("express") ;
 const fs = require("fs") ;
 const util = require("util");
 const cors = require("cors") ;
+const session = require("express-session");
 const app = express() ;
 app.use(cors()) ;
 app.use(express.json());
@@ -97,9 +98,43 @@ app.put
                 response.json(result.rows[0].marker)
             }
     ) ;
-app.post("/api/login", (request, response) => {
-    response.send("login") ;
-}) ;
+app.post("/api/login", async (request, response) => {
+    const { email, password } = request.body;
+
+    if (!email || !password) {
+        return response.status(400).send("Missing email or password");
+    }
+
+    try {
+        const result = await database.query(
+            "SELECT id, email, password_hash, admin FROM users WHERE email = $1",
+            [email]
+        );
+
+        if (result.rows.length === 0) {
+            return response.status(401).send("Invalid credentials");
+        }
+
+        const user = result.rows[0];
+
+        const valid = await bcrypt.compare(password, user.password_hash);
+
+        if (!valid) {
+            return response.status(401).send("Invalid credentials");
+        }
+
+        request.session.user = {
+            id: user.id,
+            email: user.email,
+            admin: user.admin
+        };
+
+        response.send("login");
+    } catch (error) {
+        output.write(util.inspect(error) + "\n");
+        response.status(500).send("Internal server error");
+    }
+});
 app.post("/api/consultation", (request, response) => {
     response.send("consultation") ;
 }) ;
