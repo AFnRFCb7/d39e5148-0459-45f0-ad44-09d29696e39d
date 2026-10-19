@@ -494,7 +494,7 @@
                                                                                                 enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
                                                                                                 name = _lib.mkOption { default = "visa-database-production" ; type = _lib.types.str ; } ;
                                                                                                 port = _lib.mkOption { default = 16204 ; type = _lib.types.ints.between 1024 65535 ; } ;
-                                                                                                secret = _lib.mkOption { type = _lib.types.int ; } ;
+                                                                                                secret = _lib.mkOption { default = 2894844631204373 ; type = _lib.types.int ; } ;
                                                                                             } ;
                                                                                     } ;
                                                                                 fetch =
