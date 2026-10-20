@@ -27,13 +27,24 @@ app.use(session({
         secure: process.env.NODE_ENV === "production"
     }
 }));
+function requireAdmin(request, response, next) {
+    if (!request.session.user) {
+        return response.status(401).json({
+            error: "Not logged in"
+        });
+    }else if(! request.session.user.admin) {
+        return response.status(401).json({
+            error: "Not an admin"
+        }) ;
+    }
+    next();
+}
 function requireLogin(request, response, next) {
     if (!request.session.user) {
         return response.status(401).json({
             error: "Not logged in"
         });
     }
-
     next();
 }
 const output = process.env.OUTPUT
@@ -42,6 +53,7 @@ const output = process.env.OUTPUT
 app.get
     (
         "/api/health-check/admin/marker" ,
+        requireAdmin,
         async ( request , response ) =>
             {
                 const result = await database.query(
@@ -53,6 +65,7 @@ app.get
 app.put
     (
         "/api/health-check/admin/marker",
+        requireAdmin,
         async (request, response) =>
             {
                 const result = await database.query(
