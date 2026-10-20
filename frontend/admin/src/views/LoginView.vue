@@ -82,10 +82,9 @@ async function logout() {
     });
 
     if (!response.ok) {
-      throw new Error("Logout failed");
+      throw new Error(`HTTP ${response.status}`);
     }
 
-    password.value = "";
     await router.push("/login");
   } catch (e) {
     console.error("Logout error:", e);
