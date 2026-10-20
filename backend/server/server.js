@@ -125,22 +125,15 @@ app.put
             }
     ) ;
 app.post("/api/login", async (request, response) => {
-    output.write("0577672097034619");
     const { email, password } = request.body;
-
     if (!email || !password) {
         return response.status(400).send("Missing email or password");
     }
-
     try {
         const result = await database.query(
             "SELECT id, email, password_hash, admin FROM users WHERE email = $1",
             [email]
         );
-        output.write(`Login attempt: ${JSON.stringify({
-            email,
-            userCount: result.rows.length
-        })}\n`);
         if (result.rows.length === 0) {
             return response.status(401).send("Invalid credentials");
         }
@@ -165,7 +158,6 @@ app.post("/api/logout", (request, response, next) => {
         if (error) {
             return next(error);
         }
-
         response.clearCookie("visa.sid");
         response.sendStatus(204);
     });
@@ -176,22 +168,22 @@ app.get("/api/session", (request, response) => {
         user: request.session.user || null
     });
 });
-app.get("/api/utility/password", async (request, response) => {
-    const { password } = request.query;
-    if (typeof password !== "string" || password.length === 0) {
-        return response.status(400).send("Missing password");
-    }
-    try {
-        const hash = await bcrypt.hash(password, 10);
-        response.type("text/plain").send(hash);
-    } catch (error) {
-        output.write(util.inspect(error) + "\n");
-        response.status(500).send("Internal server error");
-    }
+app.get
+    (
+        "/api/utility/password",
+        requiresAdmin,
+        async (request, response) => {
+            const { password } = request.query;
+                if (typeof password !== "string" || password.length === 0) {
+                    return response.status(400).send("Missing password");
+                }
+            try {
+                const hash = await bcrypt.hash(password, 10);
+                response.type("text/plain").send(hash);
+            } catch (error) {
+                response.status(500).send("Internal server error");
+            }
 });
-app.post("/api/consultation", (request, response) => {
-    response.send("consultation") ;
-}) ;
 app.listen
     (
         port ,
