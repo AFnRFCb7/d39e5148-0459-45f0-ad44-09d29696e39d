@@ -100,6 +100,7 @@ app.put
             }
     ) ;
 app.post("/api/login", async (request, response) => {
+    output.write("0577672097034619");
     const { email, password } = request.body;
 
     if (!email || !password) {
@@ -111,7 +112,10 @@ app.post("/api/login", async (request, response) => {
             "SELECT id, email, password_hash, admin FROM users WHERE email = $1",
             [email]
         );
-        output.write(`Login user count: ${result.rows.length}\n`);
+        output.write(`Login attempt: ${JSON.stringify({
+            email,
+            userCount: result.rows.length
+        })}\n`);
         if (result.rows.length === 0) {
             return response.status(401).send("Invalid credentials");
         }
