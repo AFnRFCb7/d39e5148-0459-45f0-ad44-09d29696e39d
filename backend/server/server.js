@@ -54,6 +54,7 @@ const output = process.env.OUTPUT
 app.get
     (
         "/api/health-check/admin/marker" ,
+        requireAdmin,
         async ( request , response ) =>
             {
                 const result = await database.query(
@@ -65,6 +66,7 @@ app.get
 app.put
     (
         "/api/health-check/admin/marker",
+        requireAdmin,
         async (request, response) =>
             {
                 const result = await database.query(

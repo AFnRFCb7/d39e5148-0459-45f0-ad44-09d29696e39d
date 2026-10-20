@@ -264,7 +264,7 @@ test.describe("Gateway Server", ( ) => {
                     },
                 }
             )
-            expect(response?.status()).toBe(200);
+            expect(response?.status()).toBe(401);
         });
         test("unauthenticated marker health check", async ({ page }) => {
             const response = await page.goto(
@@ -296,7 +296,7 @@ test.describe("Backend Server", () => {
             `${ backendUrl }/health-check/admin/marker`
         );
 
-        expect(response?.status()).toBe(200);
+        expect(response?.status()).toBe(401);
     });
     test("unauthenticated marker health check", async ({ page }) => {
         const response = await page.goto(
