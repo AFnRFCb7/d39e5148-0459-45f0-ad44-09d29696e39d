@@ -206,7 +206,6 @@ test.describe("Gateway Server", ( ) => {
                     await page.getByRole("link", {
                         name: "Utility",
                     }).click();
-                    ### FINDME
                     await page.getByLabel(/^password$/i).fill(
                         "1425855021653621"
                     );
