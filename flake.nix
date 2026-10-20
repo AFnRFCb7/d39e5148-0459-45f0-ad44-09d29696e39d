@@ -106,7 +106,7 @@
                                                                                             application =
                                                                                                 _config.lazy-shell-application
                                                                                                     {
-                                                                                                        mounts = { socket = { type = "temporary" ; } ; standard-output = { is-directory = false ; channel = 1 ; type = "pipe" ; } ; state = { type = "temporary" ; } ; } ;
+                                                                                                        mounts = { socket = { type = "temporary" ; } ; standard-output = { is-directory = false ; source = 1 ; type = "pipe" ; } ; state = { type = "temporary" ; } ; } ;
                                                                                                         name = "ExecStart" ;
                                                                                                         post = null ;
                                                                                                         runtime-inputs = pkgs : [ pkgs.postgresql ] ;
