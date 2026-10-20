@@ -27,6 +27,15 @@ app.use(session({
         secure: process.env.NODE_ENV === "production"
     }
 }));
+function requireLogin(request, response, next) {
+    if (!request.session.user) {
+        return response.status(401).json({
+            error: "Not logged in"
+        });
+    }
+
+    next();
+}
 const output = process.env.OUTPUT
     ? fs.createWriteStream(process.env.OUTPUT)
     : process.stdout;
@@ -56,6 +65,7 @@ app.put
 app.get
     (
         "/api/health-check/regular/marker" ,
+        requireLogin,
         async ( request , response ) =>
             {
                 const result = await database.query(
@@ -67,6 +77,7 @@ app.get
 app.put
     (
         "/api/health-check/regular/marker",
+        requireLogin,
         async (request, response) =>
             {
                 const result = await database.query(
