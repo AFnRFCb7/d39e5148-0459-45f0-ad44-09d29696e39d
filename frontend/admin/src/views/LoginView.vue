@@ -85,7 +85,7 @@ async function logout() {
       throw new Error(`HTTP ${response.status}`);
     }
 
-    await router.push("/login");
+    await router.push("/");
   } catch (e) {
     console.error("Logout error:", e);
     error.value = "Unable to log out";
