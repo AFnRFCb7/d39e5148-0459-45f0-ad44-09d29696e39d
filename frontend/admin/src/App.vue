@@ -4,7 +4,7 @@
       &lt;CHECKING LOGIN STATUS&gt;
     </strong>
     <strong v-else-if="session.loggedIn">
-      &lt;LOGGED IN&gt; {{ session.user.email }} (ID: {{ session.user.id }})
+      &lt;LOGGED IN&gt; {{ session.user.email }} {{ session.user.admin }}
     </strong>
     <strong v-else>
       &lt;NOT LOGGED IN&gt;

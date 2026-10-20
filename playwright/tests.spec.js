@@ -134,10 +134,16 @@ test.describe("Gateway Server", ( ) => {
                         await page.getByRole("link", {
                             name: "Login"
                         }).click();
+                        await page.getByRole("textbox", {
+                            name: /email/i
+                        }).fill("playwright-regular@example.com");
+                        await page.getByLabel(/password/i).fill(
+                            "playwright"
+                        );
                         await page.getByRole("button", {
-                            name: "Logout"
+                            name: "Login"
                         }).click();
-                        await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
+                        await expect(page.getByText(/<LOGGED IN> playwright-regular@example.com FALSE/)).toBeVisible();
                         await page.getByRole("link", {
                             name: "Home"
                         }).click();
