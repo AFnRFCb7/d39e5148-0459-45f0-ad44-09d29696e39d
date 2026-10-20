@@ -7,8 +7,8 @@ test.describe("Admin Frontend" , () => {
 });
 test.describe("Gateway Server", ( ) => {
     test.describe("Admin Server", ( ) => {
-        test.describe("Health Check" , ( ) => {
-            test.describe("Unauthenticated User", ( ) => {
+        test.describe("Unauthenticated User", ( ) => {
+            test.describe("Health Check" , ( ) => {
                 test.describe("Unauthenticated Buttons", ( ) => {
                     test("GET, SET, GET, restore marker", async ({ page }) => {
                         await page.goto("http://127.0.0.1/admin/");
@@ -190,7 +190,39 @@ test.describe("Gateway Server", ( ) => {
                     });
                 });
             }) ;
-            test.describe("Regular User", ( ) => {
+            test.describe("Utility" , () => {
+                test("not admin", async ({ page }) => {
+                        await page.goto("http://127.0.0.1/admin/");
+                        await page.getByRole("link", {
+                            name: "Login"
+                        }).click();
+                        await page.getByRole("button", {
+                            name: "Logout"
+                        }).click();
+                        await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
+                        await page.getByRole("link", {
+                            name: "Home"
+                        }).click();
+                        await page.getByRole("link", {
+                            name: "Utility",
+                        }).click();
+//                        await page.getByLabel("/Password/i").fill("9285213164655385");
+//                        await page.getByRole("button", {
+//                            name: "Generate Hash"
+//                        }).click();
+//                        await page.getByRole("link", {
+//                            name: "Login"
+//                        }).click();
+                        await page.getByRole("button", {
+                            name: "Logout"
+                        }).click();
+                        await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
+                    });
+                });
+            }) ;
+        });
+        test.describe("Regular User" , ( ) => {
+            test.describe("Health Check", ( ) => {
                 test.describe("Unauthenticated Buttons", ( ) => {
                     test("GET, SET, GET, restore marker", async ({ page }) => {
                         await page.goto("http://127.0.0.1/admin/");
@@ -382,7 +414,9 @@ test.describe("Gateway Server", ( ) => {
                     });
                 });
             }) ;
-            test.describe("Admin User", ( ) => {
+        )};
+        test.describe("Admin User", ( ) => {
+            test.describe("Health Check", () => {
                 test.describe("Unauthenticated Buttons", ( ) => {
                     test("GET, SET, GET, restore marker", async ({ page }) => {
                         await page.goto("http://127.0.0.1/admin/");
@@ -504,66 +538,66 @@ test.describe("Gateway Server", ( ) => {
                     });
                 });
                 test.describe("Admin Buttons", () => {
-                    test("GET and SET rejected when unauthenticated", async ({ page }) => {
-                        await page.goto("http://127.0.0.1/admin/");
-                        await page.getByRole("link", {
-                            name: "Login"
-                        }).click();
-                        await page.getByRole("textbox", {
-                            name: /email/i
-                        }).fill("playwright-admin@example.com");
-                        await page.getByLabel(/password/i).fill(
-                            "playwright"
-                        );
-                        await page.getByRole("button", {
-                            name: "Login"
-                        }).click();
-                        await expect(page.getByText(/<LOGGED IN> playwright-admin@example.com true/)).toBeVisible();
-                        await page.getByRole("link", {
-                            name: "Home"
-                        }).click();
-                        await page.getByRole("link", {
-                            name: "Health Check",
-                        }).click();
-                        const originalMarker = "4066203055180760";
-                        const changedMarker = "8752749554083637";
-                        const row = page.getByRole("row", {
-                            name: /admin/i,
-                        });
-                        const markerInput = page.getByRole("textbox", {
-                            name: /marker/i,
-                        });
-                        const getButton = row.getByRole("button", {
-                            name: "GET",
-                        });
-                        const setButton = row.getByRole("button", {
-                            name: "SET",
-                        });
-                        await getButton.click();
-                        await expect(row).toContainText(originalMarker);
-                        await markerInput.fill(changedMarker);
-                        await setButton.click();
-                        await expect(row).toContainText(changedMarker);
-                        await getButton.click();
-                        await expect(row).toContainText(changedMarker);
-                        await markerInput.fill(originalMarker);
-                        await setButton.click();
-                        await expect(row).toContainText(originalMarker);
-                        await getButton.click();
-                        await expect(row).toContainText(originalMarker);
-                        await page.getByRole("link", {
-                            name: "Home"
-                        }).click();
-                        await page.getByRole("link", {
-                            name: "Login"
-                        }).click();
-                        await page.getByRole("button", {
-                            name: "Logout"
-                        }).click();
-                        await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
+                test("GET and SET rejected when unauthenticated", async ({ page }) => {
+                    await page.goto("http://127.0.0.1/admin/");
+                    await page.getByRole("link", {
+                        name: "Login"
+                    }).click();
+                    await page.getByRole("textbox", {
+                        name: /email/i
+                    }).fill("playwright-admin@example.com");
+                    await page.getByLabel(/password/i).fill(
+                        "playwright"
+                    );
+                    await page.getByRole("button", {
+                        name: "Login"
+                    }).click();
+                    await expect(page.getByText(/<LOGGED IN> playwright-admin@example.com true/)).toBeVisible();
+                    await page.getByRole("link", {
+                        name: "Home"
+                    }).click();
+                    await page.getByRole("link", {
+                        name: "Health Check",
+                    }).click();
+                    const originalMarker = "4066203055180760";
+                    const changedMarker = "8752749554083637";
+                    const row = page.getByRole("row", {
+                        name: /admin/i,
                     });
+                    const markerInput = page.getByRole("textbox", {
+                        name: /marker/i,
+                    });
+                    const getButton = row.getByRole("button", {
+                        name: "GET",
+                    });
+                    const setButton = row.getByRole("button", {
+                        name: "SET",
+                    });
+                    await getButton.click();
+                    await expect(row).toContainText(originalMarker);
+                    await markerInput.fill(changedMarker);
+                    await setButton.click();
+                    await expect(row).toContainText(changedMarker);
+                    await getButton.click();
+                    await expect(row).toContainText(changedMarker);
+                    await markerInput.fill(originalMarker);
+                    await setButton.click();
+                    await expect(row).toContainText(originalMarker);
+                    await getButton.click();
+                    await expect(row).toContainText(originalMarker);
+                    await page.getByRole("link", {
+                        name: "Home"
+                    }).click();
+                    await page.getByRole("link", {
+                        name: "Login"
+                    }).click();
+                    await page.getByRole("button", {
+                        name: "Logout"
+                    }).click();
+                    await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
                 });
-            }) ;
+            });
+            });
         }) ;
     });
     test.describe("Backend Server", ( ) => {
