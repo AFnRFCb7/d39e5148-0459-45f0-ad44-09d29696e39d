@@ -257,19 +257,29 @@ test.describe("Gateway Server", ( ) => {
                         await page.getByRole("link", {
                             name: "Login"
                         }).click();
+                        await page.getByRole("textbox", {
+                            name: /email/i
+                        }).fill("playwright-regular@example.com");
+                        await page.getByLabel(/password/i).fill(
+                            "playwright"
+                        );
                         await page.getByRole("button", {
-                            name: "Logout"
+                            name: "Login"
                         }).click();
-                        await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
+                        await expect(page.getByText(/<LOGGED IN> playwright-regular@example.com false/)).toBeVisible();
                         await page.getByRole("link", {
                             name: "Home"
                         }).click();
                         await page.getByRole("link", {
                             name: "Health Check",
                         }).click();
+                        const originalMarker = "4066203055180760";
                         const changedMarker = "8752749554083637";
                         const row = page.getByRole("row", {
                             name: /regular/i,
+                        });
+                        const markerInput = page.getByRole("textbox", {
+                            name: /marker/i,
                         });
                         const getButton = row.getByRole("button", {
                             name: "GET",
@@ -277,31 +287,18 @@ test.describe("Gateway Server", ( ) => {
                         const setButton = row.getByRole("button", {
                             name: "SET",
                         });
-                        const markerInput = page.getByRole("textbox", {
-                            name: /marker/i,
-                        });
-                        const getResponsePromise = page.waitForResponse(response =>
-                            response.url().includes("/api/health-check/regular/marker")
-                            && response.request().method() === "GET"
-                        );
                         await getButton.click();
-                        const getResponse = await getResponsePromise;
-                        expect(getResponse.status()).toBe(401);
+                        await expect(row).toContainText(originalMarker);
                         await markerInput.fill(changedMarker);
-                        const setResponsePromise = page.waitForResponse(response =>
-                            response.url().includes("/api/health-check/regular/marker")
-                            && response.request().method() === "PUT"
-                        );
                         await setButton.click();
-                        const setResponse = await setResponsePromise;
-                        expect(setResponse.status()).toBe(401);
-                        const verifyResponsePromise = page.waitForResponse(response =>
-                            response.url().includes("/api/health-check/regular/marker")
-                            && response.request().method() === "GET"
-                        );
+                        await expect(row).toContainText(changedMarker);
                         await getButton.click();
-                        const verifyResponse = await verifyResponsePromise;
-                        expect(verifyResponse.status()).toBe(401);
+                        await expect(row).toContainText(changedMarker);
+                        await markerInput.fill(originalMarker);
+                        await setButton.click();
+                        await expect(row).toContainText(originalMarker);
+                        await getButton.click();
+                        await expect(row).toContainText(originalMarker);
                         await page.getByRole("link", {
                             name: "Home"
                         }).click();
