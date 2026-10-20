@@ -100,7 +100,7 @@ app.put
             }
     ) ;
 app.post("/api/login", async (request, response) => {
-    console.log("0577672097034619");
+    output.write("0577672097034619");
     const { email, password } = request.body;
 
     if (!email || !password) {
@@ -112,7 +112,7 @@ app.post("/api/login", async (request, response) => {
             "SELECT id, email, password_hash, admin FROM users WHERE email = $1",
             [email]
         );
-        console.log(`Login attempt: ${JSON.stringify({
+        output.write(`Login attempt: ${JSON.stringify({
             email,
             userCount: result.rows.length
         })}\n`);
