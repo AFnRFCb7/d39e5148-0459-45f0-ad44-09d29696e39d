@@ -213,7 +213,7 @@ test.describe("Gateway Server", ( ) => {
                     await page.getByRole("button", {
                         name: "Generate Hash"
                     }).click();
-                    await expect(page.getByText(/Not logged in/i))
+                    await expect(getByText('{"error":"Not logged in"}'))
                         .toBeVisible();
                     await page.getByRole("link", {
                         name: "Home"
