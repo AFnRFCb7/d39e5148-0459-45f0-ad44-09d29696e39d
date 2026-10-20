@@ -9,7 +9,7 @@ const router = createRouter({
   routes: [
     { path: '/', component: HomePage },
     { path: '/health-check', component: HealthCheck },
-    { path: '/login' , component: Login}
+    { path: '/login' , component: Login},
     { path: '/utility' , component: Utility }
   ],
 })
