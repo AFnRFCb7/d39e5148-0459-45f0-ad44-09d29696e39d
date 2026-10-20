@@ -8,6 +8,6 @@ VALUES
     ),
     (
         'playwright-admin@example.com',
-        '$2y$10$MjWEhImHupVLGJrNKILUDedNPUnhPio/cEuRBqj687SK5/ECfYPwK',
+        '$2b$10$M8LHn9MJroOdspbmsV/m9uib5zJOEhWC/3WLiatsprmp9hqfhBRT6',
         TRUE
     );
