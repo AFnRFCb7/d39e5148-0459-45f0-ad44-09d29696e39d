@@ -27,6 +27,18 @@ app.use(session({
         secure: process.env.NODE_ENV === "production"
     }
 }));
+function requireAdmin(request, response, next) {
+    if (!request.session.user) {
+        return response.status(401).json({
+            error: "Not logged in"
+        });
+    }else if (! request.session.user.admin) {
+        return response.status(401).json({
+            error: "Not admin"
+        })
+    }
+    next();
+}
 function requireLogin(request, response, next) {
     if (!request.session.user) {
         return response.status(401).json({
