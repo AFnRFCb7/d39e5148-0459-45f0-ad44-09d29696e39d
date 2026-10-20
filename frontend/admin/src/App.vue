@@ -1,7 +1,7 @@
 <template>
   <div class="session-status">
     <strong v-if="session?.loggedIn">
-      &lt;LOGGED IN&gt; {{ session.user.email }} | ID: {{ session.user.id }}
+      &lt;LOGGED IN&gt; {{ session.user.email }} | ID: {{ session.user.id }} | {{ session.user.admin }}
     </strong>
     <strong v-else-if="session">
       &lt;NOT LOGGED IN&gt;

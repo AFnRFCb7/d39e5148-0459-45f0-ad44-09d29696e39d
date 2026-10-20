@@ -145,6 +145,12 @@ app.post("/api/logout", (request, response, next) => {
         response.sendStatus(204);
     });
 });
+app.get("/api/session", (request, response) => {
+    response.json({
+        loggedIn: !!request.session.user,
+        user: request.session.user || null
+    });
+});
 app.get("/api/utility/password", async (request, response) => {
     const { password } = request.query;
     if (typeof password !== "string" || password.length === 0) {
