@@ -43,6 +43,50 @@ test.describe("Gateway Server", ( ) => {
                         await expect(row).toContainText(originalMarker);
                     });
                 });
+                test.describe("Regular Buttons", () => {
+                    test("GET and SET rejected when unauthenticated", async ({ page }) => {
+                        await page.goto("http://127.0.0.1/admin/");
+                        await page.getByRole("link", {
+                            name: "Health Check",
+                        }).click();
+                        const row = page.getByRole("row", {
+                            name: /regular/i,
+                        });
+                        const getButton = row.getByRole("button", {
+                            name: "GET",
+                        });
+                        const setButton = row.getByRole("button", {
+                            name: "SET",
+                        });
+                        const originalMarker = "4066203055180760";
+                        const changedMarker = "8752749554083637";
+                        const getResponsePromise = page.waitForResponse(response =>
+                            response.url().includes("/api/health-check/regular/marker")
+                            && response.request().method() === "GET"
+                        );
+                        await getButton.click();
+                        const getResponse = await getResponsePromise;
+                        expect(getResponse.status()).toBe(401);
+                        const markerInput = page.getByRole("textbox", {
+                            name: /marker/i,
+                        });
+                        await markerInput.fill(changedMarker);
+                        const setResponsePromise = page.waitForResponse(response =>
+                            response.url().includes("/api/health-check/regular/marker")
+                            && response.request().method() === "PUT"
+                        );
+                        await setButton.click();
+                        const setResponse = await setResponsePromise;
+                        expect(setResponse.status()).toBe(401);
+                        const verifyResponsePromise = page.waitForResponse(response =>
+                            response.url().includes("/api/health-check/regular/marker")
+                            && response.request().method() === "GET"
+                        );
+                        await getButton.click();
+                        const verifyResponse = await verifyResponsePromise;
+                        expect(verifyResponse.status()).toBe(401);
+                    });
+                });
             }) ;
         }) ;
     });
@@ -78,7 +122,7 @@ test.describe("Gateway Server", ( ) => {
                     },
                 }
             );
-            expect(response?.status()).toBe(200);
+            expect(response?.status()).toBe(401);
         });
     });
 });
