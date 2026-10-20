@@ -79,6 +79,7 @@ test.describe("Gateway Server", ( ) => {
                         await page.getByRole("link", {
                             name: "Health Check",
                         }).click();
+                        const changedMarker = "8752749554083637";
                         const row = page.getByRole("row", {
                             name: /regular/i,
                         });
@@ -87,6 +88,9 @@ test.describe("Gateway Server", ( ) => {
                         });
                         const setButton = row.getByRole("button", {
                             name: "SET",
+                        });
+                        const markerInput = page.getByRole("textbox", {
+                            name: /marker/i,
                         });
                         const getResponsePromise = page.waitForResponse(response =>
                             response.url().includes("/api/health-check/regular/marker")
