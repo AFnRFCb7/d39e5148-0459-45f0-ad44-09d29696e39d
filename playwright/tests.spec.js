@@ -99,9 +99,6 @@ test.describe("Gateway Server", ( ) => {
                         await getButton.click();
                         const getResponse = await getResponsePromise;
                         expect(getResponse.status()).toBe(401);
-                        const markerInput = page.getByRole("textbox", {
-                            name: /marker/i,
-                        });
                         await markerInput.fill(changedMarker);
                         const setResponsePromise = page.waitForResponse(response =>
                             response.url().includes("/api/health-check/regular/marker")
