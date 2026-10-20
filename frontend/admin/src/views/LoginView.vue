@@ -24,6 +24,9 @@
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const email = ref("");
 const password = ref("");
@@ -35,6 +38,8 @@ async function login() {
   error.value = "";
 
   try {
+    console.log("Submitting login");
+
     const response = await fetch("/api/login", {
       method: "POST",
       headers: {
@@ -47,14 +52,17 @@ async function login() {
       })
     });
 
+    console.log("Login response:", response.status);
+
     if (!response.ok) {
-      error.value = "Login failed";
+      error.value = await response.text() || "Login failed";
       return;
     }
 
-    // Login succeeded; notify the parent component.
-    router.push("/");
-  } catch {
+    emit("success");
+    await router.push("/");
+  } catch (e) {
+    console.error("Login error:", e);
     error.value = "Unable to contact the server";
   } finally {
     loading.value = false;

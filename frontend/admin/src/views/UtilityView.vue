@@ -24,11 +24,18 @@
 
     <p v-if="error">{{ error }}</p>
 
-    <section v-if="hash">
-      <label for="hash">Password Hash</label>
-      <textarea id="hash" :value="hash" readonly rows="3"></textarea>
+    <section v-if="hash" class="result">
+      <label for="hash">Generated Password Hash</label>
+      <textarea
+        id="hash"
+        :value="hash"
+        readonly
+        rows="5"
+        spellcheck="false"
+      ></textarea>
+
       <button type="button" @click="copyHash">
-        Copy Hash
+        {{ copied ? "Copied!" : "Copy Hash" }}
       </button>
     </section>
   </main>
@@ -65,7 +72,14 @@ async function generateHash() {
   }
 }
 
+const copied = ref(false);
+
 async function copyHash() {
-  await navigator.clipboard.writeText(hash.value);
+  try {
+    await navigator.clipboard.writeText(hash.value);
+    copied.value = true;
+  } catch (e) {
+    error.value = "Could not copy hash. Select the text and copy it manually.";
+  }
 }
 </script>
