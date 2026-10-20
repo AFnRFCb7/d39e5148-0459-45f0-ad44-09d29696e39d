@@ -19,6 +19,9 @@
         {{ loading ? "Logging in..." : "Login" }}
       </button>
     </form>
+    <button type="button" @click="logout">
+      Logout
+    </button>
   </main>
 </template>
 
@@ -66,6 +69,27 @@ async function login() {
     error.value = "Unable to contact the server";
   } finally {
     loading.value = false;
+  }
+}
+
+async function logout() {
+  error.value = "";
+
+  try {
+    const response = await fetch("/api/logout", {
+      method: "POST",
+      credentials: "include"
+    });
+
+    if (!response.ok) {
+      throw new Error("Logout failed");
+    }
+
+    password.value = "";
+    await router.push("/login");
+  } catch (e) {
+    console.error("Logout error:", e);
+    error.value = "Unable to log out";
   }
 }
 

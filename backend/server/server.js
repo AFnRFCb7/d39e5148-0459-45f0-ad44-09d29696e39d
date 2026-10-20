@@ -135,6 +135,16 @@ app.post("/api/login", async (request, response) => {
         response.status(500).send("Internal server error");
     }
 });
+app.post("/api/logout", (request, response, next) => {
+    request.session.destroy(error => {
+        if (error) {
+            return next(error);
+        }
+
+        response.clearCookie("visa.sid");
+        response.sendStatus(204);
+    });
+});
 app.get("/api/utility/password", async (request, response) => {
     const { password } = request.query;
     if (typeof password !== "string" || password.length === 0) {
