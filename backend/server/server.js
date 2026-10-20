@@ -171,7 +171,7 @@ app.get("/api/session", (request, response) => {
 app.get
     (
         "/api/utility/password",
-        requiresAdmin,
+        requireAdmin,
         async (request, response) => {
             const { password } = request.query;
                 if (typeof password !== "string" || password.length === 0) {
