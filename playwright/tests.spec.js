@@ -20,7 +20,7 @@ test.describe("Gateway Server", ( ) => {
                         }).click();
                         await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
                         await page.getByRole("link", {
-                            name "Home"
+                            name: "Home"
                         }).click();
                         await page.getByRole("link", {
                             name: "Health Check",
@@ -52,7 +52,7 @@ test.describe("Gateway Server", ( ) => {
                         await getButton.click();
                         await expect(row).toContainText(originalMarker);
                         await page.getByRole("link", {
-                            name "Home"
+                            name: "Home"
                         }).click();
                         await page.getByRole("link", {
                             name: "Login"
@@ -67,17 +67,18 @@ test.describe("Gateway Server", ( ) => {
                     test("GET and SET rejected when unauthenticated", async ({ page }) => {
                         await page.goto("http://127.0.0.1/admin/");
                         await page.getByRole("link", {
+                            name: "Login"
+                        }).click();
+                        await page.getByRole("button", {
+                            name: "Logout"
+                        }).click();
+                        await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
+                        await page.getByRole("link", {
+                            name: "Home"
+                        }).click();
+                        await page.getByRole("link", {
                             name: "Health Check",
                         }).click();
-                        const row = page.getByRole("row", {
-                            name: /regular/i,
-                        });
-                        const getButton = row.getByRole("button", {
-                            name: "GET",
-                        });
-                        const setButton = row.getByRole("button", {
-                            name: "SET",
-                        });
                         const originalMarker = "4066203055180760";
                         const changedMarker = "8752749554083637";
                         const getResponsePromise = page.waitForResponse(response =>
@@ -105,6 +106,16 @@ test.describe("Gateway Server", ( ) => {
                         await getButton.click();
                         const verifyResponse = await verifyResponsePromise;
                         expect(verifyResponse.status()).toBe(401);
+                        await page.getByRole("link", {
+                            name: "Home"
+                        }).click();
+                        await page.getByRole("link", {
+                            name: "Login"
+                        }).click();
+                        await page.getByRole("button", {
+                            name: "Logout"
+                        }).click();
+                        await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
                     });
                 });
             }) ;
