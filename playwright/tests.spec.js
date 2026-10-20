@@ -126,6 +126,69 @@ test.describe("Gateway Server", ( ) => {
                         await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
                     });
                 });
+                test.describe("Admin Buttons", () => {
+                    test("GET and SET rejected when unauthenticated", async ({ page }) => {
+                        await page.goto("http://127.0.0.1/admin/");
+                        await page.getByRole("link", {
+                            name: "Login"
+                        }).click();
+                        await page.getByRole("button", {
+                            name: "Logout"
+                        }).click();
+                        await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
+                        await page.getByRole("link", {
+                            name: "Home"
+                        }).click();
+                        await page.getByRole("link", {
+                            name: "Health Check",
+                        }).click();
+                        const changedMarker = "8752749554083637";
+                        const row = page.getByRole("row", {
+                            name: /admin/i,
+                        });
+                        const getButton = row.getByRole("button", {
+                            name: "GET",
+                        });
+                        const setButton = row.getByRole("button", {
+                            name: "SET",
+                        });
+                        const markerInput = page.getByRole("textbox", {
+                            name: /marker/i,
+                        });
+                        const getResponsePromise = page.waitForResponse(response =>
+                            response.url().includes("/api/health-check/regular/marker")
+                            && response.request().method() === "GET"
+                        );
+                        await getButton.click();
+                        const getResponse = await getResponsePromise;
+                        expect(getResponse.status()).toBe(401);
+                        await markerInput.fill(changedMarker);
+                        const setResponsePromise = page.waitForResponse(response =>
+                            response.url().includes("/api/health-check/regular/marker")
+                            && response.request().method() === "PUT"
+                        );
+                        await setButton.click();
+                        const setResponse = await setResponsePromise;
+                        expect(setResponse.status()).toBe(401);
+                        const verifyResponsePromise = page.waitForResponse(response =>
+                            response.url().includes("/api/health-check/regular/marker")
+                            && response.request().method() === "GET"
+                        );
+                        await getButton.click();
+                        const verifyResponse = await verifyResponsePromise;
+                        expect(verifyResponse.status()).toBe(401);
+                        await page.getByRole("link", {
+                            name: "Home"
+                        }).click();
+                        await page.getByRole("link", {
+                            name: "Login"
+                        }).click();
+                        await page.getByRole("button", {
+                            name: "Logout"
+                        }).click();
+                        await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
+                    });
+                });
             }) ;
             test.describe("Regular User", ( ) => {
                 test.describe("Unauthenticated Buttons", ( ) => {
@@ -264,7 +327,7 @@ test.describe("Gateway Server", ( ) => {
                     },
                 }
             )
-            expect(response?.status()).toBe(200);
+            expect(response?.status()).toBe(401);
         });
         test("unauthenticated marker health check", async ({ page }) => {
             const response = await page.goto(
@@ -296,7 +359,7 @@ test.describe("Backend Server", () => {
             `${ backendUrl }/health-check/admin/marker`
         );
 
-        expect(response?.status()).toBe(200);
+        expect(response?.status()).toBe(401);
     });
     test("unauthenticated marker health check", async ({ page }) => {
         const response = await page.goto(
