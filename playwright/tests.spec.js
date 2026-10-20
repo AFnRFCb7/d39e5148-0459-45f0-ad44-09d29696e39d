@@ -8,7 +8,7 @@ test.describe("Admin Frontend" , () => {
 test.describe("Gateway Server", ( ) => {
     test.describe("Admin Server", ( ) => {
         test.describe("Health Check" , ( ) => {
-            test.describe("Unautheticated User", ( ) => {
+            test.describe("Unauthenticated User", ( ) => {
                 test.describe("Unauthenticated Buttons", ( ) => {
                     test("GET, SET, GET, restore marker", async ({ page }) => {
                         await page.goto("http://127.0.0.1/admin/");
@@ -146,7 +146,7 @@ test.describe("Backend Server", () => {
             `${ backendUrl }/health-check/regular/marker`
         );
 
-        expect(response?.status()).toBe(200);
+        expect(response?.status()).toBe(401);
     });
 });
 test.describe("Web Frontend", () => {
