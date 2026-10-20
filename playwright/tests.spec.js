@@ -415,6 +415,7 @@ test.describe("Gateway Server", ( ) => {
         });
     });
 });
+});
 test.describe("Backend Server", () => {
     test("admin marker health check", async ({ page }) => {
         const response = await page.goto(
