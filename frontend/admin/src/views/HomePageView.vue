@@ -13,6 +13,11 @@
                 <RouterLink to="/login">Login</RouterLink>
             </nav>
         </li>
+        <li>
+            <nav>
+                <RouterLink to="/utility">Utility</RouterLink>
+            </nav>
+        </li>
     </ol>
   </main>
 </template>

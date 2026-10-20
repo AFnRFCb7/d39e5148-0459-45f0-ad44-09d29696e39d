@@ -135,6 +135,19 @@ app.post("/api/login", async (request, response) => {
         response.status(500).send("Internal server error");
     }
 });
+app.get("/api/utility/password", async (request, response) => {
+    const { password } = request.query;
+    if (typeof password !== "string" || password.length === 0) {
+        return response.status(400).send("Missing password");
+    }
+    try {
+        const hash = await bcrypt.hash(password, 10);
+        response.type("text/plain").send(hash);
+    } catch (error) {
+        output.write(util.inspect(error) + "\n");
+        response.status(500).send("Internal server error");
+    }
+});
 app.post("/api/consultation", (request, response) => {
     response.send("consultation") ;
 }) ;
