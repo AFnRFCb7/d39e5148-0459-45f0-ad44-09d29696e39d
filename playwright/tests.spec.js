@@ -13,6 +13,16 @@ test.describe("Gateway Server", ( ) => {
                     test("GET, SET, GET, restore marker", async ({ page }) => {
                         await page.goto("http://127.0.0.1/admin/");
                         await page.getByRole("link", {
+                            name: "Login"
+                        }).click();
+                        await page.getByRole("button", {
+                            name: "Logout"
+                        }).click();
+                        await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
+                        await page.getByRole("link", {
+                            name "Home"
+                        }).click();
+                        await page.getByRole("link", {
                             name: "Health Check",
                         }).click();
                         const originalMarker = "4066203055180760";
@@ -41,6 +51,16 @@ test.describe("Gateway Server", ( ) => {
                         await expect(row).toContainText(originalMarker);
                         await getButton.click();
                         await expect(row).toContainText(originalMarker);
+                        await page.getByRole("link", {
+                            name "Home"
+                        }).click();
+                        await page.getByRole("link", {
+                            name: "Login"
+                        }).click();
+                        await page.getByRole("button", {
+                            name: "Logout"
+                        }).click();
+                        await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
                     });
                 });
                 test.describe("Regular Buttons", () => {
