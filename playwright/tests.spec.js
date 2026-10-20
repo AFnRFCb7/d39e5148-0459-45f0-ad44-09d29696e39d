@@ -207,12 +207,15 @@ test.describe("Gateway Server", ( ) => {
                         name: "Utility",
                     }).click();
                     ### FINDME
-                    await page.getByLabel(/password/i).fill(
+                    await page.getByLabel(/^password$/i).fill(
                         "1425855021653621"
                     );
+                    await page.getByLabel(/^admin$/i).selectOption("false");
                     await page.getByRole("button", {
-                        name: "Find Hash"
+                        name: "Generate Hash"
                     }).click();
+                    await expect(page.getByText(/forbidden|unauthorized|not authorized/i))
+                        .toBeVisible();
                     await page.getByRole("link", {
                         name: "Home"
                     }).click();
