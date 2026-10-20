@@ -396,7 +396,7 @@ test.describe("Gateway Server", ( ) => {
                         await page.getByRole("button", {
                             name: "Login"
                         }).click();
-                        await expect(page.getByText(/<LOGGED IN> playwright-regular@example.com false/)).toBeVisible();
+                        await expect(page.getByText(/<LOGGED IN> playwright-admin@example.com true/)).toBeVisible();
                         await page.getByRole("link", {
                             name: "Home"
                         }).click();
@@ -456,7 +456,7 @@ test.describe("Gateway Server", ( ) => {
                         await page.getByRole("button", {
                             name: "Login"
                         }).click();
-                        await expect(page.getByText(/<LOGGED IN> playwright-regular@example.com false/)).toBeVisible();
+                        await expect(page.getByText(/<LOGGED IN> playwright-admin@example.com true/)).toBeVisible();
                         await page.getByRole("link", {
                             name: "Home"
                         }).click();
