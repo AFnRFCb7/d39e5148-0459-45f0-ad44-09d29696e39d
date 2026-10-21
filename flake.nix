@@ -79,7 +79,7 @@
                                                                                 _lib.mkIf
                                                                                     config.visa.frontend.web.environments.staging.enable
                                                                                     {
-                                                                                        alias = "${ _config.visa.web.admin.package }/dist/" ;
+                                                                                        alias = "${ _config.visa.frontend.web.package }/dist/" ;
                                                                                         index = "index.html" ;
                                                                                         tryFiles = "$uri $uri/ /web/index.html" ;
                                                                                     } ;
