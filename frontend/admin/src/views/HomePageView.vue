@@ -20,7 +20,7 @@
         </li>
         <li>
             <nav>
-                <a href="/www">WWW</a>
+                <a href="/www/">www</a>
             </nav>
         </li>
     </ol>
