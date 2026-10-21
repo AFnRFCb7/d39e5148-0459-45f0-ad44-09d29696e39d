@@ -1,3 +1,4 @@
+
 <template>
   <div class="session-status">
     <strong v-if="session === null">
