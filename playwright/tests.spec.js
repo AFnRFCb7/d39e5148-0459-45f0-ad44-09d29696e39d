@@ -422,6 +422,50 @@ test.describe("Gateway Server", ( ) => {
                     });
                 });
             });
+            test.describe("Utility", () => {
+                test("not admin", async ({ page }) => {
+                    await page.goto("http://127.0.0.1/admin/");
+                    await page.getByRole("link", {
+                        name: "Login"
+                    }).click();
+                    await page.getByRole("textbox", {
+                        name: /email/i
+                    }).fill("playwright-regular@example.com");
+                    await page.getByLabel(/password/i).fill(
+                        "playwright"
+                    );
+                    await page.getByRole("button", {
+                        name: "Login"
+                    }).click();
+                    await expect(page.getByText(/<LOGGED IN> playwright-regular@example.com false/)).toBeVisible();
+                    await page.getByRole("link", {
+                        name: "Home"
+                    }).click();
+                    await page.getByRole("link", {
+                        name: "Utility",
+                    }).click();
+                    await page.getByLabel(/^password$/i).fill(
+                        "1425855021653621"
+                    );
+                    await page.getByLabel(/^admin$/i).selectOption("false");
+                    await page.getByRole("button", {
+                        name: "Generate Hash"
+                    }).click();
+                    await expect(
+                        page.locator("p").filter({ hasText: /Not logged in/i })
+                    ).toBeVisible();
+                    await page.getByRole("link", {
+                        name: "Home"
+                    }).click();
+                    await page.getByRole("link", {
+                        name: "Login"
+                    }).click();
+                    await page.getByRole("button", {
+                        name: "Logout"
+                    }).click();
+                    await expect(page.getByText(/<NOT LOGGED IN>/)).toBeVisible();
+                });
+            });
         }) ;
         test.describe("Admin User", ( ) => {
             test.describe("Health Check", () => {
