@@ -452,7 +452,7 @@ test.describe("Gateway Server", ( ) => {
                         name: "Generate Hash"
                     }).click();
                     await expect(
-                        page.locator("p").filter({ hasText: /Not logged in/i })
+                        page.locator("p").filter({ hasText: /Not admin/i })
                     ).toBeVisible();
                     await page.getByRole("link", {
                         name: "Home"
