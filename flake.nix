@@ -369,15 +369,10 @@
                                                                                                                                 runtime-inputs = pkgs : [ pkgs.coreutils pkgs.nodejs ] ;
                                                                                                                                 text =
                                                                                                                                     ''
-                                                                                                                                        echo 9630773650933911 >> /mounts/standard-output
                                                                                                                                         cd /mounts/package
-                                                                                                                                        echo 4676084891742272 >> /mounts/standard-output
                                                                                                                                         export OUTPUT=/mounts/standard-output
-                                                                                                                                        echo 4522726310778043 >> /mounts/standard-output
                                                                                                                                         export SESSION_SECRET="${ builtins.toString _config.visa.backend.server.environments.staging.name }"
-                                                                                                                                        echo 7694639347983451 >> /mounts/standard-output
                                                                                                                                         node /mounts/package/server.js ${ builtins.toString _config.visa.backend.server.environments.staging.port }
-                                                                                                                                        echo 2178248634888662 >> /mounts/standard-output
                                                                                                                                     '' ;
                                                                                                                             } ;
                                                                                                                     type = _lib.types.package ;
