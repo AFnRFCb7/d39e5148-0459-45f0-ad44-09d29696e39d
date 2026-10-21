@@ -665,7 +665,7 @@
                                                                                                                             }
                                                                                                                     )
                                                                                                                     pkgs.git
-                                                                                                                    pkgs.nodejs
+                                                                                                                    pkgs.nodejs_20
                                                                                                                 ] ;
                                                                                                         text =
                                                                                                             let
