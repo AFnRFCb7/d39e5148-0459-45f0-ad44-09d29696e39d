@@ -75,14 +75,6 @@
                                                                                         index = "index.html" ;
                                                                                         tryFiles = "$uri $uri/ /admin/index.html" ;
                                                                                     } ;
-                                                                            "/web/" =
-                                                                                _lib.mkIf
-                                                                                    config.visa.frontend.web.environments.staging.enable
-                                                                                    {
-                                                                                        alias = "${ _config.visa.frontend.web.package }/dist/" ;
-                                                                                        index = "index.html" ;
-                                                                                        tryFiles = "$uri $uri/ /web/index.html" ;
-                                                                                    } ;
                                                                         } ;
                                                                 } ;
                                                         systemd.services =
