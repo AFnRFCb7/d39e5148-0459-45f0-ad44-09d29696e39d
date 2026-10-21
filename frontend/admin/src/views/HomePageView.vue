@@ -20,7 +20,7 @@
         </li>
         <li>
             <nav>
-                <a href="/web/">Web Application</a>
+                <a href="/web">Web Application</a>
             </nav>
         </li>
     </ol>
