@@ -3,6 +3,7 @@ import { useI18n } from 'vue-i18n'
 const { t, locale } = useI18n()
 </script>
 <template>
+  <h1> FIND ME </h1>
   <header>
     <h1>{{ t('header') }}</h1>
     <select v-model="locale" aria-label="Language">
