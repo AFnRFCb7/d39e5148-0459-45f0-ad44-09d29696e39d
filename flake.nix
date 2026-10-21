@@ -75,6 +75,14 @@
                                                                                         index = "index.html" ;
                                                                                         tryFiles = "$uri $uri/ /admin/index.html" ;
                                                                                     } ;
+                                                                            "/www/" =
+                                                                                _lib.mkIf
+                                                                                    config.visa.frontend.admin.environments.staging.enable
+                                                                                    {
+                                                                                        alias = "${ _config.visa.frontend.www.package }/dist/" ;
+                                                                                        index = "index.html" ;
+                                                                                        tryFiles = "$uri $uri/ /www/index.html" ;
+                                                                                    } ;
                                                                         } ;
                                                                 } ;
                                                         systemd.services =
@@ -741,6 +749,142 @@
                                                                                                                                             fi
                                                                                                                                             implode
                                                                                                                                             rm --recursive --force "$OUT/node_modules.exploded"
+                                                                                                                                        '' ;
+                                                                                                                                }
+                                                                                                                        )
+                                                                                                                    ] ;
+                                                                                                            }
+                                                                                                            ''install-it "$out"'' ;
+                                                                                            type = _lib.types.package ;
+                                                                                        } ;
+                                                                            } ;
+                                                                        www =
+                                                                            {
+                                                                                environments =
+                                                                                    {
+                                                                                        staging =
+                                                                                            {
+                                                                                                enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
+                                                                                                name = _lib.mkOption { default = "visa-database-production" ; type = _lib.types.str ; } ;
+                                                                                                port = _lib.mkOption { default = 13136 ; type = _lib.types.ints.between 1024 65535 ; } ;
+                                                                                                secret = _lib.mkOption { default = 9085721238099874 ; type = _lib.types.int ; } ;
+                                                                                            } ;
+                                                                                    } ;
+                                                                                fetch =
+                                                                                    _lib.mkOption
+                                                                                        {
+                                                                                            default =
+                                                                                                _config.lazy-shell-application
+                                                                                                    {
+                                                                                                        mounts =
+                                                                                                            {
+                                                                                                                pwd = { source = "." ; type = "bind" ; } ;
+                                                                                                            } ;
+                                                                                                        name = "fetch" ;
+                                                                                                        post = null ;
+                                                                                                        runtime-inputs =
+                                                                                                            pkgs :
+                                                                                                                [
+                                                                                                                    (
+                                                                                                                        _config.tree-serialization.explode
+                                                                                                                            {
+                                                                                                                                bytes = "1m" ;
+                                                                                                                                input = "/mounts/pwd/node_modules" ;
+                                                                                                                                name = "explode" ;
+                                                                                                                                output = "/mounts/pwd/node_modules.exploded" ;
+                                                                                                                            }
+                                                                                                                    )
+                                                                                                                    pkgs.git
+                                                                                                                    pkgs.nodejs
+                                                                                                                ] ;
+                                                                                                        text =
+                                                                                                            let
+                                                                                                                package =
+                                                                                                                    {
+                                                                                                                        name = "visa" ;
+                                                                                                                        version = "0.0.0" ;
+                                                                                                                        private = true ;
+                                                                                                                        type = "module" ;
+                                                                                                                        dependencies =
+                                                                                                                            {
+                                                                                                                                vue = "^3.5.42" ;
+                                                                                                                                vue-router = "^5.3.1" ;
+                                                                                                                            } ;
+                                                                                                                        devDependencies =
+                                                                                                                            {
+                                                                                                                                "@tsconfig/node24" = "^24.0.5" ;
+                                                                                                                                "@types/node" = "^24.13.4" ;
+                                                                                                                                "@vitejs/plugin-vue" = "^6.0.8" ;
+                                                                                                                                "@vue/tsconfig" = "^0.9.1" ;
+                                                                                                                                "npm-run-all2" = "^9.0.3" ;
+                                                                                                                                typescript = "~6.0.0" ;
+                                                                                                                                vite = "^8.2.2" ;
+                                                                                                                                "vite-plugin-vue-devtools" = "^8.2.1" ;
+                                                                                                                                "vue-tsc" = "^3.3.11" ;
+                                                                                                                            } ;
+                                                                                                                        engines =
+                                                                                                                            {
+                                                                                                                                node = "^22.18.0 || >=24.12.0" ;
+                                                                                                                            } ;
+                                                                                                                    } ;
+                                                                                                                in
+                                                                                                                    ''
+                                                                                                                        MESSAGE="$1"
+                                                                                                                        git clean -fd
+                                                                                                                        cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
+                                                                                                                        git rm -r --ignore-unmatch node_modules node_modules.exploded
+                                                                                                                        mkdir --parents node_modules.exploded
+                                                                                                                        npm install
+                                                                                                                        explode
+                                                                                                                        git add node_modules.exploded
+                                                                                                                        git clean -fd
+                                                                                                                        git commit -am "$MESSAGE" --allow-empty --allow-empty-message
+                                                                                                                    '' ;
+                                                                                                    } ;
+                                                                                            type = _lib.types.package ;
+                                                                                        } ;
+                                                                                package =
+                                                                                    _lib.mkOption
+                                                                                        {
+                                                                                            default =
+                                                                                                let
+                                                                                                    code = ./. ;
+                                                                                                    in
+                                                                                                        _pkgs.runCommand
+                                                                                                            "package"
+                                                                                                            {
+                                                                                                                nativeBuildInputs =
+                                                                                                                    [
+                                                                                                                        (
+                                                                                                                            _pkgs.writeShellApplication
+                                                                                                                                {
+                                                                                                                                    name = "install-it" ;
+                                                                                                                                    runtimeInputs = [ ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) _pkgs.coreutils _pkgs.nodejs ] ;
+                                                                                                                                    text =
+                                                                                                                                        ''
+                                                                                                                                            OUT="$1"
+                                                                                                                                            export OUT
+                                                                                                                                            mkdir --parents "$OUT"
+                                                                                                                                            cp --recursive "${ code }/frontend/www/"* "$OUT"
+                                                                                                                                            mkdir --parents "$OUT/node_modules"
+                                                                                                                                            implode
+                                                                                                                                            cd "$OUT"
+                                                                                                                                            find node_modules -type f -perm /111 \
+                                                                                                                                                -exec bash -c '
+                                                                                                                                                    for file do
+                                                                                                                                                        IFS= read -r first < "$file" || continue
+                                                                                                                                                        if [ "$first" = "#!/usr/bin/env node" ]; then
+                                                                                                                                                            {
+                                                                                                                                                                printf "#!%s/bin/env node\n" "$1"
+                                                                                                                                                                tail -n +2 "$file"
+                                                                                                                                                            } > "$file.tmp"
+                                                                                                                                                            cat "$file.tmp" > "$file"
+                                                                                                                                                            rm "$file.tmp"
+                                                                                                                                                        fi
+                                                                                                                                                    done
+                                                                                                                                                ' _ "${pkgs.coreutils}" {} +
+                                                                                                                                            "$OUT/node_modules/.bin/vue-tsc" --build
+                                                                                                                                            "$OUT/node_modules/.bin/vite" build
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
