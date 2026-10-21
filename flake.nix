@@ -632,7 +632,7 @@
                                                                         android = null ;
                                                                         web =
                                                                             {
-                                                                                environment =
+                                                                                environments =
                                                                                     {
                                                                                         staging =
                                                                                             {
