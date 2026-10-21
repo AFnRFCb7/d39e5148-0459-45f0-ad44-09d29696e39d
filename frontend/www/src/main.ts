@@ -1,6 +1,6 @@
 import App from './App.vue'
 import { createApp } from 'vue'
-import i18n from './i18n'
+import i18n, { initializeI18n } from './i18n'
 import router from './router'
 
 await initializeI18n()
