@@ -77,7 +77,7 @@
                                                                                     } ;
                                                                             "/www/" =
                                                                                 _lib.mkIf
-                                                                                    config.visa.frontend.admin.environments.staging.enable
+                                                                                    config.visa.frontend.www.environments.staging.enable
                                                                                     {
                                                                                         alias = "${ _config.visa.frontend.www.package }/dist/" ;
                                                                                         index = "index.html" ;
