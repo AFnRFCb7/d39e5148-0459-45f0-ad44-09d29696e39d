@@ -7,8 +7,8 @@ const { t, locale } = useI18n()
   <header>
     <h1>{{ t('header') }}</h1>
     <select v-model="locale" aria-label="Language">
-      <option value="en-US">🇺🇸 English</option>
-      <option value="zh-CN">🇨🇳 简体中文</option>
+      <option value="en-US">🇺🇸</option>
+      <option value="zh-CN">🇨🇳</option>
     </select>
   </header>
 </template>

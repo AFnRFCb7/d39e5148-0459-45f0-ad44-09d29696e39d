@@ -53,7 +53,7 @@ const output = process.env.OUTPUT
     : process.stdout;
 app.get
     (
-        "/api/data/i18n/en.js",
+        "/api/data/i18n/en-US",
         async ( request , response ) =>
             {
                 response.json({header : 'Visa' })
@@ -61,7 +61,7 @@ app.get
     ) ;
 app.get
     (
-        "/api/data/i18n/zh.js",
+        "/api/data/i18n/zh-CN",
         async ( request , response ) =>
             {
                 response.json({header : '签证' })
