@@ -736,20 +736,32 @@
                                                                                                                             _pkgs.writeShellApplication
                                                                                                                                 {
                                                                                                                                     name = "install-it" ;
-                                                                                                                                    runtimeInputs = [ ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) ] ;
+                                                                                                                                    runtimeInputs = [ ( _config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) _pkgs.coreutils _pkgs.nodejs ] ;
                                                                                                                                     text =
                                                                                                                                         ''
                                                                                                                                             OUT="$1"
                                                                                                                                             export OUT
+                                                                                                                                            mkdir --parents "$OUT"
+                                                                                                                                            cp --recursive "${ code }/frontend/admin/"* "$OUT"
                                                                                                                                             mkdir --parents "$OUT/node_modules"
-                                                                                                                                            ln --symbolic "${ code }/frontend/web/"* "$OUT"
-                                                                                                                                            mkdir --parents "$OUT/node_modules"
-                                                                                                                                            if [[ ! -e "$OUT/node_modules.exploded" ]]
-                                                                                                                                            then
-                                                                                                                                                mkdir --parents "$OUT/node_modules.exploded"
-                                                                                                                                            fi
                                                                                                                                             implode
-                                                                                                                                            rm --recursive --force "$OUT/node_modules.exploded"
+                                                                                                                                            cd "$OUT"
+                                                                                                                                            find node_modules -type f -perm /111 \
+                                                                                                                                                -exec bash -c '
+                                                                                                                                                    for file do
+                                                                                                                                                        IFS= read -r first < "$file" || continue
+                                                                                                                                                        if [ "$first" = "#!/usr/bin/env node" ]; then
+                                                                                                                                                            {
+                                                                                                                                                                printf "#!%s/bin/env node\n" "$1"
+                                                                                                                                                                tail -n +2 "$file"
+                                                                                                                                                            } > "$file.tmp"
+                                                                                                                                                            cat "$file.tmp" > "$file"
+                                                                                                                                                            rm "$file.tmp"
+                                                                                                                                                        fi
+                                                                                                                                                    done
+                                                                                                                                                ' _ "${pkgs.coreutils}" {} +
+                                                                                                                                            "$OUT/node_modules/.bin/vue-tsc" --build
+                                                                                                                                            "$OUT/node_modules/.bin/vite" build
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
