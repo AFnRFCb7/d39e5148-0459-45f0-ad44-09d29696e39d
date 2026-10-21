@@ -75,6 +75,14 @@
                                                                                         index = "index.html" ;
                                                                                         tryFiles = "$uri $uri/ /admin/index.html" ;
                                                                                     } ;
+                                                                            "/web/" =
+                                                                                _lib.mkIf
+                                                                                    config.visa.frontend.web.environments.staging.enable
+                                                                                    {
+                                                                                        alias = "${ _config.visa.web.admin.package }/dist/" ;
+                                                                                        index = "index.html" ;
+                                                                                        tryFiles = "$uri $uri/ /web/index.html" ;
+                                                                                    } ;
                                                                         } ;
                                                                 } ;
                                                         systemd.services =
@@ -624,6 +632,13 @@
                                                                         android = null ;
                                                                         web =
                                                                             {
+                                                                                environment =
+                                                                                    {
+                                                                                        staging =
+                                                                                            {
+                                                                                                enable = _lib.mkOption { default = true ; type = _lib.types.bool ; } ;
+                                                                                            } ;
+                                                                                    } ;
                                                                                 fetch =
                                                                                     _lib.mkOption
                                                                                         {
