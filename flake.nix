@@ -820,6 +820,7 @@
                                                                                                                                 typescript = "~6.0.0" ;
                                                                                                                                 vite = "^8.2.2" ;
                                                                                                                                 "vite-plugin-vue-devtools" = "^8.2.1" ;
+                                                                                                                                vue-i18n = "^11.1.0" ;
                                                                                                                                 "vue-tsc" = "^3.3.11" ;
                                                                                                                             } ;
                                                                                                                         engines =
@@ -883,8 +884,8 @@
                                                                                                                                                         fi
                                                                                                                                                     done
                                                                                                                                                 ' _ "${pkgs.coreutils}" {} +
-                                                                                                                                            "$OUT/node_modules/.bin/vue-tsc" --build
-                                                                                                                                            "$OUT/node_modules/.bin/vite" build
+                                                                                                                                            # "$OUT/node_modules/.bin/vue-tsc" --build
+                                                                                                                                            # "$OUT/node_modules/.bin/vite" build
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
