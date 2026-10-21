@@ -762,8 +762,8 @@
                                                                                                                                                         fi
                                                                                                                                                     done
                                                                                                                                                 ' _ "${pkgs.coreutils}" {} +
-                                                                                                                                            "$OUT/node_modules/.bin/vue-tsc" --build
-                                                                                                                                            "$OUT/node_modules/.bin/vite" build
+                                                                                                                                            # "$OUT/node_modules/.bin/vue-tsc" --build
+                                                                                                                                            # "$OUT/node_modules/.bin/vite" build
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
