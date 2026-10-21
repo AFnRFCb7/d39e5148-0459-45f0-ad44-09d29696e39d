@@ -18,6 +18,11 @@
                 <RouterLink to="/utility">Utility</RouterLink>
             </nav>
         </li>
+        <li>
+            <nav>
+                <a href="/www">WWW</a>
+            </nav>
+        </li>
     </ol>
   </main>
 </template>
