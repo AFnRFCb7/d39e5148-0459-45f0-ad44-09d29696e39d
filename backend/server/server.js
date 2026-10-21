@@ -53,6 +53,22 @@ const output = process.env.OUTPUT
     : process.stdout;
 app.get
     (
+        "/api/data/i18n/en.js"
+        async ( request , response ) =>
+            {
+                response.json({header : 'Visa' })
+            }
+    ) ;
+app.get
+    (
+        "/api/data/i18n/zh.js"
+        async ( request , response ) =>
+            {
+                response.json({header : '签证' })
+            }
+    ) ;
+app.get
+    (
         "/api/health-check/admin/marker" ,
         requireAdmin,
         async ( request , response ) =>
