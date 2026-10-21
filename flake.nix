@@ -711,7 +711,9 @@
                                                                                                                         cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
                                                                                                                         git rm -r --ignore-unmatch node_modules node_modules.exploded
                                                                                                                         mkdir --parents node_modules.exploded
+                                                                                                                        echo 6170622337032070 >&2
                                                                                                                         npm install
+                                                                                                                        echo 2493244250903259 >&2
                                                                                                                         explode
                                                                                                                         git add node_modules.exploded
                                                                                                                         git clean -fd
