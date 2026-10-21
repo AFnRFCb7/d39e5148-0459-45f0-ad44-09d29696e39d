@@ -742,7 +742,7 @@
                                                                                                                                             OUT="$1"
                                                                                                                                             export OUT
                                                                                                                                             mkdir --parents "$OUT"
-                                                                                                                                            cp --recursive "${ code }/frontend/admin/"* "$OUT"
+                                                                                                                                            cp --recursive "${ code }/frontend/web/"* "$OUT"
                                                                                                                                             mkdir --parents "$OUT/node_modules"
                                                                                                                                             implode
                                                                                                                                             cd "$OUT"
