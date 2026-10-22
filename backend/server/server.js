@@ -52,6 +52,51 @@ function requireLogin(request, response, next) {
 const output = process.env.OUTPUT
     ? fs.createWriteStream(process.env.OUTPUT)
     : process.stdout;
+app.post("/api/auth/login/password", async (request, response) => {
+    const { email, password } = request.body;
+
+    if (!email || !password) {
+        return response.status(400).send("Missing email or password");
+    }
+
+    try {
+        const result = await database.query(
+            "SELECT id, email, password_hash, admin FROM users WHERE email = $1",
+            [email]
+        );
+        output.write(`Login attempt: ${JSON.stringify({
+            email,
+            userCount: result.rows.length
+        })}\n`);
+        if (result.rows.length === 0) {
+            return response.status(401).send("Invalid credentials");
+        }
+        const user = result.rows[0];
+        const valid = await bcrypt.compare(password, user.password_hash);
+        if (!valid) {
+            return response.status(401).send("Invalid credentials");
+        }
+        request.session.user = {
+            id: user.id,
+            email: user.email,
+            admin: user.admin
+        };
+        response.send("login");
+    } catch (error) {
+        output.write(util.inspect(error) + "\n");
+        response.status(500).send("Internal server error");
+    }
+});
+app.post("/api/auth/logout", (request, response, next) => {
+    request.session.destroy(error => {
+        if (error) {
+            return next(error);
+        }
+
+        response.clearCookie("visa.sid");
+        response.sendStatus(204);
+    });
+});
 app.get
     (
         "/api/auth/providers" ,
@@ -169,52 +214,6 @@ app.put
                 response.json(result.rows[0].marker)
             }
     ) ;
-app.post("/api/login", async (request, response) => {
-    output.write("0577672097034619");
-    const { email, password } = request.body;
-
-    if (!email || !password) {
-        return response.status(400).send("Missing email or password");
-    }
-
-    try {
-        const result = await database.query(
-            "SELECT id, email, password_hash, admin FROM users WHERE email = $1",
-            [email]
-        );
-        output.write(`Login attempt: ${JSON.stringify({
-            email,
-            userCount: result.rows.length
-        })}\n`);
-        if (result.rows.length === 0) {
-            return response.status(401).send("Invalid credentials");
-        }
-        const user = result.rows[0];
-        const valid = await bcrypt.compare(password, user.password_hash);
-        if (!valid) {
-            return response.status(401).send("Invalid credentials");
-        }
-        request.session.user = {
-            id: user.id,
-            email: user.email,
-            admin: user.admin
-        };
-        response.send("login");
-    } catch (error) {
-        output.write(util.inspect(error) + "\n");
-        response.status(500).send("Internal server error");
-    }
-});
-app.post("/api/logout", (request, response, next) => {
-    request.session.destroy(error => {
-        if (error) {
-            return next(error);
-        }
-
-        response.clearCookie("visa.sid");
-        response.sendStatus(204);
-    });
-});
 app.get("/api/session", (request, response) => {
     response.json({
         loggedIn: !!request.session.user,
