@@ -1,5 +1,5 @@
 <script setup>
-import { onUnmounted, ref } from 'vue'
+import { ref } from 'vue'
 
 const providers = ref([])
 const loading = ref(true)
@@ -7,8 +7,6 @@ const error = ref('')
 const selectedProvider = ref(null)
 const values = ref({})
 const submitting = ref(false)
-
-let pollInterval
 
 async function loadProviders() {
   try {
@@ -86,9 +84,6 @@ function activateProvider(provider) {
   }
 }
 
-onUnmounted(() => {
-  clearInterval(pollInterval)
-})
 </script>
 
 <template>
