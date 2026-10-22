@@ -71,22 +71,6 @@ app.get(
 )
 app.get
     (
-        "/api/data/i18n/en-US",
-        async ( request , response ) =>
-            {
-                response.json({header : 'Visa' })
-            }
-    ) ;
-app.get
-    (
-        "/api/data/i18n/zh-CN",
-        async ( request , response ) =>
-            {
-                response.json({header : '签证' })
-            }
-    ) ;
-app.get
-    (
         "/api/health-check/admin/marker" ,
         requireAdmin,
         async ( request , response ) =>
