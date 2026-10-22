@@ -570,6 +570,7 @@
                                                                                                                                                     }
                                                                                                                                             )
                                                                                                                                             ( _pkgs.python3.withPackages ( ps: [ ps.fonttools ps.brotli ] ) )
+                                                                                                                                            noto-fonts-cjk-sans
                                                                                                                                         ] ;
                                                                                                                                     text =
                                                                                                                                         ''
@@ -582,14 +583,16 @@
                                                                                                                                             mkdir --parents "$OUT/data/i18n"
                                                                                                                                             ln --symbolic ${ builtins.toFile "en-US.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : let calculated = value null ; in if builtins.hasAttr "en-US" calculated then calculated.en-US else builtins.elemAt path ( ( builtins.length path ) - 1 ) ; } i18n ) ) } "$OUT/data/i18n/en-US.json"
                                                                                                                                             ln --symbolic ${ builtins.toFile "zh-CN.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : let identity = { zh-CN , ... } : zh-CN ; in identity ( value null ) ; } i18n ) ) } "$OUT/data/i18n/zh-CN.json"
-                                                                                                                                            TEXT="$( cat "$OUT/data/i18n/en-US.json" "$OUT/data/i18n/en-US.json" )" || failure 6542082918635473
+                                                                                                                                            mkdir --parents "$OUT/temporary"
+                                                                                                                                            cat "$OUT/data/i18n/en-US.json" "$OUT/data/i18n/zh-CN.json" > "$OUT/temporary/i18n.txt"
                                                                                                                                             mkdir --parents "$OUT/data/fonts"
                                                                                                                                             pyftsubset \
-                                                                                                                                              /nix/store/dwdxg5vycv5asvs61w91cqfxc804h34s-noto-fonts-cjk-sans-2.004/share/fonts/opentype/noto-cjk/NotoSansCJK-VF.otf.ttc \
+                                                                                                                                              "${_pkgs.noto-fonts-cjk-sans}/share/fonts/opentype/noto-cjk/NotoSansCJK-VF.otf.ttc" \
                                                                                                                                               --font-number=0 \
-                                                                                                                                              --text="$TEXT" \
+                                                                                                                                              --text-file="$OUT"/'temporary/i18n.txt \
                                                                                                                                               --flavor=woff2 \
                                                                                                                                               --output-file="$OUT"/data/fonts/noto-sans-sc-test.woff2
+                                                                                                                                            rm --recursive --force "$OUT/temporary"
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
