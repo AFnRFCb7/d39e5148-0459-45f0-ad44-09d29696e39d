@@ -499,7 +499,7 @@
                                                                                                                                 ignore :
                                                                                                                                     {
                                                                                                                                         en-US = "Build your future." ;
-                                                                                                                                        zh-CN = "" ;
+                                                                                                                                        zh-CN = "创造你的未来" ;
                                                                                                                                     } ;
                                                                                                                             farther =
                                                                                                                                 ignore :
@@ -512,6 +512,12 @@
                                                                                                                                     {
                                                                                                                                         en-US = "Your journey starts here" ;
                                                                                                                                         zh-CN = "您的旅程从这里开始" ;
+                                                                                                                                    } ;
+                                                                                                                            question =
+                                                                                                                                ignore :
+                                                                                                                                    {
+                                                                                                                                        en-US = "Whether you're traveling, studying, or starting a new life abroad, we're here to help you navigate the journey." ;
+                                                                                                                                        zh-CN = "无论您是出国旅行、留学，还是开启海外新生活，我们都将竭诚为您提供帮助，助您顺利踏上旅程。" ;
                                                                                                                                     } ;
                                                                                                                         } ;
                                                                                                                 } ;
@@ -575,6 +581,8 @@
                                                                                                                                             mkdir --parents "$OUT/data/i18n"
                                                                                                                                             ln --symbolic ${ builtins.toFile "en-US.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : let calculated = value null ; in if builtins.hasAttr "en-US" calculated then calculated.en-US else builtins.elemAt path ( ( builtins.length path ) - 1 ) ; } i18n ) ) } "$OUT/data/i18n/en-US.json"
                                                                                                                                             ln --symbolic ${ builtins.toFile "zh-CN.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : let identity = { zh-CN , ... } : zh-CN ; in identity ( value null ) ; } i18n ) ) } "$OUT/data/i18n/zh-CN.json"
+                                                                                                                                            mkdir --parents "$OUT/data/fonts"
+                                                                                                                                            ln --symbolic ${ pkgs.not-fonts-cjk-sans } "$OUT/data/fonts/cjk-sans
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )

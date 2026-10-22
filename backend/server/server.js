@@ -52,6 +52,27 @@ function requireLogin(request, response, next) {
 const output = process.env.OUTPUT
     ? fs.createWriteStream(process.env.OUTPUT)
     : process.stdout;
+app.get
+    (
+        "/api/data/font" ,
+        async ( request , response ) =>
+        {
+            const fontname = request.params.fontname;
+            response.sendFile(`/mounts/package/fonts/${ fontname }` ) ;
+        }
+    ) ;
+app.get(
+    "/api/data/images/:filename",
+    async ( request , response ) =>
+        {
+            const filename = request.params.filename;
+            if ( ! /^[a-zA-Z0-9_-]+\.(jpg|jpeg|png|webp|svg)$/i.test(filename) )
+                {
+                    return response.sendStatus(400);
+                }
+            response.sendFile(`/mounts/package/images/${ filename }` ) ;
+        }
+) ;
 app.get(
     "/api/data/i18n/:locale",
     async (request, response) => {
@@ -70,18 +91,6 @@ app.get(
         )
     }
 )
-app.get(
-    "/api/data/images/:filename",
-    async ( request , response ) =>
-        {
-            const filename = request.params.filename;
-            if ( ! /^[a-zA-Z0-9_-]+\.(jpg|jpeg|png|webp|svg)$/i.test(filename) )
-                {
-                    return response.sendStatus(400);
-                }
-            response.sendFile(`/mounts/package/images/${ filename }` ) ;
-        }
-) ;
 app.get
     (
         "/api/health-check/admin/marker" ,

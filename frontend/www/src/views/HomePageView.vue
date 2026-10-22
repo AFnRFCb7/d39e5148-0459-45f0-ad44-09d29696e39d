@@ -3,11 +3,8 @@
     <section class="hero">
       <div class="hero-content">
         <p class="eyebrow">{{ t('narrative.home.journey') }}</p>
-        <h1>{{ t('narrative.home.farther') }}<br />Build your future.</h1>
-        <p class="hero-description">
-          Whether you're traveling, studying, or starting a new life abroad,
-          we're here to help you navigate the journey.
-        </p>
+        <h1>{{ t('narrative.home.farther') }}<br />{{ t('narrative.home.build') }}</h1>
+        <p class="hero-description">{{ t('narrative.home.question') }}</p>
         <button class="hero-button">Get Started</button>
       </div>
     </section>
@@ -94,7 +91,7 @@ const { t } = useI18n()
 
 .eyebrow {
   margin: 0 0 14px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
