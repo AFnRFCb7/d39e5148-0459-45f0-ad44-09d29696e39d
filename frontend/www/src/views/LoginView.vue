@@ -1,166 +1,49 @@
-<template>
-  <main class="login-page">
-    <section class="login-card">
-      <h1>{{ t('auth.login') }}</h1>
-
-      <form @submit.prevent="login">
-        <label for="email">{{ t('auth.email') }}</label>
-        <input
-          id="email"
-          v-model.trim="email"
-          type="email"
-          autocomplete="email"
-          required
-        />
-
-        <label for="password">{{ t('auth.password') }}</label>
-        <input
-          id="password"
-          v-model="password"
-          type="password"
-          autocomplete="current-password"
-          required
-        />
-
-        <p v-if="error" class="error" role="alert">
-          {{ error }}
-        </p>
-
-        <button type="submit" :disabled="loading">
-          {{ loading ? t('auth.signingIn') : t('auth.login') }}
-        </button>
-      </form>
-
-      <div class="separator">{{ t('auth.or') }}</div>
-
-      <button
-        type="button"
-        class="google-button"
-        @click="loginWithGoogle"
-      >
-        {{ t('auth.continueWithGoogle') }}
-      </button>
-
-      <RouterLink class="back-link" to="/">
-        {{ t('common.backHome') }}
-      </RouterLink>
-    </section>
-  </main>
-</template>
-
 <script setup>
-import { ref } from 'vue'
-import { RouterLink, useRouter } from 'vue-router'
-import { useI18n } from 'vue-i18n'
+import { ref, onMounted } from 'vue'
 
-const { t } = useI18n()
-const router = useRouter()
+const providers = ref([])
+const loadingProviders = ref(true)
+const providerError = ref('')
 
-const email = ref('')
-const password = ref('')
-const loading = ref(false)
-const error = ref('')
-
-async function login() {
-  loading.value = true
-  error.value = ''
-
+onMounted(async () => {
   try {
-    const response = await fetch('/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({
-        email: email.value,
-        password: password.value,
-      }),
-    })
+    const response = await fetch('/api/auth/providers')
 
     if (!response.ok) {
-      throw new Error('loginFailed')
+      throw new Error(`HTTP ${response.status}`)
     }
 
-    await router.push('/')
-  } catch {
-    error.value = t('auth.loginFailed')
+    providers.value = await response.json()
+  } catch (error) {
+    providerError.value = 'Unable to load login options.'
+    console.error(error)
   } finally {
-    loading.value = false
+    loadingProviders.value = false
   }
-}
-
-function loginWithGoogle() {
-  window.location.assign('/api/auth/google')
-}
+})
 </script>
 
-<style scoped>
-.login-page {
-  min-height: 70vh;
-  display: grid;
-  place-items: center;
-  padding: 2rem 1rem;
-}
+<template>
+  <div v-if="loadingProviders">
+    Loading login options…
+  </div>
 
-.login-card {
-  width: 100%;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
+  <p v-else-if="providerError">
+    {{ providerError }}
+  </p>
 
-h1 {
-  margin: 0 0 0.5rem;
-}
+  <div v-else>
+    <div
+      v-for="provider in providers.filter(p => p.enabled)"
+      :key="provider.id"
+    >
+      <button v-if="provider.id === 'password'">
+        {{ provider.label }}
+      </button>
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-input {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font: inherit;
-}
-
-button {
-  padding: 0.8rem 1rem;
-  border: 0;
-  border-radius: 6px;
-  cursor: pointer;
-  font: inherit;
-}
-
-button[type='submit'] {
-  color: white;
-  background: #2457a7;
-}
-
-button:disabled {
-  opacity: 0.6;
-  cursor: wait;
-}
-
-.google-button {
-  background: white;
-  border: 1px solid #ccc;
-}
-
-.separator {
-  text-align: center;
-  color: #777;
-}
-
-.error {
-  color: #b42318;
-}
-
-.back-link {
-  text-align: center;
-}
-</style>
+      <button v-else-if="provider.id === 'google'">
+        Continue with Google
+      </button>
+    </div>
+  </div>
+</template>

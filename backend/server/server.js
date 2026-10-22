@@ -55,7 +55,7 @@ const output = process.env.OUTPUT
 app.get
     (
         "/api/auth/providers" ,
-        async ( request , response ) => response.sendFle("/mounts/package/data/auth.json")
+        async ( request , response ) => response.sendFile("/mounts/package/data/auth.json")
     ) ;
 app.get
     (

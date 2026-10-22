@@ -459,7 +459,7 @@
                                                                                                                 label = "Email and Password" ;
                                                                                                                 enabled = true ;
                                                                                                             }
-                                                                                                        ];
+                                                                                                        ] ;
                                                                                                     code = ./. ;
                                                                                                     i18n =
                                                                                                         {
