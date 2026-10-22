@@ -28,7 +28,6 @@ nav {
     gap: 1.25rem;
 }
 a {
-    color: inherit
     color: inherit;
     text-decoration: none;
 }
