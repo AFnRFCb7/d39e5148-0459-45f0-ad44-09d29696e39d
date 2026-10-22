@@ -495,6 +495,12 @@
                                                                                                                 {
                                                                                                                     home =
                                                                                                                         {
+                                                                                                                            farther =
+                                                                                                                                ignore :
+                                                                                                                                    {
+                                                                                                                                        en-US = "Go farther!" ;
+                                                                                                                                        zh-CN = "走得更远" ;
+                                                                                                                                    } ;
                                                                                                                             journey =
                                                                                                                                 ignore :
                                                                                                                                     {

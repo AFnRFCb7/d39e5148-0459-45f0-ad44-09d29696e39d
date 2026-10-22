@@ -3,7 +3,7 @@
     <section class="hero">
       <div class="hero-content">
         <p class="eyebrow">{{ t('narrative.home.journey') }}</p>
-        <h1>Go farther.<br />Build your future.</h1>
+        <h1>{{ t('narrative.home.farther' }}<br />Build your future.</h1>
         <p class="hero-description">
           Whether you're traveling, studying, or starting a new life abroad,
           we're here to help you navigate the journey.
@@ -52,6 +52,8 @@
   </div>
 </template>
 <script setup>
+import { useI18n } from 'vue-i18n'
+const { t } = useI18n()
 </script>
 <style scoped>
 * {
