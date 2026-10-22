@@ -17,9 +17,9 @@ const { t, locale } = useI18n()
     </header>
 </template>
 <style scoped>
-header.select.option {
+header select option {
     font-size: x-large ;
-}
+} ;
 .header {
   height: 76px;
   padding: 0 6%;
@@ -45,14 +45,5 @@ nav a {
 }
 nav a:hover {
   color: #172033;
-}
-.sign-in {
-  padding: 9px 18px;
-  border: 1px solid #d5d8de;
-  border-radius: 7px;
-  background: white;
-  color: #172033;
-  font-weight: 600;
-  cursor: pointer;
 }
 </style>

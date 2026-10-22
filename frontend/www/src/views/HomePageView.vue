@@ -70,49 +70,6 @@
     sans-serif;
 }
 
-/* Header */
-
-.header {
-  height: 76px;
-  padding: 0 6%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: white;
-  border-bottom: 1px solid #e8e6e1;
-}
-
-.logo {
-  font-size: 27px;
-  font-weight: 750;
-  letter-spacing: -1px;
-}
-
-nav {
-  display: flex;
-  gap: 36px;
-}
-
-nav a {
-  color: #596273;
-  text-decoration: none;
-  font-size: 15px;
-}
-
-nav a:hover {
-  color: #172033;
-}
-
-.sign-in {
-  padding: 9px 18px;
-  border: 1px solid #d5d8de;
-  border-radius: 7px;
-  background: white;
-  color: #172033;
-  font-weight: 600;
-  cursor: pointer;
-}
-
 /* Hero */
 
 .hero {
