@@ -457,14 +457,39 @@
                                                                                                         {
                                                                                                             control =
                                                                                                                 {
-                                                                                                                    "log in" = ignore : { "zh-CN" = "登录" ; } ;
+                                                                                                                    "log in" =
+                                                                                                                        ignore :
+                                                                                                                            {
+                                                                                                                                description = "" ;
+                                                                                                                                "zh-CN" = "登录" ;
+                                                                                                                            } ;
                                                                                                                 } ;
                                                                                                             subject =
                                                                                                                 {
-                                                                                                                    Move = ignore : { "zh-CN" = "移居" ; } ;
-                                                                                                                    Study = ignore : { "zh-CN" = "留学" ; } ;
-                                                                                                                    Travel = ignore : { "zh-CN" = "旅行" ; } ;
-                                                                                                                    Visa = ignore : { "zh-CN" = "签证" ; } ;
+                                                                                                                    Move =
+                                                                                                                        ignore :
+                                                                                                                            {
+                                                                                                                                description = "" ;
+                                                                                                                                "zh-CN" = "移居" ;
+                                                                                                                            } ;
+                                                                                                                    Study =
+                                                                                                                        ignore :
+                                                                                                                            {
+                                                                                                                                description = "" ;
+                                                                                                                                "zh-CN" = "留学" ;
+                                                                                                                            } ;
+                                                                                                                    Travel =
+                                                                                                                        ignore :
+                                                                                                                            {
+                                                                                                                                description = "" ;
+                                                                                                                                "zh-CN" = "旅行" ;
+                                                                                                                            } ;
+                                                                                                                    Visa =
+                                                                                                                        ignore :
+                                                                                                                            {
+                                                                                                                                description = "" ;
+                                                                                                                                "zh-CN" = "签证" ;
+                                                                                                                            } ;
                                                                                                                 } ;
                                                                                                         } ;
                                                                                                     in
@@ -498,7 +523,7 @@
                                                                                                                                             implode
                                                                                                                                             mkdir --parents "$OUT/data/i18n"
                                                                                                                                             ln --symbolic ${ builtins.toFile "en-US.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : builtins.elemAt path ( ( builtins.length path ) - 1 ) ; } i18n ) ) } "$OUT/data/i18n/en-US.json"
-                                                                                                                                            ln --symbolic ${ builtins.toFile "zh-CN.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : let identity = { zh-CN } : zh-CN ; in identity ( value null ) ; } i18n ) ) } "$OUT/data/i18n/zh-CN.json"
+                                                                                                                                            ln --symbolic ${ builtins.toFile "zh-CN.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : let identity = { description , zh-CN } : zh-CN ; in identity ( value null ) ; } i18n ) ) } "$OUT/data/i18n/zh-CN.json"
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
