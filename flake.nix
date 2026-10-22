@@ -501,6 +501,12 @@
                                                                                                                                         en-US = "Build your future." ;
                                                                                                                                         zh-CN = "创造你的未来" ;
                                                                                                                                     } ;
+                                                                                                                            choose-the-path =
+                                                                                                                                ignore :
+                                                                                                                                    {
+                                                                                                                                        en-US = "Choose the path that fits where you are going next." ;
+                                                                                                                                        zh-CN = "" ;
+                                                                                                                                    }
                                                                                                                             farther =
                                                                                                                                 ignore :
                                                                                                                                     {
@@ -530,6 +536,12 @@
                                                                                                                                     {
                                                                                                                                         en-US = "Whether you're traveling, studying, or starting a new life abroad, we're here to help you navigate the journey." ;
                                                                                                                                         zh-CN = "无论您是出国旅行、留学，还是开启海外新生活，我们都将竭诚为您提供帮助，助您顺利踏上旅程。" ;
+                                                                                                                                    } ;
+                                                                                                                            what-is-your-journey =
+                                                                                                                                ignore :
+                                                                                                                                    {
+                                                                                                                                        en-US = "What's your journey?" ;
+                                                                                                                                        zh-CN = "" ;
                                                                                                                                     } ;
                                                                                                                         } ;
                                                                                                                 } ;

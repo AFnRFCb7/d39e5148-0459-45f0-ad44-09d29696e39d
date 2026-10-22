@@ -12,8 +12,8 @@
       <section class="journeys">
         <div class="section-heading">
           <p class="eyebrow">{{ t('narrative.home.options') }}</p>
-          <h2>What's your journey?</h2>
-          <p>Choose the path that fits where you are going next.</p>
+          <h2>{{ t('narrative.home.what-is-your-journey') }}</h2>
+          <p>{{ t('narrative.home.choose-the-path') }}</p>
         </div>
 
         <div class="journey-grid">
