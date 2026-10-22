@@ -54,7 +54,7 @@ const output = process.env.OUTPUT
     : process.stdout;
 app.get
     (
-        "/api/data/fonts" ,
+        "/api/data/fonts/:fontname" ,
         async ( request , response ) =>
         {
             const fontname = request.params.fontname;

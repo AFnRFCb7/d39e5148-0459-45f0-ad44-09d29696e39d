@@ -17,7 +17,7 @@ const { t, locale } = useI18n()
     </header>
 </template>
 <style scoped>
-header select option {
+header select {
     font-size: x-large ;
 }
 .header {
