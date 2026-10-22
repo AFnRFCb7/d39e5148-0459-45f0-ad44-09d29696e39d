@@ -49,10 +49,6 @@
         </div>
       </section>
     </main>
-    <footer>
-      <strong>Visa</strong>
-      <span>Travel · Study · Move</span>
-    </footer>
   </div>
 </template>
 <script setup>

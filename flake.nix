@@ -463,6 +463,12 @@
                                                                                                                                 description = "contact details" ;
                                                                                                                                 "zh-CN" = "联系方式" ;
                                                                                                                             } ;
+                                                                                                                    copyright =
+                                                                                                                        ignore :
+                                                                                                                            {
+                                                                                                                                description = "copyright" ;
+                                                                                                                                "zh-CN" = "版权所有" ;
+                                                                                                                            }
                                                                                                                     privacy =
                                                                                                                         ignore :
                                                                                                                             {
