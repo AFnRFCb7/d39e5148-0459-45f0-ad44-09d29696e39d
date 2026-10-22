@@ -4,14 +4,12 @@ const { t, locale } = useI18n()
 </script>
 <template>
     <header class="header">
-      <div class="logo">{{ t('subject.Visa') }}</div>
-      <nav>
-        <a href="#">{{ t('subject.Study') }}</a>
-        <a href="#">{{ t('subject.Travel') }}</a>
-        <a href="#">{{ t('subject.Move') }}</a>
+        <div class="logo">{{ t('subject.Visa') }}</div>
+        <nav>
+            <a href="#">{{ t('subject.Study') }}</a>
+            <a href="#">{{ t('subject.Travel') }}</a>
+            <a href="#">{{ t('subject.Move') }}</a>
         </nav>
-        <div ref="googleButton"></div>
-        <button class="sign-in">Sign In</button>'
         <select v-model="locale" aria-label="Language">
             <option value="en-US">🇺🇸</option>
             <option value="zh-CN">🇨🇳</option>
@@ -19,6 +17,9 @@ const { t, locale } = useI18n()
     </header>
 </template>
 <style scoped>
+header.select.option {
+    font-size: x-large ;
+}
 .header {
   height: 76px;
   padding: 0 6%;
@@ -28,7 +29,6 @@ const { t, locale } = useI18n()
   background: white;
   border-bottom: 1px solid #e8e6e1;
 }
-
 .logo {
   font-size: 16px;
   font-weight: 750;
