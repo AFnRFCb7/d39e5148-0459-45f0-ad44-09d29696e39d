@@ -41,7 +41,7 @@ nav {
 nav a {
   color: #596273;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 16px;
 }
 nav a:hover {
   color: #172033;

@@ -1,5 +1,5 @@
 <template>
-  <div class="app">'
+  <div class="app">
     <section class="hero">
       <div class="hero-content">
         <p class="eyebrow">YOUR JOURNEY STARTS HERE</p>
