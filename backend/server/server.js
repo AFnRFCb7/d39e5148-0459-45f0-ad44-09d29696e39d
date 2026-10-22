@@ -51,6 +51,24 @@ function requireLogin(request, response, next) {
 const output = process.env.OUTPUT
     ? fs.createWriteStream(process.env.OUTPUT)
     : process.stdout;
+app.get(
+    "/api/data/i18n/:locale",
+    async (request, response) => {
+        const locale = request.params.locale
+        if (!["en-US", "zh-CN"].includes(locale)) {
+            return response.sendStatus(404)
+        }
+        response.sendFile(
+            path.join("/mounts/package", "i18n", `${locale}.json`),
+            (error) => {
+                if (error && !response.headersSent) {
+                    console.error(error)
+                    response.sendStatus(error.statusCode || 500)
+                }
+            }
+        )
+    }
+)
 app.get
     (
         "/api/data/i18n/en-US",
