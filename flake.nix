@@ -589,7 +589,7 @@
                                                                                                                                               --font-number=0 \
                                                                                                                                               --text="$TEXT" \
                                                                                                                                               --flavor=woff2 \
-                                                                                                                                              --output-file="$OUT"/fonts/noto-sans-sc-test.woff2
+                                                                                                                                              --output-file="$OUT"/data/fonts/noto-sans-sc-test.woff2
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
