@@ -58,7 +58,7 @@ app.get
         async ( request , response ) =>
         {
             const fontname = request.params.fontname;
-            response.sendFile(`/mounts/package/fonts/${ fontname }` ) ;
+            response.sendFile(`/mounts/package/data/fonts/${ fontname }` ) ;
         }
     ) ;
 app.get(
