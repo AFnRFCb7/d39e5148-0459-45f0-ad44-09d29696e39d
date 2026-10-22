@@ -506,7 +506,7 @@
                                                                                                                                     {
                                                                                                                                         en-US = "Choose the path that fits where you are going next." ;
                                                                                                                                         zh-CN = "" ;
-                                                                                                                                    }
+                                                                                                                                    } ;
                                                                                                                             farther =
                                                                                                                                 ignore :
                                                                                                                                     {
