@@ -52,7 +52,7 @@ function requireLogin(request, response, next) {
 const output = process.env.OUTPUT
     ? fs.createWriteStream(process.env.OUTPUT)
     : process.stdout;
-app.post("/api/auth/login/password", async (request, response) => {
+app.post("/api/auth/password/login", async (request, response) => {
     const { email, password } = request.body;
 
     if (!email || !password) {
