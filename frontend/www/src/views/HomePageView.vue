@@ -25,19 +25,18 @@
             <img
               class="journey-image"
               :src="journey.image"
-              :alt=""
+              alt=""
             />
             <div class="card-content">
               <p class="card-subtitle">{{ journey.subtitle }}</p>
               <h3>{{ journey.title }}</h3>
               <p class="card-description">{{ journey.description }}</p>
                 <div class="card-actions">
-                  <button class="card-button" @click="selectJourney(journey.title)">
-                    Explore {{ journey.title }} →
-                  </button>
-
-                <button class="consultation-button" @click="requestConsultation">
-                  Request Consultation
+                    <button class="card-button" @click="selectJourney(journey.title)">
+                        {{ t('narrative.home.explore) }} {{ journey.title }} →
+                    </button>
+                    <button class="consultation-button" @click="requestConsultation">
+                  {{ t('narrative.home.Request Consultation') }}
                 </button>
                 </div>
             </div>

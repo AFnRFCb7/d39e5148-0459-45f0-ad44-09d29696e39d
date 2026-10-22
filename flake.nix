@@ -507,6 +507,11 @@
                                                                                                                                         en-US = "Choose the path that fits where you are going next." ;
                                                                                                                                         zh-CN = "" ;
                                                                                                                                     } ;
+                                                                                                                            Explore =
+                                                                                                                                ignore :
+                                                                                                                                    {
+                                                                                                                                        zn-CN = "" ;
+                                                                                                                                    } ;
                                                                                                                             farther =
                                                                                                                                 ignore :
                                                                                                                                     {
@@ -595,6 +600,11 @@
                                                                                                                                 ignore :
                                                                                                                                     {
                                                                                                                                         en-US = "EXPLORE YOUR OPTIONS" ;
+                                                                                                                                        zh-CN = "" ;
+                                                                                                                                    } ;
+                                                                                                                            "Request Consultation" =
+                                                                                                                                ignore :
+                                                                                                                                    {
                                                                                                                                         zh-CN = "" ;
                                                                                                                                     } ;
                                                                                                                             question =
