@@ -495,6 +495,7 @@
                                                                                                                                             implode
                                                                                                                                             mkdir --parents "$OUT/data/i18n"
                                                                                                                                             ln --symbolic ${ builtins.toFile "en-US.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : builtins.elemAt path ( ( builtins.length path ) - 1 ) ; } i18n ) ) } "$OUT/data/i18n/en-US.json"
+                                                                                                                                            ln --symbolic ${ builtins.toFile "zh-CN.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : builtins.elemAt path ( ( builtins.length path ) - 1 ) ; } i18n ) ) } "$OUT/data/i18n/zh-CN.json"
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
