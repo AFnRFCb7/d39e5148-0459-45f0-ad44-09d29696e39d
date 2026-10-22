@@ -587,9 +587,9 @@
                                                                                                                                             cat "$OUT/data/i18n/en-US.json" "$OUT/data/i18n/zh-CN.json" > "$OUT/temporary/i18n.txt"
                                                                                                                                             mkdir --parents "$OUT/data/fonts"
                                                                                                                                             pyftsubset \
-                                                                                                                                              "${_pkgs.noto-fonts-cjk-sans}/share/fonts/opentype/noto-cjk/NotoSansCJK-VF.otf.ttc" \
+                                                                                                                                              ${ _pkgs.noto-fonts-cjk-sans }/share/fonts/opentype/noto-cjk/NotoSansCJK-VF.otf.ttc \
                                                                                                                                               --font-number=0 \
-                                                                                                                                              --text-file="$OUT"/'temporary/i18n.txt \
+                                                                                                                                              --text-file="$OUT"/temporary/i18n.txt \
                                                                                                                                               --flavor=woff2 \
                                                                                                                                               --output-file="$OUT"/data/fonts/noto-sans-sc-test.woff2
                                                                                                                                             rm --recursive --force "$OUT/temporary"
