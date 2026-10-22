@@ -457,11 +457,11 @@
                                                                                                         {
                                                                                                             control =
                                                                                                                 {
-                                                                                                                    "log in" = { zn = "log in" ; } ;
+                                                                                                                    "log in" = ignore : { zn = "log in" ; } ;
                                                                                                                 } ;
                                                                                                             subject =
                                                                                                                 {
-                                                                                                                    visa = { zn = "visa" ; } ;
+                                                                                                                    visa = ignore : { zn = "visa" ; } ;
                                                                                                                 } ;
                                                                                                         } ;
                                                                                                     in
