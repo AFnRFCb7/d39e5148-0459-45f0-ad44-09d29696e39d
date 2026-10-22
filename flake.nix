@@ -453,6 +453,17 @@
                                                                                             default =
                                                                                                 let
                                                                                                     code = ./. ;
+                                                                                                    i18n =
+                                                                                                        {
+                                                                                                            control =
+                                                                                                                {
+                                                                                                                    "log in" = { zn = "log in" ; } ;
+                                                                                                                } ;
+                                                                                                            subject =
+                                                                                                                {
+                                                                                                                    visa = { zn = "visa" ; } ;
+                                                                                                                } ;
+                                                                                                        } ;
                                                                                                     in
                                                                                                         _pkgs.runCommand
                                                                                                             "package"
@@ -482,6 +493,7 @@
                                                                                                                                             cp --recursive "${ code }/backend/server/"* "$OUT"
                                                                                                                                             mkdir --parents "$OUT/node_modules"
                                                                                                                                             implode
+                                                                                                                                            ln --symbolic ${ builtins.toFile "en-US.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : builtins.elemAt path ( ( builtins.length path ) - 1 ) ; } i18n ) ) } "$OUT/i18n/en-US.json"
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
