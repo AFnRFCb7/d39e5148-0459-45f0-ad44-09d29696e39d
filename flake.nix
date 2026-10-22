@@ -468,7 +468,7 @@
                                                                                                                             {
                                                                                                                                 description = "copyright" ;
                                                                                                                                 "zh-CN" = "版权所有" ;
-                                                                                                                            }
+                                                                                                                            } ;
                                                                                                                     privacy =
                                                                                                                         ignore :
                                                                                                                             {
