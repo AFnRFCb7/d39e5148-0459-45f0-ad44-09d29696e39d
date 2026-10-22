@@ -30,7 +30,7 @@ const { t, locale } = useI18n()
 }
 
 .logo {
-  font-size: 27px;
+  font-size: 16px;
   font-weight: 750;
   letter-spacing: -1px;
 }
