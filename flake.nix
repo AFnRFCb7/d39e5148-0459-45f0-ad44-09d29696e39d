@@ -455,7 +455,7 @@
                                                                                                     code = ./. ;
                                                                                                     i18n =
                                                                                                         {
-                                                                                                            control =
+                                                                                                            common =
                                                                                                                 {
                                                                                                                     contact =
                                                                                                                         ignore :
@@ -475,6 +475,9 @@
                                                                                                                                 description = "name of the business" ;
                                                                                                                                 "zh-CN" = "签证通" ;
                                                                                                                             } ;
+                                                                                                                } ;
+                                                                                                            control =
+                                                                                                                {
                                                                                                                     "log in" =
                                                                                                                         ignore :
                                                                                                                             {

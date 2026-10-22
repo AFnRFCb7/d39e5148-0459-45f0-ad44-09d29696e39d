@@ -4,7 +4,7 @@ const { t } = useI18n()
 </script>
 <template>
     <footer>
-        <span>© {{ new Date().getFullYear() }} {{ t('common.business-name') }}</span>
+        <span>© {{ new Date().getFullYear() }} {{ t('common.Visa Solutions') }}</span>
         <nav>
             <a href="/contact">{{ t('common.contact') }}</a>
             <a href="/privacy">{{ t('common.privacy') }}</a>
