@@ -1,16 +1,5 @@
 <template>
   <div class="app">'
-    <header class="header">
-      <div class="logo">Visa</div>
-      <nav>
-        <a href="#">Travel</a>
-        <a href="#">Study</a>
-        <a href="#">Move</a>
-      </nav>
-        <div ref="googleButton"></div>
-      <button class="sign-in">Sign In</button>'
-      <button @click="callSecret">Test Secret</button>
-    </header>
     <section class="hero">
       <div class="hero-content">
         <p class="eyebrow">YOUR JOURNEY STARTS HERE</p>

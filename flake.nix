@@ -457,11 +457,14 @@
                                                                                                         {
                                                                                                             control =
                                                                                                                 {
-                                                                                                                    "log in" = ignore : { "zh-CN" = "log in-9082328681862666" ; } ;
+                                                                                                                    "log in" = ignore : { "zh-CN" = "登录" ; } ;
                                                                                                                 } ;
                                                                                                             subject =
                                                                                                                 {
-                                                                                                                    visa = ignore : { "zh-CN" = "visa-3042547837280022" ; } ;
+                                                                                                                    Move = ignore : { "zh-CN" = "移居" ; } ;
+                                                                                                                    Study = ignore : { "zh-CN" = "留学" ; } ;
+                                                                                                                    Travel = ignore : { "zh-CN" = "旅行" ; } ;
+                                                                                                                    Visa = ignore : { "zh-CN" = "签证" ; } ;
                                                                                                                 } ;
                                                                                                         } ;
                                                                                                     in
