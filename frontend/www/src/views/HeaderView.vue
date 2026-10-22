@@ -10,6 +10,7 @@ const { t, locale } = useI18n()
             <a href="#">{{ t('subject.Travel') }}</a>
             <a href="#">{{ t('subject.Move') }}</a>
         </nav>
+        <RouterLink to="/login" {{ t('control.Log In')' }}</RouterLink>
         <select v-model="locale" aria-label="Language">
             <option value="en-US">🇺🇸</option>
             <option value="zh-CN">🇨🇳</option>

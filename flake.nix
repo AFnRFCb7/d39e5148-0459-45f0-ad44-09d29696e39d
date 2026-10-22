@@ -452,6 +452,14 @@
                                                                                         {
                                                                                             default =
                                                                                                 let
+                                                                                                    auth =
+                                                                                                        [
+                                                                                                            {
+                                                                                                                id = "password" ;
+                                                                                                                label = "Email and Password" ;
+                                                                                                                enabled = true ;
+                                                                                                            }
+                                                                                                        ];
                                                                                                     code = ./. ;
                                                                                                     i18n =
                                                                                                         {
@@ -686,6 +694,7 @@
                                                                                                                                             mkdir --parents "$OUT/temporary"
                                                                                                                                             cat "$OUT/data/i18n/en-US.json" "$OUT/data/i18n/zh-CN.json" > "$OUT/temporary/i18n.txt"
                                                                                                                                             mkdir --parents "$OUT/data/fonts"
+                                                                                                                                            ln --symbolic ${ builtins.toFile "auth.json" ( builtins.toJSON auth ) } "$OUT/data/auth.json"
                                                                                                                                             pyftsubset \
                                                                                                                                               ${ _pkgs.noto-fonts-cjk-sans }/share/fonts/opentype/noto-cjk/NotoSansCJK-VF.otf.ttc \
                                                                                                                                               --font-number=0 \

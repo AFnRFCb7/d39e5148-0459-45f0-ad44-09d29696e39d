@@ -54,6 +54,11 @@ const output = process.env.OUTPUT
     : process.stdout;
 app.get
     (
+        "/api/auth/providers" ,
+        async ( request , response ) => response.sendFle("/mounts/package/data/auth.json")
+    ) ;
+app.get
+    (
         "/api/data/fonts/:fontname" ,
         async ( request , response ) =>
         {
