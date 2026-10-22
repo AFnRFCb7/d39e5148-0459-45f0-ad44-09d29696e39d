@@ -27,14 +27,13 @@
               :src="journey.image"
               :alt="journey.title"
             />
-
             <div class="card-content">
-              <p class="card-subtitle">{{ journey.subtitle }}</p>
-              <h3>{{ journey.title }}</h3>
-              <p class="card-description">{{ journey.description }}</p>
+              <p class="card-subtitle">{{ t(journey.subtitle) }}</p>
+              <h3>{{ t(journey.title) }}</h3>
+              <p class="card-description">{{ t(journey.description) }}</p>
                 <div class="card-actions">
                   <button class="card-button" @click="selectJourney(journey.title)">
-                    Explore {{ journey.title }} →
+                    Explore {{ t(journey.title) }} →
                   </button>
 
                 <button class="consultation-button" @click="requestConsultation">
@@ -53,9 +52,9 @@ import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
 const journeys = [
   {
-    title: 'Travel',
-    subtitle: 'Explore the world',
-    description: 'Plan your next international trip with confidence.',
+    title: 'narrative.home.journeys.study.title',
+    subtitle: 'narrative.home.journeys.study.subtitle',
+    description: 'narrative.home.journeys.study.description',
     image: '/images/travel.jpeg',
   },
   {

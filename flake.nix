@@ -525,6 +525,30 @@
                                                                                                                                         en-US = "Your journey starts here" ;
                                                                                                                                         zh-CN = "您的旅程从这里开始" ;
                                                                                                                                     } ;
+                                                                                                                            journeys =
+                                                                                                                                {
+                                                                                                                                    study =
+                                                                                                                                        {
+                                                                                                                                            description =
+                                                                                                                                                ignore :
+                                                                                                                                                    {
+                                                                                                                                                        en-US = "Plan your next international trip with confidence." ;
+                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                    } ;
+                                                                                                                                            subtitle =
+                                                                                                                                                ignore :
+                                                                                                                                                    {
+                                                                                                                                                        en-US = "Explore the worl" ;
+                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                    } ;
+                                                                                                                                            title =
+                                                                                                                                                ignore :
+                                                                                                                                                    {
+                                                                                                                                                        en-US = "Travel" ;
+                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                    } ;
+                                                                                                                                        } ;
+                                                                                                                                } ;
                                                                                                                             options =
                                                                                                                                 ignore :
                                                                                                                                     {
