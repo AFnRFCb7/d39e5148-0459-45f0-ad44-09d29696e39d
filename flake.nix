@@ -457,11 +457,11 @@
                                                                                                         {
                                                                                                             control =
                                                                                                                 {
-                                                                                                                    "log in" = ignore : { zh = "log in-9082328681862666" ; } ;
+                                                                                                                    "log in" = ignore : { "zh-CN" = "log in-9082328681862666" ; } ;
                                                                                                                 } ;
                                                                                                             subject =
                                                                                                                 {
-                                                                                                                    visa = ignore : { zh = "visa-3042547837280022" ; } ;
+                                                                                                                    visa = ignore : { "zh-CN" = "visa-3042547837280022" ; } ;
                                                                                                                 } ;
                                                                                                         } ;
                                                                                                     in
@@ -495,7 +495,7 @@
                                                                                                                                             implode
                                                                                                                                             mkdir --parents "$OUT/data/i18n"
                                                                                                                                             ln --symbolic ${ builtins.toFile "en-US.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : builtins.elemAt path ( ( builtins.length path ) - 1 ) ; } i18n ) ) } "$OUT/data/i18n/en-US.json"
-                                                                                                                                            ln --symbolic ${ builtins.toFile "zh-CN.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : let identity = { zh } : zh ; in identity ( value null ) ; } i18n ) ) } "$OUT/data/i18n/zh-CN.json"
+                                                                                                                                            ln --symbolic ${ builtins.toFile "zh-CN.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : let identity = { zh-CN } : zh-CN ; in identity ( value null ) ; } i18n ) ) } "$OUT/data/i18n/zh-CN.json"
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )
