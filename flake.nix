@@ -491,6 +491,18 @@
                                                                                                                                 "zh-CN" = "登录" ;
                                                                                                                             } ;
                                                                                                                 } ;
+                                                                                                            narrative =
+                                                                                                                {
+                                                                                                                    home =
+                                                                                                                        {
+                                                                                                                            journey =
+                                                                                                                                ignore
+                                                                                                                                    {
+                                                                                                                                        en-US = "Your journey starts here" ;
+                                                                                                                                        zh-CN = "您的旅程从这里开始" ;
+                                                                                                                                    } ;
+                                                                                                                        } ;
+                                                                                                                } ;
                                                                                                             subject =
                                                                                                                 {
                                                                                                                     Move =
@@ -549,8 +561,8 @@
                                                                                                                                             mkdir --parents "$OUT/node_modules"
                                                                                                                                             implode
                                                                                                                                             mkdir --parents "$OUT/data/i18n"
-                                                                                                                                            ln --symbolic ${ builtins.toFile "en-US.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : builtins.elemAt path ( ( builtins.length path ) - 1 ) ; } i18n ) ) } "$OUT/data/i18n/en-US.json"
-                                                                                                                                            ln --symbolic ${ builtins.toFile "zh-CN.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : let identity = { description , zh-CN } : zh-CN ; in identity ( value null ) ; } i18n ) ) } "$OUT/data/i18n/zh-CN.json"
+                                                                                                                                            ln --symbolic ${ builtins.toFile "en-US.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : let calculated = value null ; in if builtins.hasAttr "en-US" calculated then calculated.en-US else builtins.elemAt path ( ( builtins.length path ) - 1 ) ; } i18n ) ) } "$OUT/data/i18n/en-US.json"
+                                                                                                                                            ln --symbolic ${ builtins.toFile "zh-CN.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : let identity = { zh-CN , ... } : zh-CN ; in identity ( value null ) ; } i18n ) ) } "$OUT/data/i18n/zh-CN.json"
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )

@@ -2,7 +2,7 @@
   <div class="app">
     <section class="hero">
       <div class="hero-content">
-        <p class="eyebrow">YOUR JOURNEY STARTS HERE</p>
+        <p class="eyebrow">{{ t('narrative.home.journey') }}</p>
         <h1>Go farther.<br />Build your future.</h1>
         <p class="hero-description">
           Whether you're traveling, studying, or starting a new life abroad,
