@@ -61,8 +61,6 @@ const { t } = useI18n()
   min-height: 100vh;
   background: #f7f6f3;
   color: #172033;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
 }
 
 /* Hero */
