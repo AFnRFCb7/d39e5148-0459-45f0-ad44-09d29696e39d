@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { onMounted , ref } from 'vue'
 
 const providers = ref([])
 const loading = ref(true)
@@ -9,30 +9,28 @@ const values = ref({})
 const submitting = ref(false)
 
 async function loadProviders() {
+  console.log('loadProviders started');
+  loading.value = true;
+  error.value = '';
+
   try {
-    const response = await fetch('/api/auth/providers')
+    const response = await fetch('/api/auth/providers');
+    console.log('providers status:', response.status);
 
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`)
+      throw new Error(`HTTP ${response.status}`);
     }
 
-    const data = await response.json()
-    providers.value = data.filter(provider => provider.enabled)
+    const data = await response.json();
+    console.log('providers data:', data);
 
-    if (
-      selectedProvider.value &&
-      !providers.value.some(p => p.id === selectedProvider.value.id)
-    ) {
-      selectedProvider.value = null
-      values.value = {}
-    }
-
-    error.value = ''
+    providers.value = data.filter(p => p.enabled);
   } catch (err) {
-    error.value = 'Unable to load login options.'
-    console.error(err)
+    console.error('Failed to load providers:', err);
+    error.value = err.message;
   } finally {
-    loading.value = false
+    loading.value = false;
+    console.log('loading finished');
   }
 }
 
@@ -83,6 +81,8 @@ function activateProvider(provider) {
     error.value = `Unsupported authentication type: ${provider.type}`
   }
 }
+
+onMounted(loadProviders);
 
 </script>
 
