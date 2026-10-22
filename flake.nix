@@ -507,11 +507,23 @@
                                                                                                                                         en-US = "Go farther!" ;
                                                                                                                                         zh-CN = "走得更远" ;
                                                                                                                                     } ;
+                                                                                                                            get-started =
+                                                                                                                                ignore :
+                                                                                                                                    {
+                                                                                                                                        en-US = "Get Started" ;
+                                                                                                                                        zh-CN = "立即开始" ;
+                                                                                                                                    } ;
                                                                                                                             journey =
                                                                                                                                 ignore :
                                                                                                                                     {
                                                                                                                                         en-US = "Your journey starts here" ;
                                                                                                                                         zh-CN = "您的旅程从这里开始" ;
+                                                                                                                                    } ;
+                                                                                                                            options =
+                                                                                                                                ignore :
+                                                                                                                                    {
+                                                                                                                                        en-US = "EXPLORE YOUR OPTIONS" ;
+                                                                                                                                        zh-CN = "" ;
                                                                                                                                     } ;
                                                                                                                             question =
                                                                                                                                 ignore :

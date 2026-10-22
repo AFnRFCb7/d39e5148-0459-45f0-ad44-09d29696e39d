@@ -5,13 +5,13 @@
         <p class="eyebrow">{{ t('narrative.home.journey') }}</p>
         <h1>{{ t('narrative.home.farther') }}<br />{{ t('narrative.home.build') }}</h1>
         <p class="hero-description">{{ t('narrative.home.question') }}</p>
-        <button class="hero-button">Get Started</button>
+        <button class="hero-button">{{ t('narrative.home.get-started') }}</button>
       </div>
     </section>
     <main>
       <section class="journeys">
         <div class="section-heading">
-          <p class="eyebrow">EXPLORE YOUR OPTIONS</p>
+          <p class="eyebrow">{{ t('narrative.home.options') }}</p>
           <h2>What's your journey?</h2>
           <p>Choose the path that fits where you are going next.</p>
         </div>
