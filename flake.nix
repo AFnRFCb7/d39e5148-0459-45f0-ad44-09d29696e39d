@@ -463,7 +463,7 @@
                                                                                                                                 password = { type = "password" ; required = true ; } ;
                                                                                                                             } ;
                                                                                                                         submit = "Log in" ;
-                                                                                                                        url = "/api/auth/login/password" ;
+                                                                                                                        url = "/api/auth/password/login" ;
                                                                                                                     } ;
                                                                                                                 enabled = true ;
                                                                                                                 id = "password" ;
