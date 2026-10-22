@@ -570,7 +570,7 @@
                                                                                                                                                     }
                                                                                                                                             )
                                                                                                                                             ( _pkgs.python3.withPackages ( ps: [ ps.fonttools ps.brotli ] ) )
-                                                                                                                                            noto-fonts-cjk-sans
+                                                                                                                                            pkgs.noto-fonts-cjk-sans
                                                                                                                                         ] ;
                                                                                                                                     text =
                                                                                                                                         ''
