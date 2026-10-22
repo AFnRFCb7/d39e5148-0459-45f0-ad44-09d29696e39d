@@ -455,9 +455,10 @@
                                                                                                     auth =
                                                                                                         [
                                                                                                             {
+                                                                                                                enabled = true ;
                                                                                                                 id = "password" ;
                                                                                                                 label = "Email and Password" ;
-                                                                                                                enabled = true ;
+                                                                                                                type = "credentials" ;
                                                                                                             }
                                                                                                         ] ;
                                                                                                     code = ./. ;
