@@ -569,6 +569,7 @@
                                                                                                                                                         output = "$OUT/node_modules" ;
                                                                                                                                                     }
                                                                                                                                             )
+                                                                                                                                            ( _pkgs.python3.withPackages ( ps: [ ps.fonttools ps.brotli ] ) )
                                                                                                                                         ] ;
                                                                                                                                     text =
                                                                                                                                         ''
@@ -583,6 +584,12 @@
                                                                                                                                             ln --symbolic ${ builtins.toFile "zh-CN.json" ( builtins.toJSON ( _config.visitor { } { lambda = path : value : let identity = { zh-CN , ... } : zh-CN ; in identity ( value null ) ; } i18n ) ) } "$OUT/data/i18n/zh-CN.json"
                                                                                                                                             mkdir --parents "$OUT/data/fonts"
                                                                                                                                             ln --symbolic ${ pkgs.noto-fonts-cjk-sans } "$OUT/data/fonts/cjk-sans"
+                                                                                                                                            pyftsubset \
+                                                                                                                                              /nix/store/dwdxg5vycv5asvs61w91cqfxc804h34s-noto-fonts-cjk-sans-2.004/share/fonts/opentype/noto-cjk/NotoSansCJK-VF.otf.ttc \
+                                                                                                                                              --font-number=0 \
+                                                                                                                                              --text="${ builtins.concatStringsSep "" ( _config.visitor { } { lambda = path : value : let identity = { zh-CN , ... } : zh-CN ; in identity ( value null ); list = path : value : builtins.concatList list ; set = path : value : builtins.concatList ( builtins.attrValues list ) ; } i18n } )" \
+                                                                                                                                              --flavor=woff2 \
+                                                                                                                                              --output-file=backend/public/assets/fonts/noto-sans-sc-test.woff2
                                                                                                                                         '' ;
                                                                                                                                 }
                                                                                                                         )

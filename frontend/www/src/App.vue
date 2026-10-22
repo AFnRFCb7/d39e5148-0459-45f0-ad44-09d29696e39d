@@ -7,3 +7,15 @@ import Footer from './views/FooterView.vue'
   <router-view />
   <Footer />
 </template>
+<style>
+@font-face {
+  font-family: "Noto Sans SC";
+  src: url("/api/assets/fonts/noto-sans-sc.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+body {
+  font-family: "Noto Sans SC", sans-serif;
+}
+</style>
