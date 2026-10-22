@@ -19,7 +19,7 @@ const { t, locale } = useI18n()
 <style scoped>
 header select option {
     font-size: x-large ;
-} ;
+}
 .header {
   height: 76px;
   padding: 0 6%;
