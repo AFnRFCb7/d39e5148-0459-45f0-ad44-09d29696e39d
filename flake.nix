@@ -455,6 +455,16 @@
                                                                                                     auth =
                                                                                                         [
                                                                                                             {
+                                                                                                                config =
+                                                                                                                    {
+                                                                                                                        fields =
+                                                                                                                            {
+                                                                                                                                email = { type = "email" ; required = true ; }
+                                                                                                                                password = { type = "password" ; required = true ; }
+                                                                                                                            } ;
+                                                                                                                        submit = "Log in" ;
+                                                                                                                        url = "/api/auth/login/password" ;
+                                                                                                                    }
                                                                                                                 enabled = true ;
                                                                                                                 id = "password" ;
                                                                                                                 label = "Email and Password" ;
