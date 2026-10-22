@@ -496,7 +496,7 @@
                                                                                                                     home =
                                                                                                                         {
                                                                                                                             journey =
-                                                                                                                                ignore
+                                                                                                                                ignore :
                                                                                                                                     {
                                                                                                                                         en-US = "Your journey starts here" ;
                                                                                                                                         zh-CN = "您的旅程从这里开始" ;
