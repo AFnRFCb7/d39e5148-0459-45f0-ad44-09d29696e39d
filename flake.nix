@@ -510,7 +510,7 @@
                                                                                                                             Explore =
                                                                                                                                 ignore :
                                                                                                                                     {
-                                                                                                                                        zn-CN = "" ;
+                                                                                                                                        zh-CN = "" ;
                                                                                                                                     } ;
                                                                                                                             farther =
                                                                                                                                 ignore :
