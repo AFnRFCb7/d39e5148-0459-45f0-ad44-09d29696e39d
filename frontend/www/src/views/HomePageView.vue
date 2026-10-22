@@ -33,7 +33,7 @@
               <p class="card-description">{{ journey.description }}</p>
                 <div class="card-actions">
                     <button class="card-button" @click="selectJourney(journey.title)">
-                        {{ t('narrative.home.explore') }} {{ journey.title }} →
+                        {{ t('narrative.home.Explore') }} {{ journey.title }} →
                     </button>
                     <button class="consultation-button" @click="requestConsultation">
                   {{ t('narrative.home.Request Consultation') }}
