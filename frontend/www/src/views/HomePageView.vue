@@ -25,7 +25,7 @@
             <img
               class="journey-image"
               :src="journey.image"
-              :alt="journey.title"
+              :alt=""
             />
             <div class="card-content">
               <p class="card-subtitle">{{ journey.subtitle }}</p>
