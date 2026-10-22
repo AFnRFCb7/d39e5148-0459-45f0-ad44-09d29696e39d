@@ -458,20 +458,23 @@
                                                                                                             control =
                                                                                                                 {
                                                                                                                     contact =
-                                                                                                                        {
-                                                                                                                            description = "contact details" ;
-                                                                                                                            "zh-CN" = "联系方式" ;
-                                                                                                                        } ;
+                                                                                                                        ignore :
+                                                                                                                            {
+                                                                                                                                description = "contact details" ;
+                                                                                                                                "zh-CN" = "联系方式" ;
+                                                                                                                            } ;
                                                                                                                     privacy =
-                                                                                                                        {
-                                                                                                                            description = "privacy page" ;
-                                                                                                                            "zh-CN" = "隐私政策" ;
-                                                                                                                        } ;
+                                                                                                                        ignore :
+                                                                                                                            {
+                                                                                                                                description = "privacy page" ;
+                                                                                                                                "zh-CN" = "隐私政策" ;
+                                                                                                                            } ;
                                                                                                                     "Visa Solutions" =
-                                                                                                                        {
-                                                                                                                            description = "name of the business" ;
-                                                                                                                            "zh-CN" = "签证通" ;
-                                                                                                                        } ;
+                                                                                                                        ignore :
+                                                                                                                            {
+                                                                                                                                description = "name of the business" ;
+                                                                                                                                "zh-CN" = "签证通" ;
+                                                                                                                            } ;
                                                                                                                     "log in" =
                                                                                                                         ignore :
                                                                                                                             {
