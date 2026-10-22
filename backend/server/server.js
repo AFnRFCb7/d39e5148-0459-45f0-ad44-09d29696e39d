@@ -59,7 +59,7 @@ app.get(
             return response.sendStatus(404)
         }
         response.sendFile(
-            path.join("/mounts/package", "i18n", `${locale}.json`),
+            path.join("mounts", "package", "data", "i18n", `${locale}.json`),
             (error) => {
                 if (error && !response.headersSent) {
                     console.error(error)
