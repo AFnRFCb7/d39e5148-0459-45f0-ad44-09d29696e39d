@@ -66,7 +66,7 @@ async function submitCredentials() {
 
     // Assumes successful login establishes a session on the server.
     // Navigate to the desired post-login page.
-    window.location.assign('/www')
+    window.location.assign('/www/')
   } catch (err) {
     error.value = err.message || 'Login failed.'
   } finally {

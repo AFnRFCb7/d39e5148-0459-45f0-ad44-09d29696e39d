@@ -5,7 +5,7 @@ const { t, locale } = useI18n()
 <template>
     <header class="header">'
           <span v-if="session?.authenticated">
-            {{ session.user.email }}
+            {{ session.user.email }} {{ session.user.admin }}
           </span>
           <span v-else>
             Not logged in
