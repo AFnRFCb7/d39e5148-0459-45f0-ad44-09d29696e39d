@@ -527,18 +527,60 @@
                                                                                                                                     } ;
                                                                                                                             journeys =
                                                                                                                                 {
-                                                                                                                                    study =
+                                                                                                                                    move =
                                                                                                                                         {
                                                                                                                                             description =
                                                                                                                                                 ignore :
                                                                                                                                                     {
-                                                                                                                                                        en-US = "Plan your next international trip with confidence." ;
+                                                                                                                                                        en-US = "Navigate the journey of build a life in another country" ;
                                                                                                                                                         zh-CN = "" ;
                                                                                                                                                     } ;
                                                                                                                                             subtitle =
                                                                                                                                                 ignore :
                                                                                                                                                     {
-                                                                                                                                                        en-US = "Explore the worl" ;
+                                                                                                                                                        en-US = "Start a new chapter" ;
+                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                    } ;
+                                                                                                                                            title =
+                                                                                                                                                ignore :
+                                                                                                                                                    {
+                                                                                                                                                        en-US = "Move" ;
+                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                    } ;
+                                                                                                                                        } ;
+                                                                                                                                    study =
+                                                                                                                                        {
+                                                                                                                                            description =
+                                                                                                                                                ignore :
+                                                                                                                                                    {
+                                                                                                                                                        en-US = "Discover opportunities in the United States, Canada, Austrailia to study at universities abroad." ;
+                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                    } ;
+                                                                                                                                            subtitle =
+                                                                                                                                                ignore :
+                                                                                                                                                    {
+                                                                                                                                                        en-US = "Build your future" ;
+                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                    } ;
+                                                                                                                                            title =
+                                                                                                                                                ignore :
+                                                                                                                                                    {
+                                                                                                                                                        en-US = "Study" ;
+                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                    } ;
+                                                                                                                                        } ;
+                                                                                                                                    travel =
+                                                                                                                                        {
+                                                                                                                                            description =
+                                                                                                                                                ignore :
+                                                                                                                                                    {
+                                                                                                                                                        en-US = "Discover opportunities in the United States, Canada, Austrailia to study at universities abroad." ;
+                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                    } ;
+                                                                                                                                            subtitle =
+                                                                                                                                                ignore :
+                                                                                                                                                    {
+                                                                                                                                                        en-US = "Build your future" ;
                                                                                                                                                         zh-CN = "" ;
                                                                                                                                                     } ;
                                                                                                                                             title =

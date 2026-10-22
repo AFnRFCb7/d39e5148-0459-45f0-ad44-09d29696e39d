@@ -55,19 +55,19 @@ const journeys = [
     title: t('narrative.home.journeys.study.title'),
     subtitle: t('narrative.home.journeys.study.subtitle'),
     description: t('narrative.home.journeys.study.description'),
+    image: '/api/data/images/study.jpeg',
+  },
+  {
+    title: t('narrative.home.journeys.move.title'),
+    subtitle: t('narrative.home.journeys.move.subtitle'),
+    description: t('narrative.home.journeys.move.description'),
+    image: '/api/data/images/move.jpeg',
+  },
+  {
+    title: t('narrative.home.journeys.travel.title'),
+    subtitle: t('narrative.home.journeys.travel.subtitle'),
+    description: t('narrative.home.journeys.travel.description'),
     image: '/api/data/images/travel.jpeg',
-  },
-  {
-    title: 'Study',
-    subtitle: 'Build your future',
-    description: 'Discover opportunities in the United States, Canada, Austrailia to study at universities abroad.',
-    image: '/images/study.jpeg',
-  },
-  {
-    title: 'Move',
-    subtitle: 'Start a new chapter',
-    description: 'Navigate the journey of building a life in another country.',
-    image: '/images/move.jpeg',
   },
 ]
 </script>
