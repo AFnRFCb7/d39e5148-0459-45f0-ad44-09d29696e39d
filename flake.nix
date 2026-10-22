@@ -495,6 +495,12 @@
                                                                                                                 {
                                                                                                                     home =
                                                                                                                         {
+                                                                                                                            build =
+                                                                                                                                ignore :
+                                                                                                                                    {
+                                                                                                                                        en-US = "Build your future." ;
+                                                                                                                                        zh-CN = "" ;
+                                                                                                                                    } ;
                                                                                                                             farther =
                                                                                                                                 ignore :
                                                                                                                                     {
