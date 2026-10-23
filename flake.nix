@@ -1191,12 +1191,9 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
-                                                                                                        if [ -z "$OUTPUT" ] || [ -z "$URL" ]; then
-                                                                                                            failure 3107373632202759
-                                                                                                        fi
                                                                                                         cd /mounts/package
                                                                                                         export PLAYWRIGHT_BROWSERS_PATH=/mounts/writable
-                                                                                                        ./node_modules/.bin/playwright codegen --output="$OUTPUT/test.spec.js" http://127.0.0.1:8080/www
+                                                                                                        ./node_modules/.bin/playwright codegen --output="/mounts/output/test.spec.js" http://127.0.0.1:8080/www
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
