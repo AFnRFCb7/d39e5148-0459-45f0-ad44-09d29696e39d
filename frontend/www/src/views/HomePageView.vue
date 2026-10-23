@@ -95,7 +95,7 @@ const journeys = [
       rgba(12, 24, 42, 0.45),
       rgba(12, 24, 42, 0.12)
     ),
-    url("/images/travel.jpg");
+    url("/images/travel.jpeg");
   background-size: cover;
   background-position: center;
 }
