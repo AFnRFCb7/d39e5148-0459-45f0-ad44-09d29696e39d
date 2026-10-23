@@ -4,12 +4,12 @@ const { t, locale } = useI18n()
 </script>
 <template>
     <header class="header">'
-          <span v-if="session?.authenticated">
-            {{ session.user.email }} {{ session.user.admin }}
-          </span>
-          <span v-else>
-            Not logged in
-          </span>
+        <span v-if="session?.loggedIn">
+          Logged in as {{ session.user.email }} {{ session.user.admin }}
+        </span>
+        <span v-else>
+          Not logged in
+        </span>
         <div class="logo">{{ t('subject.Visa') }}</div>
         <nav>
             <a href="#">{{ t('subject.Study') }}</a>
