@@ -1229,7 +1229,7 @@
                                                                                                             _pkgs.xorg.libXfixes
                                                                                                             _pkgs.xorg.libXrandr
                                                                                                         ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-                                                                                                        CHROME=/mounts/writable/chromium-1248/chrome-linux64/chrome
+                                                                                                        # CHROME=/mounts/writable/chromium-1248/chrome-linux64/chrome
                                                                                                         if [[ "$SWITCH" == "record" ]]
                                                                                                         then
                                                                                                             ./node_modules/.bin/playwright codegen --output="$SPEC" http://127.0.0.1:8080/www
