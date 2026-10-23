@@ -1219,8 +1219,8 @@
                                                                                                             _pkgs.xorg.libXfixes
                                                                                                             _pkgs.xorg.libXrandr
                                                                                                         ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-                                                                                                        echo "$LD_LIBRARY_PATH"
-                                                                                                        ldd /mounts/writable/chromium-1248/chrome-linux64/chrome | grep 'not found'
+                                                                                                        CHROME=/mounts/writable/chromium-1248/chrome-linux64/chrome
+                                                                                                        ldd "$CHROME" | grep 'not found' || echo "No missing shared libraries"
                                                                                                         OUTPUT="$( mktemp --dry-run --suffix ".spec.js" /mounts/temporary/XXXXXXXX )" || failure 4744078473393178
                                                                                                         ./node_modules/.bin/playwright codegen --output="$OUTPUT" http://127.0.0.1:8080/www
                                                                                                         echo "${ "$" }{OUTPUT/#\/mounts\/temporary/\/tmp}"
