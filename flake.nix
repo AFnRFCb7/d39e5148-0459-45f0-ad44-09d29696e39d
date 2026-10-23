@@ -1184,6 +1184,7 @@
                                                                                                             pkgs.coreutils
                                                                                                             pkgs.nodejs_20
                                                                                                             pkgs.glib
+                                                                                                            ( _config.failure { } )
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
@@ -1195,6 +1196,7 @@
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
                                                                                                         cd /mounts/package
+                                                                                                        export PLAYWRIGHT_BROWSERS_PATH=/mounts/chromium
                                                                                                         ./node_modules/.bin/playwright codegen --output="$OUTPUT" "$URL"
                                                                                                     '' ;
                                                                                             } ;
