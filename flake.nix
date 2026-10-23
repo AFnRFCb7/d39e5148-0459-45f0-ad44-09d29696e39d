@@ -1205,6 +1205,19 @@
                                                                                                             _pkgs.dbus
                                                                                                             _pkgs.cups
                                                                                                             _pkgs.expat
+                                                                                                            _pkgs.libxcb
+                                                                                                            _pkgs.libxkbcommon
+                                                                                                            _pkgs.alsa-lib
+                                                                                                            _pkgs.mesa
+                                                                                                            _pkgs.xorg.libX11
+                                                                                                            _pkgs.xorg.libXext
+                                                                                                            _pkgs.cairo
+                                                                                                            _pkgs.pango
+                                                                                                            _pkgs.systemd
+                                                                                                            _pkgs.xorg.libXcomposite
+                                                                                                            _pkgs.xorg.libXdamage
+                                                                                                            _pkgs.xorg.libXfixes
+                                                                                                            _pkgs.xorg.libXrandr
                                                                                                         ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
                                                                                                         echo "$LD_LIBRARY_PATH"
                                                                                                         ldd /mounts/writable/chromium-1248/chrome-linux64/chrome | grep 'not found'
