@@ -7,6 +7,7 @@ CREATE TABLE users (
     email TEXT NOT NULL UNIQUE,
     password_hash TEXT NOT NULL,
     admin BOOLEAN NOT NULL DEFAULT FALSE,
+    locale TEXT NOT NULL DEFAULT 'en-US',
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ;
 CREATE TABLE user_auth_providers (

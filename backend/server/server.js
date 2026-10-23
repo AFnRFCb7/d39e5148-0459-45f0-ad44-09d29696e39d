@@ -261,6 +261,31 @@ app.get("/api/session", (request, response) => {
         user: request.session.user || null
     });
 });
+app.put("/api/user/locale", requiresLogin, async (request, response) => {
+    const user = request.session.user;
+
+    if (!user) {
+        return response.status(401).send("Not logged in");
+    }
+
+    const { locale } = request.body;
+
+    if (!["en-US", "zh-CN"].includes(locale)) {
+        return response.status(400).send("Unsupported locale");
+    }
+
+    try {
+        await database.query(
+            "UPDATE users SET locale = $1 WHERE id = $2",
+            [locale, user.id]
+        );
+
+        response.send("locale updated");
+    } catch (error) {
+        output.write(util.inspect(error) + "\n");
+        response.status(500).send("Internal server error");
+    }
+});
 app.get
     (
         "/api/utility/password",

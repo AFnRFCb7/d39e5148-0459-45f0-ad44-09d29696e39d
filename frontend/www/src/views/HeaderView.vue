@@ -1,5 +1,24 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted , watch } from 'vue'
+
+watch(locale, async (newLocale) => {
+    if (!loggedIn.value) {
+        return;
+    }
+
+    const response = await fetch("/api/user/locale", {
+        method: "PUT",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ locale: newLocale })
+    });
+
+    if (!response.ok) {
+        console.error("Failed to persist locale");
+    }
+});
 
 const session = ref(null)
 
