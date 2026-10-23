@@ -1240,6 +1240,7 @@
                                                                                                             cp --recursive /mounts/package/. .
                                                                                                             find . -name "*.spec.js" -delete
                                                                                                             cp "$SPEC" .
+                                                                                                            export HEADLESS=false
                                                                                                             ./node_modules/.bin/playwright test "/mount/pwd/$SPEC"
                                                                                                         else
                                                                                                             failure 2388810412609728
