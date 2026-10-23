@@ -729,6 +729,7 @@
                                                                                                                                               --text-file="$OUT"/temporary/i18n.txt \
                                                                                                                                               --flavor=woff2 \
                                                                                                                                               --output-file="$OUT"/data/fonts/noto-sans-sc-test.woff2
+                                                                                                                                            mkdir --parents "$OUT/data/playwright"
                                                                                                                                             rm --recursive --force "$OUT/temporary"
                                                                                                                                         '' ;
                                                                                                                                 }

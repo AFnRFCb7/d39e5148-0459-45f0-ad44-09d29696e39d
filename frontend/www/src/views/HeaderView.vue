@@ -1,6 +1,20 @@
 <script setup>
 import { ref, onMounted , watch } from 'vue'
 
+const session = ref(null)
+
+onMounted(async () => {
+  const response = await fetch('/api/session', {
+    credentials: 'include'
+  })
+
+  if (response.ok) {
+    session.value = await response.json()
+  }
+})
+import { useI18n } from 'vue-i18n'
+const { t, locale } = useI18n()
+
 watch(locale, async (newLocale) => {
     if (!loggedIn.value) {
         return;
@@ -19,20 +33,6 @@ watch(locale, async (newLocale) => {
         console.error("Failed to persist locale");
     }
 });
-
-const session = ref(null)
-
-onMounted(async () => {
-  const response = await fetch('/api/session', {
-    credentials: 'include'
-  })
-
-  if (response.ok) {
-    session.value = await response.json()
-  }
-})
-import { useI18n } from 'vue-i18n'
-const { t, locale } = useI18n()
 </script>
 <template>
     <header class="header">'

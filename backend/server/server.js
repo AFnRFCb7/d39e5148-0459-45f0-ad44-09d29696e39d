@@ -102,7 +102,7 @@ app.post("/api/auth/password/login", async (request, response) => {
 
     try {
         const result = await database.query(
-            "SELECT id, email, password_hash, admin FROM users WHERE email = $1",
+            "SELECT id, email, password_hash, admin, locale FROM users WHERE email = $1",
             [email]
         );
         output.write(`Login attempt: ${JSON.stringify({
@@ -120,7 +120,8 @@ app.post("/api/auth/password/login", async (request, response) => {
         request.session.user = {
             id: user.id,
             email: user.email,
-            admin: user.admin
+            admin: user.admin,
+            locale: user.locale
         };
         response.send("login");
     } catch (error) {
