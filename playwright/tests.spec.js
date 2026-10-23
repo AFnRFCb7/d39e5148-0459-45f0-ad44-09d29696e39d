@@ -6,7 +6,7 @@ const backendUrl = `http://${ backendHost }:${ backendPort }/api` ;
 test.describe("Admin Frontend" , () => {
 });
 test.describe("Gateway Server", ( ) => {
-    test.describe.skip("Admin Server", ( ) => {
+    test.describe.skip.("Admin Server", ( ) => {
         test.describe("Unauthenticated User", ( ) => {
             test.describe("Health Check", () => {
                 test.describe("Unauthenticated Buttons", ( ) => {
