@@ -1200,7 +1200,7 @@
                                                                                                         export PLAYWRIGHT_BROWSERS_PATH=/mounts/chromium
                                                                                                         DIRECTORY="$( dirname "/mounts/pwd/$OUTPUT" )" || failure 8026371623686732
                                                                                                         mkdir --parents "$DIRECTORY"
-                                                                                                        ./node_modules/.bin/playwright codegen --config=/mounts/package/playwright.config.js --output="/mounts/pwd/$OUTPUT" "$URL"
+                                                                                                        ./node_modules/.bin/playwright codegen --output="/mounts/pwd/$OUTPUT" "$URL"
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
