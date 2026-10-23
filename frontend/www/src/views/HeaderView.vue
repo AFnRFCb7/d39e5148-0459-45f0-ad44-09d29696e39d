@@ -66,7 +66,7 @@ watch(locale, async (newLocale) => {
             <a href="#">{{ t('subject.Move') }}</a>
         </nav>
         <RouterLink to="/login">{{ t('control.Log In') }}</RouterLink>
-        <button v-if="loggedIn" @click="logout">{{ t('control.Log Out'}}</button>
+        <button v-if="loggedIn" @click="logout">{{ t('control.Log Out') }}</button>
         <select v-model="locale" aria-label="Language">
             <option value="en-US">🇺🇸</option>
             <option value="zh-CN">🇨🇳</option>
