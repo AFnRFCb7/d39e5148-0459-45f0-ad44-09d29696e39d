@@ -1195,12 +1195,14 @@
                                                                                                         export PLAYWRIGHT_BROWSERS_PATH=/mounts/writable
                                                                                                         ./node_modules/.bin/playwright install chromium
                                                                                                         export LD_LIBRARY_PATH="${_pkgs.lib.makeLibraryPath [
-                                                                                                          _pkgs.glib
-                                                                                                          _pkgs.nspr
-                                                                                                          _pkgs.nss
-                                                                                                          _pkgs.nssTools
-                                                                                                          _pkgs.stdenv.cc.cc.lib
-                                                                                                          _pkgs.atk
+                                                                                                            _pkgs.glib
+                                                                                                            _pkgs.nspr
+                                                                                                            _pkgs.nss
+                                                                                                            _pkgs.nssTools
+                                                                                                            _pkgs.stdenv.cc.cc.lib
+                                                                                                            _pkgs.atk
+                                                                                                            _pkgs.at-spi2-core
+                                                                                                            _pkgs.dbus
                                                                                                         ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
                                                                                                         echo "$LD_LIBRARY_PATH"
                                                                                                         ./node_modules/.bin/playwright codegen --output="/mounts/output/test.spec.js" http://127.0.0.1:8080/www
