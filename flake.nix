@@ -1174,7 +1174,7 @@
                                                                                                         chromium = { read-only = true ; source = _pkgs.chromium ; type = "bind" ; } ;
                                                                                                         migrate = { read-only = true ; source = _config.visa.backend.database.migrate.package ; type = "bind" ; } ;
                                                                                                         package = { read-only = true ; source = _config.visa.playwright.package ; type = "bind" ; } ;
-                                                                                                        pwd = { read-only = false ; source = "." ; type = "bind" ; }
+                                                                                                        pwd = { read-only = false ; source = "." ; type = "bind" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
                                                                                                 post = null ;
