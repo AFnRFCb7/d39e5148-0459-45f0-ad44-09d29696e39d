@@ -1,7 +1,8 @@
 <script setup>
-import { ref, onMounted , watch } from 'vue'
+import { computed , ref, onMounted , watch } from 'vue'
 
 const session = ref(null)
+const loggedIn = computed(() => session.value?.loggedIn === true)
 
 onMounted(async () => {
   const response = await fetch('/api/session', {
@@ -10,6 +11,9 @@ onMounted(async () => {
 
   if (response.ok) {
     session.value = await response.json()
+    if (session.value.loggedIn && session.value.user?.locale) {
+        locale.value = session.value.user.locale
+    }
   }
 })
 
