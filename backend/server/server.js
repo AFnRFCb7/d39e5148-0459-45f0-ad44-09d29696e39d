@@ -52,6 +52,47 @@ function requireLogin(request, response, next) {
 const output = process.env.OUTPUT
     ? fs.createWriteStream(process.env.OUTPUT)
     : process.stdout;
+app.get("/api/auth/linked-providers", async (request, response) => {
+    const user = request.session.user;
+
+    if (!user) {
+        return response.status(401).json({
+            error: "Not logged in"
+        });
+    }
+
+    try {
+        const result = await database.query(
+            `SELECT provider
+             FROM user_auth_providers
+             WHERE user_id = $1
+             ORDER BY provider`,
+            [user.id]
+        );
+
+        const linkedProviders = new Set(
+            result.rows.map(row => row.provider)
+        );
+
+        response.json({
+            providers: [
+                {
+                    provider: "password",
+                    linked: true
+                },
+                {
+                    provider: "google",
+                    linked: linkedProviders.has("google")
+                }
+            ]
+        });
+    } catch (error) {
+        output.write(util.inspect(error) + "\n");
+        response.status(500).json({
+            error: "Internal server error"
+        });
+    }
+});
 app.post("/api/auth/password/login", async (request, response) => {
     const { email, password } = request.body;
 

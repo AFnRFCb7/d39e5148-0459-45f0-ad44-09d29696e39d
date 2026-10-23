@@ -503,7 +503,19 @@
                                                                                                                 } ;
                                                                                                             control =
                                                                                                                 {
-                                                                                                                    "log in" =
+                                                                                                                    Admin =
+                                                                                                                        ignore :
+                                                                                                                            {
+                                                                                                                                description = "" ;
+                                                                                                                                zh-CN = "管理后台" ;
+                                                                                                                            } ;
+                                                                                                                    User =
+                                                                                                                        ignore :
+                                                                                                                            {
+                                                                                                                                description = "" ;
+                                                                                                                                "zh-CN" = "用户" ;
+                                                                                                                            } ;
+                                                                                                                    "Log In" =
                                                                                                                         ignore :
                                                                                                                             {
                                                                                                                                 description = "" ;
@@ -524,12 +536,12 @@
                                                                                                                                 ignore :
                                                                                                                                     {
                                                                                                                                         en-US = "Choose the path that fits where you are going next." ;
-                                                                                                                                        zh-CN = "" ;
+                                                                                                                                        zh-CN = "选择适合您下一步旅程的路径" ;
                                                                                                                                     } ;
                                                                                                                             Explore =
                                                                                                                                 ignore :
                                                                                                                                     {
-                                                                                                                                        zh-CN = "" ;
+                                                                                                                                        zh-CN = "探索" ;
                                                                                                                                     } ;
                                                                                                                             farther =
                                                                                                                                 ignore :
@@ -557,19 +569,19 @@
                                                                                                                                                 ignore :
                                                                                                                                                     {
                                                                                                                                                         en-US = "Navigate the journey of build a life in another country" ;
-                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                        zh-CN = "开启在异国他乡建立新生活的旅程。" ;
                                                                                                                                                     } ;
                                                                                                                                             subtitle =
                                                                                                                                                 ignore :
                                                                                                                                                     {
                                                                                                                                                         en-US = "Start a new chapter" ;
-                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                        zh-CN = "开启人生新篇章" ;
                                                                                                                                                     } ;
                                                                                                                                             title =
                                                                                                                                                 ignore :
                                                                                                                                                     {
                                                                                                                                                         en-US = "Move" ;
-                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                        zh-CN = "移居" ;
                                                                                                                                                     } ;
                                                                                                                                         } ;
                                                                                                                                     study =
@@ -577,20 +589,20 @@
                                                                                                                                             description =
                                                                                                                                                 ignore :
                                                                                                                                                     {
-                                                                                                                                                        en-US = "Discover opportunities in the United States, Canada, Austrailia to study at universities abroad." ;
-                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                        en-US = "Discover opportunities in the United States, Canada, Austraila to study at universities abroad." ;
+                                                                                                                                                        zh-CN = "探索在美国、加拿大和澳大利亚的大学留学机会。" ;
                                                                                                                                                     } ;
                                                                                                                                             subtitle =
                                                                                                                                                 ignore :
                                                                                                                                                     {
                                                                                                                                                         en-US = "Build your future" ;
-                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                        zh-CN = "开启未来之路" ;
                                                                                                                                                     } ;
                                                                                                                                             title =
                                                                                                                                                 ignore :
                                                                                                                                                     {
                                                                                                                                                         en-US = "Study" ;
-                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                        zh-CN = "留学" ;
                                                                                                                                                     } ;
                                                                                                                                         } ;
                                                                                                                                     travel =
@@ -598,33 +610,33 @@
                                                                                                                                             description =
                                                                                                                                                 ignore :
                                                                                                                                                     {
-                                                                                                                                                        en-US = "Discover opportunities in the United States, Canada, Austrailia to study at universities abroad." ;
-                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                        en-US = "Plan your next international trip with confidence." ;
+                                                                                                                                                        zh-CN = "自信满满地规划您的下一次国际旅行。" ;
                                                                                                                                                     } ;
                                                                                                                                             subtitle =
                                                                                                                                                 ignore :
                                                                                                                                                     {
-                                                                                                                                                        en-US = "Build your future" ;
-                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                        en-US = "Explore the world" ;
+                                                                                                                                                        zh-CN = "探索世界" ;
                                                                                                                                                     } ;
                                                                                                                                             title =
                                                                                                                                                 ignore :
                                                                                                                                                     {
                                                                                                                                                         en-US = "Travel" ;
-                                                                                                                                                        zh-CN = "" ;
+                                                                                                                                                        zh-CN = "旅行" ;
                                                                                                                                                     } ;
                                                                                                                                         } ;
                                                                                                                                 } ;
                                                                                                                             options =
                                                                                                                                 ignore :
                                                                                                                                     {
-                                                                                                                                        en-US = "EXPLORE YOUR OPTIONS" ;
-                                                                                                                                        zh-CN = "" ;
+                                                                                                                                        en-US = "Explore your options" ;
+                                                                                                                                        zh-CN = "探索您的选择" ;
                                                                                                                                     } ;
                                                                                                                             "Request Consultation" =
                                                                                                                                 ignore :
                                                                                                                                     {
-                                                                                                                                        zh-CN = "" ;
+                                                                                                                                        zh-CN = "预约咨询" ;
                                                                                                                                     } ;
                                                                                                                             question =
                                                                                                                                 ignore :
@@ -636,7 +648,7 @@
                                                                                                                                 ignore :
                                                                                                                                     {
                                                                                                                                         en-US = "What's your journey?" ;
-                                                                                                                                        zh-CN = "" ;
+                                                                                                                                        zh-CN = "您想开启怎样的旅程？" ;
                                                                                                                                     } ;
                                                                                                                         } ;
                                                                                                                 } ;
