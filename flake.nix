@@ -1173,6 +1173,7 @@
                                                                                                     {
                                                                                                         chromium = { read-only = true ; source = _pkgs.chromium ; type = "bind" ; } ;
                                                                                                         migrate = { read-only = true ; source = _config.visa.backend.database.migrate.package ; type = "bind" ; } ;
+                                                                                                        output = { delete = false ; read-only = false ; type = "temporary" ; } ;
                                                                                                         package = { read-only = true ; source = _config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                         pwd = { read-only = false ; source = "." ; type = "bind" ; } ;
                                                                                                         writable = { read-only = false ; type = "temporary" ; } ;
@@ -1190,19 +1191,13 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
-                                                                                                        OUTPUT="$1"
-                                                                                                        URL="$2"
                                                                                                         if [ -z "$OUTPUT" ] || [ -z "$URL" ]; then
                                                                                                             failure 3107373632202759
                                                                                                         fi
-                                                                                                        # ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
-                                                                                                        # ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
                                                                                                         cd /mounts/package
                                                                                                         export PLAYWRIGHT_BROWSERS_PATH=/mounts/writable
-                                                                                                        # export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true
-                                                                                                        DIRECTORY="$( dirname "/mounts/pwd/$OUTPUT" )" || failure 8026371623686732
-                                                                                                        mkdir --parents "$DIRECTORY"
-                                                                                                        ./node_modules/.bin/playwright codegen --output="/mounts/pwd/$OUTPUT" "$URL"
+                                                                                                        SPEC="$( mktemp --suffix ".spec.js" --dry-run "$OUTPUT/XXXXXXXX )" || failure 9409866180657857
+                                                                                                        ./node_modules/.bin/playwright codegen --output="$SPEC" http://127.0.0.1:8080/www
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
