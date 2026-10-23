@@ -526,6 +526,12 @@
                                                                                                                                 description = "" ;
                                                                                                                                 "zh-CN" = "登录" ;
                                                                                                                             } ;
+                                                                                                                    "Log Out" =
+                                                                                                                        ignore :
+                                                                                                                            {
+                                                                                                                                description = "" ;
+                                                                                                                                zh-CN = "退出登录" ;
+                                                                                                                            }
                                                                                                                 } ;
                                                                                                             narrative =
                                                                                                                 {
