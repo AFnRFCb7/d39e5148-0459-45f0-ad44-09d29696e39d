@@ -11,7 +11,7 @@ const router = createRouter({
     { path: '/admin' , component: Admin },
     { path: '/get-started' , component : GetStarted } ,
     { path: '/', component: HomePage },
-    { path: '/login' , component: Login}
+    { path: '/login' , component: Login},
     { path: '/user', component : User}
   ],
 })
