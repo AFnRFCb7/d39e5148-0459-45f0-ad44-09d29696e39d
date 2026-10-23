@@ -509,6 +509,11 @@
                                                                                                                                 description = "" ;
                                                                                                                                 zh-CN = "管理后台" ;
                                                                                                                             } ;
+                                                                                                                    Home =
+                                                                                                                        ignore :
+                                                                                                                            {
+                                                                                                                                zh-CN = "首页" ;
+                                                                                                                            } ;
                                                                                                                     User =
                                                                                                                         ignore :
                                                                                                                             {
