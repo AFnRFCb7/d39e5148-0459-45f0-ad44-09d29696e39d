@@ -1236,7 +1236,7 @@
                                                                                                             echo "${ "$" }{OUTPUT/#\/mounts\/temporary/\/tmp}"
                                                                                                         elif [[ "$SWITCH" == "play" ]]
                                                                                                         then
-                                                                                                            cd /mounts/writeable
+                                                                                                            cd /mounts/writable
                                                                                                             cp --recursive /mounts/package/. .
                                                                                                             find . -name "*.spec.js" -delete
                                                                                                             cp "$SPEC" .
