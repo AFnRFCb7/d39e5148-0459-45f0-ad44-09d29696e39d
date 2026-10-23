@@ -531,7 +531,7 @@
                                                                                                                             {
                                                                                                                                 description = "" ;
                                                                                                                                 zh-CN = "退出登录" ;
-                                                                                                                            }
+                                                                                                                            } ;
                                                                                                                 } ;
                                                                                                             narrative =
                                                                                                                 {
@@ -712,6 +712,7 @@
                                                                                                                                                     }
                                                                                                                                             )
                                                                                                                                             ( _pkgs.python3.withPackages ( ps: [ ps.fonttools ps.brotli ] ) )
+                                                                                                                                            pkgs.findutils
                                                                                                                                             pkgs.noto-fonts-cjk-sans
                                                                                                                                         ] ;
                                                                                                                                     text =
@@ -736,6 +737,13 @@
                                                                                                                                               --flavor=woff2 \
                                                                                                                                               --output-file="$OUT"/data/fonts/noto-sans-sc-test.woff2
                                                                                                                                             mkdir --parents "$OUT/data/playwright"
+#                                                                                                                                            find ${ _config.visa.playwright.package }/demos | while read -r INPUT'
+#                                                                                                                                            do
+#                                                                                                                                                npx playwright test "$INPUT" \
+#                                                                                                                                                    --config "$config_file" \
+#                                                                                                                                                    --video on \
+#                                                                                                                                                    --workers 1
+#                                                                                                                                            done
                                                                                                                                             rm --recursive --force "$OUT/temporary"
                                                                                                                                         '' ;
                                                                                                                                 }
