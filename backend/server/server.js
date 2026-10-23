@@ -261,7 +261,7 @@ app.get("/api/session", (request, response) => {
         user: request.session.user || null
     });
 });
-app.put("/api/user/locale", requiresLogin, async (request, response) => {
+app.put("/api/user/locale", requireLogin, async (request, response) => {
     const user = request.session.user;
 
     if (!user) {
