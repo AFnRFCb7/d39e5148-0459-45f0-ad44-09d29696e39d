@@ -23,13 +23,8 @@ const { t, locale } = useI18n()
         <span v-else>
           Not logged in
         </span>
-
-        <a
-          v-if="session?.loggedIn && session.user?.admin === true"
-          href="/admin/"
-        >
-          Admin
-        </a>
+        <RouterLink v-if="session?.loggedIn" to="/www/user">User</RouterLink>
+        <RouterLink v-if="session?.loggedIn && session.user?.admin === true" to="/admin/">Admin</a>
         <div class="logo">{{ t('subject.Visa') }}</div>
         <nav>
             <a href="#">{{ t('subject.Study') }}</a>
