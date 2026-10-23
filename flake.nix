@@ -1236,6 +1236,10 @@
                                                                                                             echo "${ "$" }{OUTPUT/#\/mounts\/temporary/\/tmp}"
                                                                                                         elif [[ "$SWITCH" == "play" ]]
                                                                                                         then
+                                                                                                            cd /mounts/writeable
+                                                                                                            cp --recursive /mounts/package/. .
+                                                                                                            find . -name "*.spec.js" -delete
+                                                                                                            cp "$SPEC" .
                                                                                                             ./node_modules/.bin/playwright test "/mount/pwd/$SPEC"
                                                                                                         else
                                                                                                             failure 2388810412609728
