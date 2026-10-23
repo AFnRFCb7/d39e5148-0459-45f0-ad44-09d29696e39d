@@ -1175,6 +1175,7 @@
                                                                                                         migrate = { read-only = true ; source = _config.visa.backend.database.migrate.package ; type = "bind" ; } ;
                                                                                                         package = { read-only = true ; source = _config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                         pwd = { read-only = false ; source = "." ; type = "bind" ; } ;
+                                                                                                        writable = { read-only = false ; type = "temporary" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
                                                                                                 post = null ;
@@ -1197,8 +1198,8 @@
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
                                                                                                         cd /mounts/package
-                                                                                                        # export PLAYWRIGHT_BROWSERS_PATH=/mounts/chromium
-                                                                                                        export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true
+                                                                                                        export PLAYWRIGHT_BROWSERS_PATH=/mounts/writable
+                                                                                                        # export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true
                                                                                                         DIRECTORY="$( dirname "/mounts/pwd/$OUTPUT" )" || failure 8026371623686732
                                                                                                         mkdir --parents "$DIRECTORY"
                                                                                                         ./node_modules/.bin/playwright codegen --output="/mounts/pwd/$OUTPUT" "$URL"
