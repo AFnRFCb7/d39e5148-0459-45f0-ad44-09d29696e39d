@@ -1175,7 +1175,7 @@
                                                                                                         migrate = { read-only = true ; source = _config.visa.backend.database.migrate.package ; type = "bind" ; } ;
                                                                                                         output = { delete = false ; read-only = false ; type = "temporary" ; } ;
                                                                                                         package = { read-only = true ; source = _config.visa.playwright.package ; type = "bind" ; } ;
-                                                                                                        pwd = { read-only = false ; source = "." ; type = "bind" ; } ;
+                                                                                                        temporary = { read-only = false ; source = "/tmp" ; type = "bind" ; } ;
                                                                                                         writable = { read-only = false ; type = "temporary" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
@@ -1204,9 +1204,12 @@
                                                                                                             _pkgs.at-spi2-core
                                                                                                             _pkgs.dbus
                                                                                                             _pkgs.cups
+                                                                                                            _pkgs.expat
                                                                                                         ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
                                                                                                         echo "$LD_LIBRARY_PATH"
-                                                                                                        ./node_modules/.bin/playwright codegen --output="/mounts/output/test.spec.js" http://127.0.0.1:8080/www
+                                                                                                        OUTPUT="$( mktemp --dry-run --suffix ".spec.js" /mounts/temporary/XXXXXXXX )" || failure 4744078473393178
+                                                                                                        ./node_modules/.bin/playwright codegen --output="$OUTPUT" http://127.0.0.1:8080/www
+                                                                                                        echo "$OUTPUT"
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
