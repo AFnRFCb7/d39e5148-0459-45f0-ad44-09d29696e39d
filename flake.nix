@@ -1205,11 +1205,13 @@
                                                                                                             _pkgs.dbus
                                                                                                             _pkgs.cups
                                                                                                             _pkgs.expat
+                                                                                                            _pkgs.libxcb
                                                                                                         ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
                                                                                                         echo "$LD_LIBRARY_PATH"
+                                                                                                        ldd /mounts/writable/chromium-1248/chrome-linux64/chrome | grep 'not found'
                                                                                                         OUTPUT="$( mktemp --dry-run --suffix ".spec.js" /mounts/temporary/XXXXXXXX )" || failure 4744078473393178
                                                                                                         ./node_modules/.bin/playwright codegen --output="$OUTPUT" http://127.0.0.1:8080/www
-                                                                                                        echo "$OUTPUT"
+                                                                                                        echo "${ "$" }{OUTPUT/#\/mounts\/temporary/\/tmp}"
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
