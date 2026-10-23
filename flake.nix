@@ -1197,7 +1197,8 @@
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
                                                                                                         cd /mounts/package
                                                                                                         export PLAYWRIGHT_BROWSERS_PATH=/mounts/chromium
-                                                                                                        ./node_modules/.bin/playwright codegen --output="$OUTPUT" "$URL"
+                                                                                                        ./node_modules/.bin/playwright test --config=/mounts/package/playwright.config.js --output="$OUTPUT" "$URL:
+                                                                                                        # ./node_modules/.bin/playwright codegen --output="$OUTPUT" "$URL"
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
