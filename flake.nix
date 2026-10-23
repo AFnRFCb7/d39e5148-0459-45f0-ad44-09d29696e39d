@@ -1205,7 +1205,6 @@
                                                                                                             _pkgs.dbus
                                                                                                             _pkgs.cups
                                                                                                             _pkgs.expat
-                                                                                                            _pkgs.libxcb
                                                                                                         ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
                                                                                                         echo "$LD_LIBRARY_PATH"
                                                                                                         ldd /mounts/writable/chromium-1248/chrome-linux64/chrome | grep 'not found'
