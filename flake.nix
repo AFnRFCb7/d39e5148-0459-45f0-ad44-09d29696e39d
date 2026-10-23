@@ -1194,7 +1194,8 @@
                                                                                                         cd /mounts/package
                                                                                                         export PLAYWRIGHT_BROWSERS_PATH=/mounts/writable
                                                                                                         ./node_modules/.bin/playwright install chromium
-                                                                                                        export LD_LIBRARY_PATH="${ _pkgs.glib }/lib"
+                                                                                                        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${ _pkgs.glib }/lib
+                                                                                                        echo "$LD_LIBRARY_PATH"
                                                                                                         ./node_modules/.bin/playwright codegen --output="/mounts/output/test.spec.js" http://127.0.0.1:8080/www
                                                                                                     '' ;
                                                                                             } ;
