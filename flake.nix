@@ -1195,7 +1195,7 @@
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
                                                                                                         cd /mounts/package
-                                                                                                        npx playwright codegen --output="$OUTPUT" "$URL"
+                                                                                                        ./node_modules/.bin/playwright codegen --output="$OUTPUT" "$URL"
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
