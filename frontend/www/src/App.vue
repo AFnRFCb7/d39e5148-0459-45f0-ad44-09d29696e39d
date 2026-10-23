@@ -18,4 +18,7 @@ import Footer from './views/FooterView.vue'
 body {
   font-family: "Noto Sans SC", sans-serif;
 }
+.header button {
+    font-size: 16px;
+}
 </style>
