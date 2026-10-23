@@ -1197,7 +1197,7 @@
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
                                                                                                         cd /mounts/package
-                                                                                                        export PLAYWRIGHT_BROWSERS_PATH=/mounts/chromium
+                                                                                                        # export PLAYWRIGHT_BROWSERS_PATH=/mounts/chromium
                                                                                                         DIRECTORY="$( dirname "/mounts/pwd/$OUTPUT" )" || failure 8026371623686732
                                                                                                         mkdir --parents "$DIRECTORY"
                                                                                                         ./node_modules/.bin/playwright codegen --output="/mounts/pwd/$OUTPUT" "$URL"
