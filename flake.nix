@@ -1200,7 +1200,7 @@
                                                                                                           _pkgs.nss
                                                                                                           _pkgs.nssTools
                                                                                                           _pkgs.stdenv.cc.cc.lib
-                                                                                                        ]}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+                                                                                                        ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
                                                                                                         echo "$LD_LIBRARY_PATH"
                                                                                                         ./node_modules/.bin/playwright codegen --output="/mounts/output/test.spec.js" http://127.0.0.1:8080/www
                                                                                                     '' ;
