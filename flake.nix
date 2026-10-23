@@ -1205,7 +1205,7 @@
                                                                                                             _pkgs.dbus
                                                                                                             _pkgs.cups
                                                                                                             _pkgs.expat
-                                                                                                            _pkgs.libxcb
+                                                                                                            _pkgs.xorg.libxcb
                                                                                                             _pkgs.libxkbcommon
                                                                                                             _pkgs.alsa-lib
                                                                                                             _pkgs.mesa
