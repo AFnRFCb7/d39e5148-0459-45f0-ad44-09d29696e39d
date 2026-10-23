@@ -1,4 +1,17 @@
 <script setup>
+import { ref, onMounted } from 'vue'
+
+const session = ref(null)
+
+onMounted(async () => {
+  const response = await fetch('/api/session', {
+    credentials: 'include'
+  })
+
+  if (response.ok) {
+    session.value = await response.json()
+  }
+})
 import { useI18n } from 'vue-i18n'
 const { t, locale } = useI18n()
 </script>
