@@ -1196,8 +1196,7 @@
                                                                                                         fi
                                                                                                         cd /mounts/package
                                                                                                         export PLAYWRIGHT_BROWSERS_PATH=/mounts/writable
-                                                                                                        SPEC="$( mktemp --suffix ".spec.js" --dry-run "$OUTPUT/XXXXXXXX )" || failure 9409866180657857
-                                                                                                        ./node_modules/.bin/playwright codegen --output="$SPEC" http://127.0.0.1:8080/www
+                                                                                                        ./node_modules/.bin/playwright codegen --output="$OUTPUT/test.spec.js" http://127.0.0.1:8080/www
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
