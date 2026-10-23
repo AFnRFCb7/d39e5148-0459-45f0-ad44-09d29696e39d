@@ -52,6 +52,7 @@
                                                                                     FETCH_PLAYWRIGHT=${ _config.visa.playwright.fetch }
                                                                                     PACKAGE_PLAYWRIGHT=${ _config.visa.playwright.package }
                                                                                     FETCH_WWW=${ _config.visa.frontend.www.fetch }
+                                                                                    CODEGEN=${ _config.visa.playwright.codegen }
                                                                                     EOF
                                                                                 '' ;
                                                                         }
@@ -1162,6 +1163,43 @@
                                                                     } ;
                                                                 playwright =
                                                                     {
+                                                                        codegen =
+                                                                            _lib.mkOption
+                                                                                {
+                                                                                    default =
+                                                                                        _config.lazy-shell-application
+                                                                                            {
+                                                                                                mounts =
+                                                                                                    {
+                                                                                                        chromium = { read-only = true ; source = _pkgs.chromium ; type = "bind" ; } ;
+                                                                                                        migrate = { read-only = true ; source = _config.visa.backend.database.migrate.package ; type = "bind" ; } ;
+                                                                                                        package = { read-only = true ; source = _config.visa.playwright.package ; type = "bind" ; } ;
+                                                                                                    } ;
+                                                                                                name = "execute" ;
+                                                                                                post = null ;
+                                                                                                runtime-inputs =
+                                                                                                    pkgs :
+                                                                                                        [
+                                                                                                            pkgs.chromium
+                                                                                                            pkgs.coreutils
+                                                                                                            pkgs.nodejs_20
+                                                                                                            pkgs.glib
+                                                                                                        ] ;
+                                                                                                text =
+                                                                                                    ''
+                                                                                                        OUTPUT="$1"
+                                                                                                        URL="$2"
+                                                                                                        if [ -z "$OUTPUT" ] || [ -z "$URL" ]; then
+                                                                                                            failure 3107373632202759
+                                                                                                        fi
+                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
+                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
+                                                                                                        cd /mounts/package
+                                                                                                        /mounts/package/node_modules/.bin/npx playwright codegen --output="$OUTPUT" "$URL"
+                                                                                                    '' ;
+                                                                                            } ;
+                                                                                    type = _lib.types.package ;
+                                                                                } ;
                                                                         demo =
                                                                             _lib.mkOption
                                                                                 {
