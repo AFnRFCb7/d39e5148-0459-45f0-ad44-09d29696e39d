@@ -1174,6 +1174,7 @@
                                                                                                         chromium = { read-only = true ; source = _pkgs.chromium ; type = "bind" ; } ;
                                                                                                         migrate = { read-only = true ; source = _config.visa.backend.database.migrate.package ; type = "bind" ; } ;
                                                                                                         package = { read-only = true ; source = _config.visa.playwright.package ; type = "bind" ; } ;
+                                                                                                        pwd = { read-only = false ; source = "." ; type = "bind" ; }
                                                                                                     } ;
                                                                                                 name = "execute" ;
                                                                                                 post = null ;
@@ -1197,9 +1198,9 @@
                                                                                                         # ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
                                                                                                         cd /mounts/package
                                                                                                         export PLAYWRIGHT_BROWSERS_PATH=/mounts/chromium
-                                                                                                        DIRECTORY="$( dirname "$OUTPUT" )" || failure 8026371623686732
+                                                                                                        DIRECTORY="$( dirname "/mounts/pwd/$OUTPUT" )" || failure 8026371623686732
                                                                                                         mkdir --parents "$DIRECTORY"
-                                                                                                        ./node_modules/.bin/playwright codegen --config=/mounts/package/playwright.config.js --output="$OUTPUT" "$URL"
+                                                                                                        ./node_modules/.bin/playwright codegen --config=/mounts/package/playwright.config.js --output="/mounts/pwd/$OUTPUT" "$URL"
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
