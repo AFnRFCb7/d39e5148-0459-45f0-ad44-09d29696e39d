@@ -1192,8 +1192,8 @@
                                                                                                         if [ -z "$OUTPUT" ] || [ -z "$URL" ]; then
                                                                                                             failure 3107373632202759
                                                                                                         fi
-                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
-                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
+                                                                                                        # ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
+                                                                                                        # ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
                                                                                                         cd /mounts/package
                                                                                                         /mounts/package/node_modules/.bin/npx playwright codegen --output="$OUTPUT" "$URL"
                                                                                                     '' ;
