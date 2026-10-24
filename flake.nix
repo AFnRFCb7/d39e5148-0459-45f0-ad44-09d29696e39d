@@ -1236,7 +1236,7 @@
                                                                                                             echo "${ "$" }{OUTPUT/#\/mounts\/temporary/\/tmp}"
                                                                                                         elif [[ "$SWITCH" == "play" ]]
                                                                                                         then
-                                                                                                            cd /mounts/package/. .
+                                                                                                            cd /mounts/package/.
                                                                                                             export HEADLESS=false
                                                                                                             ./node_modules/.bin/playwright test
                                                                                                         else
