@@ -200,7 +200,7 @@
                                                                                         environments =
                                                                                             let
                                                                                                 execute =
-                                                                                                    text :
+                                                                                                    name : text :
                                                                                                         _lib.mkOption
                                                                                                             {
                                                                                                                 default =
@@ -210,7 +210,7 @@
                                                                                                                                 {
                                                                                                                                     package = { read-only = true ; source = _config.visa.backend.database.migrate.package ; type = "bind" ; } ;
                                                                                                                                 } ;
-                                                                                                                            name = "execute" ;
+                                                                                                                            name = name ;
                                                                                                                             post = null ;
                                                                                                                             runtime-inputs = pkgs : [ pkgs.postgresql pkgs.nodejs ] ;
                                                                                                                             text = text ;
@@ -223,6 +223,7 @@
                                                                                                             {
                                                                                                                 down =
                                                                                                                     execute
+                                                                                                                        "down"
                                                                                                                         ''
                                                                                                                             cd /mounts/package
                                                                                                                             export DATABASE_HOST=localhost
@@ -235,6 +236,7 @@
                                                                                                                         '' ;
                                                                                                                 up =
                                                                                                                     execute
+                                                                                                                        "up"
                                                                                                                         ''
                                                                                                                             cd /mounts/package
                                                                                                                             export DATABASE_HOST=localhost
@@ -1275,8 +1277,11 @@
                                                                                                 runtime-inputs =
                                                                                                     pkgs :
                                                                                                         [
+                                                                                                            _config.visa.backend.database.migration.environment.staging.down
+                                                                                                            _config.visa.backend.database.migration.environment.staging.up
                                                                                                             pkgs.chromium
                                                                                                             pkgs.coreutils
+                                                                                                            pkgs.findutils
                                                                                                             pkgs.nodejs_20
                                                                                                             pkgs.glib
                                                                                                         ] ;
@@ -1285,8 +1290,12 @@
                                                                                                         cd /mounts/playwright
                                                                                                         cp --recursive "/mounts/package/." .
                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
-                                                                                                        cd /mounts/playwright
-                                                                                                        ./node_modules/.bin/playwright test tests.spec.js
+                                                                                                        find /mounts/playwright/tests -name "*.spec.js" | sort | while read -r SPEC
+                                                                                                        do
+                                                                                                            down
+                                                                                                            up
+                                                                                                            /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
+                                                                                                        done
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
