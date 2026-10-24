@@ -1236,7 +1236,10 @@
                                                                                                             echo "${ "$" }{OUTPUT/#\/mounts\/temporary/\/tmp}"
                                                                                                         elif [[ "$SWITCH" == "play" ]]
                                                                                                         then
-                                                                                                            cd /mounts/package/.
+                                                                                                            cd "$( mktemp --directory )"
+                                                                                                            cp --recursive /mounts/package/. .
+                                                                                                            find . -name "*.spec.js" -delete
+                                                                                                            cp "/mounts/pwd/$SPEC" .
                                                                                                             export HEADLESS=false
                                                                                                             ./node_modules/.bin/playwright test
                                                                                                         else
