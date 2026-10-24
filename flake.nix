@@ -53,7 +53,6 @@
                                                                                     PACKAGE_PLAYWRIGHT=${ _config.visa.playwright.package }
                                                                                     FETCH_WWW=${ _config.visa.frontend.www.fetch }
                                                                                     CODEGEN=${ _config.visa.playwright.codegen }
-                                                                                    DEMOS=${ _config.visa.playwright.demos }
                                                                                     EOF
                                                                                 '' ;
                                                                         }
