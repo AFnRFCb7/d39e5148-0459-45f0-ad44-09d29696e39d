@@ -110,7 +110,7 @@
                                                                             serviceConfig =
                                                                                 {
                                                                                     DynamicUser = true ;
-                                                                                    ExecStartPost = "${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute" ;
+                                                                                    ExecStartPost = "${ _config.visa.backend.database.migrate.environments.staging.up }/bin/up" ;
                                                                                     ExecStart =
                                                                                         let
                                                                                             application =
@@ -1252,8 +1252,8 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
-                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/execute
-                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/execute
+                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging.down }/bin/down
+                                                                                                        ${ _config.visa.backend.database.migrate.environments.staging.up }/bin/up
                                                                                                         cd /mounts/package
                                                                                                         BROWSER=chromium HEADLESS=false node demo.js
                                                                                                     '' ;
@@ -1495,7 +1495,7 @@
                                                                                                     {
                                                                                                         name = "execute-migrate" ;
                                                                                                         runtimeInputs = [ _config.visa.backend.database.migrate.environments.staging.up ] ;
-                                                                                                        text = "execute" ;
+                                                                                                        text = "up" ;
                                                                                                     }
                                                                                             )
                                                                                             (
