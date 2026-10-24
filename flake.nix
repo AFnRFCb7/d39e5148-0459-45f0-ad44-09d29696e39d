@@ -1260,6 +1260,34 @@
                                                                                             } ;
                                                                                     type = _lib.types.package ;
                                                                                 } ;
+                                                                        demos =
+                                                                            _lib.mkOption
+                                                                                {
+                                                                                    type =
+                                                                                        _pkgs.stdenv.mkDerivation
+                                                                                            {
+                                                                                                installPhase = ''install-phase "$out"'' ;
+                                                                                                name = "demos" ;
+                                                                                                nativeBuildInputs =
+                                                                                                    [
+                                                                                                        (
+                                                                                                            _pkgs.writeShellApplication
+                                                                                                                {
+                                                                                                                    name = "install-phase" ;
+                                                                                                                    runtimeInputs = [ pkgs.coreutils pkgs.findutils ] ;
+                                                                                                                    text =
+                                                                                                                        ''
+                                                                                                                            OUT="$1"
+                                                                                                                            mkdir --parents "$OUT"
+                                                                                                                            # find -name "*.spec.js"
+                                                                                                                        '' ;
+                                                                                                                }
+                                                                                                        )
+                                                                                                    ] ;
+                                                                                                src = ./. ;
+                                                                                            } ;
+                                                                                    default = _lib.types.package ;
+                                                                                } ;
                                                                         execute =
                                                                             _lib.mkOption
                                                                                 {
@@ -1277,8 +1305,8 @@
                                                                                                 runtime-inputs =
                                                                                                     pkgs :
                                                                                                         [
-                                                                                                            _config.visa.backend.database.migration.environment.staging.down
-                                                                                                            _config.visa.backend.database.migration.environment.staging.up
+                                                                                                            _config.visa.backend.database.migrate.environment.staging.down
+                                                                                                            _config.visa.backend.database.migrate.environment.staging.up
                                                                                                             pkgs.chromium
                                                                                                             pkgs.coreutils
                                                                                                             pkgs.findutils
