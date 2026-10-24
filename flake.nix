@@ -1191,16 +1191,6 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
-                                                                                                        SWITCH="$1"
-                                                                                                        if [[ "$SWITCH" == "record" ]]
-                                                                                                        then
-                                                                                                            SPEC="$( mktemp --dry-run --suffix ".spec.js" /mounts/temporary/XXXXXXXX )" || failure 4744078473393178
-                                                                                                        elif [[ "$SWITCH" == "play" ]]
-                                                                                                        then
-                                                                                                            SPEC="$2"
-                                                                                                        else
-                                                                                                            failure 7390753806447667
-                                                                                                        fi
                                                                                                         cd /mounts/package
                                                                                                         export PLAYWRIGHT_BROWSERS_PATH=/mounts/writable
                                                                                                         ./node_modules/.bin/playwright install chromium
@@ -1229,22 +1219,8 @@
                                                                                                             _pkgs.xorg.libXfixes
                                                                                                             _pkgs.xorg.libXrandr
                                                                                                         ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-                                                                                                        # CHROME=/mounts/writable/chromium-1248/chrome-linux64/chrome
-                                                                                                        if [[ "$SWITCH" == "record" ]]
-                                                                                                        then
-                                                                                                            ./node_modules/.bin/playwright codegen --output="$SPEC" http://127.0.0.1:8080/www
-                                                                                                            echo "${ "$" }{OUTPUT/#\/mounts\/temporary/\/tmp}"
-                                                                                                        elif [[ "$SWITCH" == "play" ]]
-                                                                                                        then
-                                                                                                            cd "$( mktemp --directory )"
-                                                                                                            cp --recursive /mounts/package/. .
-                                                                                                            find . -name "*.spec.js" -delete
-                                                                                                            cp "/mounts/pwd/$SPEC" .
-                                                                                                            export HEADLESS=false
-                                                                                                            ./node_modules/.bin/playwright test
-                                                                                                        else
-                                                                                                            failure 2388810412609728
-                                                                                                        fi
+                                                                                                        ./node_modules/.bin/playwright codegen --output="$SPEC" http://127.0.0.1:8080/www
+                                                                                                        echo "${ "$" }{OUTPUT/#\/mounts\/temporary/\/tmp}"
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
