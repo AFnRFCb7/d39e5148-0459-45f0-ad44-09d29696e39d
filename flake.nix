@@ -1264,28 +1264,34 @@
                                                                             _lib.mkOption
                                                                                 {
                                                                                     type =
-                                                                                        _pkgs.stdenv.mkDerivation
-                                                                                            {
-                                                                                                installPhase = ''install-phase "$out"'' ;
-                                                                                                name = "demos" ;
-                                                                                                nativeBuildInputs =
-                                                                                                    [
-                                                                                                        (
-                                                                                                            _pkgs.writeShellApplication
-                                                                                                                {
-                                                                                                                    name = "install-phase" ;
-                                                                                                                    runtimeInputs = [ pkgs.coreutils pkgs.findutils ] ;
-                                                                                                                    text =
-                                                                                                                        ''
-                                                                                                                            OUT="$1"
-                                                                                                                            mkdir --parents "$OUT"
-                                                                                                                            # find -name "*.spec.js"
-                                                                                                                        '' ;
-                                                                                                                }
-                                                                                                        )
-                                                                                                    ] ;
-                                                                                                src = ./. ;
-                                                                                            } ;
+                                                                                        let
+                                                                                            demos = ./playwright/demos ;
+                                                                                            in
+                                                                                                _pkgs.stdenv.mkDerivation
+                                                                                                    {
+                                                                                                        installPhase = ''install-phase "$out"'' ;
+                                                                                                        name = "demos" ;
+                                                                                                        nativeBuildInputs =
+                                                                                                            [
+                                                                                                                (
+                                                                                                                    _pkgs.writeShellApplication
+                                                                                                                        {
+                                                                                                                            name = "install-phase" ;
+                                                                                                                            runtimeInputs = [ pkgs.coreutils pkgs.findutils ] ;
+                                                                                                                            text =
+                                                                                                                                ''
+                                                                                                                                    OUT="$1"
+                                                                                                                                    mkdir --parents "$OUT"
+                                                                                                                                    find ${ demos } -name "*.spec.js" | sort | while read -r SPEC
+                                                                                                                                    do
+                                                                                                                                        RELATIVE_SPEC="${ "$" }{SPEC}"
+                                                                                                                                    done
+                                                                                                                                '' ;
+                                                                                                                        }
+                                                                                                                )
+                                                                                                            ] ;
+                                                                                                        src = ./. ;
+                                                                                                    } ;
                                                                                     default = _lib.types.package ;
                                                                                 } ;
                                                                         execute =
@@ -1305,8 +1311,8 @@
                                                                                                 runtime-inputs =
                                                                                                     pkgs :
                                                                                                         [
-                                                                                                            _config.visa.backend.database.migrate.environment.staging.down
-                                                                                                            _config.visa.backend.database.migrate.environment.staging.up
+                                                                                                            _config.visa.backend.database.migrate.environments.staging.down
+                                                                                                            _config.visa.backend.database.migrate.environments.staging.up
                                                                                                             pkgs.chromium
                                                                                                             pkgs.coreutils
                                                                                                             pkgs.findutils
