@@ -1219,8 +1219,9 @@
                                                                                                             _pkgs.xorg.libXfixes
                                                                                                             _pkgs.xorg.libXrandr
                                                                                                         ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-                                                                                                        ./node_modules/.bin/playwright codegen --output="$SPEC" http://127.0.0.1:8080/www
-                                                                                                        echo "${ "$" }{OUTPUT/#\/mounts\/temporary/\/tmp}"
+                                                                                                        SPEC="$( mktemp --suffix ".spec.js" /mounts/temporary/XXXXXXXX )" || failure 6252736109145105
+                                                                                                        ./node_modules/.bin/playwright codegen --output="$SPEC"
+                                                                                                        echo "${ "$" }{SPEC/#\/mounts\/temporary/\/tmp}"
                                                                                                     '' ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
