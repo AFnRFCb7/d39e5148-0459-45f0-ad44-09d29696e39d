@@ -53,6 +53,7 @@
                                                                                     PACKAGE_PLAYWRIGHT=${ _config.visa.playwright.package }
                                                                                     FETCH_WWW=${ _config.visa.frontend.www.fetch }
                                                                                     CODEGEN=${ _config.visa.playwright.codegen }
+                                                                                    DEMOS=${ _config.visa.playwright.demos }
                                                                                     EOF
                                                                                 '' ;
                                                                         }
@@ -1277,16 +1278,44 @@
                                                                                                                     _pkgs.writeShellApplication
                                                                                                                         {
                                                                                                                             name = "install-phase" ;
-                                                                                                                            runtimeInputs = [ pkgs.coreutils pkgs.findutils ] ;
+                                                                                                                            runtimeInputs = [ ( _config.failure { } ) pkgs.coreutils pkgs.findutils ] ;
                                                                                                                             text =
-                                                                                                                                ''
-                                                                                                                                    OUT="$1"
-                                                                                                                                    mkdir --parents "$OUT"
-                                                                                                                                    find ${ demos } -name "*.spec.js" | sort | while read -r SPEC
-                                                                                                                                    do
-                                                                                                                                        RELATIVE_SPEC="${ "$" }{SPEC}"
-                                                                                                                                    done
-                                                                                                                                '' ;
+                                                                                                                                let
+                                                                                                                                    script =
+                                                                                                                                        _pkgs.writeShellApplication
+                                                                                                                                            {
+                                                                                                                                                name = "execute" ;
+                                                                                                                                                runtimeInputs =
+                                                                                                                                                    [
+                                                                                                                                                        _config.visa.backend.database.migrate.environments.staging.down
+                                                                                                                                                        _config.visa.backend.database.migrate.environments.staging.up
+                                                                                                                                                        pkgs.chromium
+                                                                                                                                                        pkgs.coreutils
+                                                                                                                                                        pkgs.findutils
+                                                                                                                                                        pkgs.nodejs_20
+                                                                                                                                                        pkgs.glib
+                                                                                                                                                    ] ;
+                                                                                                                                                text =
+                                                                                                                                                    ''
+                                                                                                                                                        cd /mounts/playwright
+                                                                                                                                                        cp --recursive "/mounts/package/." .
+                                                                                                                                                        export PATH="$PATH:/mounts/package/node_modules/.bin"
+                                                                                                                                                        down
+                                                                                                                                                        up
+                                                                                                                                                        /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
+                                                                                                                                                    '' ;
+                                                                                                                                            } ;
+                                                                                                                                    in
+                                                                                                                                        ''
+                                                                                                                                            OUT="$1"
+                                                                                                                                            mkdir --parents "$OUT"
+                                                                                                                                            find ${ demos } -name "*.spec.js" | sort | while read -r SPEC
+                                                                                                                                            do
+                                                                                                                                                RELATIVE_SPEC="${ "$" }{SPEC}"
+                                                                                                                                                mkdir --parents "$OUT/$RELATIVE_SPEC"
+                                                                                                                                                ln --symbolic ${ script }/bin/execute "$RELATIVE_SPEC/execute"
+                                                                                                                                            done
+                                                                                                                                        '' ;
                                                                                                                         }
                                                                                                                 )
                                                                                                             ] ;
@@ -1326,8 +1355,8 @@
                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
                                                                                                         find /mounts/playwright/tests -name "*.spec.js" | sort | while read -r SPEC
                                                                                                         do
-                                                                                                            down
-                                                                                                            up
+                                                                                                            # down
+                                                                                                            # up
                                                                                                             /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
                                                                                                         done
                                                                                                     '' ;
