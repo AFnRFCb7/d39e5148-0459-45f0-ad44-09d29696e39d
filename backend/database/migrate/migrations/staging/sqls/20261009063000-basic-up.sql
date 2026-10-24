@@ -2,11 +2,6 @@
 INSERT INTO users (email, password_hash, admin)
 VALUES
     (
-        'playwright-regular@example.com',
-        '$2b$10$8magse9B2Gbj49hFHjiuSeGu8za6gGmPucg4.3MZjVe6pQLnO/gPC',
-        FALSE
-    ),
-    (
         'playwright-english@example.com',
         '$2b$10$8magse9B2Gbj49hFHjiuSeGu8za6gGmPucg4.3MZjVe6pQLnO/gPC',
         FALSE

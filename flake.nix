@@ -1281,19 +1281,27 @@
                                                                                                                             text =
                                                                                                                                 let
                                                                                                                                     script =
-                                                                                                                                        _pkgs.writeShellApplication
+                                                                                                                                        _config.lazy-shell-application
                                                                                                                                             {
+                                                                                                                                                mounts =
+                                                                                                                                                    {
+                                                                                                                                                        chromium = { read-only = true ; source = _pkgs.chromium ; type = "bind" ; } ;
+                                                                                                                                                        package = { read-only = true ; source = _config.visa.playwright.package ; type = "bind" ; } ;
+                                                                                                                                                        playwright = { type = "temporary" ; } ;
+                                                                                                                                                    } ;
                                                                                                                                                 name = "execute" ;
-                                                                                                                                                runtimeInputs =
-                                                                                                                                                    [
-                                                                                                                                                        _config.visa.backend.database.migrate.environments.staging.down
-                                                                                                                                                        _config.visa.backend.database.migrate.environments.staging.up
-                                                                                                                                                        pkgs.chromium
-                                                                                                                                                        pkgs.coreutils
-                                                                                                                                                        pkgs.findutils
-                                                                                                                                                        pkgs.nodejs_20
-                                                                                                                                                        pkgs.glib
-                                                                                                                                                    ] ;
+                                                                                                                                                post = null ;
+                                                                                                                                                runtime-inputs =
+                                                                                                                                                    pkgs :
+                                                                                                                                                        [
+                                                                                                                                                            _config.visa.backend.database.migrate.environments.staging.down
+                                                                                                                                                            _config.visa.backend.database.migrate.environments.staging.up
+                                                                                                                                                            pkgs.chromium
+                                                                                                                                                            pkgs.coreutils
+                                                                                                                                                            pkgs.findutils
+                                                                                                                                                            pkgs.nodejs_20
+                                                                                                                                                            pkgs.glib
+                                                                                                                                                        ] ;
                                                                                                                                                 text =
                                                                                                                                                     ''
                                                                                                                                                         cd /mounts/playwright
@@ -1312,7 +1320,8 @@
                                                                                                                                             do
                                                                                                                                                 RELATIVE_SPEC="${ "$" }{SPEC}"
                                                                                                                                                 mkdir --parents "$OUT/$RELATIVE_SPEC"
-                                                                                                                                                ln --symbolic ${ script }/bin/execute "$RELATIVE_SPEC/execute"
+                                                                                                                                                sed -e "s#\$SPEC#${ demos }/$RELATIVE_SPEC#" -e "$OUT/$RELATIVE_SPEC" ${ script }/bin/execute
+                                                                                                                                                chmod a+rwx "$OUT/$RELATIVE_SPEC"
                                                                                                                                             done
                                                                                                                                         '' ;
                                                                                                                         }
