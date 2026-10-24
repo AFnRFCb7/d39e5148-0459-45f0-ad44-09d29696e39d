@@ -1354,8 +1354,8 @@
                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
                                                                                                         find /mounts/playwright/tests -name "*.spec.js" | sort | while read -r SPEC
                                                                                                         do
-                                                                                                            # down
-                                                                                                            # up
+                                                                                                            down
+                                                                                                            up
                                                                                                             /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
                                                                                                         done
                                                                                                     '' ;
