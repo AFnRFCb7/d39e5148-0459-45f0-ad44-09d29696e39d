@@ -125,6 +125,7 @@
                                                                                                                 initdb --pgdata=/mounts/state --username postgres
                                                                                                                 postgres -h 127.0.0.1 -D /mounts/state -p ${ builtins.toString _config.visa.backend.database.environments.staging.port } --unix-socket-directories=/mounts/socket
                                                                                                             '' ;
+                                                                                                        variables = { } ;
                                                                                                     } ;
                                                                                             in "${ application }/bin/ExecStart" ;
                                                                                 } ;
@@ -192,6 +193,7 @@
                                                                                                                 mkdir --parents visa
                                                                                                                 initdb --pgdata=/mounts/home/visa
                                                                                                             '' ;
+                                                                                                        variables = { } ;
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
@@ -214,6 +216,7 @@
                                                                                                                             post = null ;
                                                                                                                             runtime-inputs = pkgs : [ pkgs.postgresql pkgs.nodejs ] ;
                                                                                                                             text = text ;
+                                                                                                                            variables = { } ;
                                                                                                                         } ;
                                                                                                                 type = _lib.types.package ;
                                                                                                             } ;
@@ -301,6 +304,7 @@
                                                                                                                                 git clean -fd
                                                                                                                                 git commit -am "$MESSAGE" --allow-empty --allow-empty-message
                                                                                                                             '' ;
+                                                                                                                variables = { } ;
                                                                                                             } ;
                                                                                                     type = _lib.types.package ;
                                                                                                 } ;
@@ -386,6 +390,7 @@
                                                                                                                                         export SESSION_SECRET="${ builtins.toString _config.visa.backend.server.environments.staging.name }"
                                                                                                                                         node /mounts/package/server.js ${ builtins.toString _config.visa.backend.server.environments.staging.port }
                                                                                                                                     '' ;
+                                                                                                                                variables = { } ;
                                                                                                                             } ;
                                                                                                                     type = _lib.types.package ;
                                                                                                                 } ;
@@ -447,6 +452,7 @@
                                                                                                                         git clean -fd
                                                                                                                         git commit -am "$MESSAGE" --allow-empty --allow-empty-message
                                                                                                                     '' ;
+                                                                                                        variables = { } ;
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
@@ -842,6 +848,7 @@
                                                                                                                         git clean -fd
                                                                                                                         git commit -am "$MESSAGE" --allow-empty --allow-empty-message
                                                                                                                     '' ;
+                                                                                                        variables = { } ;
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
@@ -983,6 +990,7 @@
                                                                                                                         git clean -fd
                                                                                                                         git commit -am "$MESSAGE" --allow-empty --allow-empty-message
                                                                                                                     '' ;
+                                                                                                        variables = { } ;
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
@@ -1108,6 +1116,7 @@
                                                                                                                         git clean -fd
                                                                                                                         git commit -am "$MESSAGE" --allow-empty --allow-empty-message
                                                                                                                     '' ;
+                                                                                                        variables = { } ;
                                                                                                     } ;
                                                                                             type = _lib.types.package ;
                                                                                         } ;
@@ -1225,6 +1234,7 @@
                                                                                                         ./node_modules/.bin/playwright codegen --output="$SPEC"
                                                                                                         echo "${ "$" }{SPEC/#\/mounts\/temporary/\/tmp}"
                                                                                                     '' ;
+                                                                                                variables = { } ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
                                                                                 } ;
@@ -1257,6 +1267,7 @@
                                                                                                         cd /mounts/package
                                                                                                         BROWSER=chromium HEADLESS=false node demo.js
                                                                                                     '' ;
+                                                                                                variables = { } ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
                                                                                 } ;
@@ -1311,6 +1322,7 @@
                                                                                                                                                         up
                                                                                                                                                         /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
                                                                                                                                                     '' ;
+                                                                                                                                                variables = { } ;
                                                                                                                                             } ;
                                                                                                                                     in
                                                                                                                                         ''
@@ -1368,6 +1380,7 @@
                                                                                                             /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
                                                                                                         done
                                                                                                     '' ;
+                                                                                                variables = { } ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
                                                                                 } ;
@@ -1428,6 +1441,7 @@
                                                                                                                 git clean -fd
                                                                                                                 git commit -am "$MESSAGE" --allow-empty --allow-empty-message
                                                                                                             '' ;
+                                                                                                variables = { } ;
                                                                                             } ;
                                                                                     type = _lib.types.package ;
                                                                                 } ;
