@@ -55,6 +55,7 @@
                                                                                     CODEGEN=${ _config.visa.playwright.codegen }
                                                                                     EOF
                                                                                 '' ;
+                                                                            variables = { } ;
                                                                         }
                                                                 )
                                                             ] ;
