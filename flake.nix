@@ -29,7 +29,7 @@
                                                                             mounts = { } ;
                                                                             name = "visa" ;
                                                                             post = null ;
-                                                                            runtime-inputs = pkgs : [ pkgs.coreutils ] ;
+                                                                            runtime-inputs = { pkgs , ... } : [ pkgs.coreutils ] ;
                                                                             text =
                                                                                 ''
                                                                                     cat <<EOF
