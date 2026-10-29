@@ -1486,8 +1486,6 @@
                                         failure ,
                                         lazy-shell-application ,
                                         nixosTest ,
-                                        node-fetch ,
-                                        node-package ,
                                         obviated-by ,
                                         tree-serialization ,
                                         visitor
@@ -1534,7 +1532,7 @@
                                                                                             ] ;
                                                                                         # visa.backend.server.environments.staging.secret = 4384081546961841 ;
                                                                                     } ;
-                                                                                imports = [ failure implementation lazy-shell-application node-fetch node-package visitor tree-serialization ] ;
+                                                                                imports = [ failure implementation lazy-shell-application visitor tree-serialization ] ;
                                                                             } ;
                                                         testScript =
                                                             ''
