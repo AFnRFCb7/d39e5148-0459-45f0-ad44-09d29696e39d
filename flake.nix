@@ -120,7 +120,7 @@
                                                                                                         mounts = { socket = { type = "temporary" ; } ; state = { type = "temporary" ; } ; } ;
                                                                                                         name = "ExecStart" ;
                                                                                                         post = null ;
-                                                                                                        runtime-inputs = pkgs : [ pkgs.postgresql ] ;
+                                                                                                        runtime-inputs = { pkgs , ... } : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
                                                                                                                 initdb --pgdata=/mounts/state --username postgres
@@ -187,7 +187,7 @@
                                                                                                         mounts = { home = { source = "/tmp" ; type = "bind" ; } ; } ;
                                                                                                         name = "init" ;
                                                                                                         post = null ;
-                                                                                                        runtime-inputs = pkgs : [ pkgs.postgresql ] ;
+                                                                                                        runtime-inputs = { pkgs , ... } : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
                                                                                                                 cd /mounts/home
@@ -215,7 +215,7 @@
                                                                                                                                 } ;
                                                                                                                             name = name ;
                                                                                                                             post = null ;
-                                                                                                                            runtime-inputs = pkgs : [ pkgs.postgresql pkgs.nodejs ] ;
+                                                                                                                            runtime-inputs = { pkgs , ... } : [ pkgs.postgresql pkgs.nodejs ] ;
                                                                                                                             text = text ;
                                                                                                                             variables = { } ;
                                                                                                                         } ;
@@ -266,7 +266,7 @@
                                                                                                                 name = "fetch" ;
                                                                                                                 post = null ;
                                                                                                                 runtime-inputs =
-                                                                                                                    pkgs :
+                                                                                                                    { pkgs , ... } :
                                                                                                                         [
                                                                                                                             (
                                                                                                                                 _config.tree-serialization.explode
@@ -383,7 +383,7 @@
                                                                                                                                     } ;
                                                                                                                                 name = "execute" ;
                                                                                                                                 post = null ;
-                                                                                                                                runtime-inputs = pkgs : [ pkgs.coreutils pkgs.nodejs ] ;
+                                                                                                                                runtime-inputs = { pkgs , ... } : [ pkgs.coreutils pkgs.nodejs ] ;
                                                                                                                                 text =
                                                                                                                                     ''
                                                                                                                                         cd /mounts/package
@@ -413,7 +413,7 @@
                                                                                                         name = "fetch" ;
                                                                                                         post = null ;
                                                                                                         runtime-inputs =
-                                                                                                            pkgs :
+                                                                                                            { pkgs , ... } :
                                                                                                                 [
                                                                                                                     (
                                                                                                                         _config.tree-serialization.explode
@@ -792,7 +792,7 @@
                                                                                                         name = "fetch" ;
                                                                                                         post = null ;
                                                                                                         runtime-inputs =
-                                                                                                            pkgs :
+                                                                                                            { pkgs , ... } :
                                                                                                                 [
                                                                                                                     (
                                                                                                                         _config.tree-serialization.explode
@@ -927,7 +927,7 @@
                                                                                                         name = "fetch" ;
                                                                                                         post = null ;
                                                                                                         runtime-inputs =
-                                                                                                            pkgs :
+                                                                                                            { pkgs , ... } :
                                                                                                                 [
                                                                                                                     (
                                                                                                                         _config.tree-serialization.explode
@@ -1059,7 +1059,7 @@
                                                                                                         name = "fetch" ;
                                                                                                         post = null ;
                                                                                                         runtime-inputs =
-                                                                                                            pkgs :
+                                                                                                            { pkgs , ... } :
                                                                                                                 [
                                                                                                                     (
                                                                                                                         _config.tree-serialization.explode
@@ -1193,7 +1193,7 @@
                                                                                                 name = "execute" ;
                                                                                                 post = null ;
                                                                                                 runtime-inputs =
-                                                                                                    pkgs :
+                                                                                                    { pkgs , ... } :
                                                                                                         [
                                                                                                             pkgs.chromium
                                                                                                             pkgs.coreutils
@@ -1254,7 +1254,7 @@
                                                                                                 name = "execute" ;
                                                                                                 post = null ;
                                                                                                 runtime-inputs =
-                                                                                                    pkgs :
+                                                                                                    { pkgs , ... } :
                                                                                                         [
                                                                                                             pkgs.chromium
                                                                                                             pkgs.coreutils
@@ -1304,7 +1304,7 @@
                                                                                                                                                 name = "execute" ;
                                                                                                                                                 post = null ;
                                                                                                                                                 runtime-inputs =
-                                                                                                                                                    pkgs :
+                                                                                                                                                    { pkgs , ... } :
                                                                                                                                                         [
                                                                                                                                                             _config.visa.backend.database.migrate.environments.staging.down
                                                                                                                                                             _config.visa.backend.database.migrate.environments.staging.up
@@ -1359,7 +1359,7 @@
                                                                                                 name = "execute" ;
                                                                                                 post = null ;
                                                                                                 runtime-inputs =
-                                                                                                    pkgs :
+                                                                                                    { pkgs , ... } :
                                                                                                         [
                                                                                                             _config.visa.backend.database.migrate.environments.staging.down
                                                                                                             _config.visa.backend.database.migrate.environments.staging.up
@@ -1398,7 +1398,7 @@
                                                                                                 name = "fetch" ;
                                                                                                 post = null ;
                                                                                                 runtime-inputs =
-                                                                                                    pkgs :
+                                                                                                    { pkgs , ... } :
                                                                                                         [
                                                                                                             (
                                                                                                                 _config.tree-serialization.explode
