@@ -1389,7 +1389,7 @@
                                                                                                         chromium = { read-only = true ; source = pkgs.chromium ; type = "bind" ; } ;
                                                                                                         package = { read-only = true ; source = config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                         playwright = { type = "temporary" ; } ;
-                                                                                                        results = { read-only = false ; directory = true ; type = "temporary" ; } ;
+                                                                                                        results = { read-only = false ; type = "temporary" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
                                                                                                 post = null ;
