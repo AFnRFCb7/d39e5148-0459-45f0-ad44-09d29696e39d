@@ -1184,6 +1184,7 @@
                                                                                                         migrate = { read-only = true ; source = config.visa.backend.database.migrate.package ; type = "bind" ; } ;
                                                                                                         output = { delete = false ; read-only = false ; type = "temporary" ; } ;
                                                                                                         package = { read-only = true ; source = config.visa.playwright.package ; type = "bind" ; } ;
+                                                                                                        results = { read-only = false ; type = "temporary" ; } ;
                                                                                                         temporary = { read-only = false ; source = "/tmp" ; type = "bind" ; } ;
                                                                                                         writable = { read-only = false ; type = "temporary" ; } ;
                                                                                                     } ;
@@ -1316,7 +1317,7 @@
                                                                                                                                                 text =
                                                                                                                                                     ''
                                                                                                                                                         cd /mounts/package
-                                                                                                                                                        find node_modules -mindepth 1 -maxdepth 1
+                                                                                                                                                        find node_modules -mindepth 1 -maxdepth 3
                                                                                                                                                         cat package.json
                                                                                                                                                         export PLAYWRIGHT_BROWSERS_PATH=/mounts/writable
                                                                                                                                                         ./node_modules/.bin/playwright install chromium
