@@ -1229,8 +1229,9 @@
                                                                                                             pkgs.xorg.libXfixes
                                                                                                             pkgs.xorg.libXrandr
                                                                                                         ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+                                                                                                        export HEADLESS=false
                                                                                                         SPEC="$( mktemp --suffix ".spec.js" /mounts/temporary/XXXXXXXX )" || failure 6252736109145105
-                                                                                                        ./node_modules/.bin/playwright codegen --headed --output="$SPEC"
+                                                                                                        ./node_modules/.bin/playwright codegen --output="$SPEC"
                                                                                                         echo "${ "$" }{SPEC/#\/mounts\/temporary/\/tmp}"
                                                                                                     '' ;
                                                                                                 variables = { } ;
@@ -1354,7 +1355,7 @@
                                                                                                                                                         export HEADLESS=false
                                                                                                                                                         export NODE_PATH=/mounts/package/node_modules
                                                                                                                                                         export DISPLAY
-                                                                                                                                                        /mounts/package/node_modules/.bin/playwright --headed test
+                                                                                                                                                        /mounts/package/node_modules/.bin/playwright test
                                                                                                                                                         echo 7862973483910418
                                                                                                                                                     '' ;
                                                                                                                                                 variables = { SPEC = "$SPEC" ; } ;
@@ -1406,6 +1407,7 @@
                                                                                                         ] ;
                                                                                                 text =
                                                                                                     ''
+                                                                                                        export HEADLESS=true
                                                                                                         cd /mounts/playwright
                                                                                                         cp --recursive "/mounts/package/." .
                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
