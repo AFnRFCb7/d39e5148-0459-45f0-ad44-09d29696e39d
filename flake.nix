@@ -1354,6 +1354,8 @@
                                                                                                                                                         cat "$SPEC" > /mounts/playwright/test.spec.js
                                                                                                                                                         cat "$SPEC"
                                                                                                                                                         echo 5013831100513019
+                                                                                                                                                        export BROWSER=chromiumn
+                                                                                                                                                        export HEADLESS=false
                                                                                                                                                         /mounts/playwright/node_modules/.bin/playwright test
                                                                                                                                                         echo 7862973483910418
                                                                                                                                                     '' ;
