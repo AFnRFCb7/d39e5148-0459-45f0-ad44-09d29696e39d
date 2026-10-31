@@ -1347,7 +1347,10 @@
                                                                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
                                                                                                                                                         # down
                                                                                                                                                         # up
+                                                                                                                                                        cat /mounts/playwright/playwright.config.js
                                                                                                                                                         echo 7109336254978053
+                                                                                                                                                        echo /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
+                                                                                                                                                        echo 5013831100513019
                                                                                                                                                         /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
                                                                                                                                                         echo 7862973483910418
                                                                                                                                                     '' ;
