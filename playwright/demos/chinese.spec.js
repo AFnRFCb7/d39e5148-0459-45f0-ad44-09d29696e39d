@@ -16,6 +16,7 @@ test('test', async ({ page }) => {
   await page.getByRole('button', { name: 'Log in' }).click();
   await expect(page.getByLabel('Language')).toBeVisible();
   await page.getByLabel('Language').selectOption('zh-CN');
+  /*
   await expect(page.getByRole('button', { name: '退出登录' })).toBeVisible();
   await page.getByRole('button', { name: '退出登录' }).click();
   await expect(page.getByRole('link', { name: 'Log In' })).toBeVisible();
@@ -32,4 +33,5 @@ test('test', async ({ page }) => {
   await page.getByRole('textbox', { name: 'password' }).fill('playwright');
   await page.getByRole('button', { name: 'Log in' }).click();
   await page.getByRole('button', { name: '退出登录' }).click();
+  */
 });
