@@ -8,7 +8,7 @@ module.exports = defineConfig({
   workers: 1,
 
   use: {
-    headless: process.env.HEADLESS,
+    headless: process.env.HEADLESS!=="false",
     launchOptions: {
       executablePath: '/mounts/chromium/bin/chromium',
     },
