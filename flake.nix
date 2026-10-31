@@ -1330,7 +1330,7 @@
                                                                                                                                             do
                                                                                                                                                 RELATIVE_SPEC="${ "$" }{SPEC}"
                                                                                                                                                 mkdir --parents "$OUT/$RELATIVE_SPEC"
-                                                                                                                                                sed -e "s#\$SPEC#${ demos }/$RELATIVE_SPEC#" -e "$OUT/$RELATIVE_SPEC" ${ script }/bin/execute
+                                                                                                                                                sed -e "s#\$SPEC#${ demos }/$RELATIVE_SPEC#" -e "w$OUT/$RELATIVE_SPEC" ${ script }/bin/execute
                                                                                                                                                 chmod a+rwx "$OUT/$RELATIVE_SPEC"
                                                                                                                                             done
                                                                                                                                         '' ;
