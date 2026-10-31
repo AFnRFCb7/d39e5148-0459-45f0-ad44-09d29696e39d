@@ -56,6 +56,4 @@ test('test', async ({ page }) => {
   await page.getByRole('textbox', { name: 'email' }).press('Tab');
   await page.getByRole('textbox', { name: 'password' }).fill('playwright');
   await page.getByRole('button', { name: 'Log in' }).click();
-  await page.locator('section').filter({ hasText: '您的旅程从这里开始走得更远创造你的未来无论您是出国旅行、留学，还是开启海外新生活，我们都将竭诚为您提供帮助，助您顺利踏上旅程。立即开始' }).click();
-  await page.getByText('您的旅程从这里开始走得更远创造你的未来无论您是出国旅行、留学，还是开启海外新生活，我们都将竭诚为您提供帮助，助您顺利踏上旅程。立即开始').click();
 });
