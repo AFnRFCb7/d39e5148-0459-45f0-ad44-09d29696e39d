@@ -1348,7 +1348,7 @@
                                                                                                                                                         cat "$SPEC" > /mounts/tests/test.spec.js
                                                                                                                                                         export BROWSER=chromiumn
                                                                                                                                                         export HEADLESS=false
-                                                                                                                                                        /mounts/playwright/node_modules/.bin/playwright test
+                                                                                                                                                        /mounts/package/node_modules/.bin/playwright test
                                                                                                                                                         echo 7862973483910418
                                                                                                                                                     '' ;
                                                                                                                                                 variables = { SPEC = "$SPEC" ; } ;
