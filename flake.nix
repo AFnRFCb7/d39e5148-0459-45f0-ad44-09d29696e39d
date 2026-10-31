@@ -1350,8 +1350,9 @@
                                                                                                                                                         cat /mounts/playwright/playwright.config.js
                                                                                                                                                         echo 7109336254978053
                                                                                                                                                         echo /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
+                                                                                                                                                        ln --symbolic "$SPEC" /mounts/playwright/playwright.spec.js
                                                                                                                                                         echo 5013831100513019
-                                                                                                                                                        /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
+                                                                                                                                                        /mounts/playwright/node_modules/.bin/playwright test
                                                                                                                                                         echo 7862973483910418
                                                                                                                                                     '' ;
                                                                                                                                                 variables = { SPEC = "$SPEC" ; } ;
