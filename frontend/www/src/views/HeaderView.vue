@@ -71,9 +71,9 @@ watch(locale, async (newLocale) => {
         </nav>
         <RouterLink to="/login">{{ t('control.Log In') }}</RouterLink>
         <button v-if="loggedIn" @click="logout">{{ t('control.Log Out') }}</button>
-        <select v-model="locale" aria-label="Language">
-            <option value="en-US">🇺🇸</option>
-            <option value="zh-CN">🇨🇳</option>
+        <select id="4947025658597391" v-model="locale" aria-label="Language">
+            <option id="6914376166799181" value="en-US">🇺🇸</option>
+            <option id="0577348206161748" value="zh-CN">🇨🇳</option>
         </select>
     </header>
 </template>

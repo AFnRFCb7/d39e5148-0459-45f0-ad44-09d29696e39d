@@ -14,8 +14,11 @@ test('test', async ({ page }) => {
   await page.getByRole('textbox', { name: 'email' }).press('Tab');
   await page.getByRole('textbox', { name: 'password' }).fill('playwright');
   await page.getByRole('button', { name: 'Log in' }).click();
-  await expect(page.getByLabel('Language')).toBeVisible();
-  await page.getByLabel('Language').selectOption({ label: '🇨🇳' });
+const language = page.locator('#4947025658597391');
+
+await expect(language).toBeVisible();
+await language.selectOption('zh-CN');
+await expect(language).toHaveValue('zh-CN');
   await expect(page.getByRole('button', { name: '退出登录' })).toBeVisible();
   await page.getByRole('button', { name: '退出登录' }).click();
   await expect(page.getByRole('link', { name: 'Log In' })).toBeVisible();
