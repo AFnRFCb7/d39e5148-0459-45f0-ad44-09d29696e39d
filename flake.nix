@@ -1202,7 +1202,7 @@
                                                                                                         cd /mounts/package
                                                                                                         export PLAYWRIGHT_BROWSERS_PATH=/mounts/writable
                                                                                                         ./node_modules/.bin/playwright install chromium
-                                                                                                        export LDlibRARY_PATH="${pkgs.lib.makeLibraryPath [
+                                                                                                        export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [
                                                                                                             pkgs.glib
                                                                                                             pkgs.nspr
                                                                                                             pkgs.nss
