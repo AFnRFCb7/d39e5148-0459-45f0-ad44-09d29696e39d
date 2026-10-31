@@ -1317,6 +1317,7 @@
                                                                                                                                                     ''
                                                                                                                                                         cd /mounts/package
                                                                                                                                                         find node_modules -mindepth 1 -maxdepth 1
+                                                                                                                                                        cat package.json
                                                                                                                                                         export PLAYWRIGHT_BROWSERS_PATH=/mounts/writable
                                                                                                                                                         ./node_modules/.bin/playwright install chromium
                                                                                                                                                         export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [
