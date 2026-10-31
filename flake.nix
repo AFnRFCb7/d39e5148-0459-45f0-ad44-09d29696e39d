@@ -1359,7 +1359,7 @@
                                                                                                                                             mkdir --parents "$OUT"
                                                                                                                                             find ${ demos } -name "*.spec.js" | sort | while read -r SPEC
                                                                                                                                             do
-                                                                                                                                                RELATIVE_SPEC="${ "$" }{SPEC#${ demos }/"}"
+                                                                                                                                                RELATIVE_SPEC="${ "$" }{SPEC#${ demos }/}"
                                                                                                                                                 mkdir --parents "$OUT/$RELATIVE_SPEC"
                                                                                                                                                 sed -e "s#\$SPEC#${ demos }/$RELATIVE_SPEC#" -e "w$OUT/$RELATIVE_SPEC/execute" ${ script }/bin/execute
                                                                                                                                                 chmod a+rwx "$OUT/$RELATIVE_SPEC/execute"
