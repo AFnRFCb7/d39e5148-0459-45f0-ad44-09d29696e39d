@@ -1346,7 +1346,7 @@
                                                                                                                                                         # down
                                                                                                                                                         # up
                                                                                                                                                         cat "$SPEC" > /mounts/tests/test.spec.js
-                                                                                                                                                        export BROWSER=chromiumn
+                                                                                                                                                        export BROWSER=chromium
                                                                                                                                                         export HEADLESS=false
                                                                                                                                                         /mounts/package/node_modules/.bin/playwright test
                                                                                                                                                         echo 7862973483910418
