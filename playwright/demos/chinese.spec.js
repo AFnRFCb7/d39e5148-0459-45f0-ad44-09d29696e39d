@@ -38,14 +38,18 @@ test('test', async ({ page }) => {
   }
   await announce('Welcome to the Visa application demo');
   await page.goto('http://127.0.0.1:8080/www/');
+  await announce('Login as the Chinese User');
   await page.getByRole('link', { name: 'Log In' }).click();
   await page.getByRole('button', { name: 'Email and Password' }).click();
   await page.getByRole('textbox', { name: 'email' }).fill('playwright-chinese@example.com');
   await page.getByRole('textbox', { name: 'email' }).press('Tab');
   await page.getByRole('textbox', { name: 'password' }).fill('playwright');
+  await announce('Logged in as the Chinese User.  Switch to Chinese Language.');
   await page.getByRole('button', { name: 'Log in' }).click();
   await page.getByLabel('Language').selectOption('zh-CN');
+  await announce('The Chinese Language Should Be Persisted To The Chinese User.  Now Log Out');
   await page.getByRole('button', { name: '退出登录' }).click();
+  await announce('Log in again as the Chinese User.  We should see chinese.');
   await page.getByRole('link', { name: 'Log In' }).click();
   await page.getByRole('button', { name: 'Email and Password' }).click();
   await page.getByRole('textbox', { name: 'email' }).fill('playwright-chinese@example.com');
