@@ -1316,8 +1316,8 @@
                                                                                                                                                         cd /mounts/playwright
                                                                                                                                                         cp --recursive "/mounts/package/." .
                                                                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
-                                                                                                                                                        down
-                                                                                                                                                        up
+                                                                                                                                                        # down
+                                                                                                                                                        # up
                                                                                                                                                         /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
                                                                                                                                                     '' ;
                                                                                                                                                 variables = { } ;
