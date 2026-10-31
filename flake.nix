@@ -1311,7 +1311,7 @@
                                                                                                                                                             pkgs.chromium
                                                                                                                                                             pkgs.coreutils
                                                                                                                                                             pkgs.findutils
-                                                                                                                                                            pkgs.nodejs_20
+                                                                                                                                                            pkgs.nodejs_22
                                                                                                                                                             pkgs.glib
                                                                                                                                                         ] ;
                                                                                                                                                 text =
