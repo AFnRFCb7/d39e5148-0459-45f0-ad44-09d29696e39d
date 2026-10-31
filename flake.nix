@@ -1297,6 +1297,7 @@
                                                                                                                                                         chromium = { read-only = true ; source = pkgs.chromium ; type = "bind" ; } ;
                                                                                                                                                         package = { read-only = true ; source = config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                                                                         playwright = { type = "temporary" ; } ;
+                                                                                                                                                        tests = { read-only = false ; type = "temporary" ; } ;
                                                                                                                                                         writable = { read-only = false ; type = "temporary" ; } ;
                                                                                                                                                     } ;
                                                                                                                                                 name = "execute" ;
@@ -1351,7 +1352,7 @@
                                                                                                                                                         echo 7109336254978053
                                                                                                                                                         echo /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
                                                                                                                                                         mkdir /mounts/playwright/exams
-                                                                                                                                                        cat "$SPEC" > /mounts/playwright/exams/test.spec.js
+                                                                                                                                                        cat "$SPEC" > /mounts/tests/test.spec.js
                                                                                                                                                         cat "$SPEC"
                                                                                                                                                         echo 5013831100513019
                                                                                                                                                         export BROWSER=chromiumn
