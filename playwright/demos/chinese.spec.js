@@ -9,7 +9,9 @@ test('test', async ({ page }) => {
     await page.getByRole('textbox', { name: 'email' }).press('Tab');
     await page.getByRole('textbox', { name: 'password' }).fill('playwright');
     await page.getByRole('button', { name: 'Log in' }).click();
-    await page.getByLabel('Language').selectOption('zh-CN');
+    await expect(
+        page.getByLabel('Language')
+    ).toBeVisible({ timeout: 10000 });    await page.getByLabel('Language').selectOption('zh-CN');
     await expect(
         page.getByRole('button', { name: '退出登录' })
     ).toBeVisible({ timeout: 10000 });
