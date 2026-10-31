@@ -1,6 +1,7 @@
 const { defineConfig } = require('@playwright/test');
 
 module.exports = defineConfig({
+  outputDir: '/mounts/output',
   testDir: '/mounts/tests',
   testMatch: '**/*.spec.js',
 

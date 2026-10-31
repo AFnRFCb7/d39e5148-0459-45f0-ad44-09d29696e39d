@@ -1296,6 +1296,7 @@
                                                                                                                                                     {
                                                                                                                                                         chromium = { read-only = true ; source = pkgs.chromium ; type = "bind" ; } ;
                                                                                                                                                         package = { read-only = true ; source = config.visa.playwright.package ; type = "bind" ; } ;
+                                                                                                                                                        output = { read-only = false ; type = "temporary" ; } ;
                                                                                                                                                         tests = { read-only = false ; type = "temporary" ; } ;
                                                                                                                                                         writable = { read-only = false ; type = "temporary" ; } ;
                                                                                                                                                     } ;
