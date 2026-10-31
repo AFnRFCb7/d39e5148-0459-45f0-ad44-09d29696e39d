@@ -1272,7 +1272,7 @@
                                                                         demos =
                                                                             lib.mkOption
                                                                                 {
-                                                                                    type =
+                                                                                    default =
                                                                                         let
                                                                                             demos = ./playwright/demos ;
                                                                                             in
@@ -1339,7 +1339,7 @@
                                                                                                             ] ;
                                                                                                         src = ./. ;
                                                                                                     } ;
-                                                                                    default = lib.types.package ;
+                                                                                    type = lib.types.package ;
                                                                                 } ;
                                                                         execute =
                                                                             lib.mkOption
