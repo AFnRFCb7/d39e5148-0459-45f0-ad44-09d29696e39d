@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
     await page.goto('http://127.0.0.1:8080/www/');
+    await expect(page.getByRole('link', { name: 'Log In' })).toBeVisible({timeout: 1000});
     await page.getByRole('link', { name: 'Log In' }).click();
     await page.getByRole('button', { name: 'Email and Password' }).click();
     await page.getByRole('textbox', { name: 'email' }).click();
@@ -11,7 +12,8 @@ test('test', async ({ page }) => {
     await page.getByRole('button', { name: 'Log in' }).click();
     await expect(
         page.getByLabel('Language')
-    ).toBeVisible({ timeout: 10000 });    await page.getByLabel('Language').selectOption('zh-CN');
+    ).toBeVisible({ timeout: 10000 });
+    await page.getByLabel('Language').selectOption('zh-CN');
     await expect(
         page.getByRole('button', { name: '退出登录' })
     ).toBeVisible({ timeout: 10000 });
