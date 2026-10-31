@@ -1345,7 +1345,7 @@
                                                                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
                                                                                                                                                         # down
                                                                                                                                                         # up
-                                                                                                                                                        cat "$SPEC" > /mounts/exams/test.spec.js
+                                                                                                                                                        cat "$SPEC" > /mounts/tests/test.spec.js
                                                                                                                                                         export BROWSER=chromiumn
                                                                                                                                                         export HEADLESS=false
                                                                                                                                                         /mounts/package/node_modules/.bin/playwright test
