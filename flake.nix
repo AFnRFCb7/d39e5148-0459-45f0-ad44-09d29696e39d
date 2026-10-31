@@ -1353,6 +1353,7 @@
                                                                                                                                                         export BROWSER=chromium
                                                                                                                                                         export HEADLESS=false
                                                                                                                                                         export NODE_PATH=/mounts/package/node_modules
+                                                                                                                                                        export DISPLAY
                                                                                                                                                         /mounts/package/node_modules/.bin/playwright test
                                                                                                                                                         echo 7862973483910418
                                                                                                                                                     '' ;
