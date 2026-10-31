@@ -1347,7 +1347,9 @@
                                                                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
                                                                                                                                                         # down
                                                                                                                                                         # up
+                                                                                                                                                        echo 7109336254978053
                                                                                                                                                         /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
+                                                                                                                                                        echo 7862973483910418
                                                                                                                                                     '' ;
                                                                                                                                                 variables = { SPEC = "$SPEC" ; } ;
                                                                                                                                             } ;
