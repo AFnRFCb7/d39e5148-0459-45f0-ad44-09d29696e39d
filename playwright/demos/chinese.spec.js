@@ -4,6 +4,7 @@ test('test', async ({ page }) => {
     await page.goto('http://127.0.0.1:8080/www/');
     await expect(page.getByRole('link', { name: 'Log In' })).toBeVisible({timeout: 1000});
     await page.getByRole('link', { name: 'Log In' }).click();
+    await expect(page.getByRole('button', { name: 'Email and Password' })).toBeVisible({timeout: 1000});
     await page.getByRole('button', { name: 'Email and Password' }).click();
     await page.getByRole('textbox', { name: 'email' }).click();
     await page.getByRole('textbox', { name: 'email' }).fill('playwright-chinese@example.com');
