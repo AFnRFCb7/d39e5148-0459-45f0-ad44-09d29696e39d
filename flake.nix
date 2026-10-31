@@ -1391,6 +1391,7 @@
                                                                                                         package = { read-only = true ; source = config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                         playwright = { type = "temporary" ; } ;
                                                                                                         results = { read-only = false ; type = "temporary" ; } ;
+                                                                                                        tests = { type = "temporary" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
                                                                                                 post = null ;
