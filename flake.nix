@@ -1352,6 +1352,7 @@
                                                                                                                                                         cat "${ demos }/$SPEC" > /mounts/tests/test.spec.js
                                                                                                                                                         export BROWSER=chromium
                                                                                                                                                         export HEADLESS=false
+                                                                                                                                                        export NODE_PATH=/mounts/package/node_modules
                                                                                                                                                         /mounts/package/node_modules/.bin/playwright test
                                                                                                                                                         echo 7862973483910418
                                                                                                                                                     '' ;
