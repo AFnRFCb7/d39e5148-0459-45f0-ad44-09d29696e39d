@@ -1349,7 +1349,7 @@
                                                                                                                                                         # up
                                                                                                                                                         /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
                                                                                                                                                     '' ;
-                                                                                                                                                variables = { } ;
+                                                                                                                                                variables = { SPEC = "$SPEC" ; } ;
                                                                                                                                             } ;
                                                                                                                                     in
                                                                                                                                         ''
