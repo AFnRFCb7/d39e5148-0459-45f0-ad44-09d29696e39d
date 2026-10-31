@@ -1230,7 +1230,7 @@
                                                                                                             pkgs.xorg.libXrandr
                                                                                                         ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
                                                                                                         SPEC="$( mktemp --suffix ".spec.js" /mounts/temporary/XXXXXXXX )" || failure 6252736109145105
-                                                                                                        ./node_modules/.bin/playwright codegen --output="$SPEC"
+                                                                                                        ./node_modules/.bin/playwright codegen --headed --output="$SPEC"
                                                                                                         echo "${ "$" }{SPEC/#\/mounts\/temporary/\/tmp}"
                                                                                                     '' ;
                                                                                                 variables = { } ;
@@ -1354,7 +1354,7 @@
                                                                                                                                                         export HEADLESS=false
                                                                                                                                                         export NODE_PATH=/mounts/package/node_modules
                                                                                                                                                         export DISPLAY
-                                                                                                                                                        /mounts/package/node_modules/.bin/playwright test
+                                                                                                                                                        /mounts/package/node_modules/.bin/playwright --headed test
                                                                                                                                                         echo 7862973483910418
                                                                                                                                                     '' ;
                                                                                                                                                 variables = { SPEC = "$SPEC" ; } ;
@@ -1389,6 +1389,7 @@
                                                                                                         chromium = { read-only = true ; source = pkgs.chromium ; type = "bind" ; } ;
                                                                                                         package = { read-only = true ; source = config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                         playwright = { type = "temporary" ; } ;
+                                                                                                        results = { read-only = false ; directory = true ; type = "temporary" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
                                                                                                 post = null ;
