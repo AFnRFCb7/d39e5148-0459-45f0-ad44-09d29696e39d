@@ -1226,7 +1226,7 @@
                                                                                                             pkgs.xorg.libXdamage
                                                                                                             pkgs.xorg.libXfixes
                                                                                                             pkgs.xorg.libXrandr
-                                                                                                        ]}${ "$" }{LDlibRARY_PATH:+:$LDlibRARY_PATH}"
+                                                                                                        ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
                                                                                                         SPEC="$( mktemp --suffix ".spec.js" /mounts/temporary/XXXXXXXX )" || failure 6252736109145105
                                                                                                         ./node_modules/.bin/playwright codegen --output="$SPEC"
                                                                                                         echo "${ "$" }{SPEC/#\/mounts\/temporary/\/tmp}"
