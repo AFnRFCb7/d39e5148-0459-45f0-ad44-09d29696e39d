@@ -1296,7 +1296,6 @@
                                                                                                                                                     {
                                                                                                                                                         chromium = { read-only = true ; source = pkgs.chromium ; type = "bind" ; } ;
                                                                                                                                                         package = { read-only = true ; source = config.visa.playwright.package ; type = "bind" ; } ;
-                                                                                                                                                        playwright = { type = "temporary" ; } ;
                                                                                                                                                         tests = { read-only = false ; type = "temporary" ; } ;
                                                                                                                                                         writable = { read-only = false ; type = "temporary" ; } ;
                                                                                                                                                     } ;
@@ -1343,18 +1342,10 @@
                                                                                                                                                             pkgs.xorg.libXfixes
                                                                                                                                                             pkgs.xorg.libXrandr
                                                                                                                                                         ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-                                                                                                                                                        cd /mounts/playwright
-                                                                                                                                                        cp --recursive "/mounts/package/." .
                                                                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
                                                                                                                                                         # down
                                                                                                                                                         # up
-                                                                                                                                                        cat /mounts/playwright/playwright.config.js
-                                                                                                                                                        echo 7109336254978053
-                                                                                                                                                        echo /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
-                                                                                                                                                        mkdir /mounts/playwright/exams
                                                                                                                                                         cat "$SPEC" > /mounts/tests/test.spec.js
-                                                                                                                                                        cat "$SPEC"
-                                                                                                                                                        echo 5013831100513019
                                                                                                                                                         export BROWSER=chromiumn
                                                                                                                                                         export HEADLESS=false
                                                                                                                                                         /mounts/playwright/node_modules/.bin/playwright test
