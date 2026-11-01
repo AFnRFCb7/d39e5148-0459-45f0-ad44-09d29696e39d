@@ -1549,15 +1549,19 @@
                                                                                                                     pkgs.writeShellApplication
                                                                                                                         {
                                                                                                                             name = "install-it" ;
-                                                                                                                            runtimeInputs = [ ( config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode" ; output = "$OUT/node_modules" ; } ) ] ;
+                                                                                                                            runtimeInputs =
+                                                                                                                                [
+                                                                                                                                    ( config.tree-serialization.implode { input = "$OUT/chromium.exploded" ; name = "implode-chromium" ; output = "$OUT/chromium" ; } )
+                                                                                                                                    ( config.tree-serialization.implode { input = "$OUT/node_modules.exploded" ; name = "implode-node_modules" ; output = "$OUT/node_modules" ; } )
+                                                                                                                                ] ;
                                                                                                                             text =
                                                                                                                                 ''
                                                                                                                                     OUT="$1"
                                                                                                                                     export OUT
                                                                                                                                     mkdir --parents "$OUT/node_modules"
                                                                                                                                     cp --recursive "${ code }/playwright/"* "$OUT"
-                                                                                                                                    mkdir --parents "$OUT/node_modules"
-                                                                                                                                    implode
+                                                                                                                                    implode-chromium
+                                                                                                                                    implode-node_modules
                                                                                                                                 '' ;
                                                                                                                         }
                                                                                                                 )
