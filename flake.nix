@@ -1414,8 +1414,7 @@
                                                                                                         export HEADLESS=true
                                                                                                         export NODE_PATH=/mounts/package/node_modules
                                                                                                         cd /mounts/package
-                                                                                                        export PLAYWRIGHT_BROWSERS_PATH=/mounts/writable
-                                                                                                        ./node_modules/.bin/playwright install chromium
+                                                                                                        export PLAYWRIGHT_BROWSERS_PATH=/mounts/package/chromium
                                                                                                         export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [
                                                                                                             pkgs.glib
                                                                                                             pkgs.nspr
