@@ -1416,6 +1416,7 @@
                                                                                                         do
                                                                                                             down
                                                                                                             up
+                                                                                                            echo "$SPEC"
                                                                                                             cat "$SPEC" > /mounts/tests/test.spec.js
                                                                                                             /mounts/playwright/node_modules/.bin/playwright test
                                                                                                             rm /mounts/tests/test.spec.js
