@@ -1391,7 +1391,7 @@
                                                                                                         package = { read-only = true ; source = config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                         playwright = { type = "temporary" ; } ;
                                                                                                         results = { read-only = false ; type = "temporary" ; } ;
-                                                                                                        tests = { type = "temporary" ; } ;
+                                                                                                        tests = { is-directory = true ; type = "temporary" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
                                                                                                 post = null ;
@@ -1416,9 +1416,9 @@
                                                                                                         do
                                                                                                             down
                                                                                                             up
-                                                                                                            ln --symbolic "$SPEC" /mount/tests/test.spec.js
+                                                                                                            ln --symbolic "$SPEC" /mounts/tests/test.spec.js
                                                                                                             /mounts/playwright/node_modules/.bin/playwright test
-                                                                                                            rm /mount/tests/test.spec.js
+                                                                                                            rm /mounts/tests/test.spec.js
                                                                                                         done
                                                                                                     '' ;
                                                                                                 variables = { } ;
