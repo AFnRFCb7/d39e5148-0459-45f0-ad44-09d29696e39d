@@ -1411,15 +1411,10 @@
                                                                                                 text =
                                                                                                     ''
                                                                                                         export HEADLESS=true
-                                                                                                        # cd /mounts/playwright
-                                                                                                        # cp --recursive "/mounts/package/." .
                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
                                                                                                         export NODE_PATH=/mounts/package/node_modules
                                                                                                         find /mounts/package/tests -name "*.spec.js" | sort | while read -r SPEC
                                                                                                         do
-                                                                                                            down
-                                                                                                            up
-
                                                                                                             cd /mounts/package
                                                                                                             find node_modules -mindepth 1 -maxdepth 3
                                                                                                             cat package.json
@@ -1451,20 +1446,15 @@
                                                                                                                 pkgs.xorg.libXrandr
                                                                                                             ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
                                                                                                             export PATH="$PATH:/mounts/package/node_modules/.bin"
-                                                                                                            # down
-                                                                                                            # up
-
+                                                                                                            down
+                                                                                                            up
+                                                                                                            cat "$SPEC" > /mounts/tests/test.spec.js
                                                                                                             export BROWSER=chromium
-                                                                                                            export HEADLESS=true
+                                                                                                            export HEADLESS=false
                                                                                                             export NODE_PATH=/mounts/package/node_modules
                                                                                                             export DISPLAY
                                                                                                             /mounts/package/node_modules/.bin/playwright test
                                                                                                             echo 7862973483910418
-                                                                                                            echo "$SPEC"
-                                                                                                            mkdir --parents /mounts/tests/tests
-                                                                                                            cat "$SPEC" > /mounts/tests/tests/test.spec.js
-                                                                                                            /mounts/package/node_modules/.bin/playwright test
-                                                                                                            rm /mounts/tests/tests/test.spec.js
                                                                                                         done
                                                                                                     '' ;
                                                                                                 variables = { } ;
