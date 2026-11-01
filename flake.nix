@@ -1392,6 +1392,7 @@
                                                                                                         playwright = { type = "temporary" ; } ;
                                                                                                         results = { read-only = false ; type = "temporary" ; } ;
                                                                                                         tests = { is-directory = true ; type = "temporary" ; } ;
+                                                                                                        writable = { is-directory = true ; type = "temporary" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
                                                                                                 post = null ;
@@ -1419,6 +1420,46 @@
                                                                                                             down
                                                                                                             up
 
+                                                                                                            cd /mounts/package
+                                                                                                            find node_modules -mindepth 1 -maxdepth 3
+                                                                                                            cat package.json
+                                                                                                            export PLAYWRIGHT_BROWSERS_PATH=/mounts/writable
+                                                                                                            ./node_modules/.bin/playwright install chromium
+                                                                                                            export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [
+                                                                                                                pkgs.glib
+                                                                                                                pkgs.nspr
+                                                                                                                pkgs.nss
+                                                                                                                pkgs.nssTools
+                                                                                                                pkgs.stdenv.cc.cc.lib
+                                                                                                                pkgs.atk
+                                                                                                                pkgs.at-spi2-core
+                                                                                                                pkgs.dbus
+                                                                                                                pkgs.cups
+                                                                                                                pkgs.expat
+                                                                                                                pkgs.xorg.libxcb
+                                                                                                                pkgs.libxkbcommon
+                                                                                                                pkgs.alsa-lib
+                                                                                                                pkgs.mesa
+                                                                                                                pkgs.xorg.libX11
+                                                                                                                pkgs.xorg.libXext
+                                                                                                                pkgs.cairo
+                                                                                                                pkgs.pango
+                                                                                                                pkgs.systemd
+                                                                                                                pkgs.xorg.libXcomposite
+                                                                                                                pkgs.xorg.libXdamage
+                                                                                                                pkgs.xorg.libXfixes
+                                                                                                                pkgs.xorg.libXrandr
+                                                                                                            ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+                                                                                                            export PATH="$PATH:/mounts/package/node_modules/.bin"
+                                                                                                            # down
+                                                                                                            # up
+                                                                                                            cat "${ demos }/$SPEC" > /mounts/tests/test.spec.js
+                                                                                                            export BROWSER=chromium
+                                                                                                            export HEADLESS=true
+                                                                                                            export NODE_PATH=/mounts/package/node_modules
+                                                                                                            export DISPLAY
+                                                                                                            /mounts/package/node_modules/.bin/playwright test
+                                                                                                            echo 7862973483910418
                                                                                                             echo "$SPEC"
                                                                                                             mkdir --parents /mounts/tests/tests
                                                                                                             cat "$SPEC" > /mounts/tests/tests/test.spec.js
