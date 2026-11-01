@@ -1453,7 +1453,7 @@
                                                                                                             export PATH="$PATH:/mounts/package/node_modules/.bin"
                                                                                                             # down
                                                                                                             # up
-                                                                                                            cat "${ demos }/$SPEC" > /mounts/tests/test.spec.js
+
                                                                                                             export BROWSER=chromium
                                                                                                             export HEADLESS=true
                                                                                                             export NODE_PATH=/mounts/package/node_modules
