@@ -1416,7 +1416,7 @@
                                                                                                         do
                                                                                                             down
                                                                                                             up
-                                                                                                            ln --symbolic "$SPEC" /mounts/tests/test.spec.js
+                                                                                                            cat "$SPEC" > /mounts/tests/test.spec.js
                                                                                                             /mounts/playwright/node_modules/.bin/playwright test
                                                                                                             rm /mounts/tests/test.spec.js
                                                                                                         done
