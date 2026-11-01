@@ -1416,10 +1416,13 @@
                                                                                                         do
                                                                                                             down
                                                                                                             up
+
+                                                                                                            export NODE_PATH=/mounts/package/node_modules
                                                                                                             echo "$SPEC"
-                                                                                                            cat "$SPEC" > /mounts/tests/test.spec.js
+                                                                                                            mkdir --parents /mounts/tests/tests
+                                                                                                            cat "$SPEC" > /mounts/tests/tests/test.spec.js
                                                                                                             /mounts/playwright/node_modules/.bin/playwright test
-                                                                                                            rm /mounts/tests/test.spec.js
+                                                                                                            rm /mounts/tests/tests/test.spec.js
                                                                                                         done
                                                                                                     '' ;
                                                                                                 variables = { } ;
