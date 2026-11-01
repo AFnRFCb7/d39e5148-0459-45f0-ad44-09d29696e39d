@@ -1416,7 +1416,9 @@
                                                                                                         do
                                                                                                             down
                                                                                                             up
-                                                                                                            /mounts/playwright/node_modules/.bin/playwright test "$SPEC"
+                                                                                                            ln --symbolic "$SPEC" /mount/tests/test.spec.js
+                                                                                                            /mounts/playwright/node_modules/.bin/playwright test
+                                                                                                            rm /mount/tests/test.spec.js
                                                                                                         done
                                                                                                     '' ;
                                                                                                 variables = { } ;
