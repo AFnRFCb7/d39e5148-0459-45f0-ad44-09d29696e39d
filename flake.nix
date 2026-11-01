@@ -1459,7 +1459,7 @@
                                                                                             } ;
                                                                                     type = lib.types.package ;
                                                                                 } ;
-                                                                        fetch = ### FINDME
+                                                                        fetch =
                                                                             lib.mkOption
                                                                                 {
                                                                                     default =
@@ -1479,7 +1479,7 @@
                                                                                                                     {
                                                                                                                         bytes = "1m" ;
                                                                                                                         input = "/mounts/pwd/chromium" ;
-                                                                                                                        name = "explode-node_chromium" ;
+                                                                                                                        name = "explode-chromium" ;
                                                                                                                         output = "/mounts/pwd/chromium.exploded" ;
                                                                                                                     }
                                                                                                             )
