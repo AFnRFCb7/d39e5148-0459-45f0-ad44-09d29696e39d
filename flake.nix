@@ -1447,7 +1447,6 @@
                                                                                                             up
                                                                                                             cat "$SPEC" > /mounts/tests/test.spec.js
                                                                                                             export BROWSER=chromium
-                                                                                                            export HEADLESS=false
                                                                                                             export NODE_PATH=/mounts/package/node_modules
                                                                                                             export DISPLAY
                                                                                                             /mounts/package/node_modules/.bin/playwright test
