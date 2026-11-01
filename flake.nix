@@ -1404,6 +1404,7 @@
                                                                                                             pkgs.coreutils
                                                                                                             pkgs.findutils
                                                                                                             pkgs.nodejs_22
+
                                                                                                             pkgs.glib
                                                                                                         ] ;
                                                                                                 text =
@@ -1412,7 +1413,7 @@
                                                                                                         cd /mounts/playwright
                                                                                                         cp --recursive "/mounts/package/." .
                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
-                                                                                                        export NODE_PATH=/mounts/package/node_modules
+                                                                                                        # export NODE_PATH=/mounts/package/node_modules
                                                                                                         find /mounts/playwright/tests -name "*.spec.js" | sort | while read -r SPEC
                                                                                                         do
                                                                                                             down
