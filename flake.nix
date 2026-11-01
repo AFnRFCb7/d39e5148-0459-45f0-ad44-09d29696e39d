@@ -1459,7 +1459,7 @@
                                                                                             } ;
                                                                                     type = lib.types.package ;
                                                                                 } ;
-                                                                        fetch =
+                                                                        fetch = ### FINDME
                                                                             lib.mkOption
                                                                                 {
                                                                                     default =
@@ -1478,8 +1478,17 @@
                                                                                                                 config.tree-serialization.explode
                                                                                                                     {
                                                                                                                         bytes = "1m" ;
+                                                                                                                        input = "/mounts/pwd/chromium" ;
+                                                                                                                        name = "explode-node_chromium" ;
+                                                                                                                        output = "/mounts/pwd/chromium.exploded" ;
+                                                                                                                    }
+                                                                                                            )
+                                                                                                            (
+                                                                                                                config.tree-serialization.explode
+                                                                                                                    {
+                                                                                                                        bytes = "1m" ;
                                                                                                                         input = "/mounts/pwd/node_modules" ;
-                                                                                                                        name = "explode" ;
+                                                                                                                        name = "explode-node_modules" ;
                                                                                                                         output = "/mounts/pwd/node_modules.exploded" ;
                                                                                                                     }
                                                                                                             )
@@ -1511,8 +1520,12 @@
                                                                                                                 git rm -r --ignore-unmatch node_modules node_modules.exploded
                                                                                                                 mkdir --parents node_modules.exploded
                                                                                                                 npm install
-                                                                                                                explode
+                                                                                                                explode-node_modules
                                                                                                                 git add node_modules.exploded
+                                                                                                                export PLAYWRIGHT_BROWSERS_PATH=chromium
+                                                                                                                ./node_modules/.bin/playwright install chromium
+                                                                                                                explode-chromium
+                                                                                                                git add chromium.exploded
                                                                                                                 git clean -fd
                                                                                                                 git commit -am "$MESSAGE" --allow-empty --allow-empty-message
                                                                                                             '' ;
