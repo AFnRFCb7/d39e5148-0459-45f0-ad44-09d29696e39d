@@ -1412,16 +1412,16 @@
                                                                                                         cd /mounts/playwright
                                                                                                         cp --recursive "/mounts/package/." .
                                                                                                         export PATH="$PATH:/mounts/package/node_modules/.bin"
+                                                                                                        export NODE_PATH=/mounts/package/node_modules
                                                                                                         find /mounts/playwright/tests -name "*.spec.js" | sort | while read -r SPEC
                                                                                                         do
                                                                                                             down
                                                                                                             up
 
-                                                                                                            export NODE_PATH=/mounts/package/node_modules
                                                                                                             echo "$SPEC"
                                                                                                             mkdir --parents /mounts/tests/tests
                                                                                                             cat "$SPEC" > /mounts/tests/tests/test.spec.js
-                                                                                                            /mounts/playwright/node_modules/.bin/playwright test
+                                                                                                            /mounts/package/node_modules/.bin/playwright test
                                                                                                             rm /mounts/tests/tests/test.spec.js
                                                                                                         done
                                                                                                     '' ;
