@@ -1297,8 +1297,8 @@
                                                                                                                                                 mounts =
                                                                                                                                                     {
                                                                                                                                                         chromium = { read-only = true ; source = pkgs.chromium ; type = "bind" ; } ;
-                                                                                                                                                        package = { read-only = true ; source = config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                                                                         output = { read-only = false ; type = "temporary" ; } ;
+                                                                                                                                                        package = { read-only = true ; source = config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                                                                         tests = { read-only = false ; type = "temporary" ; } ;
                                                                                                                                                         writable = { read-only = false ; type = "temporary" ; } ;
                                                                                                                                                     } ;
@@ -1388,6 +1388,7 @@
                                                                                                 mounts =
                                                                                                     {
                                                                                                         chromium = { read-only = true ; source = pkgs.chromium ; type = "bind" ; } ;
+                                                                                                        output = { read-only = false ; type = "temporary" ; } ;
                                                                                                         package = { read-only = true ; source = config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                         playwright = { type = "temporary" ; } ;
                                                                                                         results = { read-only = false ; type = "temporary" ; } ;
@@ -1411,41 +1412,38 @@
                                                                                                 text =
                                                                                                     ''
                                                                                                         export HEADLESS=true
-                                                                                                        export PATH="$PATH:/mounts/package/node_modules/.bin"
                                                                                                         export NODE_PATH=/mounts/package/node_modules
+                                                                                                        cd /mounts/package
+                                                                                                        export PLAYWRIGHT_BROWSERS_PATH=/mounts/writable
+                                                                                                        ./node_modules/.bin/playwright install chromium
+                                                                                                        export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [
+                                                                                                            pkgs.glib
+                                                                                                            pkgs.nspr
+                                                                                                            pkgs.nss
+                                                                                                            pkgs.nssTools
+                                                                                                            pkgs.stdenv.cc.cc.lib
+                                                                                                            pkgs.atk
+                                                                                                            pkgs.at-spi2-core
+                                                                                                            pkgs.dbus
+                                                                                                            pkgs.cups
+                                                                                                            pkgs.expat
+                                                                                                            pkgs.xorg.libxcb
+                                                                                                            pkgs.libxkbcommon
+                                                                                                            pkgs.alsa-lib
+                                                                                                            pkgs.mesa
+                                                                                                            pkgs.xorg.libX11
+                                                                                                            pkgs.xorg.libXext
+                                                                                                            pkgs.cairo
+                                                                                                            pkgs.pango
+                                                                                                            pkgs.systemd
+                                                                                                            pkgs.xorg.libXcomposite
+                                                                                                            pkgs.xorg.libXdamage
+                                                                                                            pkgs.xorg.libXfixes
+                                                                                                            pkgs.xorg.libXrandr
+                                                                                                        ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+                                                                                                        export PATH="$PATH:/mounts/package/node_modules/.bin"
                                                                                                         find /mounts/package/tests -name "*.spec.js" | sort | while read -r SPEC
                                                                                                         do
-                                                                                                            cd /mounts/package
-                                                                                                            find node_modules -mindepth 1 -maxdepth 3
-                                                                                                            cat package.json
-                                                                                                            export PLAYWRIGHT_BROWSERS_PATH=/mounts/writable
-                                                                                                            ./node_modules/.bin/playwright install chromium
-                                                                                                            export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [
-                                                                                                                pkgs.glib
-                                                                                                                pkgs.nspr
-                                                                                                                pkgs.nss
-                                                                                                                pkgs.nssTools
-                                                                                                                pkgs.stdenv.cc.cc.lib
-                                                                                                                pkgs.atk
-                                                                                                                pkgs.at-spi2-core
-                                                                                                                pkgs.dbus
-                                                                                                                pkgs.cups
-                                                                                                                pkgs.expat
-                                                                                                                pkgs.xorg.libxcb
-                                                                                                                pkgs.libxkbcommon
-                                                                                                                pkgs.alsa-lib
-                                                                                                                pkgs.mesa
-                                                                                                                pkgs.xorg.libX11
-                                                                                                                pkgs.xorg.libXext
-                                                                                                                pkgs.cairo
-                                                                                                                pkgs.pango
-                                                                                                                pkgs.systemd
-                                                                                                                pkgs.xorg.libXcomposite
-                                                                                                                pkgs.xorg.libXdamage
-                                                                                                                pkgs.xorg.libXfixes
-                                                                                                                pkgs.xorg.libXrandr
-                                                                                                            ]}${ "$" }{LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-                                                                                                            export PATH="$PATH:/mounts/package/node_modules/.bin"
                                                                                                             down
                                                                                                             up
                                                                                                             cat "$SPEC" > /mounts/tests/test.spec.js
