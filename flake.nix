@@ -24,7 +24,7 @@
                                                                         {
                                                                             mounts = { } ;
                                                                             name = "visa" ;
-                                                                            post = null ;
+                                                                            post = [ ] ;
                                                                             runtime-inputs = { pkgs , ... } : [ pkgs.coreutils ] ;
                                                                             text =
                                                                                 ''
@@ -116,7 +116,7 @@
                                                                                                     {
                                                                                                         mounts = { socket = { type = "temporary" ; } ; state = { type = "temporary" ; } ; } ;
                                                                                                         name = "ExecStart" ;
-                                                                                                        post = null ;
+                                                                                                        post = [ ] ;
                                                                                                         runtime-inputs = { pkgs , ... } : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
@@ -183,7 +183,7 @@
                                                                                                     {
                                                                                                         mounts = { home = { source = "/tmp" ; type = "bind" ; } ; } ;
                                                                                                         name = "init" ;
-                                                                                                        post = null ;
+                                                                                                        post = [ ] ;
                                                                                                         runtime-inputs = { pkgs , ... } : [ pkgs.postgresql ] ;
                                                                                                         text =
                                                                                                             ''
@@ -211,7 +211,7 @@
                                                                                                                                     package = { read-only = true ; source = config.visa.backend.database.migrate.package ; type = "bind" ; } ;
                                                                                                                                 } ;
                                                                                                                             name = name ;
-                                                                                                                            post = null ;
+                                                                                                                            post = [ ] ;
                                                                                                                             runtime-inputs = { pkgs , ... } : [ pkgs.postgresql pkgs.nodejs ] ;
                                                                                                                             text = text ;
                                                                                                                             variables = { } ;
@@ -261,7 +261,7 @@
                                                                                                                         pwd = { source = "." ; type = "bind" ; } ;
                                                                                                                     } ;
                                                                                                                 name = "fetch" ;
-                                                                                                                post = null ;
+                                                                                                                post = [ ] ;
                                                                                                                 runtime-inputs =
                                                                                                                     { pkgs , ... } :
                                                                                                                         [
@@ -379,7 +379,7 @@
                                                                                                                                         standard-output = { is-directory = false ; source = 1 ; type = "pipe" ; } ;
                                                                                                                                     } ;
                                                                                                                                 name = "execute" ;
-                                                                                                                                post = null ;
+                                                                                                                                post = [ ] ;
                                                                                                                                 runtime-inputs = { pkgs , ... } : [ pkgs.coreutils pkgs.nodejs ] ;
                                                                                                                                 text =
                                                                                                                                     ''
@@ -408,7 +408,7 @@
                                                                                                                 pwd = { source = "." ; type = "bind" ; } ;
                                                                                                             } ;
                                                                                                         name = "fetch" ;
-                                                                                                        post = null ;
+                                                                                                        post = [ ] ;
                                                                                                         runtime-inputs =
                                                                                                             { pkgs , ... } :
                                                                                                                 [
@@ -787,7 +787,7 @@
                                                                                                                 pwd = { source = "." ; type = "bind" ; } ;
                                                                                                             } ;
                                                                                                         name = "fetch" ;
-                                                                                                        post = null ;
+                                                                                                        post = [ ] ;
                                                                                                         runtime-inputs =
                                                                                                             { pkgs , ... } :
                                                                                                                 [
@@ -922,7 +922,7 @@
                                                                                                                 pwd = { source = "." ; type = "bind" ; } ;
                                                                                                             } ;
                                                                                                         name = "fetch" ;
-                                                                                                        post = null ;
+                                                                                                        post = [ ] ;
                                                                                                         runtime-inputs =
                                                                                                             { pkgs , ... } :
                                                                                                                 [
@@ -1054,7 +1054,7 @@
                                                                                                                 pwd = { source = "." ; type = "bind" ; } ;
                                                                                                             } ;
                                                                                                         name = "fetch" ;
-                                                                                                        post = null ;
+                                                                                                        post = [ ] ;
                                                                                                         runtime-inputs =
                                                                                                             { pkgs , ... } :
                                                                                                                 [
@@ -1189,7 +1189,7 @@
                                                                                                         writable = { read-only = false ; type = "temporary" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
-                                                                                                post = null ;
+                                                                                                post = [ ] ;
                                                                                                 runtime-inputs =
                                                                                                     { pkgs , ... } :
                                                                                                         [
@@ -1251,7 +1251,7 @@
                                                                                                         package = { read-only = true ; source = config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
-                                                                                                post = null ;
+                                                                                                post = [ ] ;
                                                                                                 runtime-inputs =
                                                                                                     { pkgs , ... } :
                                                                                                         [
@@ -1303,7 +1303,7 @@
                                                                                                                                                         writable = { read-only = false ; type = "temporary" ; } ;
                                                                                                                                                     } ;
                                                                                                                                                 name = "execute" ;
-                                                                                                                                                post = null ;
+                                                                                                                                                post = [ ] ;
                                                                                                                                                 runtime-inputs =
                                                                                                                                                     { pkgs , ... } :
                                                                                                                                                         [
@@ -1396,7 +1396,7 @@
                                                                                                         writable = { is-directory = true ; type = "temporary" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
-                                                                                                post = null ;
+                                                                                                post = [ ] ;
                                                                                                 runtime-inputs =
                                                                                                     { pkgs , ... } :
                                                                                                         [
@@ -1468,7 +1468,7 @@
                                                                                                         pwd = { source = "." ; type = "bind" ; } ;
                                                                                                     } ;
                                                                                                 name = "fetch" ;
-                                                                                                post = null ;
+                                                                                                post = [ ] ;
                                                                                                 runtime-inputs =
                                                                                                     { pkgs , ... } :
                                                                                                         [
