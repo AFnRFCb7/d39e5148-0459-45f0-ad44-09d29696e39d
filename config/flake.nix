@@ -77,6 +77,7 @@
                                                                     } ;
                                                                 security.sudo.wheelNeedsPassword = false ;
                                                                 system.stateVersion = "24.11";
+                                                                visa.backend.gateway.environments.staging.name = "staging.globalvisa.vip" ;
                                                             }
                                                     )
                                                 ] ;
