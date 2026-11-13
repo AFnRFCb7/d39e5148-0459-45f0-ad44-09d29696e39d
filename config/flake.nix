@@ -1,17 +1,16 @@
 {
-    inputs =
-        {
-            failure.url = "github:AFnRFCb7/failure" ;
-            lazy-shell-application.url = "github:AFnRFCb7/lazy-shell-application" ;
-            lazy-shell-resource.url = "github:AFnRFCb7/resource" ;
-            nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11" ;
-            sequential.url = "github:AFnRFCb7/f85ebe91-4135-4df9-9f8e-41b18583abe6" ;
-            tree-serialization.url = "github:AFnRFCb7/tree-serialization" ;
-            trip.url = "github:AFnRFCb7/1f343d60-2ecb-434e-b606-751c4ad2c485" ;
-            visa.url = "github:AFnRFCb7/d39e5148-0459-45f0-ad44-09d29696e39d" ;
-            visitor.url = "github:AFnRFCb7/visitor" ;
-            wrap.url = "github:AFnRFCb7/bc122403-1370-4d95-bae6-d9e9e069570a" ;
-        } ;
+    inputs = {
+        failure.url = "github:AFnRFCb7/failure";
+        lazy-shell-application.url = "github:AFnRFCb7/lazy-shell-application";
+        lazy-shell-resource.url = "github:AFnRFCb7/resource";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+        sequential.url = "github:AFnRFCb7/f85ebe91-4135-4df9-9f8e-41b18583abe6";
+        tree-serialization.url = "github:AFnRFCb7/tree-serialization";
+        trip.url = "github:AFnRFCb7/1f343d60-2ecb-434e-b606-751c4ad2c485";
+        visa.url = "github:AFnRFCb7/d39e5148-0459-45f0-ad44-09d29696e39d";
+        visitor.url = "github:AFnRFCb7/visitor";
+        wrap.url = "github:AFnRFCb7/bc122403-1370-4d95-bae6-d9e9e069570a";
+    };
     outputs =
         {
             failure ,
