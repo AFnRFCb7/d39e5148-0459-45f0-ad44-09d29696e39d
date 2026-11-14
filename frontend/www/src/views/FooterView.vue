@@ -6,6 +6,8 @@ const { t } = useI18n()
     <footer>
         <span>© {{ t('common.copyright') }}{{ new Date().getFullYear() }} {{ t('common.Visa Solutions') }}</span>
         <nav>
+            <a href="mailto:GlobalVisa.vip@proton.me">GlobalVisa.vip@proton.me</a>
+            Phone 202-670-0628
             <a href="/contact">{{ t('common.contact') }}</a>
             <a href="/privacy">{{ t('common.privacy') }}</a>
         </nav>
