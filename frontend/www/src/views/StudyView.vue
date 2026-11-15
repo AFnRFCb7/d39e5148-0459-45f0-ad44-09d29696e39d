@@ -4,7 +4,7 @@ import Carousel, { type CarouselImage } from "../components/CarouselView.vue";
 
 const images: CarouselImage[] = [
     {
-        src: "/api/data/images/move.jpeg",
+        src: "/api/data/images/achievement.jpeg",
         alt: "University campus"
     },
     {
