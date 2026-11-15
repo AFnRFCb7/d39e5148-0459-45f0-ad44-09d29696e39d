@@ -29,7 +29,7 @@
             />
             <div class="card-content">
               <p class="card-subtitle">{{ t(journey.subtitle) }}</p>
-              <h3>{{ journey.title }}</h3>
+              <h3>{{ t(journey.title) }}</h3>
               <p class="card-description">{{ t(journey.description) }}</p>
                 <div class="card-actions">
                     <button class="card-button" @click="selectJourney(journey.title)">
@@ -57,15 +57,15 @@ const journeys = [
     image: '/api/data/images/study.jpeg',
   },
   {
-    title: t('narrative.home.journeys.move.title'),
-    subtitle: t('narrative.home.journeys.move.subtitle'),
-    description: t('narrative.home.journeys.move.description'),
+    title: 'narrative.home.journeys.move.title',
+    subtitle: 'narrative.home.journeys.move.subtitle',
+    description: 'narrative.home.journeys.move.description',
     image: '/api/data/images/move.jpeg',
   },
   {
-    title: t('narrative.home.journeys.travel.title'),
-    subtitle: t('narrative.home.journeys.travel.subtitle'),
-    description: t('narrative.home.journeys.travel.description'),
+    title: 'narrative.home.journeys.travel.title',
+    subtitle: 'narrative.home.journeys.travel.subtitle',
+    description: 'narrative.home.journeys.travel.description',
     image: '/api/data/images/travel.jpeg',
   },
 ]
@@ -216,6 +216,7 @@ const journeys = [
   color: #172033;
   font-weight: 700;
   cursor: pointer;
+  font-size: 16px;
 }
 
 /* Footer */
@@ -263,7 +264,7 @@ footer {
   background: #172033;
   color: white;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
 }
 
