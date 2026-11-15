@@ -17,45 +17,52 @@
                                             {
                                                 config =
                                                     {
-                                                        environment.systemPackages =
-                                                            [
-                                                                (
-                                                                    config.lazy-shell-application
-                                                                        {
-                                                                            mounts = { } ;
-                                                                            name = "visa" ;
-                                                                            post = [ ] ;
-                                                                            runtime-inputs = { pkgs , ... } : [ pkgs.coreutils ] ;
-                                                                            text =
-                                                                                ''
-                                                                                    cat <<EOF
-                                                                                    EXECUTE_MIGRATE=${ config.visa.backend.database.migrate.environments.staging.up }
-                                                                                    EXECUTE_DB_MIGRATE=${ config.visa.backend.database.migrate.environments.staging.up  }
-                                                                                    EXECUTE_DB_INIT=${ config.visa.backend.database.init }
-                                                                                    EXECUTE_ADMIN=${ config.visa.frontend.admin.fetch }
-                                                                                    FETCH_BACKEND=${ config.visa.backend.server.fetch }
-                                                                                    FETCH_FRONTEND=${ config.visa.frontend.web.fetch }
-                                                                                    FETCH_MIGRATE=${ config.visa.backend.database.migrate.fetch }
-                                                                                    PACKAGE_MIRATE=${ config.visa.backend.database.migrate.package }
-                                                                                    DEMO_PLAYWRIGHT=${ config.visa.playwright.demo }
-                                                                                    EXECUTE_PLAYWRIGHT=${ config.visa.playwright.execute }
-                                                                                    FETCH_SERVER=${ config.visa.backend.server.fetch }
-                                                                                    FETCH_ADMIN=${ config.visa.frontend.admin.fetch }
-                                                                                    PACKAGE_ADMIN=${ config.visa.frontend.admin.package }
-                                                                                    PACKAGE_SERVER=${ config.visa.backend.server.package }
-                                                                                    FETCH_WEB=${ config.visa.frontend.web.fetch }
-                                                                                    PACKAGE_WEB=${ config.visa.frontend.web.package }
-                                                                                    FETCH_PLAYWRIGHT=${ config.visa.playwright.fetch }
-                                                                                    PACKAGE_PLAYWRIGHT=${ config.visa.playwright.package }
-                                                                                    FETCH_WWW=${ config.visa.frontend.www.fetch }
-                                                                                    CODEGEN=${ config.visa.playwright.codegen }
-                                                                                    DEMOS=${ config.visa.playwright.demos }
-                                                                                    EOF
-                                                                                '' ;
-                                                                            variables = { } ;
-                                                                        }
-                                                                )
-                                                            ] ;
+                                                        environment =
+                                                            {
+                                                                sessionVariables =
+                                                                    {
+                                                                        DEPLOY_VISA = config.visa.deploy ;
+                                                                    } ;
+                                                                systemPackages =
+                                                                    [
+                                                                        (
+                                                                            config.lazy-shell-application
+                                                                                {
+                                                                                    mounts = { } ;
+                                                                                    name = "visa" ;
+                                                                                    post = [ ] ;
+                                                                                    runtime-inputs = { pkgs , ... } : [ pkgs.coreutils ] ;
+                                                                                    text =
+                                                                                        ''
+                                                                                            cat <<EOF
+                                                                                            EXECUTE_MIGRATE=${ config.visa.backend.database.migrate.environments.staging.up }
+                                                                                            EXECUTE_DB_MIGRATE=${ config.visa.backend.database.migrate.environments.staging.up  }
+                                                                                            EXECUTE_DB_INIT=${ config.visa.backend.database.init }
+                                                                                            EXECUTE_ADMIN=${ config.visa.frontend.admin.fetch }
+                                                                                            FETCH_BACKEND=${ config.visa.backend.server.fetch }
+                                                                                            FETCH_FRONTEND=${ config.visa.frontend.web.fetch }
+                                                                                            FETCH_MIGRATE=${ config.visa.backend.database.migrate.fetch }
+                                                                                            PACKAGE_MIRATE=${ config.visa.backend.database.migrate.package }
+                                                                                            DEMO_PLAYWRIGHT=${ config.visa.playwright.demo }
+                                                                                            EXECUTE_PLAYWRIGHT=${ config.visa.playwright.execute }
+                                                                                            FETCH_SERVER=${ config.visa.backend.server.fetch }
+                                                                                            FETCH_ADMIN=${ config.visa.frontend.admin.fetch }
+                                                                                            PACKAGE_ADMIN=${ config.visa.frontend.admin.package }
+                                                                                            PACKAGE_SERVER=${ config.visa.backend.server.package }
+                                                                                            FETCH_WEB=${ config.visa.frontend.web.fetch }
+                                                                                            PACKAGE_WEB=${ config.visa.frontend.web.package }
+                                                                                            FETCH_PLAYWRIGHT=${ config.visa.playwright.fetch }
+                                                                                            PACKAGE_PLAYWRIGHT=${ config.visa.playwright.package }
+                                                                                            FETCH_WWW=${ config.visa.frontend.www.fetch }
+                                                                                            CODEGEN=${ config.visa.playwright.codegen }
+                                                                                            DEMOS=${ config.visa.playwright.demos }
+                                                                                            EOF
+                                                                                        '' ;
+                                                                                    variables = { } ;
+                                                                                }
+                                                                        )
+                                                                    ] ;
+                                                            } ;
                                                             services.nginx =
                                                                 {
                                                                     enable = true ;
