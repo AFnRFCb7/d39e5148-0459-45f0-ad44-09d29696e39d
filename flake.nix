@@ -59,6 +59,12 @@
                                                             services.nginx =
                                                                 {
                                                                     enable = true ;
+                                                                    serviceConfig =
+                                                                        {
+#                                                                            IOSchedulingClass = "best-effort" ;
+#                                                                            IOSchedulingPriority = 0 ;
+#                                                                            Nice = -5 ;
+                                                                        } ;
                                                                     virtualHosts."visa-staging.com".locations =
                                                                         {
                                                                             "/" =
@@ -126,6 +132,9 @@
                                                                                                         variables = { } ;
                                                                                                     } ;
                                                                                             in "${ application }/bin/ExecStart" ;
+                                                                                    IOSchedulingClass = "best-effort";
+                                                                                    IOSchedulingPriority = 0;
+                                                                                    Nice = -5;
                                                                                 } ;
                                                                             wantedBy = [ "multi-user.target" ] ;
                                                                         } ;
@@ -138,6 +147,9 @@
                                                                                 {
                                                                                     DynamicUser = true ;
                                                                                     ExecStart = "${ config.visa.backend.server.environments.staging.execute }/bin/execute" ;
+                                                                                    IOSchedulingClass = "best-effort";
+                                                                                    IOSchedulingPriority = 0;
+                                                                                    Nice = -5;
                                                                                 } ;
                                                                             wantedBy = [ "multi-user.target" ] ;
                                                                         } ;

@@ -1,0 +1,13 @@
+[nix-shell:~]# time timeout 10h nice --adjustment 19 nixos-rebuild switch --flake .#user
+path '/root' does not contain a 'flake.nix', searching up
+error: could not find a flake.nix file
+
+real	0m0.107s
+user	0m0.033s
+sys	0m0.023s
+
+[nix-shell:~]# cd /tmp/tmp.a5It3bW42w/d39e5148-0459-45f0-ad44-09d29696e39d/config/
+
+[nix-shell:/tmp/tmp.a5It3bW42w/d39e5148-0459-45f0-ad44-09d29696e39d/config]# time timeout 10h nice --adjustment 19 nixos-rebuild switch --flake .#user
+warning: Git tree '/tmp/tmp.a5It3bW42w/d39e5148-0459-45f0-ad44-09d29696e39d' is dirty
+copying '/tmp/tmp.a5It3bW42w/d39e5148-0459-45f0-ad44-09d29696e39d/tmp/tmp.a5It3bW42w/d39e5148-0459-45f0-ad44-09d29696e39d/' to the store
