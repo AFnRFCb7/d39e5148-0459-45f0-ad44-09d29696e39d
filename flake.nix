@@ -59,12 +59,12 @@
                                                             services.nginx =
                                                                 {
                                                                     enable = true ;
-                                                                    serviceConfig =
-                                                                        {
-#                                                                            IOSchedulingClass = "best-effort" ;
-#                                                                            IOSchedulingPriority = 0 ;
-#                                                                            Nice = -5 ;
-                                                                        } ;
+#                                                                    serviceConfig =
+#                                                                        {
+##                                                                            IOSchedulingClass = "best-effort" ;
+##                                                                            IOSchedulingPriority = 0 ;
+##                                                                            Nice = -5 ;
+#                                                                        } ;
                                                                     virtualHosts."visa-staging.com".locations =
                                                                         {
                                                                             "/" =
