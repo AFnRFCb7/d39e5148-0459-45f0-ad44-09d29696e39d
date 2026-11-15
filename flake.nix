@@ -774,6 +774,26 @@
                                                                                         } ;
                                                                             } ;
                                                                     } ;
+                                                                deploy =
+                                                                    lib.mkOption
+                                                                        {
+                                                                            default =
+                                                                                config.lazy-shell-application
+                                                                                    {
+                                                                                        mounts = { work = { type = "temporary" ; } ; } ;
+                                                                                        name = "deploy" ;
+                                                                                        post = [ ] ;
+                                                                                        runtime-inputs = { ... } : [ pkgs.coreutils pkgs.nixos-rebuild pkgs.time pkgs.util-linux ] ;
+                                                                                        text =
+                                                                                            ''
+                                                                                                cp --recursive ${ ./config }/* /mounts/work
+                                                                                                cd /mounts/work
+                                                                                                timeout 24h nice --adjustment 19 ionice -c 3 nixos-rebuild switch --flake .#user </dev/null >rebuild.log 2>&1 &
+                                                                                            '' ;
+                                                                                        variables = { } ;
+                                                                                    } ;
+                                                                            type = lib.types.package ;
+                                                                        } ;
                                                                 frontend =
                                                                     {
                                                                         admin =
