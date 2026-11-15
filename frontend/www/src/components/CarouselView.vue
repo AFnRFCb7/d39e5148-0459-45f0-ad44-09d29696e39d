@@ -4,7 +4,6 @@ import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 
 export interface CarouselImage {
     src: string;
-    alt: string;
 }
 
 const props = withDefaults(defineProps<{
@@ -90,7 +89,7 @@ onUnmounted(stop);
             <img
                 class="carousel-image"
                 :src="currentImage.src"
-                :alt="currentImage.alt"
+                alt=""
             />
 
         </template>

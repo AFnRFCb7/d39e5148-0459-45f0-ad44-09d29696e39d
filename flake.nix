@@ -688,6 +688,19 @@
                                                                                                                                         zh-CN = "您想开启怎样的旅程？" ;
                                                                                                                                     } ;
                                                                                                                         } ;
+                                                                                                                    study =
+                                                                                                                        {
+                                                                                                                            "Study in the United States" =
+                                                                                                                                ignore :
+                                                                                                                                    {
+                                                                                                                                        zh-CN = "在美国留学" ;
+                                                                                                                                    } ;
+                                                                                                                            "Explore educational opportunities in the United States." =
+                                                                                                                                ignore :
+                                                                                                                                    {
+                                                                                                                                        zh-CN = "在美国探索教育机会。" ;
+                                                                                                                                    } ;
+                                                                                                                        } ;
                                                                                                                 } ;
                                                                                                             subject =
                                                                                                                 {
