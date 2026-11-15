@@ -4,15 +4,19 @@ import Carousel, { type CarouselImage } from "../components/CarouselView.vue";
 
 const images: CarouselImage[] = [
     {
-        src: "/api/data/images/achievement.jpeg",
+        src: "/api/data/images/move.jpeg",
         alt: "University campus"
     },
     {
-        src: "/api/data/images/study.jpeg",
+        src: "/api/data/images/campus-life.jpeg",
         alt: "Students studying in a library"
     },
     {
-        src: "/api/data/images/study.jpeg",
+        src: "/api/data/images/learning.jpeg",
+        alt: "University graduation ceremony"
+    },
+    {
+        src: "/api/data/images/university-experience.jpeg",
         alt: "University graduation ceremony"
     }
 ];
