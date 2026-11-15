@@ -136,7 +136,7 @@ const journeys = [
   background: white;
   color: #172033;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 16px;
   cursor: pointer;
 }
 
