@@ -626,7 +626,7 @@
                                                                                                                                             description =
                                                                                                                                                 ignore :
                                                                                                                                                     {
-                                                                                                                                                        en-US = "Discover opportunities in the United States, Canada, Austraila to study at universities abroad." ;
+                                                                                                                                                        en-US = "Discover opportunities in the United States, Canada, Australia to study at universities abroad." ;
                                                                                                                                                         zh-CN = "探索在美国、加拿大和澳大利亚的大学留学机会。" ;
                                                                                                                                                     } ;
                                                                                                                                             subtitle =
