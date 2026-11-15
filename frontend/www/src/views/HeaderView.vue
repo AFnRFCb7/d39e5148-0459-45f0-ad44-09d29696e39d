@@ -53,7 +53,7 @@ watch(locale, async (newLocale) => {
 });
 </script>
 <template>
-    <header class="header">'
+    <header class="header">
         <span v-if="session?.loggedIn">
           Logged in as {{ session.user.email }} {{ session.user.admin }}
         </span>
@@ -65,7 +65,7 @@ watch(locale, async (newLocale) => {
         <RouterLink v-if="session?.loggedIn && session.user?.admin === true" to="/admin/">{{ t('control.Admin') }}</RouterLink>
         <div class="logo">{{ t('subject.Visa') }}</div>
         <nav>
-            <a href="#">{{ t('subject.Study') }}</a>
+            <RouterLink to="/study">{{ t('subject.Study') }}</RouterLink>
             <a href="#">{{ t('subject.Travel') }}</a>
             <a href="#">{{ t('subject.Move') }}</a>
         </nav>

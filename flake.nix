@@ -617,7 +617,7 @@
                                                                                                                                             title =
                                                                                                                                                 ignore :
                                                                                                                                                     {
-                                                                                                                                                        en-US = "Move" ;
+                                                                                                                                                        en-US = "Immigration" ;
                                                                                                                                                         zh-CN = "移居" ;
                                                                                                                                                     } ;
                                                                                                                                         } ;

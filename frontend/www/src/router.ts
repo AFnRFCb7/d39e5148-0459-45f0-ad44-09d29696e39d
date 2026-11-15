@@ -4,7 +4,8 @@ import Construction from './views/ConstructionView.vue'
 import GetStarted from './views/GetStartedView.vue'
 import HomePage from './views/HomePageView.vue'
 import Login from './views/LoginView.vue'
-import User from './views/UserView.vue';
+import Study from './views/StudyView.vue'
+import User from './views/UserView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,6 +15,7 @@ const router = createRouter({
     { path: '/get-started' , component : GetStarted } ,
     { path: '/', component: HomePage },
     { path: '/login' , component: Login},
+    { path : '/study' , component : Study } ,
     { path: '/user', component : User}
   ],
 })
