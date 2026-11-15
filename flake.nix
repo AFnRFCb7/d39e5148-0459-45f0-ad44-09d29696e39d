@@ -561,6 +561,24 @@
                                                                                                                 } ;
                                                                                                             narrative =
                                                                                                                 {
+                                                                                                                    construction =
+                                                                                                                        {
+                                                                                                                            "Please check back soon" =
+                                                                                                                                ignore :
+                                                                                                                                    {
+                                                                                                                                        zh-CN = "请稍后再来看看！" ;
+                                                                                                                                    } ;
+                                                                                                                            "Under Construction" =
+                                                                                                                                ignore :
+                                                                                                                                    {
+                                                                                                                                        zh-CN = "建设中" ;
+                                                                                                                                    } ;
+                                                                                                                            "We are working on something new" =
+                                                                                                                                ignore :
+                                                                                                                                    {
+                                                                                                                                        zh-CN = "我们正在打造一些新内容。" ;
+                                                                                                                                    } ;
+                                                                                                                        } ;
                                                                                                                     home =
                                                                                                                         {
                                                                                                                             build =

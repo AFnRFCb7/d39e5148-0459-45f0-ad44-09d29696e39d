@@ -3,11 +3,11 @@
     <div class="content">
       <div class="icon">🚧</div>
 
-      <h1>Under Construction</h1>
+      <h1>{{ t('narrative.construction.Under Construction') }}</h1>
 
       <p>
-        We're working on something new.
-        Please check back soon!
+        {{ t('narrative.construction.We are working on something new') }}
+        {{ t('narrative.construction.Please check back soon') }}
       </p>
 
       <div class="divider"></div>

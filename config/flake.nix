@@ -4,7 +4,6 @@
         lazy-shell-application.url = "github:AFnRFCb7/lazy-shell-application";
         lazy-shell-resource.url = "github:AFnRFCb7/resource";
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-        promoter.url = "github:AFnRFCb7/9f052589-300f-4b3c-bac3-418ffadac16c";
         sequential.url = "github:AFnRFCb7/f85ebe91-4135-4df9-9f8e-41b18583abe6";
         tree-serialization.url = "github:AFnRFCb7/tree-serialization";
         trip.url = "github:AFnRFCb7/1f343d60-2ecb-434e-b606-751c4ad2c485";
@@ -18,7 +17,6 @@
             lazy-shell-application ,
             lazy-shell-resource ,
             nixpkgs ,
-            promoter ,
             self ,
             sequential ,
             tree-serialization ,
@@ -46,7 +44,6 @@
                                                     ( failure.lib { } ).implementation
                                                     ( lazy-shell-application.lib { } ).implementation
                                                     ( lazy-shell-resource.lib { } ).implementation
-                                                    ( promoter.lib { } ).implementation
                                                     ( sequential.lib { } ).implementation
                                                     ( tree-serialization.lib { } ).implementation
                                                     ( trip.lib { } ).implementation
