@@ -795,7 +795,7 @@
                                                                                             ''
                                                                                                 cp --recursive ${ ./config }/* /mounts/work
                                                                                                 cd /mounts/work
-                                                                                                timeout 24h nice --adjustment 19 ionice -c 3 nixos-rebuild switch --flake .#user </dev/null >rebuild.log 2>&1 &
+                                                                                                timeout 24h nice --adjustment 19 nixos-rebuild switch --flake .#user </dev/null >rebuild.log 2>&1 &
                                                                                             '' ;
                                                                                         variables = { } ;
                                                                                     } ;
