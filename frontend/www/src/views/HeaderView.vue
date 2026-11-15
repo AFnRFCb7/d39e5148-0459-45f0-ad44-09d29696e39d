@@ -66,8 +66,8 @@ watch(locale, async (newLocale) => {
         <div class="logo">{{ t('subject.Visa') }}</div>
         <nav>
             <RouterLink to="/study">{{ t('subject.Study') }}</RouterLink>
-            <a href="#">{{ t('subject.Travel') }}</a>
-            <a href="#">{{ t('subject.Move') }}</a>
+            <RouterLink to="/construction">{{ t('subject.Travel') }}</RouterLink>
+            <RouterLink to="/construction">{{ t('subject.Move') }}</RouterLink>
         </nav>
         <RouterLink to="/login">{{ t('control.Log In') }}</RouterLink>
         <button v-if="loggedIn" @click="logout">{{ t('control.Log Out') }}</button>

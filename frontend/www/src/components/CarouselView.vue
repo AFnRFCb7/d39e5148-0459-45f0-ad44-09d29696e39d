@@ -93,35 +93,6 @@ onUnmounted(stop);
                 :alt="currentImage.alt"
             />
 
-            <template v-if="count > 1">
-                <button
-                    class="carousel-previous"
-                    aria-label="Previous image"
-                    @click="previous"
-                >
-                    &#10094;
-                </button>
-
-                <button
-                    class="carousel-next"
-                    aria-label="Next image"
-                    @click="next"
-                >
-                    &#10095;
-                </button>
-
-                <div class="carousel-indicators">
-                    <button
-                        v-for="(image, i) in images"
-                        :key="image.src + i"
-                        class="carousel-indicator"
-                        :class="{ active: i === index }"
-                        :aria-label="`Show image ${i + 1}`"
-                        :aria-current="i === index ? 'true' : undefined"
-                        @click="select(i)"
-                    />
-                </div>
-            </template>
         </template>
     </div>
 </template>

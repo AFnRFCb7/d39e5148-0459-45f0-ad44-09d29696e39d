@@ -5,7 +5,7 @@
         <p class="eyebrow">{{ t('narrative.home.journey') }}</p>
         <h1>{{ t('narrative.home.farther') }}<br />{{ t('narrative.home.build') }}</h1>
         <p class="hero-description">{{ t('narrative.home.question') }}</p>
-        <button class="hero-button">{{ t('narrative.home.get-started') }}</button>
+        <button class="hero-button" @click="goToUnderConstruction">{{ t('narrative.home.get-started') }}</button>
       </div>
     </section>
     <main>
@@ -49,6 +49,14 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
 const { t } = useI18n()
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+function goToUnderConstruction() {
+  router.push('/construction')
+}
+const requestConsultation = goToUnderConstruction ;
 const journeys = [
   {
     title: 'narrative.home.journeys.study.title',
