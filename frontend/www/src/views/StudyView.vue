@@ -27,7 +27,7 @@ const images: CarouselImage[] = [
         <Carousel :images="images" />
 
         <p>
-            {{ t('narrative.study.Explore educational opportunities in the United States.') }}
+            {{ t('narrative.study.Explore educational opportunities in the United States') }}
         </p>
     </main>
 </template>
