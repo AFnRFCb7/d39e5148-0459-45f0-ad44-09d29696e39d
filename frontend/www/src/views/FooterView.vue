@@ -4,7 +4,7 @@ const { t } = useI18n()
 </script>
 <template>
     <footer>
-        <span>© {{ t('common.copyright') }}{{ new Date().getFullYear() }} {{ t('common.Visa Solutions') }}</span>
+        <span>© {{ t('common.copyright') }} {{ new Date().getFullYear() }} {{ t('common.Visa Solutions') }}</span>
         <nav>
             <a href="mailto:GlobalVisa.vip@proton.me">GlobalVisa.vip@proton.me</a>
             Phone 202-670-0628
