@@ -1,6 +1,8 @@
 #!/bin/sh
 
-SYSTEM=$(nix build \
+export NIX_CONFIG="access-tokens = github.com=$TOKEN"
+nix-collect-garbage
+time SYSTEM=$(nix build \
     .#nixosConfigurations.user.config.system.build.toplevel \
     --no-link \
     --print-out-paths)

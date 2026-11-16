@@ -1,0 +1,171 @@
+{
+  "nodes": {
+    "failure": {
+      "locked": {
+        "lastModified": 1794785034,
+        "narHash": "sha256-5TblHnt3Og2nvh5aYxjRXtBcMZfXlMfltjVip65Zuzc=",
+        "owner": "AFnRFCb7",
+        "repo": "failure",
+        "rev": "547b6c6d056457b06b28643e20902dd551a69759",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AFnRFCb7",
+        "repo": "failure",
+        "type": "github"
+      }
+    },
+    "lazy-shell-application": {
+      "locked": {
+        "lastModified": 1794785034,
+        "narHash": "sha256-ElOrdKmXFhg4k/+DHRrxghI++yeACE+lr+DK/1ZAzuE=",
+        "owner": "AFnRFCb7",
+        "repo": "lazy-shell-application",
+        "rev": "11ba89c283349b8ff427c414a039e645a08bd857",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AFnRFCb7",
+        "repo": "lazy-shell-application",
+        "type": "github"
+      }
+    },
+    "lazy-shell-resource": {
+      "locked": {
+        "lastModified": 1794785034,
+        "narHash": "sha256-aN6bayn5OUeYxcYIJT6rFiObyZpP6J7Qam78iv83t6Q=",
+        "owner": "AFnRFCb7",
+        "repo": "resource",
+        "rev": "8125ab6a7d2eaf07e3be53018b38e9a36e0704ba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AFnRFCb7",
+        "repo": "resource",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1751274312,
+        "narHash": "sha256-/bVBlRpECLVzjV19t5KMdMFWSwKLtb5RyXdjz3LJT+g=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "50ab793786d9de88ee30ec4e4c24fb4236fc2674",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-24.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "failure": "failure",
+        "lazy-shell-application": "lazy-shell-application",
+        "lazy-shell-resource": "lazy-shell-resource",
+        "nixpkgs": "nixpkgs",
+        "sequential": "sequential",
+        "tree-serialization": "tree-serialization",
+        "trip": "trip",
+        "visa": "visa",
+        "visitor": "visitor",
+        "wrap": "wrap"
+      }
+    },
+    "sequential": {
+      "locked": {
+        "lastModified": 1794785034,
+        "narHash": "sha256-ZzX99tdCnINk3YuaQeZxBf6EFRTy+k2/CNXID9B3Ctk=",
+        "owner": "AFnRFCb7",
+        "repo": "f85ebe91-4135-4df9-9f8e-41b18583abe6",
+        "rev": "d0fc41ac857d3b29abeb0e3f349095b7d33c1746",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AFnRFCb7",
+        "repo": "f85ebe91-4135-4df9-9f8e-41b18583abe6",
+        "type": "github"
+      }
+    },
+    "tree-serialization": {
+      "locked": {
+        "lastModified": 1794785034,
+        "narHash": "sha256-IHCqOUu6UMoJ6Lp+r1NP6+bdzZ3lk1q+jcNfv/H1aDQ=",
+        "owner": "AFnRFCb7",
+        "repo": "tree-serialization",
+        "rev": "15239a4427527a48c583946a5439ea9d5da5b9a5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AFnRFCb7",
+        "repo": "tree-serialization",
+        "type": "github"
+      }
+    },
+    "trip": {
+      "locked": {
+        "lastModified": 1794785034,
+        "narHash": "sha256-7Ev6ga6HjOOYrnnQXTSiDBdiIUlk5xclPcfnMC2CeHw=",
+        "owner": "AFnRFCb7",
+        "repo": "1f343d60-2ecb-434e-b606-751c4ad2c485",
+        "rev": "abad65f96754a10f1a04c8e27e2641a7919b17da",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AFnRFCb7",
+        "repo": "1f343d60-2ecb-434e-b606-751c4ad2c485",
+        "type": "github"
+      }
+    },
+    "visa": {
+      "locked": {
+        "lastModified": 1794785035,
+        "narHash": "sha256-MlwVF93qx/TwFVrTQcqFwcPYHDrXRcPd3fIkA9YGHHc=",
+        "owner": "AFnRFCb7",
+        "repo": "d39e5148-0459-45f0-ad44-09d29696e39d",
+        "rev": "868911311738b155176d91ca8e645d5598818392",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AFnRFCb7",
+        "repo": "d39e5148-0459-45f0-ad44-09d29696e39d",
+        "type": "github"
+      }
+    },
+    "visitor": {
+      "locked": {
+        "lastModified": 1794785035,
+        "narHash": "sha256-Q1xmwsqNrlq4a24ME/qjmmA3a6iLF07mQ660E5pYXiI=",
+        "owner": "AFnRFCb7",
+        "repo": "visitor",
+        "rev": "2231e47afb61afe501b3f4b6a30be4b545bffc18",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AFnRFCb7",
+        "repo": "visitor",
+        "type": "github"
+      }
+    },
+    "wrap": {
+      "locked": {
+        "lastModified": 1794785035,
+        "narHash": "sha256-Ci7VGV1nA0EVKEtc34ET7DOUSB4/ENpdBWbwD0ROVIQ=",
+        "owner": "AFnRFCb7",
+        "repo": "bc122403-1370-4d95-bae6-d9e9e069570a",
+        "rev": "15df4a6a217531047fe5b70270e725722cbe1ca3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AFnRFCb7",
+        "repo": "bc122403-1370-4d95-bae6-d9e9e069570a",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
