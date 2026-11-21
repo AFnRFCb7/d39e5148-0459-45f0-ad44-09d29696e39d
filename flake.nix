@@ -1258,7 +1258,6 @@
                                                                                                 mounts =
                                                                                                     {
                                                                                                         chromium = { read-only = true ; source = pkgs.chromium ; type = "bind" ; } ;
-                                                                                                        migrate = { read-only = true ; source = config.visa.backend.database.migrate.package ; type = "bind" ; } ;
                                                                                                         package = { read-only = true ; source = config.visa.playwright.package ; type = "bind" ; } ;
                                                                                                     } ;
                                                                                                 name = "execute" ;
