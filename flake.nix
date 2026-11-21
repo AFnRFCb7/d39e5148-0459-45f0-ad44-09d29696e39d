@@ -255,7 +255,7 @@
                                                                                                                 up =
                                                                                                                     config.lazy-shell-application
                                                                                                                         {
-                                                                                                                            mounts = { package = { read-only = true ; source = config.nodejs.packages.db-migrate ; type = "bind" ; } ; } ;
+                                                                                                                            mounts = { } ; # { package = { read-only = true ; source = config.nodejs.packages.db-migrate ; type = "bind" ; } ; } ;
                                                                                                                             name = "up" ;
                                                                                                                             post = [ ] ;
                                                                                                                             runtime-inputs = { ... } : [ ] ;
