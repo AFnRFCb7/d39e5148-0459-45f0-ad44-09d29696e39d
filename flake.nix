@@ -41,8 +41,7 @@
                                                                                             EXECUTE_ADMIN=${ config.visa.frontend.admin.fetch }
                                                                                             FETCH_BACKEND=${ config.visa.backend.server.fetch }
                                                                                             FETCH_FRONTEND=${ config.visa.frontend.web.fetch }
-                                                                                            FETCH_MIGRATE=${ config.visa.backend.database.migrate.fetch }
-                                                                                            PACKAGE_MIRATE=${ config.visa.backend.database.migrate.package }
+                                                                                            PACKAGE_MIGRATE=${ config.visa.backend.database.migrate.package }
                                                                                             DEMO_PLAYWRIGHT=${ config.visa.playwright.demo }
                                                                                             EXECUTE_PLAYWRIGHT=${ config.visa.playwright.execute }
                                                                                             FETCH_SERVER=${ config.visa.backend.server.fetch }
