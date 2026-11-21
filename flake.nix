@@ -253,25 +253,30 @@
                                                                                                                             /mounts/package/node_modules/.bin/db-migrate down --migrations-dir ./migrations/production --verbose
                                                                                                                         '' ;
                                                                                                                 up =
-                                                                                                                    config.lazy-shell-application
+                                                                                                                    lib.mkOption
                                                                                                                         {
-                                                                                                                            mounts = { } ; # { package = { read-only = true ; source = config.nodejs.packages.db-migrate ; type = "bind" ; } ; } ;
-                                                                                                                            name = "up" ;
-                                                                                                                            post = [ ] ;
-                                                                                                                            runtime-inputs = { ... } : [ ] ;
-                                                                                                                            text =
-                                                                                                                                ''
-                                                                                                                                    cd /mounts/package
-                                                                                                                                    export DATABASE_HOST=localhost
-                                                                                                                                    export DATABASE_PORT=${ builtins.toString config.visa.backend.database.environments.staging.port }
-                                                                                                                                    export DATABASE_DATABASE=postgres
-                                                                                                                                    export DATABASE_USER=postgres
-                                                                                                                                    sleep 10s
-                                                                                                                                    /mounts/package/node_modules/.bin/db-migrate up --migrations-dir ./migrations/production --verbose
-                                                                                                                                    /mounts/package/node_modules/.bin/db-migrate up --migrations-dir ./migrations/staging
-                                                                                                                                '' ;
-                                                                                                                            variables = { } ;
-                                                                                                                        } ;
+                                                                                                                            default =
+                                                                                                                                config.lazy-shell-application
+                                                                                                                                    {
+                                                                                                                                        mounts = { } ; # { package = { read-only = true ; source = config.nodejs.packages.db-migrate ; type = "bind" ; } ; } ;
+                                                                                                                                        name = "up" ;
+                                                                                                                                        post = [ ] ;
+                                                                                                                                        runtime-inputs = { ... } : [ ] ;
+                                                                                                                                        text =
+                                                                                                                                            ''
+                                                                                                                                                cd /mounts/package
+                                                                                                                                                export DATABASE_HOST=localhost
+                                                                                                                                                export DATABASE_PORT=${ builtins.toString config.visa.backend.database.environments.staging.port }
+                                                                                                                                                export DATABASE_DATABASE=postgres
+                                                                                                                                                export DATABASE_USER=postgres
+                                                                                                                                                sleep 10s
+                                                                                                                                                /mounts/package/node_modules/.bin/db-migrate up --migrations-dir ./migrations/production --verbose
+                                                                                                                                                /mounts/package/node_modules/.bin/db-migrate up --migrations-dir ./migrations/staging
+                                                                                                                                            '' ;
+                                                                                                                                        variables = { } ;
+                                                                                                                                    } ;
+                                                                                                                            type = lib.types.package ;
+                                                                                                                    } ;
                                                                                                             } ;
                                                                                                     } ;
                                                                                         package =
