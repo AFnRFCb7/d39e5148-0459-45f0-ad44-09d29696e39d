@@ -269,62 +269,6 @@
                                                                                                                         '' ;
                                                                                                             } ;
                                                                                                     } ;
-                                                                                        fetch =
-                                                                                            lib.mkOption
-                                                                                                {
-                                                                                                    default =
-                                                                                                        config.lazy-shell-application
-                                                                                                            {
-                                                                                                                mounts =
-                                                                                                                    {
-                                                                                                                        pwd = { source = "." ; type = "bind" ; } ;
-                                                                                                                    } ;
-                                                                                                                name = "fetch" ;
-                                                                                                                post = [ ] ;
-                                                                                                                runtime-inputs =
-                                                                                                                    { pkgs , ... } :
-                                                                                                                        [
-                                                                                                                            (
-                                                                                                                                config.tree-serialization.explode
-                                                                                                                                    {
-                                                                                                                                        bytes = "1m" ;
-                                                                                                                                        input = "/mounts/pwd/node_modules" ;
-                                                                                                                                        name = "explode" ;
-                                                                                                                                        output = "/mounts/pwd/node_modules.exploded" ;
-                                                                                                                                    }
-                                                                                                                            )
-                                                                                                                            pkgs.git
-                                                                                                                            pkgs.nodejs
-                                                                                                                        ] ;
-                                                                                                                text =
-                                                                                                                    let
-                                                                                                                        package =
-                                                                                                                            {
-                                                                                                                                name = "visa-database-migration" ;
-                                                                                                                                private = true ;
-                                                                                                                                dependencies =
-                                                                                                                                    {
-                                                                                                                                        db-migrate = "^0.11.14" ;
-                                                                                                                                        db-migrate-pg = "^1.5.2" ;
-                                                                                                                                    } ;
-                                                                                                                            } ;
-                                                                                                                        in
-                                                                                                                            ''
-                                                                                                                                MESSAGE="$1"
-                                                                                                                                git clean -fd
-                                                                                                                                cat ${ builtins.toFile "package.json" ( builtins.toJSON package ) } > package.json
-                                                                                                                                git rm -r --ignore-unmatch node_modules node_modules.exploded
-                                                                                                                                mkdir --parents node_modules.exploded
-                                                                                                                                npm install
-                                                                                                                                explode
-                                                                                                                                git add node_modules.exploded
-                                                                                                                                git clean -fd
-                                                                                                                                git commit -am "$MESSAGE" --allow-empty --allow-empty-message
-                                                                                                                            '' ;
-                                                                                                                variables = { } ;
-                                                                                                            } ;
-                                                                                                    type = lib.types.package ;
-                                                                                                } ;
                                                                                         package =
                                                                                             lib.mkOption
                                                                                                 {
