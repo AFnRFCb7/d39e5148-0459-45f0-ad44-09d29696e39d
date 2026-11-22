@@ -1,3 +1,6 @@
+/**
+ * 4212127756675587
+ **/
 <script setup>
 import Header from './views/HeaderView.vue'
 import Footer from './views/FooterView.vue'
