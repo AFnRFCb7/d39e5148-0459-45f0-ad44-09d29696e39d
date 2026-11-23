@@ -61,6 +61,11 @@
                                                                         )
                                                                     ] ;
                                                             } ;
+                                                        security.acme =
+                                                            {
+                                                                acceptTerms = true ;
+                                                                defaults.email = "emory.merryman@gmail.com" ;
+                                                            } ;
                                                             services.nginx =
                                                                 {
                                                                     enable = true ;
@@ -70,6 +75,8 @@
 ##                                                                            IOSchedulingPriority = 0 ;
 ##                                                                            Nice = -5 ;
 #                                                                        } ;
+                                                                    virtualHosts."visa-staging.com".enableACME = true ;
+                                                                    virtualHosts.forceSSL = true ;
                                                                     virtualHosts."visa-staging.com".locations =
                                                                         {
                                                                             "/" =
@@ -167,7 +174,7 @@
                                                                     "-netdev"
                                                                     "user,id=net0,hostfwd=tcp::8080-:80"
                                                                 ] ;
-                                                            networking.firewall.allowedTCPPorts = [ 80 ] ;
+                                                            networking.firewall.allowedTCPPorts = [ 80 443 ] ;
                                                     } ;
                                                 options =
                                                     {
