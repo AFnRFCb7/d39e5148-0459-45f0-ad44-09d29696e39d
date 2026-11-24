@@ -76,7 +76,7 @@
 ##                                                                            Nice = -5 ;
 #                                                                        } ;
                                                                     virtualHosts."visa-staging.com".enableACME = true ;
-                                                                    virtualHosts.forceSSL = true ;
+                                                                    virtualHosts."visa-stating.com".forceSSL = true ;
                                                                     virtualHosts."visa-staging.com".locations =
                                                                         {
                                                                             "/" =
